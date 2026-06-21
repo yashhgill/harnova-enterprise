@@ -231,8 +231,8 @@ function Nav() {
             </motion.a>
           </div>
           {/* Mobile hamburger */}
-          <button aria-label={mobileOpen ? 'Close menu' : 'Open menu'} className="show-mobile" onClick={() => setMobileOpen(!mobileOpen)}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#0F172A', display: 'flex' }}>
+          <button aria-label={mobileOpen ? 'Close menu' : 'Open menu'} className="show-mobile hamburger-btn" onClick={() => setMobileOpen(!mobileOpen)}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#0F172A' }}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
