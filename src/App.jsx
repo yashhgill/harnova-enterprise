@@ -13,7 +13,7 @@ const MEDILINK_FEATURES = [
   'Manchester Triage System AI — real clinical scoring, not a chatbot',
   'DuitNow QR, TnG eWallet, FPX, and cash payment support',
   'Pharmacy inventory with low-stock and expiry alerts',
-  '99% uptime SLA via local-first PostgreSQL + AWS RDS sync',
+  '99% uptime SLA — the clinic keeps running even when internet connectivity drops',
   'Full audit logging — every patient data access tracked',
   'Multi-facility record sharing with consent-gated access',
   'Real-time queue WebSocket broadcast to all dashboards',
@@ -26,10 +26,20 @@ const COMING = [
 const WHY = [
   { icon: '🇲🇾', title: 'Built for Malaysia, not copied from the West', desc: 'DuitNow QR, TnG eWallet, MyKad IC, FPX — every product works natively with Malaysian payment and identity systems.' },
   { icon: '⚡', title: 'We ship, not just consult', desc: "Every engagement ends with working, deployed software — not a 50-slide deck. We stay until it's live and stable." },
-  { icon: '🔐', title: 'Security and uptime by design', desc: 'JWT auth, RBAC, HTTPS everywhere, audit logs, and hybrid architecture baked in from day one.' },
+  { icon: '🔐', title: 'Security and uptime by design', desc: 'Role-based access control, encrypted connections, audit logs, and redundant architecture baked in from day one — not bolted on after a breach.' },
   { icon: '📈', title: 'Long-term partner, not a one-off vendor', desc: 'We build with the next 3 years in mind. Scalable infrastructure, clean codebases, documentation that survives us.' },
 ]
-const TECH = [['⚛️','React/Next.js'],['🐍','FastAPI'],['🐘','PostgreSQL'],['☁️','AWS'],['🤖','Groq AI'],['🔷','Supabase'],['🐳','Docker'],['🌐','Cloudflare'],['🔒','JWT/RBAC']]
+const MEDILINK_HIGHLIGHTS = [
+  ['🏥', 'Smart Check-In', 'Patients walk in, scan their IC, and get a queue ticket in under 60 seconds — no staff needed.'],
+  ['🧠', 'AI Clinical Triage', 'Real-time triage scoring based on chief complaint and vitals. Tells staff exactly how urgent each patient is.'],
+  ['💊', 'Pharmacy Management', 'Automatic dispense queue, stock tracking, low-stock alerts, and expiry warnings — all in one screen.'],
+  ['📡', 'Works Offline', 'The system keeps running even when the internet goes down. Zero downtime for the clinic.'],
+  ['💳', 'Local Payments', 'DuitNow QR, TnG eWallet, FPX, and cash — all supported. No foreign payment gateways.'],
+  ['🔒', 'Audit & Compliance', 'Every patient data access is logged automatically. Who viewed what, when, and from where.'],
+  ['🏢', 'Multi-Facility', 'Doctors at different facilities can securely view shared patient records — with patient consent.'],
+  ['📊', 'Live Dashboard', 'Receptionists, doctors, and pharmacists each get their own real-time view of the clinic queue.'],
+  ['☁️', 'Cloud Backup', 'Patient data syncs to the cloud automatically. If the local server fails, nothing is lost.'],
+]
 const QUEUE = [['#01','Arjun Rao','In Progress','#7C3AFF'],['#02','Mei Lin Chong','Pharmacy','#60A5FA'],['#03','Hafiz Rahman','Checked In','#22C55E'],['#04','Priya Nair','Waiting','#F59E0B'],['#05','Lim Ah Kow','Waiting','#F59E0B']]
 
 function DotGrid() {
@@ -270,20 +280,22 @@ export default function App() {
           </Reveal>
           <Reveal delay={.1}>
             <div style={{background:'#0A0A0F',border:'1px solid #2D2B3D',borderRadius:16,padding:32}}>
-              <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:'.95rem',color:'#9896B0',marginBottom:16}}>Our tech stack</div>
+              <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:'.95rem',color:'#9896B0',marginBottom:16}}>What MediLink does</div>
               <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:10,marginBottom:24}}>
-                {TECH.map(([e,n])=>(
-                  <div key={n} style={{background:'#1C1B28',border:'1px solid #2D2B3D',borderRadius:8,padding:'10px 12px',textAlign:'center',transition:'all .2s',cursor:'default'}}
-                    onMouseEnter={el=>el.currentTarget.style.cssText+='border-color:#5B21F0;color:#7C3AFF'}
-                    onMouseLeave={el=>el.currentTarget.style.cssText='background:#1C1B28;border:1px solid #2D2B3D;border-radius:8px;padding:10px 12px;text-align:center;transition:all .2s;cursor:default'}>
-                    <div style={{fontSize:'1.2rem',marginBottom:4}}>{e}</div>
-                    <div style={{fontSize:'.78rem',fontWeight:500,color:'#9896B0'}}>{n}</div>
+                {MEDILINK_HIGHLIGHTS.map(([icon,title,desc])=>(
+                  <div key={title} style={{background:'#1C1B28',border:'1px solid #2D2B3D',borderRadius:10,padding:'14px',transition:'border-color .2s',cursor:'default'}}
+                    onMouseEnter={e=>e.currentTarget.style.borderColor='#5B21F0'}
+                    onMouseLeave={e=>e.currentTarget.style.borderColor='#2D2B3D'}
+                    title={desc}>
+                    <div style={{fontSize:'1.2rem',marginBottom:6}}>{icon}</div>
+                    <div style={{fontSize:'.78rem',fontWeight:600,color:'#F0EEF8',lineHeight:1.3,marginBottom:4}}>{title}</div>
+                    <div style={{fontSize:'.7rem',color:'#55536A',lineHeight:1.5}}>{desc}</div>
                   </div>
                 ))}
               </div>
               <div style={{padding:20,background:'rgba(91,33,240,.06)',border:'1px solid rgba(91,33,240,.15)',borderRadius:12}}>
-                <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,color:'#7C3AFF',fontSize:'.875rem',marginBottom:6}}>AWS Well-Architected Framework</div>
-                <div style={{fontSize:'.82rem',color:'#9896B0',lineHeight:1.7}}>Every HarNova cloud deployment is reviewed against all 6 pillars: Reliability, Security, Performance Efficiency, Cost Optimisation, Operational Excellence, and Sustainability.</div>
+                <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,color:'#7C3AFF',fontSize:'.875rem',marginBottom:6}}>Enterprise-grade architecture</div>
+                <div style={{fontSize:'.82rem',color:'#9896B0',lineHeight:1.7}}>Every HarNova platform is architected for reliability, security, performance, and cost efficiency — built to pass enterprise procurement reviews and handle real clinical workloads.</div>
               </div>
             </div>
           </Reveal>
