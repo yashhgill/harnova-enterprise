@@ -6,7 +6,6 @@
   --border: #E4E8FF;
   --accent: #4F46E5;
   --accent-hi: #6366F1;
-  --accent-lo: #3730A3;
   --glow: rgba(79,70,229,0.25);
   --cyan: #06B6D4;
   --rose: #F43F5E;
@@ -26,3 +25,11 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
+
+/* ── Responsive utilities ── */
+.hide-mobile { display: block; }
+.show-mobile { display: none; }
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+}
