@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import StoryScroll from './StoryScroll'
 import {
   Globe, Cloud, Sparkles, ShoppingCart, Layers, Compass,
   Search, PenTool, Rocket, LifeBuoy,
@@ -358,6 +359,9 @@ export default function App() {
         </div>
       </div>
     </section>
+
+    {/* ── STORY SCROLL ─────────────────────────────────────────────────── */}
+    <StoryScroll />
 
     {/* ── SERVICES ─────────────────────────────────────────────────────── */}
     <section id="services" style={{ padding: 'clamp(64px,8vw,100px) 0', background: '#fff' }}>
