@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MediLink — Live Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#060D1A;color:#fff;font-family:'Inter',system-ui,sans-serif;height:100vh;overflow:hidden}
+  ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#0a1628}::-webkit-scrollbar-thumb{background:#1e3a5f;border-radius:2px}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .fade-in{animation:fadeIn .35s ease both}
+  .slide-in{animation:slideIn .3s ease both}
+  .live-dot{animation:pulse 2s infinite}
+  .spin{animation:spin 1s linear infinite}
+  .cursor{animation:blink 1s infinite}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ── Seed Data ─────────────────────────────────────────── */
+const PATIENTS = [
+  { id:'Q001', name:'Arjun Rao',      ic:'880421-14-5567', age:37, gender:'M', chief:'Chest tightness, shortness of breath', vitals:{bp:'142/90',spo2:'94%',hr:'102',temp:'37.2°C'}, triage:'Immediate', color:'EF4444', priority:1, status:'In Progress', doctor:'Dr. Tan Wei Ming', time:'09:04', fee:120 },
+  { id:'Q002', name:'Mei Lin Chong',  ic:'950311-08-2210', age:29, gender:'F', chief:'Severe headache, photophobia x 2 days', vitals:{bp:'118/76',spo2:'99%',hr:'88',temp:'37.8°C'}, triage:'Very Urgent', color:'F97316', priority:2, status:'With Doctor', doctor:'Dr. Sarah Lim', time:'09:21', fee:80 },
+  { id:'Q003', name:'Hafiz Rahman',   ic:'720915-10-7733', age:51, gender:'M', chief:'Knee pain, difficulty walking', vitals:{bp:'128/82',spo2:'98%',hr:'78',temp:'36.9°C'}, triage:'Urgent', color:'F59E0B', priority:3, status:'Pharmacy', doctor:'Dr. Tan Wei Ming', time:'09:35', fee:65 },
+  { id:'Q004', name:'Priya Nair',     ic:'010203-14-1234', age:23, gender:'F', chief:'Sore throat, mild fever since yesterday', vitals:{bp:'110/70',spo2:'99%',hr:'82',temp:'38.1°C'}, triage:'Standard', color:'3B82F6', priority:4, status:'Waiting', doctor:null, time:'09:48', fee:50 },
+  { id:'Q005', name:'Lim Jia Hao',   ic:'881231-07-5678', age:36, gender:'M', chief:'Follow-up diabetes review', vitals:{bp:'132/85',spo2:'98%',hr:'74',temp:'36.7°C'}, triage:'Non-Urgent', color:'10B981', priority:5, status:'Waiting', doctor:null, time:'10:02', fee:45 },
+];
+
+const DRUGS = [
+  { name:'Paracetamol 500mg', stock:482, unit:'tab', min:100, exp:'2026-03-15', dispense:true },
+  { name:'Amoxicillin 500mg', stock:38,  unit:'cap', min:50,  exp:'2025-12-20', dispense:false },
+  { name:'Metformin 500mg',   stock:215, unit:'tab', min:80,  exp:'2026-08-10', dispense:true },
+  { name:'Amlodipine 5mg',    stock:12,  unit:'tab', min:40,  exp:'2025-11-30', dispense:false },
+  { name:'Omeprazole 20mg',   stock:144, unit:'cap', min:60,  exp:'2026-05-22', dispense:true },
+  { name:'Salbutamol Inhaler',stock:8,   unit:'pcs', min:15,  exp:'2025-10-05', dispense:false },
+];
+
+const ROLES = [
+  { id:'reception', label:'Reception',   icon:'🖥️', email:'admin@medilink.io',    pass:'Admin@123',    color:'4F46E5' },
+  { id:'doctor',    label:'Doctor',      icon:'👨‍⚕️', email:'dr.tan@medilink.io',   pass:'Doctor@123',   color:'0891B2' },
+  { id:'pharmacy',  label:'Pharmacist',  icon:'💊', email:'pharmacy@medilink.io', pass:'Pharm@123',   color:'10B981' },
+];
+
+const TRIAGE_EXPLAIN = {
+  'Immediate':   { why:'Chest tightness + SpO₂ 94% + HR 102 → possible cardiac event or pulmonary embolism. Immediate assessment required.', time:'Immediate', next:'Resuscitation bay' },
+  'Very Urgent': { why:'Severe headache + photophobia → rule out meningitis or subarachnoid haemorrhage. CT + LP may be needed.', time:'10 min', next:'Assessment room 1' },
+  'Urgent':      { why:'Functional impairment (difficulty walking). Pain management + imaging warranted within 30 min.', time:'30 min', next:'Consultation room 2' },
+  'Standard':    { why:'Mild upper respiratory infection symptoms. Stable vitals. No red flags. Standard consult.', time:'60 min', next:'Waiting area' },
+  'Non-Urgent':  { why:'Routine chronic disease follow-up. All vitals within target range.', time:'120 min', next:'Waiting area' },
+};
+
+/* ── Helpers ───────────────────────────────────────────── */
+const C = {
+  bg:'#060D1A', bg2:'#0A1628', bg3:'#0F2040', card:'rgba(255,255,255,0.04)',
+  border:'rgba(255,255,255,0.08)', borderHi:'rgba(255,255,255,0.15)',
+  text:'#fff', textMuted:'rgba(255,255,255,0.45)', textDim:'rgba(255,255,255,0.2)',
+  teal:'#0891B2', green:'#10B981', amber:'#F59E0B', red:'#EF4444', purple:'#4F46E5',
+};
+
+const badge = (label, color, bg) => (
+  <span style={{ padding:'2px 9px', borderRadius:99, fontSize:10, fontWeight:700,
+    background: bg||`${color}20`, color: color, border:`1px solid ${color}33`,
+    fontFamily:'monospace', letterSpacing:'.03em' }}>{label}</span>
+);
+
+const statCard = (label, value, color, sub) => (
+  <div style={{ background:C.card, border:`1px solid ${color}25`, borderRadius:10, padding:'12px 14px', flex:1 }}>
+    <div style={{ fontSize:9, color:C.textMuted, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:4 }}>{label}</div>
+    <div style={{ fontSize:'1.5rem', fontWeight:800, color, lineHeight:1 }}>{value}</div>
+    {sub && <div style={{ fontSize:9, color:C.textDim, marginTop:3 }}>{sub}</div>}
+  </div>
+);
+
+/* ── Login Screen ──────────────────────────────────────── */
+function Login({ onLogin }) {
+  const [role, setRole]   = useState(null);
+  const [email, setEmail] = useState('');
+  const [pass, setPass]   = useState('');
+  const [err, setErr]     = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const pickRole = (r) => { setRole(r); setEmail(r.email); setPass(r.pass); setErr(''); };
+
+  const submit = () => {
+    if (!role) { setErr('Select a role first.'); return; }
+    if (email !== role.email || pass !== role.pass) { setErr('Wrong credentials. Use the pre-filled values.'); return; }
+    setLoading(true);
+    setTimeout(() => onLogin(role), 1200);
+  };
+
+  return (
+    <div style={{ height:'100vh', display:'flex', alignItems:'center', justifyContent:'center',
+      background:`radial-gradient(ellipse 80% 60% at 50% 0%, rgba(8,145,178,0.12) 0%, transparent 70%), ${C.bg}` }}>
+      <div className="fade-in" style={{ width:'100%', maxWidth:420, padding:'0 16px' }}>
+        {/* Logo */}
+        <div style={{ textAlign:'center', marginBottom:32 }}>
+          <div style={{ width:48, height:48, borderRadius:14, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
+            display:'inline-flex', alignItems:'center', justifyContent:'center', marginBottom:12 }}>
+            <span style={{ fontSize:22 }}>🏥</span>
+          </div>
+          <div style={{ fontWeight:800, fontSize:'1.5rem', letterSpacing:'-.03em' }}>MediLink</div>
+          <div style={{ fontSize:12, color:C.textMuted, marginTop:4 }}>Interactive Demo — v2.0</div>
+        </div>
+
+        {/* Role picker */}
+        <div style={{ marginBottom:20 }}>
+          <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:10 }}>
+            Select a role to log in as
+          </div>
+          <div style={{ display:'flex', gap:8 }}>
+            {ROLES.map(r => (
+              <button key={r.id} onClick={() => pickRole(r)} style={{
+                flex:1, padding:'10px 6px', borderRadius:10, cursor:'pointer',
+                background: role?.id===r.id ? `#${r.color}22` : C.card,
+                border: role?.id===r.id ? `1.5px solid #${r.color}` : `1px solid ${C.border}`,
+                color: role?.id===r.id ? '#fff' : C.textMuted,
+                textAlign:'center', transition:'all .15s',
+              }}>
+                <div style={{ fontSize:20, marginBottom:4 }}>{r.icon}</div>
+                <div style={{ fontSize:10, fontWeight:700, letterSpacing:'.04em' }}>{r.label}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Form */}
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:20 }}>
+          {['Email','Password'].map((lbl, i) => (
+            <div key={lbl} style={{ marginBottom:12 }}>
+              <div style={{ fontSize:11, color:C.textDim, marginBottom:6 }}>{lbl}</div>
+              <input type={i===1?'password':'email'}
+                value={i===0?email:pass}
+                onChange={e => i===0 ? setEmail(e.target.value) : setPass(e.target.value)}
+                style={{ width:'100%', padding:'9px 12px', background:'rgba(255,255,255,0.05)',
+                  border:`1px solid ${C.border}`, borderRadius:8, color:'#fff', fontSize:13,
+                  outline:'none', fontFamily:'monospace' }} />
+            </div>
+          ))}
+          {err && <div style={{ color:'#EF4444', fontSize:11, marginBottom:8 }}>{err}</div>}
+          <button onClick={submit} style={{
+            width:'100%', padding:'11px', borderRadius:9, fontWeight:700, fontSize:14,
+            background: loading ? C.card : 'linear-gradient(135deg,#0891B2,#4F46E5)',
+            border:'none', color:'#fff', cursor: loading?'default':'pointer', transition:'all .2s',
+          }}>
+            {loading ? <span className="spin" style={{ display:'inline-block' }}>⟳</span> : 'Sign in →'}
+          </button>
+        </div>
+        <div style={{ textAlign:'center', marginTop:16, fontSize:11, color:C.textDim }}>
+          Demo credentials are pre-filled when you select a role
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Top Nav ───────────────────────────────────────────── */
+function TopNav({ role, view, setView, onLogout }) {
+  const tabs = {
+    reception: ['Dashboard','Queue','Check-In'],
+    doctor:    ['Dashboard','Patients','Triage'],
+    pharmacy:  ['Dashboard','Dispense','Inventory'],
+  }[role.id];
+
+  return (
+    <div style={{ background:C.bg2, borderBottom:`1px solid ${C.border}`, padding:'0 16px',
+      display:'flex', alignItems:'center', gap:16, height:48, flexShrink:0 }}>
+      <div style={{ display:'flex', alignItems:'center', gap:8, marginRight:8 }}>
+        <div style={{ width:26, height:26, borderRadius:8, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
+          display:'flex', alignItems:'center', justifyContent:'center', fontSize:13 }}>🏥</div>
+        <span style={{ fontWeight:800, fontSize:'.9rem', letterSpacing:'-.02em' }}>MediLink</span>
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:4, flex:1 }}>
+        {tabs.map(t => (
+          <button key={t} onClick={() => setView(t)} style={{
+            padding:'5px 12px', borderRadius:7, fontSize:12, fontWeight:600, cursor:'pointer',
+            background: view===t ? `#${role.color}22` : 'transparent',
+            color: view===t ? '#fff' : C.textMuted,
+            border: view===t ? `1px solid #${role.color}44` : '1px solid transparent',
+          }}>{t}</button>
+        ))}
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:4 }}>
+          <span className="live-dot" style={{ width:6, height:6, borderRadius:'50%', background:'#10B981', display:'inline-block' }} />
+          <span style={{ fontSize:10, color:'#10B981', fontWeight:700 }}>LIVE</span>
+        </div>
+        <div style={{ fontSize:11, color:C.textDim }}>{role.icon} {role.label}</div>
+        <button onClick={onLogout} style={{ padding:'4px 10px', borderRadius:6, fontSize:11,
+          background:'transparent', border:`1px solid ${C.border}`, color:C.textMuted, cursor:'pointer' }}>
+          Sign out
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Patient Detail Modal ──────────────────────────────── */
+function PatientModal({ patient, onClose }) {
+  const [aiLoading, setAiLoading] = useState(true);
+  const [tab, setTab] = useState('triage');
+  const explain = TRIAGE_EXPLAIN[patient.triage];
+
+  useEffect(() => { const t = setTimeout(() => setAiLoading(false), 1800); return () => clearTimeout(t); }, []);
+
+  return (
+    <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.7)', zIndex:100,
+      display:'flex', alignItems:'center', justifyContent:'center', padding:16 }}
+      onClick={e => e.target===e.currentTarget && onClose()}>
+      <div className="fade-in" style={{ background:C.bg2, border:`1px solid ${C.border}`, borderRadius:16,
+        width:'100%', maxWidth:560, maxHeight:'85vh', overflow:'hidden', display:'flex', flexDirection:'column' }}>
+        {/* Header */}
+        <div style={{ padding:'16px 20px', borderBottom:`1px solid ${C.border}`,
+          display:'flex', alignItems:'flex-start', justifyContent:'space-between' }}>
+          <div>
+            <div style={{ fontWeight:800, fontSize:'1.1rem', marginBottom:2 }}>{patient.name}</div>
+            <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+              <span style={{ fontSize:11, color:C.textMuted, fontFamily:'monospace' }}>{patient.ic}</span>
+              <span style={{ fontSize:11, color:C.textMuted }}>{patient.age}y {patient.gender}</span>
+              {badge(patient.triage, `#${patient.color}`)}
+            </div>
+          </div>
+          <button onClick={onClose} style={{ background:'transparent', border:`1px solid ${C.border}`,
+            borderRadius:7, color:C.textMuted, cursor:'pointer', padding:'4px 8px', fontSize:12 }}>✕</button>
+        </div>
+
+        {/* Tabs */}
+        <div style={{ display:'flex', gap:4, padding:'10px 20px 0', borderBottom:`1px solid ${C.border}` }}>
+          {['triage','vitals','history'].map(t => (
+            <button key={t} onClick={() => setTab(t)} style={{
+              padding:'5px 14px', borderRadius:'7px 7px 0 0', fontSize:12, fontWeight:600, cursor:'pointer',
+              background: tab===t ? C.bg3 : 'transparent',
+              color: tab===t ? '#fff' : C.textMuted,
+              border: tab===t ? `1px solid ${C.border}` : 'none',
+              borderBottom: tab===t ? `1px solid ${C.bg3}` : 'none',
+              textTransform:'capitalize',
+            }}>{t}</button>
+          ))}
+        </div>
+
+        <div style={{ padding:'16px 20px', overflowY:'auto', flex:1 }}>
+          {tab === 'triage' && (
+            <div className="fade-in">
+              <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:10 }}>
+                Manchester Triage System — AI Assessment
+              </div>
+              {aiLoading ? (
+                <div style={{ textAlign:'center', padding:'32px 0', color:C.textMuted }}>
+                  <div className="spin" style={{ fontSize:24, display:'block', marginBottom:8 }}>⟳</div>
+                  <div style={{ fontSize:12 }}>Groq · Llama 3.3 70B — analysing symptoms…</div>
+                </div>
+              ) : (
+                <div className="fade-in">
+                  <div style={{ background:`#${patient.color}18`, border:`1px solid #${patient.color}44`,
+                    borderRadius:12, padding:14, marginBottom:12 }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
+                      <span style={{ fontWeight:800, fontSize:'1.1rem', color:`#${patient.color}` }}>
+                        {patient.triage}
+                      </span>
+                      <span style={{ fontSize:11, color:C.textMuted }}>Target: {explain.time}</span>
+                    </div>
+                    <p style={{ fontSize:13, color:'rgba(255,255,255,0.75)', lineHeight:1.6 }}>{explain.why}</p>
+                  </div>
+                  <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:12 }}>
+                    <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:6 }}>Chief Complaint</div>
+                    <div style={{ fontSize:13, color:'rgba(255,255,255,0.8)', fontStyle:'italic' }}>"{patient.chief}"</div>
+                  </div>
+                  <div style={{ marginTop:10, display:'flex', gap:8, alignItems:'center' }}>
+                    <span style={{ fontSize:11, color:C.textMuted }}>→ Direct to:</span>
+                    <span style={{ fontSize:12, fontWeight:600, color:'#0891B2' }}>{explain.next}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {tab === 'vitals' && (
+            <div className="fade-in">
+              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                {[
+                  ['Blood Pressure', patient.vitals.bp, 'mmHg', C.teal],
+                  ['SpO₂',          patient.vitals.spo2,'',     patient.vitals.spo2==='94%'?C.red:C.green],
+                  ['Heart Rate',     patient.vitals.hr,  'bpm',  parseInt(patient.vitals.hr)>100?C.amber:C.green],
+                  ['Temperature',    patient.vitals.temp,'',     parseFloat(patient.vitals.temp)>38?C.amber:C.green],
+                ].map(([lbl,val,unit,col]) => (
+                  <div key={lbl} style={{ background:C.card, border:`1px solid ${col}22`, borderRadius:10, padding:14 }}>
+                    <div style={{ fontSize:9, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:6 }}>{lbl}</div>
+                    <div style={{ fontWeight:800, fontSize:'1.4rem', color:col, lineHeight:1 }}>{val}</div>
+                    {unit && <div style={{ fontSize:10, color:C.textDim, marginTop:2 }}>{unit}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tab === 'history' && (
+            <div className="fade-in">
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:14, marginBottom:10 }}>
+                <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:8 }}>Previous Visits</div>
+                {['2024-11-12 — Hypertension review, Amlodipine 5mg dispensed',
+                  '2024-08-03 — Upper respiratory tract infection, Amoxicillin prescribed',
+                  '2024-03-17 — Annual health screening, all within normal range',
+                ].map((v,i) => (
+                  <div key={i} style={{ padding:'6px 0', borderBottom: i<2?`1px solid ${C.border}`:'none',
+                    fontSize:12, color:'rgba(255,255,255,0.6)' }}>{v}</div>
+                ))}
+              </div>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:14 }}>
+                <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:8 }}>Current Medications</div>
+                <div style={{ fontSize:12, color:'rgba(255,255,255,0.6)' }}>Amlodipine 5mg OD — Hypertension</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div style={{ padding:'12px 20px', borderTop:`1px solid ${C.border}`,
+          display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+          <div style={{ fontSize:11, color:C.textMuted }}>
+            Consultation fee: <span style={{ color:'#10B981', fontWeight:700 }}>RM {patient.fee}.00</span>
+          </div>
+          {badge(patient.status, '#0891B2')}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Reception Dashboard ───────────────────────────────── */
+function Reception({ view }) {
+  const [selected, setSelected] = useState(null);
+  const [time, setTime] = useState(new Date());
+  const [checkinStep, setCheckinStep] = useState(0);
+  const [icInput, setIcInput] = useState('');
+  const [checkinResult, setCheckinResult] = useState(null);
+
+  useEffect(() => {
+    const t = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const DEMO_ICS = { '880421-14-5567':'Arjun Rao', '950311-08-2210':'Mei Lin Chong', '720915-10-7733':'Hafiz Rahman' };
+  const doCheckin = () => {
+    if (DEMO_ICS[icInput]) { setCheckinStep(2); setCheckinResult(DEMO_ICS[icInput]); }
+    else setCheckinStep(-1);
+  };
+
+  if (view === 'Check-In') return (
+    <div style={{ flex:1, overflowY:'auto', padding:20, maxWidth:500, margin:'0 auto', width:'100%' }}>
+      <div className="fade-in">
+        <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:16 }}>
+          MyKad IC Kiosk — Self Check-In
+        </div>
+        {checkinStep === 0 && (
+          <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:24, textAlign:'center' }}>
+            <div style={{ fontSize:48, marginBottom:16 }}>📇</div>
+            <div style={{ fontWeight:700, fontSize:'1.1rem', marginBottom:8 }}>Place your MyKad on reader</div>
+            <div style={{ color:C.textMuted, fontSize:13, marginBottom:20 }}>Or type your IC number manually</div>
+            <input value={icInput} onChange={e => setIcInput(e.target.value)}
+              placeholder="e.g. 880421-14-5567"
+              style={{ width:'100%', padding:'10px 14px', background:'rgba(255,255,255,0.06)',
+                border:`1px solid ${C.border}`, borderRadius:8, color:'#fff', fontSize:14,
+                outline:'none', textAlign:'center', fontFamily:'monospace', marginBottom:12 }} />
+            <div style={{ display:'flex', gap:8, marginBottom:10 }}>
+              {Object.keys(DEMO_ICS).map(ic => (
+                <button key={ic} onClick={() => setIcInput(ic)} style={{ flex:1, padding:'6px 4px',
+                  background:'rgba(8,145,178,0.1)', border:'1px solid rgba(8,145,178,0.3)',
+                  borderRadius:7, color:'#0891B2', fontSize:9, cursor:'pointer', fontFamily:'monospace' }}>{ic}</button>
+              ))}
+            </div>
+            <button onClick={doCheckin} style={{ width:'100%', padding:11, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
+              border:'none', borderRadius:9, color:'#fff', fontWeight:700, fontSize:14, cursor:'pointer' }}>
+              Scan IC →
+            </button>
+          </div>
+        )}
+        {checkinStep === 2 && (
+          <div className="fade-in" style={{ textAlign:'center' }}>
+            <div style={{ width:72, height:72, borderRadius:'50%', background:'#10B98122',
+              border:'2px solid #10B981', display:'flex', alignItems:'center', justifyContent:'center',
+              margin:'0 auto 16px', fontSize:32 }}>✓</div>
+            <div style={{ fontWeight:800, fontSize:'1.3rem', marginBottom:4 }}>Welcome, {checkinResult}!</div>
+            <div style={{ color:C.textMuted, fontSize:13, marginBottom:16 }}>Check-in time: {time.toLocaleTimeString()}</div>
+            <div style={{ background:'#4F46E522', border:'1px solid #4F46E555', borderRadius:12, padding:14, marginBottom:16 }}>
+              <div style={{ fontWeight:700 }}>Queue Number: <span style={{ color:'#4F46E5', fontSize:'1.4rem' }}>Q00{PATIENTS.length+1}</span></div>
+              <div style={{ color:C.textMuted, fontSize:12, marginTop:4 }}>Estimated wait: ~12 minutes</div>
+            </div>
+            <button onClick={() => { setCheckinStep(0); setIcInput(''); setCheckinResult(null); }}
+              style={{ padding:'9px 22px', background:'transparent', border:`1px solid ${C.border}`,
+                borderRadius:9, color:C.textMuted, cursor:'pointer' }}>Check in another patient</button>
+          </div>
+        )}
+        {checkinStep === -1 && (
+          <div className="fade-in" style={{ background:'#EF444422', border:'1px solid #EF444444', borderRadius:12, padding:16, textAlign:'center' }}>
+            <div style={{ fontSize:24, marginBottom:8 }}>⚠️</div>
+            <div style={{ fontWeight:700, marginBottom:4 }}>IC not found in system</div>
+            <div style={{ color:C.textMuted, fontSize:12, marginBottom:12 }}>Try one of the demo ICs above</div>
+            <button onClick={() => setCheckinStep(0)} style={{ padding:'7px 18px', background:'transparent',
+              border:`1px solid ${C.border}`, borderRadius:8, color:C.textMuted, cursor:'pointer' }}>Try again</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
+      {selected && <PatientModal patient={selected} onClose={() => setSelected(null)} />}
+      <div className="fade-in">
+        {/* Stats row */}
+        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+          {statCard('Queue', PATIENTS.length.toString(), C.purple, 'patients today')}
+          {statCard('Urgent', '2', C.red, 'immediate + very urgent')}
+          {statCard('Waiting', '2', C.amber, 'not yet seen')}
+          {statCard('Completed', '31', C.green, 'discharged today')}
+        </div>
+
+        {/* Time */}
+        <div style={{ textAlign:'right', color:C.textDim, fontSize:11, marginBottom:10, fontFamily:'monospace' }}>
+          {time.toLocaleTimeString()} · {time.toLocaleDateString('en-MY',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+        </div>
+
+        {/* Queue table */}
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
+          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}`, display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Live Queue</span>
+            <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+              <span className="live-dot" style={{ width:5, height:5, borderRadius:'50%', background:C.green, display:'inline-block' }} />
+              <span style={{ fontSize:9, color:C.green, fontWeight:700 }}>WebSocket · syncing</span>
+            </div>
+          </div>
+          {PATIENTS.map((p, i) => (
+            <div key={p.id} onClick={() => setSelected(p)} style={{
+              display:'flex', alignItems:'center', gap:10, padding:'11px 14px',
+              borderBottom: i<PATIENTS.length-1 ? `1px solid ${C.border}` : 'none',
+              cursor:'pointer', transition:'background .15s',
+              background:'transparent',
+            }}
+              onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
+              onMouseLeave={e => e.currentTarget.style.background='transparent'}>
+              <span style={{ fontFamily:'monospace', fontWeight:800, color:C.purple, fontSize:12, width:36 }}>{p.id}</span>
+              <div style={{ flex:1 }}>
+                <div style={{ fontWeight:600, fontSize:13 }}>{p.name}</div>
+                <div style={{ fontSize:10, color:C.textMuted }}>{p.chief.slice(0,50)}…</div>
+              </div>
+              <div style={{ display:'flex', gap:6, alignItems:'center' }}>
+                {badge(p.triage, `#${p.color}`)}
+                <span style={{ padding:'2px 8px', borderRadius:99, fontSize:10, fontWeight:600,
+                  background: p.status==='In Progress'?'#4F46E522' : p.status==='Waiting'?'rgba(255,255,255,0.05)' : `rgba(16,185,129,0.12)`,
+                  color: p.status==='In Progress'?'#818CF8' : p.status==='Waiting'?C.textMuted : C.green,
+                  border:`1px solid ${p.status==='In Progress'?'#4F46E544' : p.status==='Waiting'?C.border : '#10B98133'}`,
+                }}>{p.status}</span>
+              </div>
+              <span style={{ fontSize:10, color:C.textDim, fontFamily:'monospace' }}>{p.time}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:11, color:C.textDim, textAlign:'center', marginTop:10 }}>
+          ↑ Click any row to open patient detail + AI triage
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Doctor Dashboard ──────────────────────────────────── */
+function Doctor({ view }) {
+  const [selected, setSelected] = useState(null);
+  const myPatients = PATIENTS.filter(p => p.doctor === 'Dr. Tan Wei Ming');
+
+  return (
+    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
+      {selected && <PatientModal patient={selected} onClose={() => setSelected(null)} />}
+      <div className="fade-in">
+        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+          {statCard('My Patients', myPatients.length.toString(), C.teal, 'assigned today')}
+          {statCard('Urgent', '1', C.red, 'needs immediate review')}
+          {statCard('AI Triage', '5', C.purple, 'assessments completed')}
+        </div>
+
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
+          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
+            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>
+              My Assigned Patients
+            </span>
+          </div>
+          {myPatients.map((p, i) => (
+            <div key={p.id} onClick={() => setSelected(p)} style={{
+              padding:'12px 14px', borderBottom: i<myPatients.length-1?`1px solid ${C.border}`:'none',
+              cursor:'pointer', transition:'background .15s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
+              onMouseLeave={e => e.currentTarget.style.background='transparent'}>
+              <div style={{ display:'flex', justifyContent:'space-between', marginBottom:5 }}>
+                <div style={{ fontWeight:700 }}>{p.name} <span style={{ fontFamily:'monospace', fontSize:11, color:C.textMuted }}>{p.ic}</span></div>
+                {badge(p.triage, `#${p.color}`)}
+              </div>
+              <div style={{ fontSize:12, color:C.textMuted, marginBottom:8 }}>"{p.chief}"</div>
+              <div style={{ display:'flex', gap:12 }}>
+                {[['BP',p.vitals.bp],['SpO₂',p.vitals.spo2],['HR',p.vitals.hr+'bpm'],['Temp',p.vitals.temp]].map(([lbl,val]) => (
+                  <span key={lbl} style={{ fontSize:10 }}>
+                    <span style={{ color:C.textDim }}>{lbl}: </span>
+                    <span style={{ fontFamily:'monospace', fontWeight:700 }}>{val}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* AI Triage alert card */}
+        <div style={{ marginTop:12, background:'rgba(245,158,11,0.08)', border:'1px solid rgba(245,158,11,0.25)',
+          borderRadius:12, padding:14 }}>
+          <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:6 }}>
+            <span style={{ fontSize:18 }}>⚡</span>
+            <span style={{ fontWeight:700, color:C.amber, fontSize:13 }}>AI Clinical Alert</span>
+          </div>
+          <div style={{ fontSize:12, color:'rgba(255,255,255,0.7)', lineHeight:1.6 }}>
+            <strong>Arjun Rao (Q001)</strong> — SpO₂ 94% with tachycardia (HR 102).
+            Groq LLM assessment: possible acute coronary syndrome or pulmonary embolism.
+            Recommend ECG + troponin + D-dimer immediately.
+          </div>
+          <div style={{ marginTop:8, fontSize:11, color:C.textDim }}>MTS Score: Immediate · Generated 09:04:33</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Pharmacy Dashboard ────────────────────────────────── */
+function Pharmacy({ view }) {
+  const [dispensed, setDispensed] = useState([]);
+  const pending = PATIENTS.filter(p => p.status === 'Pharmacy');
+
+  const dispense = (name) => setDispensed(d => [...d, name]);
+
+  if (view === 'Inventory') return (
+    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
+      <div className="fade-in">
+        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+          {statCard('Total Items', DRUGS.length.toString(), C.green)}
+          {statCard('Low Stock', DRUGS.filter(d=>d.stock<d.min).length.toString(), C.red, 'below minimum')}
+          {statCard('Expiring', '2', C.amber, 'within 90 days')}
+        </div>
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
+          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
+            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Drug Inventory</span>
+          </div>
+          {DRUGS.map((d, i) => {
+            const low = d.stock < d.min;
+            const expSoon = new Date(d.exp) < new Date(Date.now() + 90*24*60*60*1000);
+            return (
+              <div key={d.name} style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 14px',
+                borderBottom: i<DRUGS.length-1?`1px solid ${C.border}`:'none',
+                background: low?'rgba(239,68,68,0.04)':'transparent' }}>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontWeight:600, fontSize:13 }}>{d.name}</div>
+                  <div style={{ fontSize:10, color:C.textDim, fontFamily:'monospace' }}>Exp: {d.exp}</div>
+                </div>
+                <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+                  <span style={{ fontFamily:'monospace', fontWeight:800, fontSize:14,
+                    color: low?C.red : d.stock<d.min*1.5?C.amber:C.green }}>{d.stock}</span>
+                  <span style={{ fontSize:10, color:C.textDim }}>{d.unit}</span>
+                  {low && badge('LOW','#EF4444')}
+                  {expSoon && !low && badge('EXPIRING','#F59E0B')}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
+      <div className="fade-in">
+        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+          {statCard('Pending Dispense', pending.length.toString(), C.amber)}
+          {statCard('Dispensed Today', dispensed.length.toString(), C.green)}
+          {statCard('Low Stock Alerts', '4', C.red, 'action required')}
+        </div>
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden', marginBottom:12 }}>
+          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
+            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Dispense Queue</span>
+          </div>
+          {pending.length === 0 ? (
+            <div style={{ padding:20, textAlign:'center', color:C.textMuted, fontSize:13 }}>No pending dispenses</div>
+          ) : pending.map((p, i) => {
+            const done = dispensed.includes(p.name);
+            return (
+              <div key={p.id} style={{ padding:'12px 14px', borderBottom: i<pending.length-1?`1px solid ${C.border}`:'none',
+                opacity: done?0.5:1 }}>
+                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
+                  <div>
+                    <span style={{ fontWeight:700 }}>{p.name}</span>
+                    <span style={{ color:C.textMuted, fontSize:11, marginLeft:8 }}>{p.id}</span>
+                  </div>
+                  {done ? badge('Dispensed','#10B981') : badge('Pending','#F59E0B')}
+                </div>
+                <div style={{ fontSize:12, color:C.textMuted, marginBottom:8 }}>
+                  Prescribed by {p.doctor}
+                </div>
+                {['Paracetamol 500mg × 10 tabs','Amoxicillin 500mg × 14 caps'].map((rx, ri) => (
+                  <div key={ri} style={{ fontSize:12, padding:'3px 0', color:'rgba(255,255,255,0.7)', fontFamily:'monospace' }}>
+                    • {rx}
+                  </div>
+                ))}
+                {!done && (
+                  <button onClick={() => dispense(p.name)} style={{ marginTop:10, padding:'7px 16px',
+                    background:'linear-gradient(135deg,#10B981,#059669)', border:'none', borderRadius:8,
+                    color:'#fff', fontWeight:700, fontSize:12, cursor:'pointer' }}>
+                    Confirm Dispense ✓
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Payment processed */}
+        <div style={{ background:'rgba(16,185,129,0.08)', border:'1px solid rgba(16,185,129,0.25)', borderRadius:12, padding:14 }}>
+          <div style={{ fontWeight:700, color:C.green, marginBottom:6, fontSize:13 }}>💳 Payment Processed</div>
+          <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'rgba(255,255,255,0.7)' }}>
+            <span>Hafiz Rahman — Consultation + Medication</span>
+            <span style={{ fontFamily:'monospace', fontWeight:700, color:C.green }}>RM 65.00</span>
+          </div>
+          <div style={{ fontSize:11, color:C.textDim, marginTop:4 }}>DuitNow QR · 09:52:17</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Root App ──────────────────────────────────────────── */
+function App() {
+  const [role, setRole]   = useState(null);
+  const [view, setView]   = useState('Dashboard');
+
+  const handleLogin = (r) => { setRole(r); setView('Dashboard'); };
+  const handleLogout = () => { setRole(null); setView('Dashboard'); };
+
+  if (!role) return <Login onLogin={handleLogin} />;
+
+  return (
+    <div style={{ height:'100vh', display:'flex', flexDirection:'column', background:C.bg }}>
+      <TopNav role={role} view={view} setView={setView} onLogout={handleLogout} />
+      <div style={{ flex:1, overflow:'hidden', display:'flex' }}>
+        {role.id==='reception' && <Reception view={view} />}
+        {role.id==='doctor'    && <Doctor    view={view} />}
+        {role.id==='pharmacy'  && <Pharmacy  view={view} />}
+      </div>
+      {/* Demo watermark */}
+      <div style={{ position:'fixed', bottom:10, right:14, fontSize:10, color:C.textDim, fontFamily:'monospace' }}>
+        MediLink Demo · No real patient data
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>
