@@ -3,24 +3,94 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MediLink — Live Demo</title>
+<title>MediLink â Live Demo</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#060D1A;color:#fff;font-family:'Inter',system-ui,sans-serif;height:100vh;overflow:hidden}
-  ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#0a1628}::-webkit-scrollbar-thumb{background:#1e3a5f;border-radius:2px}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  @keyframes spin{to{transform:rotate(360deg)}}
+  body{background:#F9F9F6;color:#0A0F0D;font-family:'Inter',system-ui,sans-serif;min-height:100vh}
+  ::-webkit-scrollbar{width:4px;height:4px}
+  ::-webkit-scrollbar-track{background:#F3EFE9}
+  ::-webkit-scrollbar-thumb{background:#D4A373;border-radius:2px}
+  .font-display{font-family:'Lora',Georgia,serif}
+  .font-mono{font-family:'Courier New',monospace}
+  .overline{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5C6661}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-  .fade-in{animation:fadeIn .35s ease both}
-  .slide-in{animation:slideIn .3s ease both}
-  .live-dot{animation:pulse 2s infinite}
-  .spin{animation:spin 1s linear infinite}
-  .cursor{animation:blink 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+  .fade-in{animation:fadeIn .3s ease both}
+  .breathe{animation:breathe 2s ease-in-out infinite}
+  .spin{animation:spin .9s linear infinite;display:inline-block}
+  .pulse{animation:pulse 2s infinite}
+
+  /* cards */
+  .card{background:#fff;border:1px solid #E2DDD7;border-radius:16px;padding:24px}
+  .card-green{background:#1C3F39;border:1px solid #1C3F39;border-radius:16px;padding:24px;color:#F9F9F6}
+  .card-beige{background:#F3EFE9;border:1px solid #E2DDD7;border-radius:16px;padding:24px}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+  .btn-primary{background:#1C3F39;color:#F9F9F6}
+  .btn-primary:hover{background:#2D5A52}
+  .btn-outline{background:transparent;color:#1C3F39;border:1px solid #E2DDD7}
+  .btn-outline:hover{background:#F3EFE9}
+  .btn-terracotta{background:#B55B49;color:#F9F9F6}
+  .btn-terracotta:hover{background:#9b4a3b}
+  .btn:disabled{opacity:.5;cursor:default}
+
+  /* badges */
+  .badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600}
+  .badge-scheduled{background:#F3EFE9;color:#1C3F39}
+  .badge-checked_in{background:rgba(212,163,115,.3);color:#1C3F39}
+  .badge-in_progress{background:rgba(181,91,73,.2);color:#9B2226}
+  .badge-completed{background:rgba(45,106,79,.2);color:#2D6A4F}
+  .badge-ready_for_pharmacy{background:#1C3F39;color:#F9F9F6}
+  .badge-dispensed{background:#2D6A4F;color:#F9F9F6}
+  .badge-paid{background:rgba(45,106,79,.2);color:#2D6A4F}
+  .badge-unpaid{background:rgba(92,102,97,.12);color:#5C6661}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;padding:10px 8px;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#5C6661;border-bottom:1px solid #E2DDD7}
+  td{padding:12px 8px;border-bottom:1px solid rgba(226,221,215,.6);vertical-align:top}
+  tr:hover td{background:#F9F9F6}
+  tr:last-child td{border-bottom:none}
+
+  /* input */
+  input,textarea,select{width:100%;padding:8px 12px;border:1px solid #E2DDD7;border-radius:8px;font-size:13px;background:#fff;color:#0A0F0D;outline:none;font-family:inherit}
+  input:focus,textarea:focus,select:focus{border-color:#1C3F39}
+  label{font-size:11px;font-weight:600;color:#5C6661;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+
+  /* grid */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .col-span-2{grid-column:span 2}
+  .col-span-3{grid-column:span 3}
+  @media(max-width:900px){.grid3{grid-template-columns:1fr}.col-span-2,.col-span-3{grid-column:span 1}}
+
+  /* sync dot */
+  .sync-dot{width:6px;height:6px;border-radius:50%;background:#2D6A4F;display:inline-block}
+
+  /* modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal{background:#F9F9F6;border:1px solid #E2DDD7;border-radius:20px;width:100%;max-width:580px;max-height:88vh;overflow:hidden;display:flex;flex-direction:column}
+  .modal-header{padding:22px 24px 16px;border-bottom:1px solid #E2DDD7}
+  .modal-body{padding:20px 24px;overflow-y:auto;flex:1}
+  .modal-footer{padding:16px 24px;border-top:1px solid #E2DDD7;display:flex;justify-content:flex-end;gap:10px}
+
+  /* vitals pill */
+  .vital-pill{padding:3px 10px;border-radius:999px;background:#fff;border:1px solid #E2DDD7;font-family:'Courier New',monospace;font-size:11px;color:#1C3F39}
+
+  /* rx card */
+  .rx-card{display:flex;gap:10px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #E2DDD7;align-items:flex-start}
+
+  /* sidebar queue item */
+  .queue-item{width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;border:1px solid #E2DDD7;cursor:pointer;transition:all .15s;background:transparent}
+  .queue-item:hover{background:#F3EFE9}
+  .queue-item.active{border-color:#1C3F39;background:#F3EFE9}
+  .queue-avatar{width:44px;height:44px;border-radius:50%;background:#1C3F39;color:#F9F9F6;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:14px;font-weight:700;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -28,643 +98,869 @@
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-/* ── Seed Data ─────────────────────────────────────────── */
-const PATIENTS = [
-  { id:'Q001', name:'Arjun Rao',      ic:'880421-14-5567', age:37, gender:'M', chief:'Chest tightness, shortness of breath', vitals:{bp:'142/90',spo2:'94%',hr:'102',temp:'37.2°C'}, triage:'Immediate', color:'EF4444', priority:1, status:'In Progress', doctor:'Dr. Tan Wei Ming', time:'09:04', fee:120 },
-  { id:'Q002', name:'Mei Lin Chong',  ic:'950311-08-2210', age:29, gender:'F', chief:'Severe headache, photophobia x 2 days', vitals:{bp:'118/76',spo2:'99%',hr:'88',temp:'37.8°C'}, triage:'Very Urgent', color:'F97316', priority:2, status:'With Doctor', doctor:'Dr. Sarah Lim', time:'09:21', fee:80 },
-  { id:'Q003', name:'Hafiz Rahman',   ic:'720915-10-7733', age:51, gender:'M', chief:'Knee pain, difficulty walking', vitals:{bp:'128/82',spo2:'98%',hr:'78',temp:'36.9°C'}, triage:'Urgent', color:'F59E0B', priority:3, status:'Pharmacy', doctor:'Dr. Tan Wei Ming', time:'09:35', fee:65 },
-  { id:'Q004', name:'Priya Nair',     ic:'010203-14-1234', age:23, gender:'F', chief:'Sore throat, mild fever since yesterday', vitals:{bp:'110/70',spo2:'99%',hr:'82',temp:'38.1°C'}, triage:'Standard', color:'3B82F6', priority:4, status:'Waiting', doctor:null, time:'09:48', fee:50 },
-  { id:'Q005', name:'Lim Jia Hao',   ic:'881231-07-5678', age:36, gender:'M', chief:'Follow-up diabetes review', vitals:{bp:'132/85',spo2:'98%',hr:'74',temp:'36.7°C'}, triage:'Non-Urgent', color:'10B981', priority:5, status:'Waiting', doctor:null, time:'10:02', fee:45 },
+/* ââ Design tokens âââââââââââââââââââââââââââââââââââââââââ */
+const green   = '#1C3F39';
+const green2  = '#2D6A4F';
+const green3  = '#2D5A52';
+const cream   = '#F9F9F6';
+const beige   = '#F3EFE9';
+const border  = '#E2DDD7';
+const muted   = '#5C6661';
+const terra   = '#B55B49';
+const tan     = '#D4A373';
+const text    = '#0A0F0D';
+
+/* ââ Seed data âââââââââââââââââââââââââââââââââââââââââââââ */
+const QUEUE = [
+  { id:1, queue_number:1, status:'in_progress', patient:{name:'Arjun Rao',     ic_number:'880421-14-5567'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T09:04:00', reason:'Chest tightness, shortness of breath', payment_status:'unpaid', fee:60,
+    vitals:{bp:'142/90',hr:102,temp:37.2,spo2:94}, diagnosis:'Possible ACS â urgent cardiac workup',
+    prescriptions:[{medicine:'Aspirin',dosage:'300mg',frequency:'stat',duration:'once'},{medicine:'GTN Spray',dosage:'0.4mg',frequency:'PRN',duration:'acute'}] },
+  { id:2, queue_number:2, status:'checked_in',  patient:{name:'Mei Lin Chong',  ic_number:'950311-08-2210'}, doctor:{name:'Dr. Sarah Lim',    specialty:'General Practice'}, scheduled_at:'2025-06-24T09:21:00', reason:'Severe headache, photophobia x 2 days', payment_status:'unpaid', fee:60,
+    vitals:{bp:'118/76',hr:88,temp:37.8,spo2:99}, diagnosis:'Tension / migraine â rule out meningitis',
+    prescriptions:[{medicine:'Paracetamol',dosage:'1g',frequency:'QID',duration:'3 days'},{medicine:'Sumatriptan',dosage:'50mg',frequency:'PRN',duration:'acute'}] },
+  { id:3, queue_number:3, status:'ready_for_pharmacy', patient:{name:'Hafiz Rahman', ic_number:'720915-10-7733'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T09:35:00', reason:'Right knee pain, difficulty walking', payment_status:'paid', fee:60,
+    vitals:{bp:'128/82',hr:78,temp:36.9,spo2:98}, diagnosis:'Right knee osteoarthritis â conservative management',
+    prescriptions:[{medicine:'Naproxen',dosage:'500mg',frequency:'BD',duration:'5 days'},{medicine:'Omeprazole',dosage:'20mg',frequency:'OD',duration:'5 days'}] },
+  { id:4, queue_number:4, status:'scheduled',   patient:{name:'Priya Nair',    ic_number:'010203-14-1234'}, doctor:{name:'Dr. Sarah Lim',    specialty:'General Practice'}, scheduled_at:'2025-06-24T10:05:00', reason:'Sore throat, fever since yesterday', payment_status:'unpaid', fee:60,
+    vitals:{bp:'110/70',hr:82,temp:38.1,spo2:99}, diagnosis:'', prescriptions:[] },
+  { id:5, queue_number:5, status:'scheduled',   patient:{name:'Lim Jia Hao',   ic_number:'881231-07-5678'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T10:30:00', reason:'Follow-up â type 2 diabetes review', payment_status:'unpaid', fee:60,
+    vitals:{bp:'132/85',hr:74,temp:36.7,spo2:98}, diagnosis:'', prescriptions:[] },
 ];
 
-const DRUGS = [
-  { name:'Paracetamol 500mg', stock:482, unit:'tab', min:100, exp:'2026-03-15', dispense:true },
-  { name:'Amoxicillin 500mg', stock:38,  unit:'cap', min:50,  exp:'2025-12-20', dispense:false },
-  { name:'Metformin 500mg',   stock:215, unit:'tab', min:80,  exp:'2026-08-10', dispense:true },
-  { name:'Amlodipine 5mg',    stock:12,  unit:'tab', min:40,  exp:'2025-11-30', dispense:false },
-  { name:'Omeprazole 20mg',   stock:144, unit:'cap', min:60,  exp:'2026-05-22', dispense:true },
-  { name:'Salbutamol Inhaler',stock:8,   unit:'pcs', min:15,  exp:'2025-10-05', dispense:false },
+const INVENTORY = [
+  { name:'Paracetamol 500mg',   stock:482, unit:'tab', min:100, exp:'2026-03-15' },
+  { name:'Amoxicillin 500mg',   stock:38,  unit:'cap', min:50,  exp:'2025-12-20' },
+  { name:'Metformin 500mg',     stock:215, unit:'tab', min:80,  exp:'2026-08-10' },
+  { name:'Amlodipine 5mg',      stock:12,  unit:'tab', min:40,  exp:'2025-11-30' },
+  { name:'Omeprazole 20mg',     stock:144, unit:'cap', min:60,  exp:'2026-05-22' },
+  { name:'Salbutamol Inhaler',  stock:8,   unit:'pcs', min:15,  exp:'2025-10-05' },
+  { name:'Aspirin 100mg',       stock:320, unit:'tab', min:100, exp:'2026-07-01' },
+  { name:'Atorvastatin 20mg',   stock:95,  unit:'tab', min:60,  exp:'2026-04-18' },
 ];
 
 const ROLES = [
-  { id:'reception', label:'Reception',   icon:'🖥️', email:'admin@medilink.io',    pass:'Admin@123',    color:'4F46E5' },
-  { id:'doctor',    label:'Doctor',      icon:'👨‍⚕️', email:'dr.tan@medilink.io',   pass:'Doctor@123',   color:'0891B2' },
-  { id:'pharmacy',  label:'Pharmacist',  icon:'💊', email:'pharmacy@medilink.io', pass:'Pharm@123',   color:'10B981' },
+  { id:'admin',     label:'Reception',  subtitle:'Admin Â· Operations', email:'admin@medilink.io',    pass:'Admin@123'  },
+  { id:'doctor',    label:'Doctor',     subtitle:'Dr. Tan Wei Ming',   email:'dr.tan@medilink.io',   pass:'Doctor@123' },
+  { id:'pharmacy',  label:'Pharmacist', subtitle:'Pharmacy Â· Dispense',email:'pharmacy@medilink.io', pass:'Pharm@123'  },
 ];
 
-const TRIAGE_EXPLAIN = {
-  'Immediate':   { why:'Chest tightness + SpO₂ 94% + HR 102 → possible cardiac event or pulmonary embolism. Immediate assessment required.', time:'Immediate', next:'Resuscitation bay' },
-  'Very Urgent': { why:'Severe headache + photophobia → rule out meningitis or subarachnoid haemorrhage. CT + LP may be needed.', time:'10 min', next:'Assessment room 1' },
-  'Urgent':      { why:'Functional impairment (difficulty walking). Pain management + imaging warranted within 30 min.', time:'30 min', next:'Consultation room 2' },
-  'Standard':    { why:'Mild upper respiratory infection symptoms. Stable vitals. No red flags. Standard consult.', time:'60 min', next:'Waiting area' },
-  'Non-Urgent':  { why:'Routine chronic disease follow-up. All vitals within target range.', time:'120 min', next:'Waiting area' },
-};
-
-/* ── Helpers ───────────────────────────────────────────── */
-const C = {
-  bg:'#060D1A', bg2:'#0A1628', bg3:'#0F2040', card:'rgba(255,255,255,0.04)',
-  border:'rgba(255,255,255,0.08)', borderHi:'rgba(255,255,255,0.15)',
-  text:'#fff', textMuted:'rgba(255,255,255,0.45)', textDim:'rgba(255,255,255,0.2)',
-  teal:'#0891B2', green:'#10B981', amber:'#F59E0B', red:'#EF4444', purple:'#4F46E5',
-};
-
-const badge = (label, color, bg) => (
-  <span style={{ padding:'2px 9px', borderRadius:99, fontSize:10, fontWeight:700,
-    background: bg||`${color}20`, color: color, border:`1px solid ${color}33`,
-    fontFamily:'monospace', letterSpacing:'.03em' }}>{label}</span>
+/* ââ Helpers âââââââââââââââââââââââââââââââââââââââââââââââ */
+const StatusBadge = ({ status }) => (
+  <span className={`badge badge-${status}`}>{status.replace(/_/g,' ')}</span>
 );
 
-const statCard = (label, value, color, sub) => (
-  <div style={{ background:C.card, border:`1px solid ${color}25`, borderRadius:10, padding:'12px 14px', flex:1 }}>
-    <div style={{ fontSize:9, color:C.textMuted, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:4 }}>{label}</div>
-    <div style={{ fontSize:'1.5rem', fontWeight:800, color, lineHeight:1 }}>{value}</div>
-    {sub && <div style={{ fontSize:9, color:C.textDim, marginTop:3 }}>{sub}</div>}
+const SyncIndicator = () => (
+  <div className="card" style={{ display:'flex', alignItems:'center', gap:12 }}>
+    <div style={{ width:40, height:40, borderRadius:12, background:beige, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18 }}>âï¸</div>
+    <div style={{ flex:1 }}>
+      <div className="overline">Sync Status</div>
+      <div style={{ fontSize:12, color:muted, marginTop:2, display:'flex', alignItems:'center', gap:6 }}>
+        <span className="sync-dot breathe" /> Local + Cloud in sync
+      </div>
+    </div>
   </div>
 );
 
-/* ── Login Screen ──────────────────────────────────────── */
+const VitalPill = ({ label, value }) => (
+  <span className="vital-pill"><span style={{ color:muted, fontSize:10 }}>{label} </span>{value}</span>
+);
+
+const StatBox = ({ label, value }) => (
+  <div style={{ padding:'12px 14px', borderRadius:12, background:beige, border:`1px solid ${border}` }}>
+    <div className="overline">{label}</div>
+    <div className="font-display" style={{ fontSize:'1.9rem', marginTop:4, color:green }}>{value}</div>
+  </div>
+);
+
+/* ââ Login âââââââââââââââââââââââââââââââââââââââââââââââââ */
 function Login({ onLogin }) {
-  const [role, setRole]   = useState(null);
-  const [email, setEmail] = useState('');
-  const [pass, setPass]   = useState('');
-  const [err, setErr]     = useState('');
+  const [role, setRole]     = useState(null);
+  const [email, setEmail]   = useState('');
+  const [pass, setPass]     = useState('');
+  const [err, setErr]       = useState('');
   const [loading, setLoading] = useState(false);
 
-  const pickRole = (r) => { setRole(r); setEmail(r.email); setPass(r.pass); setErr(''); };
+  const pick = (r) => { setRole(r); setEmail(r.email); setPass(r.pass); setErr(''); };
 
   const submit = () => {
     if (!role) { setErr('Select a role first.'); return; }
-    if (email !== role.email || pass !== role.pass) { setErr('Wrong credentials. Use the pre-filled values.'); return; }
+    if (email !== role.email || pass !== role.pass) { setErr('Credentials don\'t match. Use the pre-filled values.'); return; }
     setLoading(true);
-    setTimeout(() => onLogin(role), 1200);
+    setTimeout(() => onLogin(role), 1000);
   };
 
   return (
-    <div style={{ height:'100vh', display:'flex', alignItems:'center', justifyContent:'center',
-      background:`radial-gradient(ellipse 80% 60% at 50% 0%, rgba(8,145,178,0.12) 0%, transparent 70%), ${C.bg}` }}>
-      <div className="fade-in" style={{ width:'100%', maxWidth:420, padding:'0 16px' }}>
+    <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+      background:`radial-gradient(ellipse 70% 50% at 50% 0%, rgba(28,63,57,0.08) 0%, transparent 70%), ${cream}`,
+      padding:16 }}>
+      <div className="fade-in" style={{ width:'100%', maxWidth:420 }}>
+
         {/* Logo */}
         <div style={{ textAlign:'center', marginBottom:32 }}>
-          <div style={{ width:48, height:48, borderRadius:14, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
-            display:'inline-flex', alignItems:'center', justifyContent:'center', marginBottom:12 }}>
-            <span style={{ fontSize:22 }}>🏥</span>
-          </div>
-          <div style={{ fontWeight:800, fontSize:'1.5rem', letterSpacing:'-.03em' }}>MediLink</div>
-          <div style={{ fontSize:12, color:C.textMuted, marginTop:4 }}>Interactive Demo — v2.0</div>
+          <div style={{ width:52, height:52, borderRadius:16, background:green, display:'inline-flex',
+            alignItems:'center', justifyContent:'center', marginBottom:14, fontSize:24 }}>ð¥</div>
+          <h1 className="font-display" style={{ fontSize:'1.8rem', fontWeight:700, letterSpacing:'-.03em', color:text }}>MediLink</h1>
+          <p style={{ fontSize:13, color:muted, marginTop:4 }}>Interactive Demo Â· EHR v2.0</p>
         </div>
 
-        {/* Role picker */}
-        <div style={{ marginBottom:20 }}>
-          <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:10 }}>
-            Select a role to log in as
-          </div>
-          <div style={{ display:'flex', gap:8 }}>
+        {/* Role cards */}
+        <div style={{ marginBottom:16 }}>
+          <div className="overline" style={{ marginBottom:10 }}>Log in as</div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
             {ROLES.map(r => (
-              <button key={r.id} onClick={() => pickRole(r)} style={{
-                flex:1, padding:'10px 6px', borderRadius:10, cursor:'pointer',
-                background: role?.id===r.id ? `#${r.color}22` : C.card,
-                border: role?.id===r.id ? `1.5px solid #${r.color}` : `1px solid ${C.border}`,
-                color: role?.id===r.id ? '#fff' : C.textMuted,
-                textAlign:'center', transition:'all .15s',
+              <button key={r.id} onClick={() => pick(r)} style={{
+                padding:'12px 8px', borderRadius:12, cursor:'pointer', textAlign:'center',
+                background: role?.id===r.id ? 'rgba(28,63,57,0.08)' : '#fff',
+                border: role?.id===r.id ? `1.5px solid ${green}` : `1px solid ${border}`,
+                transition:'all .15s',
               }}>
-                <div style={{ fontSize:20, marginBottom:4 }}>{r.icon}</div>
-                <div style={{ fontSize:10, fontWeight:700, letterSpacing:'.04em' }}>{r.label}</div>
+                <div style={{ fontSize:22, marginBottom:6 }}>
+                  {r.id==='admin'?'ð¥ï¸':r.id==='doctor'?'ð¨ââï¸':'ð'}
+                </div>
+                <div style={{ fontSize:12, fontWeight:700, color: role?.id===r.id ? green : text }}>{r.label}</div>
               </button>
             ))}
           </div>
         </div>
 
         {/* Form */}
-        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:20 }}>
-          {['Email','Password'].map((lbl, i) => (
-            <div key={lbl} style={{ marginBottom:12 }}>
-              <div style={{ fontSize:11, color:C.textDim, marginBottom:6 }}>{lbl}</div>
-              <input type={i===1?'password':'email'}
-                value={i===0?email:pass}
-                onChange={e => i===0 ? setEmail(e.target.value) : setPass(e.target.value)}
-                style={{ width:'100%', padding:'9px 12px', background:'rgba(255,255,255,0.05)',
-                  border:`1px solid ${C.border}`, borderRadius:8, color:'#fff', fontSize:13,
-                  outline:'none', fontFamily:'monospace' }} />
-            </div>
-          ))}
-          {err && <div style={{ color:'#EF4444', fontSize:11, marginBottom:8 }}>{err}</div>}
-          <button onClick={submit} style={{
-            width:'100%', padding:'11px', borderRadius:9, fontWeight:700, fontSize:14,
-            background: loading ? C.card : 'linear-gradient(135deg,#0891B2,#4F46E5)',
-            border:'none', color:'#fff', cursor: loading?'default':'pointer', transition:'all .2s',
-          }}>
-            {loading ? <span className="spin" style={{ display:'inline-block' }}>⟳</span> : 'Sign in →'}
+        <div className="card">
+          <div style={{ marginBottom:12 }}>
+            <label>Email</label>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+          </div>
+          <div style={{ marginBottom:14 }}>
+            <label>Password</label>
+            <input type="password" value={pass} onChange={e => setPass(e.target.value)} />
+          </div>
+          {err && <div style={{ color:'#9B2226', fontSize:12, marginBottom:10 }}>{err}</div>}
+          <button className="btn btn-primary" onClick={submit} style={{ width:'100%', justifyContent:'center', padding:'10px 16px' }}>
+            {loading ? <span className="spin">â³</span> : 'Sign in â'}
           </button>
         </div>
-        <div style={{ textAlign:'center', marginTop:16, fontSize:11, color:C.textDim }}>
-          Demo credentials are pre-filled when you select a role
-        </div>
+        <p style={{ textAlign:'center', marginTop:12, fontSize:11, color:muted }}>
+          Credentials are pre-filled when you select a role
+        </p>
       </div>
     </div>
   );
 }
 
-/* ── Top Nav ───────────────────────────────────────────── */
-function TopNav({ role, view, setView, onLogout }) {
-  const tabs = {
-    reception: ['Dashboard','Queue','Check-In'],
-    doctor:    ['Dashboard','Patients','Triage'],
-    pharmacy:  ['Dashboard','Dispense','Inventory'],
-  }[role.id];
-
+/* ââ App Shell âââââââââââââââââââââââââââââââââââââââââââââ */
+function AppShell({ title, subtitle, children, tab, setTab, tabs }) {
   return (
-    <div style={{ background:C.bg2, borderBottom:`1px solid ${C.border}`, padding:'0 16px',
-      display:'flex', alignItems:'center', gap:16, height:48, flexShrink:0 }}>
-      <div style={{ display:'flex', alignItems:'center', gap:8, marginRight:8 }}>
-        <div style={{ width:26, height:26, borderRadius:8, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
-          display:'flex', alignItems:'center', justifyContent:'center', fontSize:13 }}>🏥</div>
-        <span style={{ fontWeight:800, fontSize:'.9rem', letterSpacing:'-.02em' }}>MediLink</span>
-      </div>
-      <div style={{ display:'flex', alignItems:'center', gap:4, flex:1 }}>
-        {tabs.map(t => (
-          <button key={t} onClick={() => setView(t)} style={{
-            padding:'5px 12px', borderRadius:7, fontSize:12, fontWeight:600, cursor:'pointer',
-            background: view===t ? `#${role.color}22` : 'transparent',
-            color: view===t ? '#fff' : C.textMuted,
-            border: view===t ? `1px solid #${role.color}44` : '1px solid transparent',
+    <div style={{ minHeight:'100vh', background:cream }}>
+      {/* Top nav */}
+      <div style={{ background:'#fff', borderBottom:`1px solid ${border}`, padding:'0 20px',
+        display:'flex', alignItems:'center', gap:16, height:52, position:'sticky', top:0, zIndex:50 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:10, marginRight:8 }}>
+          <div style={{ width:28, height:28, borderRadius:8, background:green,
+            display:'flex', alignItems:'center', justifyContent:'center', fontSize:14 }}>ð¥</div>
+          <span className="font-display" style={{ fontWeight:700, fontSize:'1rem' }}>MediLink</span>
+        </div>
+        {tabs && tabs.map(t => (
+          <button key={t} onClick={() => setTab(t)} style={{
+            padding:'5px 13px', borderRadius:999, fontSize:12, fontWeight:600, cursor:'pointer',
+            background: tab===t ? 'rgba(28,63,57,0.1)' : 'transparent',
+            color: tab===t ? green : muted,
+            border: tab===t ? `1px solid rgba(28,63,57,0.25)` : '1px solid transparent',
           }}>{t}</button>
         ))}
-      </div>
-      <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-        <div style={{ display:'flex', alignItems:'center', gap:4 }}>
-          <span className="live-dot" style={{ width:6, height:6, borderRadius:'50%', background:'#10B981', display:'inline-block' }} />
-          <span style={{ fontSize:10, color:'#10B981', fontWeight:700 }}>LIVE</span>
+        <div style={{ flex:1 }} />
+        <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+          <span className="sync-dot breathe" />
+          <span style={{ fontSize:10, color:green2, fontWeight:700 }}>LIVE</span>
         </div>
-        <div style={{ fontSize:11, color:C.textDim }}>{role.icon} {role.label}</div>
-        <button onClick={onLogout} style={{ padding:'4px 10px', borderRadius:6, fontSize:11,
-          background:'transparent', border:`1px solid ${C.border}`, color:C.textMuted, cursor:'pointer' }}>
-          Sign out
-        </button>
+        <div style={{ fontSize:12, color:muted }}>{subtitle}</div>
+      </div>
+
+      {/* Page header */}
+      <div style={{ padding:'24px 24px 0' }}>
+        <div className="overline" style={{ marginBottom:2 }}>{subtitle}</div>
+        <h2 className="font-display" style={{ fontSize:'1.5rem', fontWeight:700, color:text }}>{title}</h2>
+      </div>
+
+      {/* Content */}
+      <div style={{ padding:'20px 24px 40px' }}>{children}</div>
+
+      {/* Demo label */}
+      <div style={{ position:'fixed', bottom:10, right:14, fontSize:10, color:muted, fontFamily:'monospace' }}>
+        MediLink Demo Â· No real patient data
       </div>
     </div>
   );
 }
 
-/* ── Patient Detail Modal ──────────────────────────────── */
-function PatientModal({ patient, onClose }) {
+/* ââ Patient Detail Modal ââââââââââââââââââââââââââââââââââ */
+function PatientModal({ appt, onClose }) {
   const [aiLoading, setAiLoading] = useState(true);
-  const [tab, setTab] = useState('triage');
-  const explain = TRIAGE_EXPLAIN[patient.triage];
+  const [aiText, setAiText]     = useState('');
+  const [tab, setTab]           = useState('summary');
 
-  useEffect(() => { const t = setTimeout(() => setAiLoading(false), 1800); return () => clearTimeout(t); }, []);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAiLoading(false);
+      setAiText(
+        `Patient: ${appt.patient.name}, ${appt.vitals?.spo2 ? `SpOâ ${appt.vitals.spo2}%` : ''}, HR ${appt.vitals?.hr}bpm, Temp ${appt.vitals?.temp}Â°C.\n\n` +
+        `Chief complaint: "${appt.reason}".\n\n` +
+        (appt.vitals?.spo2 === 94
+          ? `â ï¸ ALERT: SpOâ of 94% combined with tachycardia (HR 102) and chest tightness â Immediate category under Manchester Triage System. Recommend ECG, troponin, D-dimer. Do not leave patient unattended.`
+          : `Clinical picture is consistent with ${appt.diagnosis || 'the presenting complaint'}. Vitals are within acceptable range. Proceed with standard consultation protocol.`)
+      );
+    }, 1800);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
-    <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.7)', zIndex:100,
-      display:'flex', alignItems:'center', justifyContent:'center', padding:16 }}
-      onClick={e => e.target===e.currentTarget && onClose()}>
-      <div className="fade-in" style={{ background:C.bg2, border:`1px solid ${C.border}`, borderRadius:16,
-        width:'100%', maxWidth:560, maxHeight:'85vh', overflow:'hidden', display:'flex', flexDirection:'column' }}>
-        {/* Header */}
-        <div style={{ padding:'16px 20px', borderBottom:`1px solid ${C.border}`,
-          display:'flex', alignItems:'flex-start', justifyContent:'space-between' }}>
-          <div>
-            <div style={{ fontWeight:800, fontSize:'1.1rem', marginBottom:2 }}>{patient.name}</div>
-            <div style={{ display:'flex', gap:8, alignItems:'center' }}>
-              <span style={{ fontSize:11, color:C.textMuted, fontFamily:'monospace' }}>{patient.ic}</span>
-              <span style={{ fontSize:11, color:C.textMuted }}>{patient.age}y {patient.gender}</span>
-              {badge(patient.triage, `#${patient.color}`)}
-            </div>
-          </div>
-          <button onClick={onClose} style={{ background:'transparent', border:`1px solid ${C.border}`,
-            borderRadius:7, color:C.textMuted, cursor:'pointer', padding:'4px 8px', fontSize:12 }}>✕</button>
-        </div>
-
-        {/* Tabs */}
-        <div style={{ display:'flex', gap:4, padding:'10px 20px 0', borderBottom:`1px solid ${C.border}` }}>
-          {['triage','vitals','history'].map(t => (
-            <button key={t} onClick={() => setTab(t)} style={{
-              padding:'5px 14px', borderRadius:'7px 7px 0 0', fontSize:12, fontWeight:600, cursor:'pointer',
-              background: tab===t ? C.bg3 : 'transparent',
-              color: tab===t ? '#fff' : C.textMuted,
-              border: tab===t ? `1px solid ${C.border}` : 'none',
-              borderBottom: tab===t ? `1px solid ${C.bg3}` : 'none',
-              textTransform:'capitalize',
-            }}>{t}</button>
-          ))}
-        </div>
-
-        <div style={{ padding:'16px 20px', overflowY:'auto', flex:1 }}>
-          {tab === 'triage' && (
-            <div className="fade-in">
-              <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:10 }}>
-                Manchester Triage System — AI Assessment
+    <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="modal fade-in">
+        <div className="modal-header">
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
+            <div>
+              <h3 className="font-display" style={{ fontSize:'1.3rem', fontWeight:700 }}>{appt.patient.name}</h3>
+              <div style={{ display:'flex', gap:10, marginTop:4, alignItems:'center' }}>
+                <span style={{ fontSize:11, color:muted, fontFamily:'monospace' }}>{appt.patient.ic_number}</span>
+                <StatusBadge status={appt.status} />
               </div>
+            </div>
+            <button onClick={onClose} style={{ background:'transparent', border:`1px solid ${border}`,
+              borderRadius:8, color:muted, cursor:'pointer', padding:'4px 10px', fontSize:12 }}>â</button>
+          </div>
+          {/* Tab bar */}
+          <div style={{ display:'flex', gap:4, marginTop:14 }}>
+            {['summary','vitals','prescriptions'].map(t => (
+              <button key={t} onClick={() => setTab(t)} style={{
+                padding:'5px 14px', borderRadius:'8px 8px 0 0', fontSize:12, fontWeight:600, cursor:'pointer',
+                background: tab===t ? cream : 'transparent', color: tab===t ? text : muted,
+                border: tab===t ? `1px solid ${border}` : 'none',
+                borderBottom: tab===t ? `1px solid ${cream}` : 'none',
+                textTransform:'capitalize',
+              }}>{t}</button>
+            ))}
+          </div>
+        </div>
+
+        <div className="modal-body">
+          {tab === 'summary' && (
+            <div className="fade-in">
+              <div className="overline" style={{ marginBottom:8 }}>Reason for Visit</div>
+              <div style={{ fontSize:13, fontStyle:'italic', color:muted, marginBottom:16, padding:'10px 14px',
+                background:beige, borderRadius:10, border:`1px solid ${border}` }}>
+                "{appt.reason}"
+              </div>
+              <div className="overline" style={{ marginBottom:8 }}>AI Clinical Summary Â· Groq Llama 3.3 70B</div>
               {aiLoading ? (
-                <div style={{ textAlign:'center', padding:'32px 0', color:C.textMuted }}>
-                  <div className="spin" style={{ fontSize:24, display:'block', marginBottom:8 }}>⟳</div>
-                  <div style={{ fontSize:12 }}>Groq · Llama 3.3 70B — analysing symptoms…</div>
+                <div style={{ padding:'28px 0', textAlign:'center', color:muted }}>
+                  <span className="spin" style={{ fontSize:22, display:'block', marginBottom:8 }}>â³</span>
+                  <span style={{ fontSize:12 }}>Analysing patient dataâ¦</span>
                 </div>
               ) : (
-                <div className="fade-in">
-                  <div style={{ background:`#${patient.color}18`, border:`1px solid #${patient.color}44`,
-                    borderRadius:12, padding:14, marginBottom:12 }}>
-                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
-                      <span style={{ fontWeight:800, fontSize:'1.1rem', color:`#${patient.color}` }}>
-                        {patient.triage}
-                      </span>
-                      <span style={{ fontSize:11, color:C.textMuted }}>Target: {explain.time}</span>
-                    </div>
-                    <p style={{ fontSize:13, color:'rgba(255,255,255,0.75)', lineHeight:1.6 }}>{explain.why}</p>
-                  </div>
-                  <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:12 }}>
-                    <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.08em', marginBottom:6 }}>Chief Complaint</div>
-                    <div style={{ fontSize:13, color:'rgba(255,255,255,0.8)', fontStyle:'italic' }}>"{patient.chief}"</div>
-                  </div>
-                  <div style={{ marginTop:10, display:'flex', gap:8, alignItems:'center' }}>
-                    <span style={{ fontSize:11, color:C.textMuted }}>→ Direct to:</span>
-                    <span style={{ fontSize:12, fontWeight:600, color:'#0891B2' }}>{explain.next}</span>
-                  </div>
+                <div className="fade-in" style={{ padding:'14px 16px', background: appt.vitals?.spo2===94 ? 'rgba(181,91,73,.08)' : beige,
+                  border:`1px solid ${appt.vitals?.spo2===94 ? 'rgba(181,91,73,.4)' : border}`, borderRadius:12,
+                  fontSize:13, lineHeight:1.7, whiteSpace:'pre-wrap' }}>
+                  {aiText}
                 </div>
               )}
             </div>
           )}
 
-          {tab === 'vitals' && (
+          {tab === 'vitals' && appt.vitals && (
             <div className="fade-in">
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 {[
-                  ['Blood Pressure', patient.vitals.bp, 'mmHg', C.teal],
-                  ['SpO₂',          patient.vitals.spo2,'',     patient.vitals.spo2==='94%'?C.red:C.green],
-                  ['Heart Rate',     patient.vitals.hr,  'bpm',  parseInt(patient.vitals.hr)>100?C.amber:C.green],
-                  ['Temperature',    patient.vitals.temp,'',     parseFloat(patient.vitals.temp)>38?C.amber:C.green],
-                ].map(([lbl,val,unit,col]) => (
-                  <div key={lbl} style={{ background:C.card, border:`1px solid ${col}22`, borderRadius:10, padding:14 }}>
-                    <div style={{ fontSize:9, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:6 }}>{lbl}</div>
-                    <div style={{ fontWeight:800, fontSize:'1.4rem', color:col, lineHeight:1 }}>{val}</div>
-                    {unit && <div style={{ fontSize:10, color:C.textDim, marginTop:2 }}>{unit}</div>}
+                  ['Blood Pressure', appt.vitals.bp, 'mmHg', appt.vitals.bp?.startsWith('14') ? terra : green2],
+                  ['SpOâ',           `${appt.vitals.spo2}%`, '',    appt.vitals.spo2 < 95 ? '#9B2226' : green2],
+                  ['Heart Rate',     `${appt.vitals.hr}`, 'bpm', appt.vitals.hr > 100 ? terra : green2],
+                  ['Temperature',    `${appt.vitals.temp}Â°C`, '', appt.vitals.temp > 38 ? terra : green2],
+                ].map(([lbl, val, unit, col]) => (
+                  <div key={lbl} style={{ padding:'16px', borderRadius:12, background:'#fff', border:`1px solid ${border}` }}>
+                    <div className="overline" style={{ marginBottom:6 }}>{lbl}</div>
+                    <div className="font-display" style={{ fontSize:'1.8rem', fontWeight:700, color:col, lineHeight:1 }}>{val}</div>
+                    {unit && <div style={{ fontSize:10, color:muted, marginTop:3 }}>{unit}</div>}
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {tab === 'history' && (
+          {tab === 'prescriptions' && (
             <div className="fade-in">
-              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:14, marginBottom:10 }}>
-                <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:8 }}>Previous Visits</div>
-                {['2024-11-12 — Hypertension review, Amlodipine 5mg dispensed',
-                  '2024-08-03 — Upper respiratory tract infection, Amoxicillin prescribed',
-                  '2024-03-17 — Annual health screening, all within normal range',
-                ].map((v,i) => (
-                  <div key={i} style={{ padding:'6px 0', borderBottom: i<2?`1px solid ${C.border}`:'none',
-                    fontSize:12, color:'rgba(255,255,255,0.6)' }}>{v}</div>
-                ))}
-              </div>
-              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:14 }}>
-                <div style={{ fontSize:10, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:8 }}>Current Medications</div>
-                <div style={{ fontSize:12, color:'rgba(255,255,255,0.6)' }}>Amlodipine 5mg OD — Hypertension</div>
-              </div>
+              {appt.prescriptions.length === 0 ? (
+                <div style={{ color:muted, fontSize:13, textAlign:'center', padding:20 }}>No prescriptions yet.</div>
+              ) : (
+                <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
+                  {appt.prescriptions.map((p, i) => (
+                    <div key={i} className="rx-card">
+                      <span style={{ fontSize:18, marginTop:2 }}>ð</span>
+                      <div>
+                        <div style={{ fontWeight:700, fontSize:14 }}>{p.medicine}</div>
+                        <div style={{ fontSize:12, color:muted, fontFamily:'monospace', marginTop:2 }}>
+                          {p.dosage} Â· {p.frequency} Â· {p.duration}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
 
-        {/* Footer */}
-        <div style={{ padding:'12px 20px', borderTop:`1px solid ${C.border}`,
-          display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-          <div style={{ fontSize:11, color:C.textMuted }}>
-            Consultation fee: <span style={{ color:'#10B981', fontWeight:700 }}>RM {patient.fee}.00</span>
+        <div className="modal-footer" style={{ justifyContent:'space-between', alignItems:'center' }}>
+          <div style={{ fontSize:12, color:muted }}>
+            Fee: <span style={{ color:green2, fontWeight:700 }}>RM {appt.fee}.00</span>
+            <span style={{ marginLeft:10 }}><StatusBadge status={appt.payment_status === 'paid' ? 'paid' : 'unpaid'} /></span>
           </div>
-          {badge(patient.status, '#0891B2')}
+          <span className="badge" style={{ background:`rgba(28,63,57,.1)`, color:green }}>
+            Dr. {appt.doctor.name.split(' ').slice(-1)[0]}
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
-/* ── Reception Dashboard ───────────────────────────────── */
-function Reception({ view }) {
+/* ââ Reception Dashboard âââââââââââââââââââââââââââââââââââ */
+function Reception({ queue, setQueue }) {
   const [selected, setSelected] = useState(null);
-  const [time, setTime] = useState(new Date());
+  const [tab, setTab]           = useState('Queue');
+  const [icInput, setIcInput]   = useState('');
   const [checkinStep, setCheckinStep] = useState(0);
-  const [icInput, setIcInput] = useState('');
-  const [checkinResult, setCheckinResult] = useState(null);
+  const [checkinName, setCheckinName] = useState('');
+  const [time, setTime]         = useState(new Date());
 
-  useEffect(() => {
-    const t = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(t);
-  }, []);
+  useEffect(() => { const t = setInterval(() => setTime(new Date()), 1000); return () => clearInterval(t); }, []);
 
   const DEMO_ICS = { '880421-14-5567':'Arjun Rao', '950311-08-2210':'Mei Lin Chong', '720915-10-7733':'Hafiz Rahman' };
+
+  const checkedIn = queue.filter(q=>q.status==='checked_in').length;
+  const inProg    = queue.filter(q=>q.status==='in_progress').length;
+  const done      = queue.filter(q=>q.status==='completed').length;
+  const upcoming  = queue.filter(q=>q.status==='scheduled').length;
+  const next      = queue.find(q=>['checked_in','in_progress'].includes(q.status));
+
   const doCheckin = () => {
-    if (DEMO_ICS[icInput]) { setCheckinStep(2); setCheckinResult(DEMO_ICS[icInput]); }
+    if (DEMO_ICS[icInput]) { setCheckinStep(2); setCheckinName(DEMO_ICS[icInput]); }
     else setCheckinStep(-1);
   };
 
-  if (view === 'Check-In') return (
-    <div style={{ flex:1, overflowY:'auto', padding:20, maxWidth:500, margin:'0 auto', width:'100%' }}>
-      <div className="fade-in">
-        <div style={{ fontSize:11, color:C.textDim, textTransform:'uppercase', letterSpacing:'.1em', marginBottom:16 }}>
-          MyKad IC Kiosk — Self Check-In
-        </div>
-        {checkinStep === 0 && (
-          <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:24, textAlign:'center' }}>
-            <div style={{ fontSize:48, marginBottom:16 }}>📇</div>
-            <div style={{ fontWeight:700, fontSize:'1.1rem', marginBottom:8 }}>Place your MyKad on reader</div>
-            <div style={{ color:C.textMuted, fontSize:13, marginBottom:20 }}>Or type your IC number manually</div>
-            <input value={icInput} onChange={e => setIcInput(e.target.value)}
-              placeholder="e.g. 880421-14-5567"
-              style={{ width:'100%', padding:'10px 14px', background:'rgba(255,255,255,0.06)',
-                border:`1px solid ${C.border}`, borderRadius:8, color:'#fff', fontSize:14,
-                outline:'none', textAlign:'center', fontFamily:'monospace', marginBottom:12 }} />
-            <div style={{ display:'flex', gap:8, marginBottom:10 }}>
+  if (tab === 'Kiosk') return (
+    <AppShell title="Reception Â· Live Queue" subtitle="Admin Â· Operations" tab={tab} setTab={setTab}
+      tabs={['Queue','Patients','Kiosk']}>
+      <div style={{ maxWidth:460, margin:'0 auto' }}>
+        <div className="card fade-in">
+          {checkinStep === 0 && <>
+            <div style={{ textAlign:'center', marginBottom:20 }}>
+              <div style={{ fontSize:48, marginBottom:12 }}>ð</div>
+              <h3 className="font-display" style={{ fontSize:'1.2rem', fontWeight:700, marginBottom:6 }}>MyKad IC Self Check-In</h3>
+              <p style={{ fontSize:13, color:muted }}>Enter IC number or tap a demo IC below</p>
+            </div>
+            <div style={{ marginBottom:12 }}>
+              <label>IC Number (YYMMDD-SS-NNNN)</label>
+              <input value={icInput} onChange={e=>setIcInput(e.target.value)} placeholder="e.g. 880421-14-5567"
+                style={{ textAlign:'center', fontFamily:'monospace', fontSize:15, letterSpacing:'.05em' }} />
+            </div>
+            <div style={{ display:'flex', gap:6, marginBottom:14, flexWrap:'wrap' }}>
               {Object.keys(DEMO_ICS).map(ic => (
-                <button key={ic} onClick={() => setIcInput(ic)} style={{ flex:1, padding:'6px 4px',
-                  background:'rgba(8,145,178,0.1)', border:'1px solid rgba(8,145,178,0.3)',
-                  borderRadius:7, color:'#0891B2', fontSize:9, cursor:'pointer', fontFamily:'monospace' }}>{ic}</button>
+                <button key={ic} onClick={()=>setIcInput(ic)} style={{
+                  flex:1, padding:'6px 4px', background:beige, border:`1px solid ${border}`,
+                  borderRadius:8, color:muted, fontSize:9, cursor:'pointer', fontFamily:'monospace' }}>{ic}</button>
               ))}
             </div>
-            <button onClick={doCheckin} style={{ width:'100%', padding:11, background:'linear-gradient(135deg,#0891B2,#4F46E5)',
-              border:'none', borderRadius:9, color:'#fff', fontWeight:700, fontSize:14, cursor:'pointer' }}>
-              Scan IC →
+            <button className="btn btn-primary" onClick={doCheckin} style={{ width:'100%', justifyContent:'center', padding:'10px' }}>
+              Check In â
             </button>
-          </div>
-        )}
-        {checkinStep === 2 && (
-          <div className="fade-in" style={{ textAlign:'center' }}>
-            <div style={{ width:72, height:72, borderRadius:'50%', background:'#10B98122',
-              border:'2px solid #10B981', display:'flex', alignItems:'center', justifyContent:'center',
-              margin:'0 auto 16px', fontSize:32 }}>✓</div>
-            <div style={{ fontWeight:800, fontSize:'1.3rem', marginBottom:4 }}>Welcome, {checkinResult}!</div>
-            <div style={{ color:C.textMuted, fontSize:13, marginBottom:16 }}>Check-in time: {time.toLocaleTimeString()}</div>
-            <div style={{ background:'#4F46E522', border:'1px solid #4F46E555', borderRadius:12, padding:14, marginBottom:16 }}>
-              <div style={{ fontWeight:700 }}>Queue Number: <span style={{ color:'#4F46E5', fontSize:'1.4rem' }}>Q00{PATIENTS.length+1}</span></div>
-              <div style={{ color:C.textMuted, fontSize:12, marginTop:4 }}>Estimated wait: ~12 minutes</div>
+          </>}
+          {checkinStep === 2 && (
+            <div className="fade-in" style={{ textAlign:'center' }}>
+              <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(45,106,79,.15)', border:`2px solid ${green2}`,
+                display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px', fontSize:28 }}>â</div>
+              <h3 className="font-display" style={{ fontSize:'1.3rem', marginBottom:4 }}>Welcome, {checkinName}!</h3>
+              <p style={{ color:muted, fontSize:13, marginBottom:16 }}>Check-in time: {time.toLocaleTimeString()}</p>
+              <div style={{ background:beige, border:`1px solid ${border}`, borderRadius:12, padding:14, marginBottom:16 }}>
+                <div style={{ fontWeight:700 }}>Queue Number: <span className="font-display" style={{ color:green, fontSize:'1.4rem' }}>
+                  {String(queue.length+1).padStart(3,'0')}
+                </span></div>
+                <div style={{ color:muted, fontSize:12, marginTop:4 }}>Estimated wait: ~15 minutes</div>
+              </div>
+              <button className="btn btn-outline" onClick={()=>{setCheckinStep(0);setIcI;nput('');}}>Check in another</button>
             </div>
-            <button onClick={() => { setCheckinStep(0); setIcInput(''); setCheckinResult(null); }}
-              style={{ padding:'9px 22px', background:'transparent', border:`1px solid ${C.border}`,
-                borderRadius:9, color:C.textMuted, cursor:'pointer' }}>Check in another patient</button>
-          </div>
-        )}
-        {checkinStep === -1 && (
-          <div className="fade-in" style={{ background:'#EF444422', border:'1px solid #EF444444', borderRadius:12, padding:16, textAlign:'center' }}>
-            <div style={{ fontSize:24, marginBottom:8 }}>⚠️</div>
-            <div style={{ fontWeight:700, marginBottom:4 }}>IC not found in system</div>
-            <div style={{ color:C.textMuted, fontSize:12, marginBottom:12 }}>Try one of the demo ICs above</div>
-            <button onClick={() => setCheckinStep(0)} style={{ padding:'7px 18px', background:'transparent',
-              border:`1px solid ${C.border}`, borderRadius:8, color:C.textMuted, cursor:'pointer' }}>Try again</button>
-          </div>
-        )}
+          )}
+          {checkinStep === -1 && (
+            <div style={{ background:'rgba(155,34,38,.06)', border:'1px solid rgba(155,34,38,.25)', borderRadius:12, padding:16, textAlign:'center' }}>
+              <div style={{ fontSize:28, marginBottom:8 }}>â ï¸</div>
+              <div style={{ fontWeight:700, marginBottom:4 }}>IC not found in system</div>
+              <p style={{ color:muted, fontSize:12, marginBottom:12 }}>Try one of the demo ICs above</p>
+              <button className="btn btn-outline" onClick={()=>setCheckinStep(0)}>Try again</button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </AppShell>
+  );
+
+  if (tab === 'Patients') return (
+    <AppShell title="Reception Â· Live Queue" subtitle="Admin Â· Operations" tab={tab} setTab={setTab}
+      tabs={['Queue','Patients','Kiosk']}>
+      <div>
+        <div className="overline" style={{ marginBottom:12 }}>{queue.length} patients on file today</div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))', gap:10 }}>
+          {queue.map(q => (
+            <div key={q.id} className="card" style={{ padding:'14px 16px' }} onClick={()=>setSelected(q)}>
+              <div style={{ fontWeight:700, fontSize:14, marginBottom:3 }}>{q.patient.name}</div>
+              <div style={{ fontSize:11, color:muted, fontFamily:'monospace', marginBottom:6 }}>{q.patient.ic_number}</div>
+              <div style={{ display:'flex', gap:6, alignItems:'center' }}>
+                <StatusBadge status={q.status} />
+                <span style={{ fontSize:10, color:muted }}>{q.doctor.specialty}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {selected && <PatientModal appt={selected} onClose={()=>setSelected(null)} />}
+    </AppShell>
   );
 
   return (
-    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
-      {selected && <PatientModal patient={selected} onClose={() => setSelected(null)} />}
-      <div className="fade-in">
-        {/* Stats row */}
-        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
-          {statCard('Queue', PATIENTS.length.toString(), C.purple, 'patients today')}
-          {statCard('Urgent', '2', C.red, 'immediate + very urgent')}
-          {statCard('Waiting', '2', C.amber, 'not yet seen')}
-          {statCard('Completed', '31', C.green, 'discharged today')}
+    <AppShell title="Reception Â· Live Queue" subtitle="Admin Â· Operations" tab={tab} setTab={setTab}
+      tabs={['Queue','Patients','Kiosk']}>
+      {selected && <PatientModal appt={selected} onClose={()=>setSelected(null)} />}
+
+      <div className="grid3">
+        {/* Now Serving */}
+        <div className="card-green">
+          <div className="overline" style={{ color:'rgba(249,249,246,.6)' }}>Now Serving</div>
+          <div className="font-mono font-display" style={{ fontSize:'4.5rem', fontWeight:700, lineHeight:1, marginTop:8, letterSpacing:'-.02em' }}>
+            {next ? `#${String(next.queue_number).padStart(3,'0')}` : 'â'}
+          </div>
+          {next && <div style={{ fontSize:13, color:'rgba(249,249,246,.7)', marginTop:10 }}>
+            {next.patient.name} â {next.doctor.name.split(' ').slice(-1)[0]}
+          </div>}
         </div>
 
-        {/* Time */}
-        <div style={{ textAlign:'right', color:C.textDim, fontSize:11, marginBottom:10, fontFamily:'monospace' }}>
-          {time.toLocaleTimeString()} · {time.toLocaleDateString('en-MY',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+        {/* Stats */}
+        <div className="card">
+          <div className="overline" style={{ marginBottom:12 }}>Today's Stats</div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8 }}>
+            <StatBox label="Scheduled"  value={upcoming} />
+            <StatBox label="Checked-in" value={checkedIn} />
+            <StatBox label="In progress"value={inProg} />
+            <StatBox label="Completed"  value={done} />
+          </div>
         </div>
+
+        <SyncIndicator />
 
         {/* Queue table */}
-        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
-          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}`, display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Live Queue</span>
-            <div style={{ display:'flex', alignItems:'center', gap:5 }}>
-              <span className="live-dot" style={{ width:5, height:5, borderRadius:'50%', background:C.green, display:'inline-block' }} />
-              <span style={{ fontSize:9, color:C.green, fontWeight:700 }}>WebSocket · syncing</span>
+        <div className="card col-span-3">
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16, flexWrap:'wrap', gap:10 }}>
+            <div>
+              <div className="overline">Live Queue</div>
+              <h3 className="font-display" style={{ fontSize:'1.15rem', fontWeight:700, marginTop:2 }}>
+                {queue.length} appointment(s) today
+              </h3>
+            </div>
+            <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+              <span className="sync-dot breathe" />
+              <span style={{ fontSize:10, color:green2, fontWeight:700 }}>WebSocket Â· live</span>
+              <button className="btn btn-primary" onClick={()=>setTab('Kiosk')} style={{ marginLeft:6 }}>
+                ð NFC Check-in
+              </button>
             </div>
           </div>
-          {PATIENTS.map((p, i) => (
-            <div key={p.id} onClick={() => setSelected(p)} style={{
-              display:'flex', alignItems:'center', gap:10, padding:'11px 14px',
-              borderBottom: i<PATIENTS.length-1 ? `1px solid ${C.border}` : 'none',
-              cursor:'pointer', transition:'background .15s',
-              background:'transparent',
-            }}
-              onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
-              onMouseLeave={e => e.currentTarget.style.background='transparent'}>
-              <span style={{ fontFamily:'monospace', fontWeight:800, color:C.purple, fontSize:12, width:36 }}>{p.id}</span>
-              <div style={{ flex:1 }}>
-                <div style={{ fontWeight:600, fontSize:13 }}>{p.name}</div>
-                <div style={{ fontSize:10, color:C.textMuted }}>{p.chief.slice(0,50)}…</div>
-              </div>
-              <div style={{ display:'flex', gap:6, alignItems:'center' }}>
-                {badge(p.triage, `#${p.color}`)}
-                <span style={{ padding:'2px 8px', borderRadius:99, fontSize:10, fontWeight:600,
-                  background: p.status==='In Progress'?'#4F46E522' : p.status==='Waiting'?'rgba(255,255,255,0.05)' : `rgba(16,185,129,0.12)`,
-                  color: p.status==='In Progress'?'#818CF8' : p.status==='Waiting'?C.textMuted : C.green,
-                  border:`1px solid ${p.status==='In Progress'?'#4F46E544' : p.status==='Waiting'?C.border : '#10B98133'}`,
-                }}>{p.status}</span>
-              </div>
-              <span style={{ fontSize:10, color:C.textDim, fontFamily:'monospace' }}>{p.time}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize:11, color:C.textDim, textAlign:'center', marginTop:10 }}>
-          ↑ Click any row to open patient detail + AI triage
+          <div style={{ overflowX:'auto' }}>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th><th>Patient</th><th>Doctor</th><th>Time</th><th>Reason</th><th>Pay</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {queue.map(q => (
+                  <tr key={q.id} onClick={()=>setSelected(q)} style={{ cursor:'pointer' }}>
+                    <td><span className="font-mono" style={{ fontWeight:700, color:green }}>#{q.queue_number}</span></td>
+                    <td>
+                      <div style={{ fontWeight:600 }}>{q.patient.name}</div>
+                      <div style={{ fontSize:10, color:muted, fontFamily:'monospace' }}>{q.patient.ic_number}</div>
+                    </td>
+                    <td>
+                      <div>{q.doctor.name}</div>
+                      <div style={{ fontSize:11, color:muted }}>{q.doctor.specialty}</div>
+                    </td>
+                    <td><span className="font-mono" style={{ fontSize:12 }}>
+                      {new Date(q.scheduled_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+                    </span></td>
+                    <td style={{ maxWidth:180 }}><span style={{ fontSize:12, color:muted }}>{q.reason}</span></td>
+                    <td><StatusBadge status={q.payment_status==='paid'?'paid':'unpaid'} /></td>
+                    <td><StatusBadge status={q.status} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+    </AppShell>
   );
 }
 
-/* ── Doctor Dashboard ──────────────────────────────────── */
-function Doctor({ view }) {
-  const [selected, setSelected] = useState(null);
-  const myPatients = PATIENTS.filter(p => p.doctor === 'Dr. Tan Wei Ming');
+/* ââ Doctor Dashboard ââââââââââââââââââââââââââââââââââââââ */
+function Doctor({ queue }) {
+  const [active, setActive]     = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiSummary, setAiSummary] = useState('');
+  const [recOpen, setRecOpen]   = useState(false);
+  const [tab, setTab]           = useState('Queue');
+
+  const myQueue = queue.filter(q => q.doctor.name === 'Dr. Tan Wei Ming' &&
+    ['scheduled','checked_in','in_progress'].includes(q.status));
+
+  const doAI = () => {
+    if (!active) return;
+    setAiLoading(true);
+    setAiSummary('');
+    setTimeout(() => {
+      setAiLoading(false);
+      setAiSummary(
+        `Clinical Summary â ${active.patient.name}\n\n` +
+        `Presenting with: ${active.reason}\n\n` +
+        (active.vitals?.spo2 === 94
+          ? `â ï¸ URGENT: Peripheral SpOâ 94% + HR 102bpm + chest tightness = Red flag constellation. Differential: NSTEMI, PE, acute LVF. Immediate actions: 12-lead ECG, IV access, Oâ supplementation, troponin I & T, D-dimer, BNP. Do not discharge.\n\nMTS Category: IMMEDIATE`
+          : `Vitals within normal range. History consistent with ${active.diagnosis || active.reason.toLowerCase()}. Recommend standard workup, symptomatic management, and follow-up in 1 week if no improvement.`)
+      );
+    }, 2200);
+  };
 
   return (
-    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
-      {selected && <PatientModal patient={selected} onClose={() => setSelected(null)} />}
-      <div className="fade-in">
-        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
-          {statCard('My Patients', myPatients.length.toString(), C.teal, 'assigned today')}
-          {statCard('Urgent', '1', C.red, 'needs immediate review')}
-          {statCard('AI Triage', '5', C.purple, 'assessments completed')}
+    <AppShell title={`Dr. Tan Wei Ming`} subtitle="General Practice Â· Doctor" tab={tab} setTab={setTab}
+      tabs={['Queue','Schedule']}>
+      <div className="grid3">
+        {/* Queue sidebar */}
+        <div className="card" style={{ maxHeight:'80vh', display:'flex', flexDirection:'column' }}>
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+            <div className="overline">Today's Queue</div>
+            <button className="btn btn-primary" style={{ fontSize:11, padding:'5px 12px' }}>ð Scan NFC</button>
+          </div>
+          <div style={{ overflowY:'auto', flex:1, display:'flex', flexDirection:'column', gap:8 }}>
+            {myQueue.length === 0 && <div style={{ fontSize:13, color:muted }}>No active patients.</div>}
+            {myQueue.map(a => (
+              <button key={a.id} className={`queue-item ${active?.id===a.id?'active':''}`}
+                onClick={()=>{setActive(a);setAiSummary('');setRecOpen(false);}}>
+                <div className="queue-avatar">#{a.queue_number}</div>
+                <div style={{ flex:1, textAlign:'left' }}>
+                  <div style={{ fontSize:13, fontWeight:600 }}>{a.patient.name}</div>
+                  <div style={{ fontSize:11, color:muted }}>{a.reason.slice(0,36)}â¦</div>
+                </div>
+                <StatusBadge status={a.status} />
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
-          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
-            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>
-              My Assigned Patients
-            </span>
-          </div>
-          {myPatients.map((p, i) => (
-            <div key={p.id} onClick={() => setSelected(p)} style={{
-              padding:'12px 14px', borderBottom: i<myPatients.length-1?`1px solid ${C.border}`:'none',
-              cursor:'pointer', transition:'background .15s',
-            }}
-              onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
-              onMouseLeave={e => e.currentTarget.style.background='transparent'}>
-              <div style={{ display:'flex', justifyContent:'space-between', marginBottom:5 }}>
-                <div style={{ fontWeight:700 }}>{p.name} <span style={{ fontFamily:'monospace', fontSize:11, color:C.textMuted }}>{p.ic}</span></div>
-                {badge(p.triage, `#${p.color}`)}
-              </div>
-              <div style={{ fontSize:12, color:C.textMuted, marginBottom:8 }}>"{p.chief}"</div>
-              <div style={{ display:'flex', gap:12 }}>
-                {[['BP',p.vitals.bp],['SpO₂',p.vitals.spo2],['HR',p.vitals.hr+'bpm'],['Temp',p.vitals.temp]].map(([lbl,val]) => (
-                  <span key={lbl} style={{ fontSize:10 }}>
-                    <span style={{ color:C.textDim }}>{lbl}: </span>
-                    <span style={{ fontFamily:'monospace', fontWeight:700 }}>{val}</span>
-                  </span>
-                ))}
-              </div>
+        {/* Patient panel */}
+        <div className="card col-span-2" style={{ minHeight:420 }}>
+          {!active ? (
+            <div style={{ height:'100%', minHeight:360, display:'flex', flexDirection:'column',
+              alignItems:'center', justifyContent:'center', textAlign:'center', color:muted }}>
+              <div style={{ fontSize:40, marginBottom:16 }}>ð©º</div>
+              <h3 className="font-display" style={{ fontSize:'1.2rem', color:text, marginBottom:8 }}>Select a patient from the queue</h3>
+              <p style={{ fontSize:13, maxWidth:320 }}>Once loaded, you'll see their vitals, AI-generated clinical summary, and can record this visit.</p>
             </div>
-          ))}
-        </div>
-
-        {/* AI Triage alert card */}
-        <div style={{ marginTop:12, background:'rgba(245,158,11,0.08)', border:'1px solid rgba(245,158,11,0.25)',
-          borderRadius:12, padding:14 }}>
-          <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:6 }}>
-            <span style={{ fontSize:18 }}>⚡</span>
-            <span style={{ fontWeight:700, color:C.amber, fontSize:13 }}>AI Clinical Alert</span>
-          </div>
-          <div style={{ fontSize:12, color:'rgba(255,255,255,0.7)', lineHeight:1.6 }}>
-            <strong>Arjun Rao (Q001)</strong> — SpO₂ 94% with tachycardia (HR 102).
-            Groq LLM assessment: possible acute coronary syndrome or pulmonary embolism.
-            Recommend ECG + troponin + D-dimer immediately.
-          </div>
-          <div style={{ marginTop:8, fontSize:11, color:C.textDim }}>MTS Score: Immediate · Generated 09:04:33</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Pharmacy Dashboard ────────────────────────────────── */
-function Pharmacy({ view }) {
-  const [dispensed, setDispensed] = useState([]);
-  const pending = PATIENTS.filter(p => p.status === 'Pharmacy');
-
-  const dispense = (name) => setDispensed(d => [...d, name]);
-
-  if (view === 'Inventory') return (
-    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
-      <div className="fade-in">
-        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
-          {statCard('Total Items', DRUGS.length.toString(), C.green)}
-          {statCard('Low Stock', DRUGS.filter(d=>d.stock<d.min).length.toString(), C.red, 'below minimum')}
-          {statCard('Expiring', '2', C.amber, 'within 90 days')}
-        </div>
-        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden' }}>
-          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
-            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Drug Inventory</span>
-          </div>
-          {DRUGS.map((d, i) => {
-            const low = d.stock < d.min;
-            const expSoon = new Date(d.exp) < new Date(Date.now() + 90*24*60*60*1000);
-            return (
-              <div key={d.name} style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 14px',
-                borderBottom: i<DRUGS.length-1?`1px solid ${C.border}`:'none',
-                background: low?'rgba(239,68,68,0.04)':'transparent' }}>
-                <div style={{ flex:1 }}>
-                  <div style={{ fontWeight:600, fontSize:13 }}>{d.name}</div>
-                  <div style={{ fontSize:10, color:C.textDim, fontFamily:'monospace' }}>Exp: {d.exp}</div>
+          ) : (
+            <div className="fade-in">
+              {/* Patient header */}
+              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:18 }}>
+                <div>
+                  <div className="overline">Patient</div>
+                  <h3 className="font-display" style={{ fontSize:'1.5rem', fontWeight:700, marginTop:4 }}>{active.patient.name}</h3>
+                  <div style={{ fontSize:12, color:muted, fontFamily:'monospace', marginTop:2 }}>{active.patient.ic_number}</div>
                 </div>
-                <div style={{ display:'flex', gap:8, alignItems:'center' }}>
-                  <span style={{ fontFamily:'monospace', fontWeight:800, fontSize:14,
-                    color: low?C.red : d.stock<d.min*1.5?C.amber:C.green }}>{d.stock}</span>
-                  <span style={{ fontSize:10, color:C.textDim }}>{d.unit}</span>
-                  {low && badge('LOW','#EF4444')}
-                  {expSoon && !low && badge('EXPIRING','#F59E0B')}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div style={{ flex:1, overflowY:'auto', padding:16 }}>
-      <div className="fade-in">
-        <div style={{ display:'flex', gap:10, marginBottom:16 }}>
-          {statCard('Pending Dispense', pending.length.toString(), C.amber)}
-          {statCard('Dispensed Today', dispensed.length.toString(), C.green)}
-          {statCard('Low Stock Alerts', '4', C.red, 'action required')}
-        </div>
-        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, overflow:'hidden', marginBottom:12 }}>
-          <div style={{ padding:'10px 14px', borderBottom:`1px solid ${C.border}` }}>
-            <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.1em', color:C.textDim, fontWeight:700 }}>Dispense Queue</span>
-          </div>
-          {pending.length === 0 ? (
-            <div style={{ padding:20, textAlign:'center', color:C.textMuted, fontSize:13 }}>No pending dispenses</div>
-          ) : pending.map((p, i) => {
-            const done = dispensed.includes(p.name);
-            return (
-              <div key={p.id} style={{ padding:'12px 14px', borderBottom: i<pending.length-1?`1px solid ${C.border}`:'none',
-                opacity: done?0.5:1 }}>
-                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
-                  <div>
-                    <span style={{ fontWeight:700 }}>{p.name}</span>
-                    <span style={{ color:C.textMuted, fontSize:11, marginLeft:8 }}>{p.id}</span>
-                  </div>
-                  {done ? badge('Dispensed','#10B981') : badge('Pending','#F59E0B')}
-                </div>
-                <div style={{ fontSize:12, color:C.textMuted, marginBottom:8 }}>
-                  Prescribed by {p.doctor}
-                </div>
-                {['Paracetamol 500mg × 10 tabs','Amoxicillin 500mg × 14 caps'].map((rx, ri) => (
-                  <div key={ri} style={{ fontSize:12, padding:'3px 0', color:'rgba(255,255,255,0.7)', fontFamily:'monospace' }}>
-                    • {rx}
-                  </div>
-                ))}
-                {!done && (
-                  <button onClick={() => dispense(p.name)} style={{ marginTop:10, padding:'7px 16px',
-                    background:'linear-gradient(135deg,#10B981,#059669)', border:'none', borderRadius:8,
-                    color:'#fff', fontWeight:700, fontSize:12, cursor:'pointer' }}>
-                    Confirm Dispense ✓
+                <div style={{ display:'flex', gap:8 }}>
+                  <button className="btn btn-primary" onClick={doAI} disabled={aiLoading}>
+                    â¨ {aiLoading ? 'Summarisingâ¦' : 'AI Summary'}
                   </button>
-                )}
+                  <button className="btn btn-terracotta" onClick={()=>setRecOpen(!recOpen)}>
+                    + New record
+                  </button>
+                </div>
               </div>
-            );
-          })}
+
+              {/* Vitals */}
+              {active.vitals && (
+                <div style={{ display:'flex', gap:6, flexWrap:'wrap', marginBottom:16 }}>
+                  <VitalPill label="BP"   value={active.vitals.bp} />
+                  <VitalPill label="SpOâ" value={`${active.vitals.spo2}%`} />
+                  <VitalPill label="HR"   value={`${active.vitals.hr}bpm`} />
+                  <VitalPill label="Temp" value={`${active.vitals.temp}Â°C`} />
+                </div>
+              )}
+
+              {/* AI summary */}
+              {(aiLoading || aiSummary) && (
+                <div style={{ marginBottom:16, padding:'14px 16px',
+                  background: aiSummary.includes('URGENT') ? 'rgba(181,91,73,.08)' : beige,
+                  border:`1px solid ${aiSummary.includes('URGENT') ? 'rgba(181,91,73,.4)' : border}`,
+                  borderRadius:12 }}>
+                  <div className="overline" style={{ marginBottom:8 }}>â¨ AI Summary Â· Groq Llama 3.3 70B</div>
+                  {aiLoading
+                    ? <div style={{ color:muted, fontSize:13 }}><span className="spin">â³</span> Analysingâ¦</div>
+                    : <pre style={{ fontSize:13, lineHeight:1.7, whiteSpace:'pre-wrap', fontFamily:'Inter,sans-serif' }}>{aiSummary}</pre>
+                  }
+                </div>
+              )}
+
+              {/* Reason */}
+              <div style={{ marginBottom:16, padding:'12px 14px', background:beige, borderRadius:10, border:`1px solid ${border}` }}>
+                <div className="overline" style={{ marginBottom:4 }}>Reason for Visit</div>
+                <div style={{ fontSize:13, fontStyle:'italic', color:muted }}>"{active.reason}"</div>
+              </div>
+
+              {/* New record form */}
+              {recOpen && (
+                <div className="fade-in" style={{ border:`1px solid ${border}`, borderRadius:14, padding:18, background:'#fff' }}>
+                  <div className="overline" style={{ marginBottom:12 }}>New Medical Record</div>
+                  <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:12 }}>
+                    {['Diagnosis','Notes','BP','HR','Temp Â°C','SpOâ'].map((lbl, i) => (
+                      <div key={lbl} style={i < 2 ? { gridColumn:'span 2' } : {}}>
+                        <label>{lbl}</label>
+                        <input placeholder={lbl === 'Diagnosis' ? active.diagnosis || 'Enter diagnosisâ¦' : ''} style={{ fontFamily: i>=2?'monospace':'inherit' }} />
+                      </div>
+                    ))}
+                  </div>
+                  {active.prescriptions.length > 0 && <>
+                    <div className="overline" style={{ marginBottom:8 }}>Prescriptions (from record)</div>
+                    <div style={{ display:'flex', flexDirection:'column', gap:6, marginBottom:12 }}>
+                      {active.prescriptions.map((p, i) => (
+                        <div key={i} className="rx-card" style={{ background:beige }}>
+                          <span style={{ fontSize:16 }}>ð</span>
+                          <div style={{ fontSize:12 }}><b>{p.medicine}</b> <span style={{ color:muted, fontFamily:'monospace' }}>{p.dosage} Â· {p.frequency} Â· {p.duration}</span></div>
+                        </div>
+                      ))}
+                    </div>
+                  </>}
+                  <div style={{ display:'flex', justifyContent:'flex-end', gap:8 }}>
+                    <button className="btn btn-outline" onClick={()=>setRecOpen(false)}>Cancel</button>
+                    <button className="btn btn-primary" onClick={()=>setRecOpen(false)}>Save & sync record</button>
+                  </div>
+                </div>
+              )}
+
+              {/* Prior records */}
+              <div className="overline" style={{ marginTop:16, marginBottom:10 }}>Visit History</div>
+              <div style={{ fontSize:13, color:muted, fontStyle:'italic', padding:'10px 14px',
+                background:beige, borderRadius:10, border:`1px solid ${border}` }}>
+                Previous: Amlodipine 5mg prescribed (Nov 2024) Â· URTI treated (Aug 2024) Â· Annual screening clear (Mar 2024)
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Payment processed */}
-        <div style={{ background:'rgba(16,185,129,0.08)', border:'1px solid rgba(16,185,129,0.25)', borderRadius:12, padding:14 }}>
-          <div style={{ fontWeight:700, color:C.green, marginBottom:6, fontSize:13 }}>💳 Payment Processed</div>
-          <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'rgba(255,255,255,0.7)' }}>
-            <span>Hafiz Rahman — Consultation + Medication</span>
-            <span style={{ fontFamily:'monospace', fontWeight:700, color:C.green }}>RM 65.00</span>
-          </div>
-          <div style={{ fontSize:11, color:C.textDim, marginTop:4 }}>DuitNow QR · 09:52:17</div>
-        </div>
+        <SyncIndicator />
       </div>
-    </div>
+    </AppShell>
   );
 }
 
-/* ── Root App ──────────────────────────────────────────── */
-function App() {
-  const [role, setRole]   = useState(null);
-  const [view, setView]   = useState('Dashboard');
+/* ââ Pharmacy Dashboard ââââââââââââââââââââââââââââââââââââ */
+function Pharmacy({ queue, setQueue }) {
+  const [dispensed, setDispensed] = useState([]);
+  const [confirm, setConfirm]     = useState(null);
+  const [tab, setTab]             = useState('Dispense');
 
-  const handleLogin = (r) => { setRole(r); setView('Dashboard'); };
-  const handleLogout = () => { setRole(null); setView('Dashboard'); };
+  const pending = queue.filter(q => q.status === 'ready_for_pharmacy' && !dispensed.includes(q.id));
 
-  if (!role) return <Login onLogin={handleLogin} />;
+  const doDispense = (appt) => {
+    setDispensed(d => [...d, appt.id]);
+    setConfirm(null);
+  };
+
+  if (tab === 'Inventory') return (
+    <AppShell title="Pharmacy Â· Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
+      tabs={['Dispense','Inventory']}>
+      <div className="grid3">
+        <div className="card-green">
+          <div className="overline" style={{ color:'rgba(249,249,246,.6)' }}>Low Stock Alerts</div>
+          <div className="font-mono font-display" style={{ fontSize:'4.5rem', fontWeight:700, lineHeight:1, marginTop:8 }}>
+            {INVENTORY.filter(d=>d.stock<d.min).length}
+          </div>
+          <div style={{ fontSize:13, color:'rgba(249,249,246,.7)', marginTop:10 }}>items need reordering</div>
+        </div>
+        <div className="card col-span-2">
+          <div className="overline" style={{ marginBottom:8 }}>Inventory Overview</div>
+          <p style={{ fontSize:13, color:muted }}>
+            {INVENTORY.length} items tracked Â· {INVENTORY.filter(d=>new Date(d.exp)<new Date(Date.now()+90*86400000)).length} expiring within 90 days
+          </p>
+        </div>
+        <div className="card col-span-3">
+          <div className="overline" style={{ marginBottom:16 }}>Drug Inventory</div>
+          <table>
+            <thead>
+              <tr><th>Drug</th><th>Stock</th><th>Unit</th><th>Min</th><th>Expiry</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              {INVENTORY.map((d, i) => {
+                const low     = d.stock < d.min;
+                const expSoon = new Date(d.exp) < new Date(Date.now() + 90*86400000);
+                return (
+                  <tr key={i} style={{ background: low ? 'rgba(155,34,38,.03)' : 'transparent' }}>
+                    <td style={{ fontWeight:600 }}>{d.name}</td>
+                    <td><span className="font-mono" style={{ fontWeight:700, fontSize:15, color: low?'#9B2226':green2 }}>{d.stock}</span></td>
+                    <td style={{ color:muted, fontSize:12 }}>{d.unit}</td>
+                    <td style={{ color:muted, fontSize:12 }}>{d.min}</td>
+                    <td><span className="font-mono" style={{ fontSize:11, color: expSoon?terra:muted }}>{d.exp}</span></td>
+                    <td>{low ? <span className="badge" style={{ background:'rgba(155,34,38,.1)', color:'#9B2226' }}>LOW</span>
+                           : expSoon ? <span className="badge" style={{ background:'rgba(181,91,73,.12)', color:terra }}>EXPIRING</span>
+                           : <span className="badge badge-completed">OK</span>}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </AppShell>
+  );
 
   return (
-    <div style={{ height:'100vh', display:'flex', flexDirection:'column', background:C.bg }}>
-      <TopNav role={role} view={view} setView={setView} onLogout={handleLogout} />
-      <div style={{ flex:1, overflow:'hidden', display:'flex' }}>
-        {role.id==='reception' && <Reception view={view} />}
-        {role.id==='doctor'    && <Doctor    view={view} />}
-        {role.id==='pharmacy'  && <Pharmacy  view={view} />}
+    <AppShell title="Pharmacy Â· Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
+      tabs={['Dispense','Inventory']}>
+
+      {/* Confirm modal */}
+      {confirm && (
+        <div className="modal-overlay">
+          <div className="modal fade-in" style={{ maxWidth:460 }}>
+            <div className="modal-header">
+              <h3 className="font-display" style={{ fontSize:'1.3rem', fontWeight:700 }}>Confirm dispense?</h3>
+              <p style={{ fontSize:13, color:muted, marginTop:4 }}>{confirm.patient.name} Â· #{confirm.queue_number}</p>
+            </div>
+            <div className="modal-body">
+              <div className="overline" style={{ marginBottom:10 }}>Medicines to hand over</div>
+              {confirm.prescriptions.map((p, i) => (
+                <div key={i} className="rx-card" style={{ marginBottom:8 }}>
+                  <span style={{ fontSize:16 }}>ð</span>
+                  <div style={{ fontSize:13 }}><b>{p.medicine}</b>
+                    <span className="font-mono" style={{ color:muted, fontSize:11, display:'block', marginTop:2 }}>
+                      {p.dosage} Â· {p.frequency} Â· {p.duration}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-outline" onClick={()=>setConfirm(null)}>Cancel</button>
+              <button className="btn btn-primary" onClick={()=>doDispense(confirm)}>â Confirm & complete</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="grid3">
+        {/* Waiting count */}
+        <div className="card-green">
+          <div className="overline" style={{ color:'rgba(249,249,246,.6)' }}>Waiting</div>
+          <div className="font-mono font-display" style={{ fontSize:'4.5rem', fontWeight:700, lineHeight:1, marginTop:8 }}>
+            {pending.length}
+          </div>
+          <div style={{ fontSize:13, color:'rgba(249,249,246,.7)', marginTop:10 }}>
+            patient(s) ready to collect
+          </div>
+        </div>
+
+        {/* How it works */}
+        <div className="card col-span-2" style={{ display:'flex', alignItems:'center', gap:16 }}>
+          <div style={{ width:52, height:52, borderRadius:14, background:beige, flexShrink:0,
+            display:'flex', alignItems:'center', justifyContent:'center', fontSize:24 }}>âï¸</div>
+          <div>
+            <div className="overline" style={{ marginBottom:4 }}>How it works</div>
+            <p style={{ fontSize:13, color:muted, lineHeight:1.6 }}>
+              When a patient pays at the kiosk, their prescription arrives here.
+              Verify the meds, hand them over, then tap <b style={{ color:text }}>Dispense</b> â the treatment is marked complete.
+            </p>
+          </div>
+        </div>
+
+        {/* Dispense queue */}
+        <div className="card col-span-3">
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16 }}>
+            <div>
+              <div className="overline">Dispense Queue</div>
+              <h3 className="font-display" style={{ fontSize:'1.15rem', fontWeight:700, marginTop:2 }}>
+                Live Â· {pending.length} pending
+              </h3>
+            </div>
+            <span style={{ fontSize:18 }}>ð</span>
+          </div>
+
+          {pending.length === 0 && (
+            <div style={{ border:`1.5px dashed ${border}`, borderRadius:14, padding:32, textAlign:'center', color:muted, fontSize:13 }}>
+              No patients waiting. Drink some water ð¿
+            </div>
+          )}
+
+          <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
+            {pending.map(a => (
+              <div key={a.id} style={{ border:`1px solid ${border}`, borderRadius:16, padding:20, background:cream,
+                display:'grid', gridTemplateColumns:'auto 1fr auto', gap:16, alignItems:'start' }}>
+                <div className="queue-avatar">{`#${a.queue_number}`}</div>
+                <div>
+                  <h4 className="font-display" style={{ fontSize:'1.1rem', fontWeight:700 }}>{a.patient.name}</h4>
+                  <div style={{ fontSize:11, color:muted, fontFamily:'monospace', marginTop:2 }}>{a.patient.ic_number}</div>
+                  <div style={{ fontSize:12, color:muted, marginTop:4 }}>
+                    Prescribed by {a.doctor.name} Â· paid RM{a.fee}.00
+                  </div>
+                  {a.diagnosis && (
+                    <div style={{ fontSize:13, marginTop:6 }}><span style={{ color:muted }}>Dx: </span>{a.diagnosis}</div>
+                  )}
+                  {a.prescriptions.length > 0 && (
+                    <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))', gap:8, marginTop:12 }}>
+                      {a.prescriptions.map((p, i) => (
+                        <div key={i} className="rx-card">
+                          <span style={{ fontSize:16 }}>ð</span>
+                          <div>
+                            <div style={{ fontWeight:600, fontSize:13 }}>{p.medicine}</div>
+                            <div style={{ fontSize:11, color:muted, fontFamily:'monospace', marginTop:2 }}>
+                              {p.dosage} Â· {p.frequency} Â· {p.duration}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div style={{ display:'flex', flexDirection:'column', gap:8, alignItems:'flex-end' }}>
+                  <span className="badge badge-paid">paid</span>
+                  <button className="btn btn-primary" onClick={()=>setConfirm(a)}>â Dispense</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <SyncIndicator />
       </div>
-      {/* Demo watermark */}
-      <div style={{ position:'fixed', bottom:10, right:14, fontSize:10, color:C.textDim, fontFamily:'monospace' }}>
-        MediLink Demo · No real patient data
-      </div>
-    </div>
+    </AppShell>
+  );
+}
+
+/* ââ Root ââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function App() {
+  const [role,  setRole]  = useState(null);
+  const [queue, setQueue] = useState(QUEUE);
+
+  if (!role) return <Login onLogin={r => setRole(r)} />;
+
+  return (
+    <>
+      {role.id === 'admin'    && <Reception queue={queue} setQueue={setQueue} />}
+      {role.id === 'doctor'   && <Doctor    queue={queue} />}
+      {role.id === 'pharmacy' && <Pharmacy  queue={queue} setQueue={setQueue} />}
+      {/* Tiny sign-out button */}
+      <button onClick={()=>setRole(null)} style={{
+        position:'fixed', top:12, right:16, zIndex:200,
+        background:'transparent', border:`1px solid ${border}`,
+        borderRadius:999, padding:'4px 12px', fontSize:11, color:muted, cursor:'pointer',
+      }}>Sign out</button>
+    </>
   );
 }
 
