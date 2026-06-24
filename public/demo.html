@@ -98,7 +98,7 @@
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-/* \u2500\u2500 Design tokens \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Design tokens ───────────────────────────────────────── */
 const green   = '#1C3F39';
 const green2  = '#2D6A4F';
 const green3  = '#2D5A52';
@@ -110,20 +110,20 @@ const terra   = '#B55B49';
 const tan     = '#D4A373';
 const text    = '#0A0F0D';
 
-/* \u2500\u2500 Seed data \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Seed data ───────────────────────────────────────────── */
 const QUEUE = [
   { id:1, queue_number:1, status:'in_progress', patient:{name:'Arjun Rao',     ic_number:'880421-14-5567'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T09:04:00', reason:'Chest tightness, shortness of breath', payment_status:'unpaid', fee:60,
-    vitals:{bp:'142/90',hr:102,temp:37.2,spo2:94}, diagnosis:'Possible ACS \u2014 urgent cardiac workup',
+    vitals:{bp:'142/90',hr:102,temp:37.2,spo2:94}, diagnosis:'Possible ACS — urgent cardiac workup',
     prescriptions:[{medicine:'Aspirin',dosage:'300mg',frequency:'stat',duration:'once'},{medicine:'GTN Spray',dosage:'0.4mg',frequency:'PRN',duration:'acute'}] },
   { id:2, queue_number:2, status:'checked_in',  patient:{name:'Mei Lin Chong',  ic_number:'950311-08-2210'}, doctor:{name:'Dr. Sarah Lim',    specialty:'General Practice'}, scheduled_at:'2025-06-24T09:21:00', reason:'Severe headache, photophobia x 2 days', payment_status:'unpaid', fee:60,
-    vitals:{bp:'118/76',hr:88,temp:37.8,spo2:99}, diagnosis:'Tension / migraine \u2014 rule out meningitis',
+    vitals:{bp:'118/76',hr:88,temp:37.8,spo2:99}, diagnosis:'Tension / migraine — rule out meningitis',
     prescriptions:[{medicine:'Paracetamol',dosage:'1g',frequency:'QID',duration:'3 days'},{medicine:'Sumatriptan',dosage:'50mg',frequency:'PRN',duration:'acute'}] },
   { id:3, queue_number:3, status:'ready_for_pharmacy', patient:{name:'Hafiz Rahman', ic_number:'720915-10-7733'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T09:35:00', reason:'Right knee pain, difficulty walking', payment_status:'paid', fee:60,
-    vitals:{bp:'128/82',hr:78,temp:36.9,spo2:98}, diagnosis:'Right knee osteoarthritis \u2014 conservative management',
+    vitals:{bp:'128/82',hr:78,temp:36.9,spo2:98}, diagnosis:'Right knee osteoarthritis — conservative management',
     prescriptions:[{medicine:'Naproxen',dosage:'500mg',frequency:'BD',duration:'5 days'},{medicine:'Omeprazole',dosage:'20mg',frequency:'OD',duration:'5 days'}] },
   { id:4, queue_number:4, status:'scheduled',   patient:{name:'Priya Nair',    ic_number:'010203-14-1234'}, doctor:{name:'Dr. Sarah Lim',    specialty:'General Practice'}, scheduled_at:'2025-06-24T10:05:00', reason:'Sore throat, fever since yesterday', payment_status:'unpaid', fee:60,
     vitals:{bp:'110/70',hr:82,temp:38.1,spo2:99}, diagnosis:'', prescriptions:[] },
-  { id:5, queue_number:5, status:'scheduled',   patient:{name:'Lim Jia Hao',   ic_number:'881231-07-5678'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T10:30:00', reason:'Follow-up \u2014 type 2 diabetes review', payment_status:'unpaid', fee:60,
+  { id:5, queue_number:5, status:'scheduled',   patient:{name:'Lim Jia Hao',   ic_number:'881231-07-5678'}, doctor:{name:'Dr. Tan Wei Ming', specialty:'General Practice'}, scheduled_at:'2025-06-24T10:30:00', reason:'Follow-up — type 2 diabetes review', payment_status:'unpaid', fee:60,
     vitals:{bp:'132/85',hr:74,temp:36.7,spo2:98}, diagnosis:'', prescriptions:[] },
 ];
 
@@ -139,19 +139,19 @@ const INVENTORY = [
 ];
 
 const ROLES = [
-  { id:'admin',     label:'Reception',  subtitle:'Admin \u00B7 Operations', email:'admin@medilink.io',    pass:'Admin@123'  },
+  { id:'admin',     label:'Reception',  subtitle:'Admin · Operations', email:'admin@medilink.io',    pass:'Admin@123'  },
   { id:'doctor',    label:'Doctor',     subtitle:'Dr. Tan Wei Ming',   email:'dr.tan@medilink.io',   pass:'Doctor@123' },
-  { id:'pharmacy',  label:'Pharmacist', subtitle:'Pharmacy \u00B7 Dispense',email:'pharmacy@medilink.io', pass:'Pharm@123'  },
+  { id:'pharmacy',  label:'Pharmacist', subtitle:'Pharmacy · Dispense',email:'pharmacy@medilink.io', pass:'Pharm@123'  },
 ];
 
-/* \u2500\u2500 Helpers \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Helpers ─────────────────────────────────────────────── */
 const StatusBadge = ({ status }) => (
   <span className={`badge badge-${status}`}>{status.replace(/_/g,' ')}</span>
 );
 
 const SyncIndicator = () => (
   <div className="card" style={{ display:'flex', alignItems:'center', gap:12 }}>
-    <div style={{ width:40, height:40, borderRadius:12, background:beige, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18 }}>\u2601\uFE0F</div>
+    <div style={{ width:40, height:40, borderRadius:12, background:beige, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18 }}>☁️</div>
     <div style={{ flex:1 }}>
       <div className="overline">Sync Status</div>
       <div style={{ fontSize:12, color:muted, marginTop:2, display:'flex', alignItems:'center', gap:6 }}>
@@ -172,7 +172,7 @@ const StatBox = ({ label, value }) => (
   </div>
 );
 
-/* \u2500\u2500 Login \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Login ───────────────────────────────────────────────── */
 function Login({ onLogin }) {
   const [role, setRole]     = useState(null);
   const [email, setEmail]   = useState('');
@@ -198,9 +198,9 @@ function Login({ onLogin }) {
         {/* Logo */}
         <div style={{ textAlign:'center', marginBottom:32 }}>
           <div style={{ width:52, height:52, borderRadius:16, background:green, display:'inline-flex',
-            alignItems:'center', justifyContent:'center', marginBottom:14, fontSize:24 }}>\uD83C\uDFE5</div>
+            alignItems:'center', justifyContent:'center', marginBottom:14, fontSize:24 }}>🏥</div>
           <h1 className="font-display" style={{ fontSize:'1.8rem', fontWeight:700, letterSpacing:'-.03em', color:text }}>MediLink</h1>
-          <p style={{ fontSize:13, color:muted, marginTop:4 }}>Interactive Demo \u00B7 EHR v2.0</p>
+          <p style={{ fontSize:13, color:muted, marginTop:4 }}>Interactive Demo · EHR v2.0</p>
         </div>
 
         {/* Role cards */}
@@ -215,7 +215,7 @@ function Login({ onLogin }) {
                 transition:'all .15s',
               }}>
                 <div style={{ fontSize:22, marginBottom:6 }}>
-                  {r.id==='admin'?'\uD83D\uDDA5\uFE0F':r.id==='doctor'?'\uD83D\uDC68\u200D\u2695\uFE0F':'\uD83D\uDC8A'}
+                  {r.id==='admin'?'🖥️':r.id==='doctor'?'👨‍⚕️':'💊'}
                 </div>
                 <div style={{ fontSize:12, fontWeight:700, color: role?.id===r.id ? green : text }}>{r.label}</div>
               </button>
@@ -235,7 +235,7 @@ function Login({ onLogin }) {
           </div>
           {err && <div style={{ color:'#9B2226', fontSize:12, marginBottom:10 }}>{err}</div>}
           <button className="btn btn-primary" onClick={submit} style={{ width:'100%', justifyContent:'center', padding:'10px 16px' }}>
-            {loading ? <span className="spin">\u27F3</span> : 'Sign in \u2192'}
+            {loading ? <span className="spin">⟳</span> : 'Sign in →'}
           </button>
         </div>
         <p style={{ textAlign:'center', marginTop:12, fontSize:11, color:muted }}>
@@ -246,7 +246,7 @@ function Login({ onLogin }) {
   );
 }
 
-/* \u2500\u2500 App Shell \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── App Shell ───────────────────────────────────────────── */
 function AppShell({ title, subtitle, children, tab, setTab, tabs }) {
   return (
     <div style={{ minHeight:'100vh', background:cream }}>
@@ -255,7 +255,7 @@ function AppShell({ title, subtitle, children, tab, setTab, tabs }) {
         display:'flex', alignItems:'center', gap:16, height:52, position:'sticky', top:0, zIndex:50 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, marginRight:8 }}>
           <div style={{ width:28, height:28, borderRadius:8, background:green,
-            display:'flex', alignItems:'center', justifyContent:'center', fontSize:14 }}>\uD83C\uDFE5</div>
+            display:'flex', alignItems:'center', justifyContent:'center', fontSize:14 }}>🏥</div>
           <span className="font-display" style={{ fontWeight:700, fontSize:'1rem' }}>MediLink</span>
         </div>
         {tabs && tabs.map(t => (
@@ -285,13 +285,13 @@ function AppShell({ title, subtitle, children, tab, setTab, tabs }) {
 
       {/* Demo label */}
       <div style={{ position:'fixed', bottom:10, right:14, fontSize:10, color:muted, fontFamily:'monospace' }}>
-        MediLink Demo \u00B7 No real patient data
+        MediLink Demo · No real patient data
       </div>
     </div>
   );
 }
 
-/* \u2500\u2500 Patient Detail Modal \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Patient Detail Modal ────────────────────────────────── */
 function PatientModal({ appt, onClose }) {
   const [aiLoading, setAiLoading] = useState(true);
   const [aiText, setAiText]     = useState('');
@@ -301,10 +301,10 @@ function PatientModal({ appt, onClose }) {
     const t = setTimeout(() => {
       setAiLoading(false);
       setAiText(
-        `Patient: ${appt.patient.name}, ${appt.vitals?.spo2 ? `SpO\u2082 ${appt.vitals.spo2}%` : ''}, HR ${appt.vitals?.hr}bpm, Temp ${appt.vitals?.temp}\u00B0C.\n\n` +
+        `Patient: ${appt.patient.name}, ${appt.vitals?.spo2 ? `SpO₂ ${appt.vitals.spo2}%` : ''}, HR ${appt.vitals?.hr}bpm, Temp ${appt.vitals?.temp}°C.\n\n` +
         `Chief complaint: "${appt.reason}".\n\n` +
         (appt.vitals?.spo2 === 94
-          ? `\u26A0\uFE0F ALERT: SpO\u2082 of 94% combined with tachycardia (HR 102) and chest tightness \u2014 Immediate category under Manchester Triage System. Recommend ECG, troponin, D-dimer. Do not leave patient unattended.`
+          ? `⚠️ ALERT: SpO₂ of 94% combined with tachycardia (HR 102) and chest tightness — Immediate category under Manchester Triage System. Recommend ECG, troponin, D-dimer. Do not leave patient unattended.`
           : `Clinical picture is consistent with ${appt.diagnosis || 'the presenting complaint'}. Vitals are within acceptable range. Proceed with standard consultation protocol.`)
       );
     }, 1800);
@@ -324,7 +324,7 @@ function PatientModal({ appt, onClose }) {
               </div>
             </div>
             <button onClick={onClose} style={{ background:'transparent', border:`1px solid ${border}`,
-              borderRadius:8, color:muted, cursor:'pointer', padding:'4px 10px', fontSize:12 }}>\u2715</button>
+              borderRadius:8, color:muted, cursor:'pointer', padding:'4px 10px', fontSize:12 }}>✕</button>
           </div>
           {/* Tab bar */}
           <div style={{ display:'flex', gap:4, marginTop:14 }}>
@@ -348,11 +348,11 @@ function PatientModal({ appt, onClose }) {
                 background:beige, borderRadius:10, border:`1px solid ${border}` }}>
                 "{appt.reason}"
               </div>
-              <div className="overline" style={{ marginBottom:8 }}>AI Clinical Summary \u00B7 Groq Llama 3.3 70B</div>
+              <div className="overline" style={{ marginBottom:8 }}>AI Clinical Summary · Groq Llama 3.3 70B</div>
               {aiLoading ? (
                 <div style={{ padding:'28px 0', textAlign:'center', color:muted }}>
-                  <span className="spin" style={{ fontSize:22, display:'block', marginBottom:8 }}>\u27F3</span>
-                  <span style={{ fontSize:12 }}>Analysing patient data\u2026</span>
+                  <span className="spin" style={{ fontSize:22, display:'block', marginBottom:8 }}>⟳</span>
+                  <span style={{ fontSize:12 }}>Analysing patient data…</span>
                 </div>
               ) : (
                 <div className="fade-in" style={{ padding:'14px 16px', background: appt.vitals?.spo2===94 ? 'rgba(181,91,73,.08)' : beige,
@@ -369,9 +369,9 @@ function PatientModal({ appt, onClose }) {
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 {[
                   ['Blood Pressure', appt.vitals.bp, 'mmHg', appt.vitals.bp?.startsWith('14') ? terra : green2],
-                  ['SpO\u2082',           `${appt.vitals.spo2}%`, '',    appt.vitals.spo2 < 95 ? '#9B2226' : green2],
+                  ['SpO₂',           `${appt.vitals.spo2}%`, '',    appt.vitals.spo2 < 95 ? '#9B2226' : green2],
                   ['Heart Rate',     `${appt.vitals.hr}`, 'bpm', appt.vitals.hr > 100 ? terra : green2],
-                  ['Temperature',    `${appt.vitals.temp}\u00B0C`, '', appt.vitals.temp > 38 ? terra : green2],
+                  ['Temperature',    `${appt.vitals.temp}°C`, '', appt.vitals.temp > 38 ? terra : green2],
                 ].map(([lbl, val, unit, col]) => (
                   <div key={lbl} style={{ padding:'16px', borderRadius:12, background:'#fff', border:`1px solid ${border}` }}>
                     <div className="overline" style={{ marginBottom:6 }}>{lbl}</div>
@@ -391,11 +391,11 @@ function PatientModal({ appt, onClose }) {
                 <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
                   {appt.prescriptions.map((p, i) => (
                     <div key={i} className="rx-card">
-                      <span style={{ fontSize:18, marginTop:2 }}>\uD83D\uDC8A</span>
+                      <span style={{ fontSize:18, marginTop:2 }}>💊</span>
                       <div>
                         <div style={{ fontWeight:700, fontSize:14 }}>{p.medicine}</div>
                         <div style={{ fontSize:12, color:muted, fontFamily:'monospace', marginTop:2 }}>
-                          {p.dosage} \u00B7 {p.frequency} \u00B7 {p.duration}
+                          {p.dosage} · {p.frequency} · {p.duration}
                         </div>
                       </div>
                     </div>
@@ -420,7 +420,7 @@ function PatientModal({ appt, onClose }) {
   );
 }
 
-/* \u2500\u2500 Reception Dashboard \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Reception Dashboard ─────────────────────────────────── */
 function Reception({ queue, setQueue }) {
   const [selected, setSelected] = useState(null);
   const [tab, setTab]           = useState('Queue');
@@ -445,13 +445,13 @@ function Reception({ queue, setQueue }) {
   };
 
   if (tab === 'Kiosk') return (
-    <AppShell title="Reception \u00B7 Live Queue" subtitle="Admin \u00B7 Operations" tab={tab} setTab={setTab}
+    <AppShell title="Reception · Live Queue" subtitle="Admin · Operations" tab={tab} setTab={setTab}
       tabs={['Queue','Patients','Kiosk']}>
       <div style={{ maxWidth:460, margin:'0 auto' }}>
         <div className="card fade-in">
           {checkinStep === 0 && <>
             <div style={{ textAlign:'center', marginBottom:20 }}>
-              <div style={{ fontSize:48, marginBottom:12 }}>\uD83D\uDCC7</div>
+              <div style={{ fontSize:48, marginBottom:12 }}>📇</div>
               <h3 className="font-display" style={{ fontSize:'1.2rem', fontWeight:700, marginBottom:6 }}>MyKad IC Self Check-In</h3>
               <p style={{ fontSize:13, color:muted }}>Enter IC number or tap a demo IC below</p>
             </div>
@@ -468,13 +468,13 @@ function Reception({ queue, setQueue }) {
               ))}
             </div>
             <button className="btn btn-primary" onClick={doCheckin} style={{ width:'100%', justifyContent:'center', padding:'10px' }}>
-              Check In \u2192
+              Check In →
             </button>
           </>}
           {checkinStep === 2 && (
             <div className="fade-in" style={{ textAlign:'center' }}>
               <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(45,106,79,.15)', border:`2px solid ${green2}`,
-                display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px', fontSize:28 }}>\u2713</div>
+                display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px', fontSize:28 }}>✓</div>
               <h3 className="font-display" style={{ fontSize:'1.3rem', marginBottom:4 }}>Welcome, {checkinName}!</h3>
               <p style={{ color:muted, fontSize:13, marginBottom:16 }}>Check-in time: {time.toLocaleTimeString()}</p>
               <div style={{ background:beige, border:`1px solid ${border}`, borderRadius:12, padding:14, marginBottom:16 }}>
@@ -488,7 +488,7 @@ function Reception({ queue, setQueue }) {
           )}
           {checkinStep === -1 && (
             <div style={{ background:'rgba(155,34,38,.06)', border:'1px solid rgba(155,34,38,.25)', borderRadius:12, padding:16, textAlign:'center' }}>
-              <div style={{ fontSize:28, marginBottom:8 }}>\u26A0\uFE0F</div>
+              <div style={{ fontSize:28, marginBottom:8 }}>⚠️</div>
               <div style={{ fontWeight:700, marginBottom:4 }}>IC not found in system</div>
               <p style={{ color:muted, fontSize:12, marginBottom:12 }}>Try one of the demo ICs above</p>
               <button className="btn btn-outline" onClick={()=>setCheckinStep(0)}>Try again</button>
@@ -500,7 +500,7 @@ function Reception({ queue, setQueue }) {
   );
 
   if (tab === 'Patients') return (
-    <AppShell title="Reception \u00B7 Live Queue" subtitle="Admin \u00B7 Operations" tab={tab} setTab={setTab}
+    <AppShell title="Reception · Live Queue" subtitle="Admin · Operations" tab={tab} setTab={setTab}
       tabs={['Queue','Patients','Kiosk']}>
       <div>
         <div className="overline" style={{ marginBottom:12 }}>{queue.length} patients on file today</div>
@@ -522,7 +522,7 @@ function Reception({ queue, setQueue }) {
   );
 
   return (
-    <AppShell title="Reception \u00B7 Live Queue" subtitle="Admin \u00B7 Operations" tab={tab} setTab={setTab}
+    <AppShell title="Reception · Live Queue" subtitle="Admin · Operations" tab={tab} setTab={setTab}
       tabs={['Queue','Patients','Kiosk']}>
       {selected && <PatientModal appt={selected} onClose={()=>setSelected(null)} />}
 
@@ -531,10 +531,10 @@ function Reception({ queue, setQueue }) {
         <div className="card-green">
           <div className="overline" style={{ color:'rgba(249,249,246,.6)' }}>Now Serving</div>
           <div className="font-mono font-display" style={{ fontSize:'4.5rem', fontWeight:700, lineHeight:1, marginTop:8, letterSpacing:'-.02em' }}>
-            {next ? `#${String(next.queue_number).padStart(3,'0')}` : '\u2014'}
+            {next ? `#${String(next.queue_number).padStart(3,'0')}` : '—'}
           </div>
           {next && <div style={{ fontSize:13, color:'rgba(249,249,246,.7)', marginTop:10 }}>
-            {next.patient.name} \u2192 {next.doctor.name.split(' ').slice(-1)[0]}
+            {next.patient.name} → {next.doctor.name.split(' ').slice(-1)[0]}
           </div>}
         </div>
 
@@ -562,9 +562,9 @@ function Reception({ queue, setQueue }) {
             </div>
             <div style={{ display:'flex', gap:8, alignItems:'center' }}>
               <span className="sync-dot breathe" />
-              <span style={{ fontSize:10, color:green2, fontWeight:700 }}>WebSocket \u00B7 live</span>
+              <span style={{ fontSize:10, color:green2, fontWeight:700 }}>WebSocket · live</span>
               <button className="btn btn-primary" onClick={()=>setTab('Kiosk')} style={{ marginLeft:6 }}>
-                \uD83D\uDCC7 NFC Check-in
+                📇 NFC Check-in
               </button>
             </div>
           </div>
@@ -604,7 +604,7 @@ function Reception({ queue, setQueue }) {
   );
 }
 
-/* \u2500\u2500 Doctor Dashboard \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Doctor Dashboard ────────────────────────────────────── */
 function Doctor({ queue }) {
   const [active, setActive]     = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
@@ -622,24 +622,24 @@ function Doctor({ queue }) {
     setTimeout(() => {
       setAiLoading(false);
       setAiSummary(
-        `Clinical Summary \u2014 ${active.patient.name}\n\n` +
+        `Clinical Summary — ${active.patient.name}\n\n` +
         `Presenting with: ${active.reason}\n\n` +
         (active.vitals?.spo2 === 94
-          ? `\u26A0\uFE0F URGENT: Peripheral SpO\u2082 94% + HR 102bpm + chest tightness = Red flag constellation. Differential: NSTEMI, PE, acute LVF. Immediate actions: 12-lead ECG, IV access, O\u2082 supplementation, troponin I & T, D-dimer, BNP. Do not discharge.\n\nMTS Category: IMMEDIATE`
+          ? `⚠️ URGENT: Peripheral SpO₂ 94% + HR 102bpm + chest tightness = Red flag constellation. Differential: NSTEMI, PE, acute LVF. Immediate actions: 12-lead ECG, IV access, O₂ supplementation, troponin I & T, D-dimer, BNP. Do not discharge.\n\nMTS Category: IMMEDIATE`
           : `Vitals within normal range. History consistent with ${active.diagnosis || active.reason.toLowerCase()}. Recommend standard workup, symptomatic management, and follow-up in 1 week if no improvement.`)
       );
     }, 2200);
   };
 
   return (
-    <AppShell title={`Dr. Tan Wei Ming`} subtitle="General Practice \u00B7 Doctor" tab={tab} setTab={setTab}
+    <AppShell title={`Dr. Tan Wei Ming`} subtitle="General Practice · Doctor" tab={tab} setTab={setTab}
       tabs={['Queue','Schedule']}>
       <div className="grid3">
         {/* Queue sidebar */}
         <div className="card" style={{ maxHeight:'80vh', display:'flex', flexDirection:'column' }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
             <div className="overline">Today's Queue</div>
-            <button className="btn btn-primary" style={{ fontSize:11, padding:'5px 12px' }}>\uD83D\uDCC7 Scan NFC</button>
+            <button className="btn btn-primary" style={{ fontSize:11, padding:'5px 12px' }}>📇 Scan NFC</button>
           </div>
           <div style={{ overflowY:'auto', flex:1, display:'flex', flexDirection:'column', gap:8 }}>
             {myQueue.length === 0 && <div style={{ fontSize:13, color:muted }}>No active patients.</div>}
@@ -649,7 +649,7 @@ function Doctor({ queue }) {
                 <div className="queue-avatar">#{a.queue_number}</div>
                 <div style={{ flex:1, textAlign:'left' }}>
                   <div style={{ fontSize:13, fontWeight:600 }}>{a.patient.name}</div>
-                  <div style={{ fontSize:11, color:muted }}>{a.reason.slice(0,36)}\u2026</div>
+                  <div style={{ fontSize:11, color:muted }}>{a.reason.slice(0,36)}…</div>
                 </div>
                 <StatusBadge status={a.status} />
               </button>
@@ -662,7 +662,7 @@ function Doctor({ queue }) {
           {!active ? (
             <div style={{ height:'100%', minHeight:360, display:'flex', flexDirection:'column',
               alignItems:'center', justifyContent:'center', textAlign:'center', color:muted }}>
-              <div style={{ fontSize:40, marginBottom:16 }}>\uD83E\uDE7A</div>
+              <div style={{ fontSize:40, marginBottom:16 }}>🩺</div>
               <h3 className="font-display" style={{ fontSize:'1.2rem', color:text, marginBottom:8 }}>Select a patient from the queue</h3>
               <p style={{ fontSize:13, maxWidth:320 }}>Once loaded, you'll see their vitals, AI-generated clinical summary, and can record this visit.</p>
             </div>
@@ -677,7 +677,7 @@ function Doctor({ queue }) {
                 </div>
                 <div style={{ display:'flex', gap:8 }}>
                   <button className="btn btn-primary" onClick={doAI} disabled={aiLoading}>
-                    \u2728 {aiLoading ? 'Summarising\u2026' : 'AI Summary'}
+                    ✨ {aiLoading ? 'Summarising…' : 'AI Summary'}
                   </button>
                   <button className="btn btn-terracotta" onClick={()=>setRecOpen(!recOpen)}>
                     + New record
@@ -689,9 +689,9 @@ function Doctor({ queue }) {
               {active.vitals && (
                 <div style={{ display:'flex', gap:6, flexWrap:'wrap', marginBottom:16 }}>
                   <VitalPill label="BP"   value={active.vitals.bp} />
-                  <VitalPill label="SpO\u2082" value={`${active.vitals.spo2}%`} />
+                  <VitalPill label="SpO₂" value={`${active.vitals.spo2}%`} />
                   <VitalPill label="HR"   value={`${active.vitals.hr}bpm`} />
-                  <VitalPill label="Temp" value={`${active.vitals.temp}\u00B0C`} />
+                  <VitalPill label="Temp" value={`${active.vitals.temp}°C`} />
                 </div>
               )}
 
@@ -701,9 +701,9 @@ function Doctor({ queue }) {
                   background: aiSummary.includes('URGENT') ? 'rgba(181,91,73,.08)' : beige,
                   border:`1px solid ${aiSummary.includes('URGENT') ? 'rgba(181,91,73,.4)' : border}`,
                   borderRadius:12 }}>
-                  <div className="overline" style={{ marginBottom:8 }}>\u2728 AI Summary \u00B7 Groq Llama 3.3 70B</div>
+                  <div className="overline" style={{ marginBottom:8 }}>✨ AI Summary · Groq Llama 3.3 70B</div>
                   {aiLoading
-                    ? <div style={{ color:muted, fontSize:13 }}><span className="spin">\u27F3</span> Analysing\u2026</div>
+                    ? <div style={{ color:muted, fontSize:13 }}><span className="spin">⟳</span> Analysing…</div>
                     : <pre style={{ fontSize:13, lineHeight:1.7, whiteSpace:'pre-wrap', fontFamily:'Inter,sans-serif' }}>{aiSummary}</pre>
                   }
                 </div>
@@ -720,10 +720,10 @@ function Doctor({ queue }) {
                 <div className="fade-in" style={{ border:`1px solid ${border}`, borderRadius:14, padding:18, background:'#fff' }}>
                   <div className="overline" style={{ marginBottom:12 }}>New Medical Record</div>
                   <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:12 }}>
-                    {['Diagnosis','Notes','BP','HR','Temp \u00B0C','SpO\u2082'].map((lbl, i) => (
+                    {['Diagnosis','Notes','BP','HR','Temp °C','SpO₂'].map((lbl, i) => (
                       <div key={lbl} style={i < 2 ? { gridColumn:'span 2' } : {}}>
                         <label>{lbl}</label>
-                        <input placeholder={lbl === 'Diagnosis' ? active.diagnosis || 'Enter diagnosis\u2026' : ''} style={{ fontFamily: i>=2?'monospace':'inherit' }} />
+                        <input placeholder={lbl === 'Diagnosis' ? active.diagnosis || 'Enter diagnosis…' : ''} style={{ fontFamily: i>=2?'monospace':'inherit' }} />
                       </div>
                     ))}
                   </div>
@@ -732,8 +732,8 @@ function Doctor({ queue }) {
                     <div style={{ display:'flex', flexDirection:'column', gap:6, marginBottom:12 }}>
                       {active.prescriptions.map((p, i) => (
                         <div key={i} className="rx-card" style={{ background:beige }}>
-                          <span style={{ fontSize:16 }}>\uD83D\uDC8A</span>
-                          <div style={{ fontSize:12 }}><b>{p.medicine}</b> <span style={{ color:muted, fontFamily:'monospace' }}>{p.dosage} \u00B7 {p.frequency} \u00B7 {p.duration}</span></div>
+                          <span style={{ fontSize:16 }}>💊</span>
+                          <div style={{ fontSize:12 }}><b>{p.medicine}</b> <span style={{ color:muted, fontFamily:'monospace' }}>{p.dosage} · {p.frequency} · {p.duration}</span></div>
                         </div>
                       ))}
                     </div>
@@ -749,7 +749,7 @@ function Doctor({ queue }) {
               <div className="overline" style={{ marginTop:16, marginBottom:10 }}>Visit History</div>
               <div style={{ fontSize:13, color:muted, fontStyle:'italic', padding:'10px 14px',
                 background:beige, borderRadius:10, border:`1px solid ${border}` }}>
-                Previous: Amlodipine 5mg prescribed (Nov 2024) \u00B7 URTI treated (Aug 2024) \u00B7 Annual screening clear (Mar 2024)
+                Previous: Amlodipine 5mg prescribed (Nov 2024) · URTI treated (Aug 2024) · Annual screening clear (Mar 2024)
               </div>
             </div>
           )}
@@ -761,7 +761,7 @@ function Doctor({ queue }) {
   );
 }
 
-/* \u2500\u2500 Pharmacy Dashboard \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Pharmacy Dashboard ──────────────────────────────────── */
 function Pharmacy({ queue, setQueue }) {
   const [dispensed, setDispensed] = useState([]);
   const [confirm, setConfirm]     = useState(null);
@@ -775,7 +775,7 @@ function Pharmacy({ queue, setQueue }) {
   };
 
   if (tab === 'Inventory') return (
-    <AppShell title="Pharmacy \u00B7 Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
+    <AppShell title="Pharmacy · Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
       tabs={['Dispense','Inventory']}>
       <div className="grid3">
         <div className="card-green">
@@ -788,7 +788,7 @@ function Pharmacy({ queue, setQueue }) {
         <div className="card col-span-2">
           <div className="overline" style={{ marginBottom:8 }}>Inventory Overview</div>
           <p style={{ fontSize:13, color:muted }}>
-            {INVENTORY.length} items tracked \u00B7 {INVENTORY.filter(d=>new Date(d.exp)<new Date(Date.now()+90*86400000)).length} expiring within 90 days
+            {INVENTORY.length} items tracked · {INVENTORY.filter(d=>new Date(d.exp)<new Date(Date.now()+90*86400000)).length} expiring within 90 days
           </p>
         </div>
         <div className="card col-span-3">
@@ -822,7 +822,7 @@ function Pharmacy({ queue, setQueue }) {
   );
 
   return (
-    <AppShell title="Pharmacy \u00B7 Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
+    <AppShell title="Pharmacy · Dispense Queue" subtitle="Pharmacy" tab={tab} setTab={setTab}
       tabs={['Dispense','Inventory']}>
 
       {/* Confirm modal */}
@@ -831,16 +831,16 @@ function Pharmacy({ queue, setQueue }) {
           <div className="modal fade-in" style={{ maxWidth:460 }}>
             <div className="modal-header">
               <h3 className="font-display" style={{ fontSize:'1.3rem', fontWeight:700 }}>Confirm dispense?</h3>
-              <p style={{ fontSize:13, color:muted, marginTop:4 }}>{confirm.patient.name} \u00B7 #{confirm.queue_number}</p>
+              <p style={{ fontSize:13, color:muted, marginTop:4 }}>{confirm.patient.name} · #{confirm.queue_number}</p>
             </div>
             <div className="modal-body">
               <div className="overline" style={{ marginBottom:10 }}>Medicines to hand over</div>
               {confirm.prescriptions.map((p, i) => (
                 <div key={i} className="rx-card" style={{ marginBottom:8 }}>
-                  <span style={{ fontSize:16 }}>\uD83D\uDC8A</span>
+                  <span style={{ fontSize:16 }}>💊</span>
                   <div style={{ fontSize:13 }}><b>{p.medicine}</b>
                     <span className="font-mono" style={{ color:muted, fontSize:11, display:'block', marginTop:2 }}>
-                      {p.dosage} \u00B7 {p.frequency} \u00B7 {p.duration}
+                      {p.dosage} · {p.frequency} · {p.duration}
                     </span>
                   </div>
                 </div>
@@ -848,7 +848,7 @@ function Pharmacy({ queue, setQueue }) {
             </div>
             <div className="modal-footer">
               <button className="btn btn-outline" onClick={()=>setConfirm(null)}>Cancel</button>
-              <button className="btn btn-primary" onClick={()=>doDispense(confirm)}>\u2713 Confirm & complete</button>
+              <button className="btn btn-primary" onClick={()=>doDispense(confirm)}>✓ Confirm & complete</button>
             </div>
           </div>
         </div>
@@ -869,12 +869,12 @@ function Pharmacy({ queue, setQueue }) {
         {/* How it works */}
         <div className="card col-span-2" style={{ display:'flex', alignItems:'center', gap:16 }}>
           <div style={{ width:52, height:52, borderRadius:14, background:beige, flexShrink:0,
-            display:'flex', alignItems:'center', justifyContent:'center', fontSize:24 }}>\u2697\uFE0F</div>
+            display:'flex', alignItems:'center', justifyContent:'center', fontSize:24 }}>⚗️</div>
           <div>
             <div className="overline" style={{ marginBottom:4 }}>How it works</div>
             <p style={{ fontSize:13, color:muted, lineHeight:1.6 }}>
               When a patient pays at the kiosk, their prescription arrives here.
-              Verify the meds, hand them over, then tap <b style={{ color:text }}>Dispense</b> \u2014 the treatment is marked complete.
+              Verify the meds, hand them over, then tap <b style={{ color:text }}>Dispense</b> — the treatment is marked complete.
             </p>
           </div>
         </div>
@@ -885,15 +885,15 @@ function Pharmacy({ queue, setQueue }) {
             <div>
               <div className="overline">Dispense Queue</div>
               <h3 className="font-display" style={{ fontSize:'1.15rem', fontWeight:700, marginTop:2 }}>
-                Live \u00B7 {pending.length} pending
+                Live · {pending.length} pending
               </h3>
             </div>
-            <span style={{ fontSize:18 }}>\uD83D\uDCCB</span>
+            <span style={{ fontSize:18 }}>📋</span>
           </div>
 
           {pending.length === 0 && (
             <div style={{ border:`1.5px dashed ${border}`, borderRadius:14, padding:32, textAlign:'center', color:muted, fontSize:13 }}>
-              No patients waiting. Drink some water \uD83C\uDF3F
+              No patients waiting. Drink some water 🌿
             </div>
           )}
 
@@ -906,7 +906,7 @@ function Pharmacy({ queue, setQueue }) {
                   <h4 className="font-display" style={{ fontSize:'1.1rem', fontWeight:700 }}>{a.patient.name}</h4>
                   <div style={{ fontSize:11, color:muted, fontFamily:'monospace', marginTop:2 }}>{a.patient.ic_number}</div>
                   <div style={{ fontSize:12, color:muted, marginTop:4 }}>
-                    Prescribed by {a.doctor.name} \u00B7 paid RM{a.fee}.00
+                    Prescribed by {a.doctor.name} · paid RM{a.fee}.00
                   </div>
                   {a.diagnosis && (
                     <div style={{ fontSize:13, marginTop:6 }}><span style={{ color:muted }}>Dx: </span>{a.diagnosis}</div>
@@ -915,11 +915,11 @@ function Pharmacy({ queue, setQueue }) {
                     <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))', gap:8, marginTop:12 }}>
                       {a.prescriptions.map((p, i) => (
                         <div key={i} className="rx-card">
-                          <span style={{ fontSize:16 }}>\uD83D\uDC8A</span>
+                          <span style={{ fontSize:16 }}>💊</span>
                           <div>
                             <div style={{ fontWeight:600, fontSize:13 }}>{p.medicine}</div>
                             <div style={{ fontSize:11, color:muted, fontFamily:'monospace', marginTop:2 }}>
-                              {p.dosage} \u00B7 {p.frequency} \u00B7 {p.duration}
+                              {p.dosage} · {p.frequency} · {p.duration}
                             </div>
                           </div>
                         </div>
@@ -929,7 +929,7 @@ function Pharmacy({ queue, setQueue }) {
                 </div>
                 <div style={{ display:'flex', flexDirection:'column', gap:8, alignItems:'flex-end' }}>
                   <span className="badge badge-paid">paid</span>
-                  <button className="btn btn-primary" onClick={()=>setConfirm(a)}>\u2713 Dispense</button>
+                  <button className="btn btn-primary" onClick={()=>setConfirm(a)}>✓ Dispense</button>
                 </div>
               </div>
             ))}
@@ -942,7 +942,7 @@ function Pharmacy({ queue, setQueue }) {
   );
 }
 
-/* \u2500\u2500 Root \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* ── Root ────────────────────────────────────────────────── */
 function App() {
   const [role,  setRole]  = useState(null);
   const [queue, setQueue] = useState(QUEUE);
