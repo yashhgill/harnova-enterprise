@@ -135,8 +135,7 @@ function Hero() {
     const ctx = gsap.context(() => {
       // Initial entrance — elements reveal on load
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.from('.hn-hero-badge',   { opacity: 0, y: 20, duration: 0.7 }, 0.2)
-        .from('.hn-hero-line',    { clipPath: 'inset(0 0 100% 0)', y: 10, duration: 0.9, stagger: 0.12 }, 0.45)
+      tl.from('.hn-hero-line',    { clipPath: 'inset(0 0 100% 0)', y: 10, duration: 0.9, stagger: 0.12 }, 0.2)
         .from(subRef.current,     { opacity: 0, y: 20, duration: 0.7 }, 0.90)
         .from(ctasRef.current.children, { opacity: 0, y: 16, stagger: 0.1, duration: 0.6 }, 1.0)
         .from('.hn-chip',         { opacity: 0, scale: 0.8, y: 12, stagger: 0.08, duration: 0.5 }, 1.1)
@@ -159,7 +158,8 @@ function Hero() {
       minHeight: '100vh', display: 'flex', alignItems: 'center',
       padding: 'clamp(110px,14vw,160px) 0 clamp(60px,8vw,100px)',
       position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(170deg, #F8F9FF 0%, #F0F4FF 50%, #F5F3FF 100%)',
+      background: 'linear-gradient(170deg, #ECEEF8 0%, #E8ECFA 50%, #EBE8F7 100%)',
+      borderBottom: '1px solid rgba(79,70,229,0.10)',
     }}>
       {/* Mesh grid */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(79,70,229,0.07) 1px, transparent 1px)', backgroundSize: '44px 44px', pointerEvents: 'none' }} />
@@ -169,12 +169,6 @@ function Hero() {
       <div ref={orb2Ref} style={{ position: 'absolute', bottom: '10%', left: '-8%', width: 'clamp(200px,30vw,440px)', height: 'clamp(200px,30vw,440px)', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%)', pointerEvents: 'none', animation: 'hnHeroFloat 13s ease-in-out infinite 1s' }} />
 
       <div style={{ ...W, position: 'relative', zIndex: 1, width: '100%', textAlign: 'center' }}>
-        {/* Badge */}
-        <div className="hn-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', background: '#fff', border: '1px solid #E0E7FF', borderRadius: 99, marginBottom: 28, boxShadow: '0 2px 12px rgba(79,70,229,0.08)' }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', display: 'inline-block', animation: 'hnPulse 2s infinite' }} />
-          <span style={{ fontSize: '.75rem', fontWeight: 700, color: '#4F46E5', letterSpacing: '.08em', textTransform: 'uppercase', fontFamily: "'DM Sans',sans-serif" }}>Malaysian Tech · Kuala Lumpur</span>
-        </div>
-
         {/* Headline */}
         <div ref={headRef}>
           <div style={{ overflow: 'hidden', marginBottom: 4 }}>
@@ -262,6 +256,8 @@ function MediLink() {
     <section ref={secRef} id="medilink" style={{
       padding: 'clamp(80px,10vw,130px) 0',
       background: 'linear-gradient(170deg, #060D1A 0%, #0A1628 60%, #0D0520 100%)',
+      borderTop: '1px solid rgba(255,255,255,0.06)',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
       position: 'relative', overflow: 'hidden',
     }}>
       {/* Ambient glows */}
@@ -418,7 +414,7 @@ function Services() {
   ]
 
   return (
-    <section ref={secRef} id="services" style={{ padding: 'clamp(80px,10vw,130px) 0', background: '#fff' }}>
+    <section ref={secRef} id="services" style={{ padding: 'clamp(80px,10vw,130px) 0', background: '#F4F5FA', borderTop: '1px solid #E4E6F0', borderBottom: '1px solid #E4E6F0' }}>
       <div style={{ ...W, width: '100%' }}>
         <div style={{ textAlign: 'center', marginBottom: 'clamp(40px,6vw,64px)' }}>
           <div style={{ overflow: 'hidden', display: 'inline-block', marginBottom: 16 }}>
@@ -435,11 +431,11 @@ function Services() {
           {SVCS.map((s, i) => (
             <div key={s.title} className="hn-sv-card" style={{
               padding: 'clamp(28px,4vw,40px)',
-              border: '1px solid #F1F5F9',
+              border: '1px solid #DDE0EE',
               borderRadius: 20,
               transition: 'border-color .25s, box-shadow .25s, transform .25s',
               cursor: 'default',
-              background: '#fff',
+              background: '#FAFBFF',
             }}
               onMouseEnter={e => { e.currentTarget.style.borderColor=s.accent+'33'; e.currentTarget.style.boxShadow=`0 16px 48px ${s.accent}10`; e.currentTarget.style.transform='translateY(-4px)' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor='#F1F5F9'; e.currentTarget.style.boxShadow='none'; e.currentTarget.style.transform='none' }}>
