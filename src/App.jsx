@@ -226,7 +226,7 @@ function MediLink() {
       // Dark section reveal
       gsap.from('.hn-ml-tag',  { opacity: 0, y: 20, scrollTrigger: { trigger: secRef.current, start: 'top 75%', toggleActions: 'play none none none' } })
       gsap.from('.hn-ml-head', {
-        clipPath: 'inset(0 0 100% 0)', y: 10, duration: 1, ease: 'power3.out', stagger: 0.1,
+        opacity: 0, y: 40, duration: 1, ease: 'power3.out', stagger: 0.12,
         scrollTrigger: { trigger: secRef.current, start: 'top 68%', toggleActions: 'play none none none' },
       })
       gsap.from('.hn-ml-sub', { opacity: 0, y: 20, duration: 0.8, delay: 0.3, scrollTrigger: { trigger: secRef.current, start: 'top 65%', toggleActions: 'play none none none' } })
@@ -275,16 +275,12 @@ function MediLink() {
               <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: '#10B981', fontFamily: "'DM Sans',sans-serif" }}>Live · Healthcare</span>
             </div>
 
-            <div style={{ overflow: 'hidden', marginBottom: 4 }}>
-              <h2 className="hn-ml-head" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: 'clamp(2.8rem,7vw,7rem)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#fff', clipPath: 'inset(0 0 0% 0)', display: 'block' }}>
-                MediLink
-              </h2>
-            </div>
-            <div style={{ overflow: 'hidden', marginBottom: 24 }}>
-              <h3 className="hn-ml-head" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 'clamp(1rem,2.2vw,1.5rem)', letterSpacing: '-0.01em', lineHeight: 1.3, color: 'rgba(255,255,255,0.55)', clipPath: 'inset(0 0 0% 0)', display: 'block' }}>
-                Malaysia's clinical operating system.
-              </h3>
-            </div>
+            <h2 className="hn-ml-head" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: 'clamp(2.8rem,7vw,7rem)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#fff', marginBottom: 6 }}>
+              MediLink
+            </h2>
+            <h3 className="hn-ml-head" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 'clamp(1rem,2.2vw,1.5rem)', letterSpacing: '-0.01em', lineHeight: 1.3, color: 'rgba(255,255,255,0.55)', marginBottom: 24 }}>
+              Malaysia's clinical operating system.
+            </h3>
 
             <p className="hn-ml-sub" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 'clamp(.95rem,1.6vw,1.1rem)', color: 'rgba(255,255,255,0.42)', lineHeight: 1.75, marginBottom: 36, maxWidth: 400 }}>
               Fully offline-capable EHR for Malaysian clinics. IC kiosk check-in, AI triage scoring, DuitNow payments — all in one system.
