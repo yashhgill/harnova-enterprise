@@ -1,36 +1,23 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #F8F9FF;
-  --surface: #FFFFFF;
-  --surface2: #F0F2FF;
-  --border: #E4E8FF;
-  --accent: #4F46E5;
-  --accent-hi: #6366F1;
-  --glow: rgba(79,70,229,0.25);
-  --cyan: #06B6D4;
-  --rose: #F43F5E;
-  --amber: #F59E0B;
-  --green: #10B981;
-  --purple: #8B5CF6;
-  --text: #0F172A;
-  --text-muted: #475569;
-  --text-dim: #94A3B8;
+  --bg: #04040A;
+  --surface: #0B0B14;
+  --surface2: #12121E;
+  --border: rgba(255,255,255,0.09);
+  --nova-indigo: #6366F1;
+  --nova-violet: #A855F7;
+  --nova-cyan: #22D3EE;
+  --gold: #F5C542;
+  --text: #F4F4FA;
+  --text-dim: #B9B9CC;
+  --text-muted: #8A8AA0;
 }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
-
-/* ── Responsive utilities ── */
-.hide-mobile { display: block; }
-.show-mobile { display: none; }
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .show-mobile { display: block !important; }
-  .hamburger-btn { display: flex !important; align-items: center; justify-content: center; }
-}
