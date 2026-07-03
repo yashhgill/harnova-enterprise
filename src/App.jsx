@@ -47,6 +47,13 @@ const GLOBAL_CSS = `
   @keyframes hnRise { from { opacity: 0; transform: translateY(26px) } to { opacity: 1; transform: translateY(0) } }
   @keyframes hnDrift { 0%,100% { transform: translate(0,0) scale(1) } 33% { transform: translate(40px,-30px) scale(1.08) } 66% { transform: translate(-30px,25px) scale(0.95) } }
   .nebula { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; animation: hnDrift 26s ease-in-out infinite; mix-blend-mode: screen; }
+  @keyframes hnOrbit { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+  @keyframes hnOrbitRev { from { transform: rotate(0deg) } to { transform: rotate(-360deg) } }
+  @keyframes hnFloat { 0%,100% { transform: translateY(0) rotate(-14deg) } 50% { transform: translateY(-22px) rotate(-10deg) } }
+  .orbit { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.09); }
+  .orbit-spin { position: absolute; inset: 0; animation: hnOrbit linear infinite; }
+  .planet-dot { position: absolute; border-radius: 50%; }
+  .float-planet { animation: hnFloat 9s ease-in-out infinite; }
 
   @media (max-width: 768px) {
     .hide-mobile { display: none !important; }
@@ -170,6 +177,48 @@ function Nebula({ top, left, right, bottom, size = 500, color, opacity = 0.35, d
   )
 }
 
+
+/* ─── Solar system ────────────────────────────────────────────────── */
+const ORBITS = [
+  { size: 340, dur: 22, planet: 14, color: 'radial-gradient(circle at 32% 30%, #FF9ECF, #FF2E88 55%, #7A0F44)', glow: 'rgba(255,46,136,0.8)' },
+  { size: 520, dur: 38, planet: 20, color: 'radial-gradient(circle at 32% 30%, #9BE8FF, #22D3EE 55%, #0A5666)', glow: 'rgba(34,211,238,0.8)', ring: true },
+  { size: 700, dur: 58, planet: 12, color: 'radial-gradient(circle at 32% 30%, #C9FFB3, #39FF14 55%, #135607)', glow: 'rgba(57,255,20,0.7)' },
+  { size: 880, dur: 84, planet: 24, color: 'radial-gradient(circle at 32% 30%, #E4D2FF, #A855F7 55%, #3B1670)', glow: 'rgba(168,85,247,0.8)', moon: true },
+]
+
+function SolarSystem() {
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, pointerEvents: 'none' }}>
+      {/* the sun — nova star core */}
+      <div style={{ position: 'absolute', top: -34, left: -34, width: 68, height: 68, borderRadius: '50%', background: 'radial-gradient(circle at 38% 34%, #FFF6D8, #F5C542 45%, #B4762A 80%)', boxShadow: '0 0 46px rgba(245,197,66,0.85), 0 0 120px rgba(245,197,66,0.4)', animation: 'hnPulse 4.5s ease-in-out infinite' }} />
+      {ORBITS.map((o, i) => (
+        <div key={i} className="orbit" style={{ width: o.size, height: o.size, top: -o.size / 2, left: -o.size / 2 }}>
+          <div className="orbit-spin" style={{ animationDuration: `${o.dur}s`, animationDelay: `${-o.dur * (0.13 + i * 0.22)}s` }}>
+            <div className="planet-dot" style={{ width: o.planet, height: o.planet, top: -o.planet / 2, left: '50%', marginLeft: -o.planet / 2, background: o.color, boxShadow: `0 0 14px ${o.glow}` }}>
+              {o.ring && <span style={{ position: 'absolute', top: '50%', left: '50%', width: o.planet * 2.2, height: o.planet * 0.75, marginLeft: -o.planet * 1.1, marginTop: -o.planet * 0.375, border: '2px solid rgba(255,255,255,0.5)', borderRadius: '50%', transform: 'rotate(-22deg)' }} />}
+              {o.moon && (
+                <span style={{ position: 'absolute', inset: -10, animation: 'hnOrbit 5s linear infinite' }}>
+                  <span style={{ position: 'absolute', top: -3, left: '50%', width: 6, height: 6, marginLeft: -3, borderRadius: '50%', background: '#DCDCE8', boxShadow: '0 0 6px rgba(255,255,255,0.7)' }} />
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* A lone drifting ringed planet for section ambience */
+function FloatingPlanet({ top, left, right, bottom, size = 74, from = '#22D3EE', to = '#0A5666', glow = 'rgba(34,211,238,0.55)', ring = true, delay = 0, opacity = 0.9 }) {
+  return (
+    <div className="float-planet" aria-hidden="true" style={{ position: 'absolute', top, left, right, bottom, width: size, height: size, pointerEvents: 'none', animationDelay: `${delay}s`, opacity, zIndex: 1 }}>
+      <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: `radial-gradient(circle at 32% 30%, #fff8, ${from} 40%, ${to} 85%)`, boxShadow: `0 0 30px ${glow}` }} />
+      {ring && <span style={{ position: 'absolute', top: '50%', left: '50%', width: size * 1.9, height: size * 0.6, marginLeft: -size * 0.95, marginTop: -size * 0.3, border: '2px solid rgba(255,255,255,0.35)', borderRadius: '50%', transform: 'rotate(-18deg)' }} />}
+    </div>
+  )
+}
+
 /* ─── Starfield + nova canvas ─────────────────────────────────────── */
 function Starfield() {
   const ref = useRef(null)
@@ -276,6 +325,9 @@ function Hero() {
   return (
     <header style={{ position: 'relative', minHeight: '100svh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
       <Starfield />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, opacity: 0.55, maskImage: 'radial-gradient(circle at 50% 45%, black 30%, transparent 78%)', WebkitMaskImage: 'radial-gradient(circle at 50% 45%, black 30%, transparent 78%)' }}>
+        <SolarSystem />
+      </div>
       <Nebula top="-18%" left="8%" size={640} color="rgba(255,46,136,0.5)" opacity={0.42} />
       <Nebula top="-10%" right="-6%" size={700} color="rgba(124,93,250,0.55)" opacity={0.45} delay={4} />
       <Nebula top="34%" left="-14%" size={560} color="rgba(34,211,238,0.45)" opacity={0.34} delay={9} />
@@ -511,6 +563,7 @@ function Work() {
   return (
     <section id="work" style={{ padding: '90px 0', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
       <Nebula top="4%" right="-12%" size={560} color="rgba(255,46,136,0.4)" opacity={0.3} delay={2} />
+      <FloatingPlanet top="3%" right="6%" size={64} from="#FF2E88" to="#5A0B32" glow="rgba(255,46,136,0.5)" delay={2} opacity={0.8} />
       <Nebula bottom="6%" left="-12%" size={600} color="rgba(34,211,238,0.4)" opacity={0.28} delay={11} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
@@ -556,6 +609,7 @@ function Engine() {
   return (
     <section id="engine" style={{ padding: '90px 0', position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
       <Nebula top="12%" left="-12%" size={620} color="rgba(192,132,252,0.45)" opacity={0.32} delay={5} />
+      <FloatingPlanet top="8%" left="3%" size={54} from="#A855F7" to="#2A0F52" glow="rgba(168,85,247,0.5)" ring={false} delay={5} opacity={0.75} />
       <Nebula bottom="-8%" right="-10%" size={580} color="rgba(57,255,20,0.3)" opacity={0.24} delay={14} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
@@ -662,6 +716,7 @@ function Build() {
   return (
     <section id="build" style={{ padding: '90px 0', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
       <Nebula top="6%" right="-10%" size={660} color="rgba(34,211,238,0.45)" opacity={0.32} delay={3} />
+      <FloatingPlanet top="5%" right="4%" size={80} from="#22D3EE" to="#083E4C" glow="rgba(34,211,238,0.5)" delay={0} opacity={0.85} />
       <Nebula bottom="0%" left="-10%" size={560} color="rgba(255,46,136,0.4)" opacity={0.26} delay={10} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
@@ -731,6 +786,7 @@ function Services() {
   return (
     <section id="services" style={{ padding: '30px 0 90px', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
       <Nebula top="10%" left="30%" size={520} color="rgba(245,197,66,0.3)" opacity={0.22} delay={8} />
+      <FloatingPlanet bottom="12%" right="5%" size={46} from="#39FF14" to="#0C3A05" glow="rgba(57,255,20,0.45)" ring={false} delay={3} opacity={0.7} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ STUDIO SERVICES</div>
