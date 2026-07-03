@@ -17,9 +17,12 @@ const GLOBAL_CSS = `
   .mono { font-family: 'JetBrains Mono', monospace; }
 
   .nova-text {
-    background: linear-gradient(100deg, #818CF8 0%, #C084FC 45%, #22D3EE 100%);
+    background: linear-gradient(95deg, #FF2E88 0%, #C084FC 22%, #818CF8 42%, #22D3EE 62%, #39FF14 82%, #F5C542 100%);
+    background-size: 220% 100%;
     -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: hnShimmer 9s ease-in-out infinite;
   }
+  @keyframes hnShimmer { 0%,100% { background-position: 0% 50% } 50% { background-position: 100% 50% } }
   .gold-text { color: #F5C542; }
 
   .tilt-card { transform-style: preserve-3d; transition: transform 0.18s ease-out, border-color 0.3s ease, box-shadow 0.3s ease; will-change: transform; }
@@ -178,37 +181,6 @@ function Nebula({ top, left, right, bottom, size = 500, color, opacity = 0.35, d
 }
 
 
-/* ─── Solar system ────────────────────────────────────────────────── */
-const ORBITS = [
-  { size: 340, dur: 22, planet: 14, color: 'radial-gradient(circle at 32% 30%, #FF9ECF, #FF2E88 55%, #7A0F44)', glow: 'rgba(255,46,136,0.8)' },
-  { size: 520, dur: 38, planet: 20, color: 'radial-gradient(circle at 32% 30%, #9BE8FF, #22D3EE 55%, #0A5666)', glow: 'rgba(34,211,238,0.8)', ring: true },
-  { size: 700, dur: 58, planet: 12, color: 'radial-gradient(circle at 32% 30%, #C9FFB3, #39FF14 55%, #135607)', glow: 'rgba(57,255,20,0.7)' },
-  { size: 880, dur: 84, planet: 24, color: 'radial-gradient(circle at 32% 30%, #E4D2FF, #A855F7 55%, #3B1670)', glow: 'rgba(168,85,247,0.8)', moon: true },
-]
-
-function SolarSystem() {
-  return (
-    <div aria-hidden="true" style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, pointerEvents: 'none' }}>
-      {/* the sun — nova star core */}
-      <div style={{ position: 'absolute', top: -34, left: -34, width: 68, height: 68, borderRadius: '50%', background: 'radial-gradient(circle at 38% 34%, #FFF6D8, #F5C542 45%, #B4762A 80%)', boxShadow: '0 0 46px rgba(245,197,66,0.85), 0 0 120px rgba(245,197,66,0.4)', animation: 'hnPulse 4.5s ease-in-out infinite' }} />
-      {ORBITS.map((o, i) => (
-        <div key={i} className="orbit" style={{ width: o.size, height: o.size, top: -o.size / 2, left: -o.size / 2 }}>
-          <div className="orbit-spin" style={{ animationDuration: `${o.dur}s`, animationDelay: `${-o.dur * (0.13 + i * 0.22)}s` }}>
-            <div className="planet-dot" style={{ width: o.planet, height: o.planet, top: -o.planet / 2, left: '50%', marginLeft: -o.planet / 2, background: o.color, boxShadow: `0 0 14px ${o.glow}` }}>
-              {o.ring && <span style={{ position: 'absolute', top: '50%', left: '50%', width: o.planet * 2.2, height: o.planet * 0.75, marginLeft: -o.planet * 1.1, marginTop: -o.planet * 0.375, border: '2px solid rgba(255,255,255,0.5)', borderRadius: '50%', transform: 'rotate(-22deg)' }} />}
-              {o.moon && (
-                <span style={{ position: 'absolute', inset: -10, animation: 'hnOrbit 5s linear infinite' }}>
-                  <span style={{ position: 'absolute', top: -3, left: '50%', width: 6, height: 6, marginLeft: -3, borderRadius: '50%', background: '#DCDCE8', boxShadow: '0 0 6px rgba(255,255,255,0.7)' }} />
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 /* A lone drifting ringed planet for section ambience */
 function FloatingPlanet({ top, left, right, bottom, size = 74, from = '#22D3EE', to = '#0A5666', glow = 'rgba(34,211,238,0.55)', ring = true, delay = 0, opacity = 0.9 }) {
   return (
@@ -325,9 +297,6 @@ function Hero() {
   return (
     <header style={{ position: 'relative', minHeight: '100svh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
       <Starfield />
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, opacity: 0.55, maskImage: 'radial-gradient(circle at 50% 45%, black 30%, transparent 78%)', WebkitMaskImage: 'radial-gradient(circle at 50% 45%, black 30%, transparent 78%)' }}>
-        <SolarSystem />
-      </div>
       <Nebula top="-18%" left="8%" size={640} color="rgba(255,46,136,0.5)" opacity={0.42} />
       <Nebula top="-10%" right="-6%" size={700} color="rgba(124,93,250,0.55)" opacity={0.45} delay={4} />
       <Nebula top="34%" left="-14%" size={560} color="rgba(34,211,238,0.45)" opacity={0.34} delay={9} />
