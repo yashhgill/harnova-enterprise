@@ -199,6 +199,7 @@ function Starfield() {
 /* ─── Nav ─────────────────────────────────────────────────────────── */
 const NAV_LINKS = [
   ['Work', '#work'],
+  ['Engine', '#engine'],
   ['HarNova Build', '#build'],
   ['Services', '#services'],
   ['Contact', '#contact'],
@@ -507,10 +508,85 @@ function Work() {
           <h2 className="display" style={{ fontSize: 'clamp(1.7rem,4vw,2.7rem)', fontWeight: 700, maxWidth: 720, lineHeight: 1.15 }}>
             Platforms running in production, <span className="nova-text">right now.</span>
           </h2>
+          <p style={{ marginTop: 16, fontSize: '0.98rem', color: '#8A8AA0', fontWeight: 300, maxWidth: 560 }}>Four different industries. One engine underneath. <span className="gold-text">✦</span></p>
         </Reveal>
         <div className="work-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 26, marginTop: 52 }}>
           {PROJECTS.map((p, i) => <WorkCard key={p.name} p={p} i={i} />)}
         </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Nova Engine ─────────────────────────────────────────────────── */
+const ENGINE_LAYERS = [
+  {
+    tint: '#C084FC', name: 'Experience Layer',
+    desc: 'The interfaces people actually feel.',
+    modules: ['Cinematic UI kit', 'Role-based portal shell', 'Bilingual PWA shell', 'Motion & scroll system'],
+  },
+  {
+    tint: '#22D3EE', name: 'Commerce Layer',
+    desc: 'Everything between "I want it" and "paid".',
+    modules: ['Catalog & search engine', 'WhatsApp checkout', 'Booking wizard', 'MY payments — FPX · DuitNow · TnG', 'PDF invoicing', 'Order emails & push'],
+  },
+  {
+    tint: '#F5C542', name: 'Intelligence Layer',
+    desc: 'Groq-powered decisions, not chatbot gimmicks.',
+    modules: ['Persona AI chat', 'Triage & decision engine', 'AI advisory'],
+  },
+  {
+    tint: '#818CF8', name: 'Infrastructure Layer',
+    desc: 'The chassis every module bolts onto.',
+    modules: ['Auth & RLS module', 'Modular API framework', 'Realtime WebSocket queue', 'Edge hosting engine', 'R2 media CDN', 'IoT telemetry pipeline'],
+  },
+]
+
+function Engine() {
+  return (
+    <section id="engine" style={{ padding: '90px 0', position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', top: '20%', left: '-12%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.07), transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ ...W, position: 'relative' }}>
+        <Reveal>
+          <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ THE NOVA ENGINE</div>
+          <h2 className="display" style={{ fontSize: 'clamp(1.7rem,4vw,2.7rem)', fontWeight: 700, lineHeight: 1.15, maxWidth: 780 }}>
+            We don't build your project from zero.<br />
+            <span className="nova-text">We assemble it from a proven engine.</span>
+          </h2>
+          <p style={{ marginTop: 20, fontSize: '1.05rem', lineHeight: 1.7, color: '#B9B9CC', maxWidth: 640, fontWeight: 300 }}>
+            Every platform we ship — Masterliqours, Montage, MediLink, AI Planter — runs on the same four-layer engine.
+            You're not paying us to reinvent checkout or auth; you're paying to assemble battle-tested modules around
+            <em style={{ color: '#F4F4FA' }}> your</em> business. That's why we ship in weeks, and why every launch makes the engine stronger for the next one.
+          </p>
+        </Reveal>
+        <div className="work-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 22, marginTop: 50 }}>
+          {ENGINE_LAYERS.map((l, i) => (
+            <Reveal key={l.name} delay={i * 0.07}>
+              <div style={{ borderRadius: 18, border: '1px solid rgba(255,255,255,0.09)', padding: 26, background: 'linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))', height: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                  <span aria-hidden="true" style={{ width: 9, height: 9, borderRadius: 99, background: l.tint, boxShadow: `0 0 12px ${l.tint}` }} />
+                  <h3 className="display" style={{ fontSize: '1.02rem', fontWeight: 600 }}>{l.name}</h3>
+                </div>
+                <p style={{ fontSize: '0.88rem', color: '#8A8AA0', fontWeight: 300, marginBottom: 16 }}>{l.desc}</p>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {l.modules.map(m => (
+                    <span key={m} className="mono" style={{ fontSize: '0.72rem', padding: '5px 12px', borderRadius: 99, border: `1px solid ${l.tint}38`, background: `${l.tint}0d`, color: '#DCDCE8' }}>{m}</span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.1}>
+          <div style={{ marginTop: 26, borderRadius: 16, border: '1px dashed rgba(255,255,255,0.16)', padding: '20px 24px', display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center', justifyContent: 'space-between' }}>
+            <p style={{ fontSize: '0.95rem', color: '#B9B9CC', fontWeight: 300, maxWidth: 620 }}>
+              <span className="gold-text">✦</span> Proven in production: every module above is running live inside at least one of the platforms in <a href="#work" style={{ color: '#818CF8', fontWeight: 500 }}>our work</a> — nothing here is a slide-deck promise.
+            </p>
+            <a href="#contact" className="glass-btn" style={{ padding: '11px 24px', borderRadius: 99, fontWeight: 600, fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              Assemble yours <ArrowUpRight size={15} />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -634,9 +710,9 @@ function Build() {
 
 /* ─── Services ────────────────────────────────────────────────────── */
 const SERVICES = [
-  { icon: Globe, title: 'Websites for Malaysian SMEs', text: 'Motion-rich brand sites like Montage Events — built, deployed and maintained. RM1,000 build, ongoing care plans.' },
-  { icon: Cpu, title: 'Full product platforms', text: 'E-commerce, dashboards and role-based portals like Masterliqours — FastAPI backends, Supabase data, edge frontends.' },
-  { icon: Sparkles, title: 'AI-powered features', text: 'Groq-backed assistants, triage engines and smart automation woven into your product, not bolted on.' },
+  { icon: Globe, title: 'Assembled from the engine', text: 'Brand sites like Montage Events ship on the Experience Layer — motion system, booking wizard, WhatsApp module — configured for your brand, not coded from scratch.' },
+  { icon: Cpu, title: 'Platforms, module by module', text: 'Masterliqours is the Commerce Layer at full power: catalog engine, MY payments, role portals. Pick the modules your business needs — pay for assembly, not reinvention.' },
+  { icon: Sparkles, title: 'Intelligence as a module', text: 'The same Groq engine that triages patients in MediLink and advises growers in AI Planter, dropped into your product as persona chat, decisioning or advisory.' },
 ]
 
 function Services() {
@@ -646,7 +722,7 @@ function Services() {
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ STUDIO SERVICES</div>
           <h2 className="display" style={{ fontSize: 'clamp(1.6rem,3.6vw,2.4rem)', fontWeight: 700, lineHeight: 1.15 }}>
-            Need it custom? <span className="nova-text">We build that too.</span>
+            One engine. <span className="nova-text">Infinite configurations.</span>
           </h2>
         </Reveal>
         <div className="steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 22, marginTop: 44 }}>
@@ -695,7 +771,7 @@ function Footer() {
           </div>
           <div>
             <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.18em', color: '#6E6E85', marginBottom: 16 }}>COMPANY</div>
-            {[['HarNova Build', '#build'], ['Services', '#services'], ['harnova.my', 'https://harnova.my']].map(([l, h]) => (
+            {[['Nova Engine', '#engine'], ['HarNova Build', '#build'], ['Services', '#services'], ['harnova.my', 'https://harnova.my']].map(([l, h]) => (
               <a key={l} href={h} target={h.startsWith('http') ? '_blank' : undefined} rel="noreferrer" style={{ display: 'block', padding: '6px 0', fontSize: '0.92rem', color: '#B9B9CC' }}>{l}</a>
             ))}
           </div>
@@ -722,6 +798,7 @@ export default function App() {
         <StackMarquee />
         <Stats />
         <Work />
+        <Engine />
         <Build />
         <Services />
       </main>
