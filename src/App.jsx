@@ -45,6 +45,8 @@ const GLOBAL_CSS = `
   @keyframes hnBlink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
   @keyframes hnFlowDash { to { stroke-dashoffset: -24 } }
   @keyframes hnRise { from { opacity: 0; transform: translateY(26px) } to { opacity: 1; transform: translateY(0) } }
+  @keyframes hnDrift { 0%,100% { transform: translate(0,0) scale(1) } 33% { transform: translate(40px,-30px) scale(1.08) } 66% { transform: translate(-30px,25px) scale(0.95) } }
+  .nebula { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; animation: hnDrift 26s ease-in-out infinite; mix-blend-mode: screen; }
 
   @media (max-width: 768px) {
     .hide-mobile { display: none !important; }
@@ -157,6 +159,17 @@ function CursorGlow() {
   )
 }
 
+/* ─── Nebula clouds ───────────────────────────────────────────────── */
+function Nebula({ top, left, right, bottom, size = 500, color, opacity = 0.35, delay = 0 }) {
+  return (
+    <div className="nebula" aria-hidden="true" style={{
+      top, left, right, bottom, width: size, height: size,
+      background: `radial-gradient(circle, ${color} 0%, transparent 65%)`,
+      opacity, animationDelay: `${delay}s`,
+    }} />
+  )
+}
+
 /* ─── Starfield + nova canvas ─────────────────────────────────────── */
 function Starfield() {
   const ref = useRef(null)
@@ -171,7 +184,7 @@ function Starfield() {
         x: Math.random() * w, y: Math.random() * h,
         r: Math.random() * 1.4 * devicePixelRatio + 0.3,
         tw: Math.random() * Math.PI * 2, sp: 0.008 + Math.random() * 0.02,
-        hue: Math.random() < 0.12 ? '245,197,66' : Math.random() < 0.5 ? '129,140,248' : '244,244,250',
+        hue: ['245,197,66','255,46,136','57,255,20','34,211,238','192,132,252','244,244,250','129,140,248'][Math.floor(Math.random()*7)],
       }))
     }
     resize()
@@ -263,18 +276,13 @@ function Hero() {
   return (
     <header style={{ position: 'relative', minHeight: '100svh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
       <Starfield />
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: '-22%', left: '50%', transform: 'translateX(-50%)',
-        width: 900, height: 900, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(99,102,241,0.16) 0%, rgba(168,85,247,0.08) 35%, transparent 65%)',
-        filter: 'blur(10px)', pointerEvents: 'none',
-      }} />
+      <Nebula top="-18%" left="8%" size={640} color="rgba(255,46,136,0.5)" opacity={0.42} />
+      <Nebula top="-10%" right="-6%" size={700} color="rgba(124,93,250,0.55)" opacity={0.45} delay={4} />
+      <Nebula top="34%" left="-14%" size={560} color="rgba(34,211,238,0.45)" opacity={0.34} delay={9} />
+      <Nebula bottom="-16%" right="14%" size={620} color="rgba(57,255,20,0.28)" opacity={0.26} delay={13} />
+      <Nebula top="20%" left="42%" size={460} color="rgba(245,197,66,0.3)" opacity={0.24} delay={7} />
       <div style={{ ...W, position: 'relative', zIndex: 2, width: '100%', paddingTop: 120, paddingBottom: 80 }}>
-        <div style={{ animation: 'hnRise 0.9s cubic-bezier(0.22,1,0.36,1) both 0.1s', display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 16px', borderRadius: 99, border: '1px solid rgba(255,255,255,0.14)', background: 'rgba(255,255,255,0.04)', fontSize: '0.8rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#B9B9CC', marginBottom: 30 }}>
-          <NovaMark size={15} pulse />
-          HarNova Technology · Melaka, Malaysia
-        </div>
-        <h1 className="display" style={{ animation: 'hnRise 0.9s cubic-bezier(0.22,1,0.36,1) both 0.22s', fontSize: 'clamp(2.2rem, 6.4vw, 4.6rem)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.01em', maxWidth: 900 }}>
+                <h1 className="display" style={{ animation: 'hnRise 0.9s cubic-bezier(0.22,1,0.36,1) both 0.22s', fontSize: 'clamp(2.2rem, 6.4vw, 4.6rem)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.01em', maxWidth: 900 }}>
           Software that ships.<br />
           <span className="nova-text">Built under one star.</span>
         </h1>
@@ -501,8 +509,10 @@ function WorkCard({ p, i }) {
 
 function Work() {
   return (
-    <section id="work" style={{ padding: '90px 0', position: 'relative', zIndex: 2 }}>
-      <div style={{ ...W }}>
+    <section id="work" style={{ padding: '90px 0', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
+      <Nebula top="4%" right="-12%" size={560} color="rgba(255,46,136,0.4)" opacity={0.3} delay={2} />
+      <Nebula bottom="6%" left="-12%" size={600} color="rgba(34,211,238,0.4)" opacity={0.28} delay={11} />
+      <div style={{ ...W, position: 'relative' }}>
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ SELECTED WORK</div>
           <h2 className="display" style={{ fontSize: 'clamp(1.7rem,4vw,2.7rem)', fontWeight: 700, maxWidth: 720, lineHeight: 1.15 }}>
@@ -544,8 +554,9 @@ const ENGINE_LAYERS = [
 
 function Engine() {
   return (
-    <section id="engine" style={{ padding: '90px 0', position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', top: '20%', left: '-12%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.07), transparent 65%)', pointerEvents: 'none' }} />
+    <section id="engine" style={{ padding: '90px 0', position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+      <Nebula top="12%" left="-12%" size={620} color="rgba(192,132,252,0.45)" opacity={0.32} delay={5} />
+      <Nebula bottom="-8%" right="-10%" size={580} color="rgba(57,255,20,0.3)" opacity={0.24} delay={14} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ THE NOVA ENGINE</div>
@@ -649,8 +660,9 @@ const BUILD_STEPS = [
 
 function Build() {
   return (
-    <section id="build" style={{ padding: '90px 0', position: 'relative', zIndex: 2 }}>
-      <div aria-hidden="true" style={{ position: 'absolute', top: '10%', right: '-10%', width: 640, height: 640, borderRadius: '50%', background: 'radial-gradient(circle, rgba(34,211,238,0.07), transparent 65%)', pointerEvents: 'none' }} />
+    <section id="build" style={{ padding: '90px 0', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
+      <Nebula top="6%" right="-10%" size={660} color="rgba(34,211,238,0.45)" opacity={0.32} delay={3} />
+      <Nebula bottom="0%" left="-10%" size={560} color="rgba(255,46,136,0.4)" opacity={0.26} delay={10} />
       <div style={{ ...W, position: 'relative' }}>
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ HARNOVA BUILD</div>
@@ -717,8 +729,9 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section id="services" style={{ padding: '30px 0 90px', position: 'relative', zIndex: 2 }}>
-      <div style={{ ...W }}>
+    <section id="services" style={{ padding: '30px 0 90px', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
+      <Nebula top="10%" left="30%" size={520} color="rgba(245,197,66,0.3)" opacity={0.22} delay={8} />
+      <div style={{ ...W, position: 'relative' }}>
         <Reveal>
           <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.2em', color: '#F5C542', marginBottom: 16 }}>✦ STUDIO SERVICES</div>
           <h2 className="display" style={{ fontSize: 'clamp(1.6rem,3.6vw,2.4rem)', fontWeight: 700, lineHeight: 1.15 }}>
