@@ -266,7 +266,7 @@ function Nav() {
               onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
               onMouseLeave={e => (e.currentTarget.style.color = '#B9B9CC')}>{label}</a>
           ))}
-          <a href="#build" className="nova-btn" style={{ padding: '9px 20px', borderRadius: 99, fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>
+          <a href="https://build.harnova.my" className="nova-btn" style={{ padding: '9px 20px', borderRadius: 99, fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>
             Host your site — RM10/mo
           </a>
         </div>
@@ -282,7 +282,7 @@ function Nav() {
               style={{ display: 'block', padding: '13px clamp(18px,4vw,44px)', fontSize: '1.02rem', fontWeight: 500, color: '#E6E6F2' }}>{label}</a>
           ))}
           <div style={{ padding: '10px clamp(18px,4vw,44px) 0' }}>
-            <a href="#build" onClick={() => setOpen(false)} className="nova-btn" style={{ display: 'inline-block', padding: '11px 22px', borderRadius: 99, fontWeight: 600, color: '#fff' }}>
+            <a href="https://build.harnova.my" onClick={() => setOpen(false)} className="nova-btn" style={{ display: 'inline-block', padding: '11px 22px', borderRadius: 99, fontWeight: 600, color: '#fff' }}>
               Host your site — RM10/mo
             </a>
           </div>
@@ -314,7 +314,7 @@ function Hero() {
           <a href="#work" className="nova-btn" style={{ padding: '14px 30px', borderRadius: 99, fontWeight: 600, fontSize: '1rem', color: '#fff', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             See the work <ArrowUpRight size={17} />
           </a>
-          <a href="#build" className="glass-btn" style={{ padding: '14px 30px', borderRadius: 99, fontWeight: 600, fontSize: '1rem', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.04)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          <a href="https://build.harnova.my" className="glass-btn" style={{ padding: '14px 30px', borderRadius: 99, fontWeight: 600, fontSize: '1rem', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.04)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <Sparkles size={16} className="gold-text" /> Host your AI site
           </a>
         </div>
@@ -715,10 +715,10 @@ function Build() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="nova-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 26, padding: '13px 28px', borderRadius: 99, fontWeight: 600, color: '#fff' }}>
-                Get early access <ArrowUpRight size={16} />
+              <a href="https://build.harnova.my" className="nova-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 26, padding: '13px 28px', borderRadius: 99, fontWeight: 600, color: '#fff' }}>
+                Launch your site now <ArrowUpRight size={16} />
               </a>
-              <div style={{ marginTop: 14, fontSize: '0.78rem', color: '#8A8AA0' }}>Launching soon · early users get their first month on us.</div>
+              <div style={{ marginTop: 14, fontSize: '0.78rem', color: '#8A8AA0' }}><span className="gold-text">●</span> Live now — pay by DuitNow QR, activated same day.</div>
             </div>
           </Reveal>
         </div>
@@ -809,7 +809,7 @@ function Footer() {
           </div>
           <div>
             <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.18em', color: '#6E6E85', marginBottom: 16 }}>COMPANY</div>
-            {[['Nova Engine', '#engine'], ['HarNova Build', '#build'], ['Services', '#services'], ['harnova.my', 'https://harnova.my']].map(([l, h]) => (
+            {[['Nova Engine', '#engine'], ['HarNova Build', 'https://build.harnova.my'], ['Services', '#services'], ['harnova.my', 'https://harnova.my']].map(([l, h]) => (
               <a key={l} href={h} target={h.startsWith('http') ? '_blank' : undefined} rel="noreferrer" style={{ display: 'block', padding: '6px 0', fontSize: '0.92rem', color: '#B9B9CC' }}>{l}</a>
             ))}
           </div>
