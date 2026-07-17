@@ -267,7 +267,7 @@ function Nav() {
               onMouseLeave={e => (e.currentTarget.style.color = '#B9B9CC')}>{label}</a>
           ))}
           <a href="https://build.harnova.my" className="nova-btn" style={{ padding: '9px 20px', borderRadius: 99, fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>
-            Host your site — RM10/mo
+            Host your site — RM150/mo
           </a>
         </div>
         <button className="hamburger-btn" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(o => !o)}
@@ -283,7 +283,7 @@ function Nav() {
           ))}
           <div style={{ padding: '10px clamp(18px,4vw,44px) 0' }}>
             <a href="https://build.harnova.my" onClick={() => setOpen(false)} className="nova-btn" style={{ display: 'inline-block', padding: '11px 22px', borderRadius: 99, fontWeight: 600, color: '#fff' }}>
-              Host your site — RM10/mo
+              Host your site — RM150/mo
             </a>
           </div>
         </div>
@@ -308,7 +308,7 @@ function Hero() {
           <span className="nova-text">Built under one star.</span>
         </h1>
         <p style={{ animation: 'hnRise 0.9s cubic-bezier(0.22,1,0.36,1) both 0.34s', marginTop: 26, fontSize: 'clamp(1rem, 1.6vw, 1.2rem)', lineHeight: 1.7, color: '#B9B9CC', maxWidth: 620, fontWeight: 300 }}>
-          A Malaysian product studio building e-commerce platforms, client websites and IoT systems that run in production — and <strong style={{ color: '#F4F4FA', fontWeight: 600 }}>HarNova Build</strong>, hosting for your AI-generated site at RM10 a month.
+          A Malaysian product studio building e-commerce platforms, client websites and IoT systems that run in production — and <strong style={{ color: '#F4F4FA', fontWeight: 600 }}>HarNova Build</strong>, hosting for your AI-generated site — RM150/mo for a limited time (usually RM300).
         </p>
         <div style={{ animation: 'hnRise 0.9s cubic-bezier(0.22,1,0.36,1) both 0.46s', display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 40 }}>
           <a href="#work" className="nova-btn" style={{ padding: '14px 30px', borderRadius: 99, fontWeight: 600, fontSize: '1rem', color: '#fff', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -678,7 +678,7 @@ const BUILD_STEPS = [
   { icon: ShieldCheck, title: 'Sign in with Google', text: 'One tap. No forms, no passwords to remember — your account and your sites, secured.' },
   { icon: Code2, title: 'Paste your AI code', text: 'Built a landing page with ChatGPT, Claude or v0? Paste the HTML or React straight in.' },
   { icon: Rocket, title: 'Live in seconds', text: 'We deploy it to the edge with SSL on your own harnova.my subdomain, worldwide.' },
-  { icon: RefreshCw, title: 'RM10 keeps it live', text: 'Each site runs for 30 days. Renew to keep it up, or spin up a fresh one anytime.' },
+  { icon: RefreshCw, title: 'RM150 keeps it live', text: 'Each site runs for 30 days. Renew to keep it up, or spin up a fresh one anytime. Promo price until 24 Sept — then RM300.' },
 ]
 
 function Build() {
@@ -705,11 +705,11 @@ function Build() {
               <div aria-hidden="true" style={{ position: 'absolute', top: -60, right: -60, width: 200, height: 200, borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,197,66,0.16), transparent 70%)' }} />
               <div className="mono" style={{ fontSize: '0.72rem', letterSpacing: '0.18em', color: '#B9B9CC' }}>PER SITE · PER MONTH</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, margin: '14px 0 6px' }}>
-                <span className="display" style={{ fontSize: 'clamp(2.6rem,5vw,3.6rem)', fontWeight: 700 }}>RM10</span>
+                <span className="display" style={{ fontSize: 'clamp(2.6rem,5vw,3.6rem)', fontWeight: 700 }}>RM150</span>
                 <span style={{ color: '#8A8AA0', fontSize: '0.95rem' }}>/ 30 days</span>
               </div>
               <ul style={{ listStyle: 'none', marginTop: 18, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {['Your own harnova.my subdomain', 'Edge hosting + free SSL', 'Google sign-in, manage all your sites', 'Renew monthly — or let it lapse, no lock-in', 'New site? Another RM10, live in seconds'].map(f => (
+                {['Your own harnova.my subdomain', 'Edge hosting + free SSL', 'Google sign-in, manage all your sites', 'Renew monthly — or let it lapse, no lock-in', 'New site? Another RM150 (promo till 24 Sept), live in seconds'].map(f => (
                   <li key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: '0.95rem', color: '#DCDCE8', fontWeight: 300 }}>
                     <span className="gold-text" style={{ lineHeight: 1.5 }}>✦</span> {f}
                   </li>
