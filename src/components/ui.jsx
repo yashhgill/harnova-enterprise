@@ -16,13 +16,13 @@ export function NovaMark({ size = 24 }) {
 }
 
 /* A screenshot in a plain browser frame; falls back to a designed preview. */
-export function Browser({ project, src }) {
+export function Browser({ project, src, eager = false }) {
   const portrait = project.portrait && src
   return (
     <div className="browser">
       <div className="browser-bar"><i /><i /><i /><span>{project.url ? project.domain : project.name}</span></div>
       <div className={`browser-img${portrait ? ' portrait' : ''}`}>
-        {src ? <img src={src} alt={`${project.name}, screenshot of the live product`} loading="lazy" /> : <Mock kind={project.mock} />}
+        {src ? <img src={src} alt={`${project.name}, screenshot of the live product`} loading={eager ? "eager" : "lazy"} /> : <Mock kind={project.mock} />}
       </div>
     </div>
   )

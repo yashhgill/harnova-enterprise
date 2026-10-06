@@ -41,7 +41,7 @@ export default function Project({ slug, onPick }) {
         </div>
       </section>
 
-      <div className="wrap"><Browser project={p} src={p.cover} /></div>
+      <div className="wrap"><Browser project={p} src={p.cover} eager /></div>
 
       <section className="section">
         <div className="wrap">
