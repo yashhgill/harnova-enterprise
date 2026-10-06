@@ -75,7 +75,7 @@ function Hero() {
 }
 
 function Proof() {
-  const facts = [['10', 'Platforms designed, built and shipped'], ['5', 'HarNova products live on the web'], ['689', 'Products sold on Masterliqours'], ['1st', 'Place at UTeM for AI Planter']]
+  const facts = [['10', 'Platforms designed, built and shipped'], ['5', 'HarNova products live on the web'], ['689', 'Products sold on Masterliqours'], ['2', 'Competition awards: HIK@M 2026 and Program SULAM']]
   return (
     <section className="proof" aria-label="HarNova in numbers">
       <div className="wrap proof-in">{facts.map(([v, l]) => <div key={l}><b>{v}</b><span>{l}</span></div>)}</div>
@@ -248,7 +248,7 @@ function Fyp({ onPick }) {
         <div>
           <Label>FYP coaching</Label>
           <Split className="h-lg" lines={['Stuck on your', <span className="serif" style={{ color: '#9CFFAB' }}>final year project?</span>]} />
-          <p className="lede" style={{ marginTop: 22 }}>Coaching from a final-year UTeM student who has shipped production systems, including AI Planter, which took first place in its UTeM course.</p>
+          <p className="lede" style={{ marginTop: 22 }}>Coaching from a final-year UTeM student who has shipped production systems, including MediLink, 2nd place at HIK@M 2026, and AI Planter, 1st place in Program SULAM at FTMK, UTeM.</p>
           <div className="fyp-note">
             <b>You build it. We make sure you can.</b>
             <p>We coach, debug and explain. We don't write your project or your report, because that breaks your university's academic integrity rules and leaves you unable to defend it at viva.</p>
