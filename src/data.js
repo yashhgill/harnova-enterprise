@@ -275,7 +275,7 @@ export const PROJECTS = [
   },
   {
     slug: 'ai-planter',
-    icon: '/icons/ai-planter.png',
+    icon: '/icons/ai-planter.svg',
     group: 'work',
     name: 'AI Planter',
     kind: 'IoT system',

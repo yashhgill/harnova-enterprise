@@ -14,7 +14,7 @@ export function NovaMark({ size = 24, core = true }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="40" y2="40">
+        <linearGradient id={id} x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#FF3D8B" />
           <stop offset="48%" stopColor="#6D4AFF" />
           <stop offset="100%" stopColor="#22B8E6" />
