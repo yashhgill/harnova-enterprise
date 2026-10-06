@@ -13,6 +13,7 @@ export const CONTACT = {
 export const PROJECTS = [
   {
     slug: 'harnovacare',
+    icon: '/icons/harnovacare.png',
     group: 'product',
     name: 'HarnovaCare',
     kind: 'HarNova product',
@@ -41,6 +42,7 @@ export const PROJECTS = [
   },
   {
     slug: 'masterliqours',
+    icon: '/icons/masterliqours.png',
     group: 'work',
     name: 'Masterliqours',
     kind: 'Client project',
@@ -69,6 +71,7 @@ export const PROJECTS = [
   },
   {
     slug: 'montage-events',
+    icon: '/icons/montage-events.png',
     group: 'work',
     name: 'Montage Events',
     kind: 'Client project',
@@ -97,6 +100,7 @@ export const PROJECTS = [
   },
   {
     slug: 'i-rimba',
+    icon: '/icons/i-rimba.png',
     group: 'product',
     name: 'I-Rimba',
     kind: 'HarNova product',
@@ -126,6 +130,7 @@ export const PROJECTS = [
   },
   {
     slug: 'pathforward',
+    icon: '/icons/pathforward.svg',
     group: 'product',
     name: 'PathForward',
     kind: 'Competition entry',
@@ -154,6 +159,7 @@ export const PROJECTS = [
   },
   {
     slug: 'homely',
+    icon: '/icons/homely.svg',
     group: 'work',
     name: 'Homely',
     kind: 'Client project',
@@ -182,6 +188,7 @@ export const PROJECTS = [
   },
   {
     slug: 'nestly',
+    icon: '/icons/nestly.png',
     group: 'product',
     name: 'Nestly',
     kind: 'HarNova product',
@@ -210,6 +217,7 @@ export const PROJECTS = [
   },
   {
     slug: 'harnova-build',
+    icon: '/icons/harnova-build.svg',
     group: 'product',
     name: 'HarNova Build',
     kind: 'HarNova product',
@@ -233,11 +241,12 @@ export const PROJECTS = [
     ],
     stats: [['RM300', 'Per site / month'], ['Seconds', 'From paste to live'], ['0', 'DevOps needed']],
     stack: ['Cloudflare Workers', 'Cloudflare Pages', 'Groq AI', 'Google auth'],
-    shots: [],
-    mock: 'build',
+    shots: ['/shots/build-hero.webp'],
+    cover: '/shots/build-hero.webp',
   },
   {
     slug: 'medilink',
+    icon: '/icons/medilink.png',
     group: 'work',
     name: 'MediLink',
     kind: 'Research platform',
@@ -266,6 +275,7 @@ export const PROJECTS = [
   },
   {
     slug: 'ai-planter',
+    icon: '/icons/ai-planter.png',
     group: 'work',
     name: 'AI Planter',
     kind: 'IoT system',
@@ -296,11 +306,11 @@ export const getProject = slug => PROJECTS.find(p => p.slug === slug)
 
 /* ─── The HarNova universe, products people can open right now ────── */
 export const UNIVERSE = [
-  { name: 'HarnovaCare', url: 'https://care.harnova.my', host: 'care.harnova.my', what: 'Clinic software that works offline', slug: 'harnovacare', color: '#2A8C93' },
-  { name: 'HarNova Build', url: 'https://build.harnova.my', host: 'build.harnova.my', what: 'Hosting for AI-made websites', slug: 'harnova-build', color: '#8B5CF6' },
-  { name: 'Nestly', url: 'https://nestly.harnova.my', host: 'nestly.harnova.my', what: 'Personal finance and AI planner', slug: 'nestly', color: '#6C63FF' },
-  { name: 'I-Rimba', url: 'https://irimba.harnova.my', host: 'irimba.harnova.my', what: 'Know what\'s safe to spend today', slug: 'i-rimba', color: '#2F8F5B' },
-  { name: 'PathForward', url: 'https://airesume.yashchaal99.workers.dev', host: 'PathForward', what: 'AI career coach for graduates', slug: 'pathforward', color: '#D9A62E' },
+  { name: 'HarnovaCare', url: 'https://care.harnova.my', host: 'care.harnova.my', what: 'Clinic software that works offline', slug: 'harnovacare', icon: '/icons/harnovacare.png', color: '#2A8C93' },
+  { name: 'HarNova Build', url: 'https://build.harnova.my', host: 'build.harnova.my', what: 'Hosting for AI-made websites', slug: 'harnova-build', icon: '/icons/harnova-build.svg', color: '#8B5CF6' },
+  { name: 'Nestly', url: 'https://nestly.harnova.my', host: 'nestly.harnova.my', what: 'Personal finance and AI planner', slug: 'nestly', icon: '/icons/nestly.png', color: '#6C63FF' },
+  { name: 'I-Rimba', url: 'https://irimba.harnova.my', host: 'irimba.harnova.my', what: 'Know what\'s safe to spend today', slug: 'i-rimba', icon: '/icons/i-rimba.png', color: '#2F8F5B' },
+  { name: 'PathForward', url: 'https://airesume.yashchaal99.workers.dev', host: 'PathForward', what: 'AI career coach for graduates', slug: 'pathforward', icon: '/icons/pathforward.svg', color: '#D9A62E' },
 ]
 
 export const WORK = PROJECTS.filter(p => p.group === 'work')

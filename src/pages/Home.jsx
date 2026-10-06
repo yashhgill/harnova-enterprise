@@ -13,10 +13,10 @@ const dotClass = s => (s === 'Live' ? 'dot' : s === 'Beta' || s === 'Demo' ? 'do
 
 /* ═══ Hero ═══ */
 const STAGE = [
-  { src: '/shots/montage-hero.webp', url: 'montageevents.my', s: { left: '0%', top: '6%', width: '60%', height: '50%' }, z: -40, ry: 14, rx: 4 },
-  { src: '/shots/care-hero.webp', url: 'care.harnova.my', s: { right: '0%', top: '14%', width: '52%', height: '46%' }, z: 30, ry: -10, rx: 2 },
-  { src: '/shots/masterliqours-vault.webp', url: 'masterliqours.my', s: { left: '8%', bottom: '2%', width: '48%', height: '44%' }, z: 90, ry: 10, rx: -4 },
-  { src: '/shots/irimba-home.webp', url: 'irimba.harnova.my', s: { right: '7%', bottom: '0%', width: '25%', height: '58%' }, z: 160, ry: -14, rx: -2, phone: true },
+  { src: '/shots/montage-hero.webp', url: 'montageevents.my', s: { left: '0%', top: '8%', width: '62%' }, z: -40, ry: 14, rx: 4 },
+  { src: '/shots/care-hero.webp', url: 'care.harnova.my', s: { right: '0%', top: '40%', width: '56%' }, z: 40, ry: -10, rx: 2 },
+  { src: '/shots/build-hero.webp', url: 'build.harnova.my', s: { left: '4%', bottom: '0%', width: '50%' }, z: 100, ry: 10, rx: -4 },
+  { src: '/shots/irimba-home.webp', url: 'irimba.harnova.my', s: { right: '3%', top: '-2%', width: '22%', height: '50%' }, z: 170, ry: -14, rx: -2, phone: true },
 ]
 
 function Stage() {
@@ -40,7 +40,7 @@ function Stage() {
     <div className="stage" aria-hidden="true">
       <div className="stage-rot" ref={rot}>
         {STAGE.map((c, i) => (
-          <div key={c.url} className="card3d" ref={el => (cards.current[i] = el)} style={{ ...c.s, transform: `translateZ(${c.z}px) rotateY(${c.ry}deg) rotateX(${c.rx}deg)` }}>
+          <div key={c.url} className={`card3d${c.phone ? '' : ' browser'}`} ref={el => (cards.current[i] = el)} style={{ ...c.s, transform: `translateZ(${c.z}px) rotateY(${c.ry}deg) rotateX(${c.rx}deg)` }}>
             <div style={{ width: '100%', height: '100%' }}>
               {c.phone
                 ? <div className="float-card phone"><img src={c.src} alt="" /></div>
@@ -119,11 +119,13 @@ function Work() {
         <div className="track" ref={track}>
           {WORK.map((p, i) => (
             <Link key={p.slug} to={`/work/${p.slug}`} className="panel">
-              <div className="panel-media">{p.cover ? <img src={p.cover} alt={`${p.name} screenshot`} loading="lazy" /> : <Mock kind={p.mock} tint={p.tint} />}</div>
+              <div className={`panel-media${p.cover ? ' framed' : ''}`} style={p.cover ? { background: `radial-gradient(circle at 30% 20%, ${p.tint}55, transparent 60%), radial-gradient(circle at 90% 100%, ${p.tint}33, transparent 55%), #101017` } : undefined}>
+                {p.cover ? <div className="shot"><div className="shot-bar"><i /><i /><i /><em>{p.domain}</em></div><img src={p.cover} alt={`${p.name} screenshot`} loading="lazy" /></div> : <Mock kind={p.mock} tint={p.tint} />}
+              </div>
               <div className="panel-body">
                 <div className="panel-top"><span>{String(i + 1).padStart(2, '0')} / {String(WORK.length).padStart(2, '0')}</span><span className="st"><span className={dotClass(p.status)} />{p.status}</span></div>
                 <span className="cat" style={{ color: p.tint, filter: 'brightness(1.45) saturate(1.1)' }}>{p.category}</span>
-                <h3>{p.name}</h3>
+                <div className="panel-id"><img className="app-icon lg" src={p.icon} alt="" /><h3>{p.name}</h3></div>
                 <p>{p.summary}</p>
                 <span className="stack">{p.stack.join('  /  ')}</span>
                 <div className="panel-foot">
@@ -166,7 +168,7 @@ function Products() {
           <div className="prod-detail" aria-live="polite">
             <div className="thumb">{proj?.cover ? <img src={proj.cover} alt="" /> : <div style={{ position: 'relative', height: '100%', minHeight: 140 }}><Mock kind={proj?.mock} tint={u.color} /></div>}</div>
             <div className="txt">
-              <b>{u.name}</b>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}><img className="app-icon" src={u.icon} alt="" /><b>{u.name}</b></div>
               <p>{u.what}.</p>
               <div className="links">
                 <a href={u.url} target="_blank" rel="noreferrer" className="u" style={{ color: 'var(--violet)' }}>Open {u.host} <Out /></a>
@@ -177,7 +179,7 @@ function Products() {
           <div className="prod-list">
             {UNIVERSE.map((x, i) => (
               <a key={x.url} href={x.url} target="_blank" rel="noreferrer" className={`prod-item${i === sel ? ' on' : ''}`} onMouseEnter={() => setSel(i)} onFocus={() => setSel(i)}>
-                <span className="orb" style={{ background: `radial-gradient(circle at 32% 30%, #fff, ${x.color} 52%)` }} />
+                <img className="app-icon" src={x.icon} alt="" />
                 <span style={{ minWidth: 0 }}><b>{x.name}</b><small>{x.host}</small></span>
               </a>
             ))}
@@ -192,7 +194,7 @@ function Products() {
               <div key={x.url} className="planet" style={place(i)}>
                 <div className="planet-pos"><div className="unspin">
                   <button tabIndex={-1} className={`planet-btn${i === sel ? ' on' : ''}`} onMouseEnter={() => setSel(i)} onClick={() => setSel(i)}>
-                    <span className="orb" style={{ background: `radial-gradient(circle at 32% 30%, #fff, ${x.color} 52%)` }} />{x.name}
+                    <img className="app-icon" src={x.icon} alt="" />{x.name}
                   </button>
                 </div></div>
               </div>

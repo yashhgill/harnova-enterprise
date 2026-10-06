@@ -30,7 +30,7 @@ export default function Project({ slug, onPick }) {
         <div className="wrap" style={{ position: 'relative' }}>
           <Link to={p.group === 'work' ? '/#work' : '/#products'} className="back"><span style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}><Arrow size={15} /></span>{p.group === 'work' ? 'All client work' : 'All products'}</Link>
           <div className="p-kind"><span className="st"><span className={dot} />{p.status}</span><span>{p.kind}</span><span>{p.category}</span></div>
-          <Split as="h1" className="p-title" now lines={[p.name]} />
+          <div className="p-head-row"><img className="app-icon xl" src={p.icon} alt={`${p.name} app icon`} /><Split as="h1" className="p-title" now lines={[p.name]} /></div>
           <p className="p-tag">{p.tagline}</p>
           <div className="p-actions">
             {p.url && <a href={p.url} target="_blank" rel="noreferrer" className="btn btn-ink">Open {p.name} <Out /></a>}
