@@ -1,4 +1,4 @@
-/* ─── Contact config — fill these in to switch on the buttons ─────────
+/* ─── Contact config, fill these in to switch on the buttons ─────────
    Leave a value empty ('') and its button simply won't show.          */
 export const CONTACT = {
   email: 'hello@harnova.my',
@@ -15,19 +15,19 @@ export const PROJECTS = [
     slug: 'harnovacare',
     name: 'HarnovaCare',
     kind: 'HarNova product',
-    category: 'Healthcare · Clinic software',
+    category: 'Healthcare, Clinic software',
     year: '2026',
     url: 'https://care.harnova.my',
     domain: 'care.harnova.my',
     status: 'Live',
     tint: '#2A8C93',
     tagline: 'The clinic system that keeps running when the internet stops.',
-    summary: 'Check-in, AI triage, the doctor\'s room, pharmacy and billing as one system — installed on the clinic\'s own computer, working fully offline.',
+    summary: 'Check-in, AI triage, the doctor\'s room, pharmacy and billing as one system, installed on the clinic\'s own computer, working fully offline.',
     challenge: 'Small and rural clinics lose internet constantly, and cloud-only clinic systems freeze the moment that happens. Enterprise hospital software is priced and designed for hospitals, not the neighbourhood GP.',
-    built: 'A local-first clinic platform that runs the whole patient journey on one ordinary PC. Patients check themselves in at a kiosk with their IC, a Manchester-Triage-based assistant suggests an urgency zone in seconds, and prescriptions land at the pharmacy counter with live stock counts — all without a connection.',
+    built: 'A local-first clinic platform that runs the whole patient journey on one ordinary PC. Patients check themselves in at a kiosk with their IC, a Manchester-Triage-based assistant suggests an urgency zone in seconds, and prescriptions land at the pharmacy counter with live stock counts, all without a connection.',
     features: [
       ['Self-service kiosk', 'Patients check in with their IC, describe symptoms and get a queue number.'],
-      ['AI triage', 'Manchester Triage System assistant, built to escalate — never to downgrade.'],
+      ['AI triage', 'Manchester Triage System assistant, built to escalate, never to downgrade.'],
       ['Doctor console', 'History, AI summary, diagnoses, prescriptions and labs on one screen.'],
       ['Pharmacy & stock', 'Dispense from live inventory with low and expiring stock flags.'],
       ['Billing & receipts', 'Payments, receipts, MC letters and a clean daily cash report.'],
@@ -50,8 +50,8 @@ export const PROJECTS = [
     tint: '#E3307A',
     tagline: 'Premium liquor delivery for KL & the Klang Valley.',
     summary: 'A cinematic storefront with 689 products, four role-based staff portals, AI-assisted order assignment and a WhatsApp-native checkout.',
-    challenge: 'A premium retailer needed a store that felt as exclusive as its products — while running real daily operations: catalogue, orders, staff and delivery across the Klang Valley, with age-verification built in.',
-    built: 'A full commerce platform: a dark, vault-themed storefront with an age gate, a 689-product catalogue across 10 categories, a checkout that hands the order straight into WhatsApp, and four separate portals for the team — with Groq-powered AI helping assign orders to staff.',
+    challenge: 'A premium retailer needed a store that felt as exclusive as its products, while running real daily operations: catalogue, orders, staff and delivery across the Klang Valley, with age-verification built in.',
+    built: 'A full commerce platform: a dark, vault-themed storefront with an age gate, a 689-product catalogue across 10 categories, a checkout that hands the order straight into WhatsApp, and four separate portals for the team, with Groq-powered AI helping assign orders to staff.',
     features: [
       ['The Vault storefront', 'Cinematic dark design with a branded age-verification gate.'],
       ['689-product catalogue', 'Ten categories, fast search and popularity ranking.'],
@@ -77,8 +77,8 @@ export const PROJECTS = [
     tint: '#7C5CFF',
     tagline: 'Turning a Shah Alam event house into a booking machine.',
     summary: 'A motion-rich brand site with an end-to-end serverless booking system: deposits, calendar sync, confirmation emails, lead capture and an AI photobooth.',
-    challenge: 'Montage runs bars, sound, photobooths and entertainment for hundreds of events. Every booking means a date, a deposit, a confirmation and a follow-up — and the brand needed a site with the same energy as the nights they produce.',
-    built: 'A bold, electric brand site paired with a booking backend that takes deposits through ToyyibPay, writes confirmed events into Google Calendar, sends confirmation emails via Gmail, captures leads and newsletter sign-ups — plus an expo mini-game with discount codes and an AI photobooth.',
+    challenge: 'Montage runs bars, sound, photobooths and entertainment for hundreds of events. Every booking means a date, a deposit, a confirmation and a follow-up, and the brand needed a site with the same energy as the nights they produce.',
+    built: 'A bold, electric brand site paired with a booking backend that takes deposits through ToyyibPay, writes confirmed events into Google Calendar, sends confirmation emails via Gmail, captures leads and newsletter sign-ups, plus an expo mini-game with discount codes and an AI photobooth.',
     features: [
       ['Deposit booking flow', 'ToyyibPay deposits lock in a date without back-and-forth.'],
       ['Calendar sync', 'Confirmed bookings appear in Google Calendar automatically.'],
@@ -96,19 +96,19 @@ export const PROJECTS = [
     slug: 'i-rimba',
     name: 'I-Rimba',
     kind: 'HarNova product',
-    category: 'Fintech · Money app',
+    category: 'Fintech, Money app',
     year: '2026',
     url: 'https://irimba.harnova.my',
     domain: 'irimba.harnova.my',
     status: 'Demo',
     tint: '#2F8F5B',
     tagline: 'A rainforest-themed money app that tells you what\'s safe to spend.',
-    summary: 'Instead of a wall of transactions, I-Rimba shows one number — what you can safely spend today — after setting aside every bill that\'s due.',
+    summary: 'Instead of a wall of transactions, I-Rimba shows one number, what you can safely spend today, after setting aside every bill that\'s due.',
     challenge: 'Budgeting apps show people where their money went. Most people actually want to know one thing: how much can I spend today without missing a bill?',
-    built: 'A friendly, rainforest-themed money companion. It calculates a "safe to spend each day" figure from your accounts and upcoming bills, logs spending from plain sentences ("spent 12 on lunch with TNG"), and tracks income, outflow and savings — in a rainforest world that makes checking your money feel less like a chore.',
+    built: 'A friendly, rainforest-themed money companion. It calculates a "safe to spend each day" figure from your accounts and upcoming bills, logs spending from plain sentences ("spent 12 on lunch with TNG"), and tracks income, outflow and savings, in a rainforest world that makes checking your money feel less like a chore.',
     features: [
       ['Safe-to-spend', 'One daily number, with upcoming bills already set aside.'],
-      ['Tell Rimba', 'Log spending in plain language — the AI does the categorising.'],
+      ['Tell Rimba', 'Log spending in plain language, the AI does the categorising.'],
       ['Bills radar', 'Upcoming bills with countdowns, so nothing sneaks up.'],
       ['Monthly flow', 'In, out and saved at a glance.'],
       ['Rainforest world', 'A calm, playful theme that makes money check-ins enjoyable.'],
@@ -124,15 +124,15 @@ export const PROJECTS = [
     slug: 'pathforward',
     name: 'PathForward',
     kind: 'Competition entry',
-    category: 'EdTech · AI career coach',
+    category: 'EdTech, AI career coach',
     year: '2026',
     url: 'https://airesume.yashchaal99.workers.dev',
     domain: 'airesume.yashchaal99.workers.dev',
     status: 'Live',
     tint: '#D9A62E',
     tagline: 'Your transcript already says what you can do. PathForward shows you the path forward.',
-    summary: 'An AI career coach that turns the subjects a student passed into the skills employers search for — then coaches them daily with a plan, mock interviews, honest resumes and real jobs.',
-    challenge: 'Graduates struggle to translate a transcript full of course codes into skills an employer recognises — and generic AI resume tools happily invent experience that falls apart in the interview.',
+    summary: 'An AI career coach that turns the subjects a student passed into the skills employers search for, then coaches them daily with a plan, mock interviews, honest resumes and real jobs.',
+    challenge: 'Graduates struggle to translate a transcript full of course codes into skills an employer recognises, and generic AI resume tools happily invent experience that falls apart in the interview.',
     built: 'A daily-habit career app for our UTeM team\'s Huawei ICT Competition entry. Students tick the subjects they passed; their MQA learning outcomes become skills, each backed by the subject that taught it. Pick a role and get a week-by-week plan with the right Huawei certification, five-question mock interviews built from your own projects, and ATS-ready resumes with zero invented facts.',
     features: [
       ['Map', 'Passed subjects become skills, each traced back to the subject that taught it.'],
@@ -151,7 +151,7 @@ export const PROJECTS = [
     slug: 'homely',
     name: 'Homely',
     kind: 'Client project',
-    category: 'Home services · Booking platform',
+    category: 'Home services, Booking platform',
     year: '2026',
     url: 'https://homely-maintenance.arshasaa12.workers.dev',
     domain: 'homely-maintenance…workers.dev',
@@ -160,7 +160,7 @@ export const PROJECTS = [
     tagline: 'Home maintenance, booked as easily as ordering food.',
     summary: 'A full home-maintenance platform: service catalogue, online booking, appointment scheduling, QR payment confirmation, printable receipts and a complete admin back office.',
     challenge: 'Home-service businesses juggle technicians, time slots and payments over phone calls and chat. Customers want clear prices and a time slot; the business needs one place to run it all.',
-    built: 'A warm, trustworthy customer site with clear from-prices for aircond, electrical and appliance services, a booking form and appointment schedule, plus QR payment confirmation with a printable receipt. Behind it, an admin dashboard manages services, technicians, appointments and reports — all on a Cloudflare Worker with a D1 database.',
+    built: 'A warm, trustworthy customer site with clear from-prices for aircond, electrical and appliance services, a booking form and appointment schedule, plus QR payment confirmation with a printable receipt. Behind it, an admin dashboard manages services, technicians, appointments and reports, all on a Cloudflare Worker with a D1 database.',
     features: [
       ['Service catalogue', 'Clear from-prices and durations for every service.'],
       ['Online booking', 'Customers pick a service and a slot in a few taps.'],
@@ -178,15 +178,15 @@ export const PROJECTS = [
     slug: 'nestly',
     name: 'Nestly',
     kind: 'HarNova product',
-    category: 'Fintech · Personal finance',
+    category: 'Fintech, Personal finance',
     year: '2026',
     url: 'https://nestly.harnova.my',
     domain: 'nestly.harnova.my',
     status: 'Beta',
     tint: '#6C63FF',
-    tagline: 'Your balances, bills and plans — in one calm, friendly nest.',
+    tagline: 'Your balances, bills and plans, in one calm, friendly nest.',
     summary: 'A personal finance tracker and AI-powered planner: bank balances, pay-later plans, loans, bills and savings goals in one place.',
-    challenge: 'Money is scattered across banks, e-wallets, pay-later plans and loans. Keeping track of all of it — and planning ahead — usually means a messy spreadsheet.',
+    challenge: 'Money is scattered across banks, e-wallets, pay-later plans and loans. Keeping track of all of it, and planning ahead, usually means a messy spreadsheet.',
     built: 'A web app that pulls the whole picture together: balances, spending, BNPL plans, loans, bills and income, with savings goals, spare-change round-ups and an AI planner on top. Private email sign-up, a PIN lock and smooth custom motion throughout.',
     features: [
       ['All your money', 'Balances, cards, e-wallets, BNPL and loans in one view.'],
@@ -213,10 +213,10 @@ export const PROJECTS = [
     tint: '#8B5CF6',
     tagline: 'Made a website with AI? Paste it. It\'s live.',
     summary: 'Hosting for AI-generated websites: paste the code ChatGPT or Claude wrote, and it goes live on your own harnova.my subdomain with SSL.',
-    challenge: 'AI can write a website in minutes — then it just sits in a chat window. Getting it online still means GitHub, terminals and DNS, which most small business owners will never touch.',
+    challenge: 'AI can write a website in minutes, then it just sits in a chat window. Getting it online still means GitHub, terminals and DNS, which most small business owners will never touch.',
     built: 'A one-step hosting platform. Sign in with Google, paste HTML or React, and the site is validated, deployed to the edge and issued an SSL certificate on its own subdomain. RM300 keeps it live for 30 days, paid by DuitNow QR.',
     features: [
-      ['Google sign-in', 'One tap — no forms, no passwords.'],
+      ['Google sign-in', 'One tap, no forms, no passwords.'],
       ['Paste & publish', 'HTML or React straight from your AI chat.'],
       ['Edge hosting + SSL', 'Fast worldwide, secure by default.'],
       ['Your subdomain', 'yourbusiness.harnova.my, ready to share.'],
@@ -232,7 +232,7 @@ export const PROJECTS = [
     slug: 'medilink',
     name: 'MediLink',
     kind: 'Research platform',
-    category: 'Healthcare · EHR',
+    category: 'Healthcare, EHR',
     year: '2026',
     url: null,
     domain: 'Selected for HIK@M2026',
@@ -240,7 +240,7 @@ export const PROJECTS = [
     tint: '#D49A1E',
     tagline: 'Hybrid-cloud health records for Malaysian clinics.',
     summary: 'An electronic health record platform with an AI triage engine, Malaysian IC parsing, local payments and a sync engine between the clinic and the cloud.',
-    challenge: 'Clinics need records that are always available at the counter, yet shareable across the cloud — and Malaysian specifics like NRIC formats and DuitNow payments are afterthoughts in imported systems.',
+    challenge: 'Clinics need records that are always available at the counter, yet shareable across the cloud, and Malaysian specifics like NRIC formats and DuitNow payments are afterthoughts in imported systems.',
     built: 'A hybrid architecture with a local PostgreSQL database that keeps the clinic running, synced to the cloud in real time. On top: a Manchester Triage System AI engine, camera-based IC scanning, DuitNow / TnG / FPX payments and a pharmacy inventory module.',
     features: [
       ['Hybrid sync engine', 'Local database at the clinic, mirrored to the cloud.'],
@@ -259,7 +259,7 @@ export const PROJECTS = [
     slug: 'ai-planter',
     name: 'AI Planter',
     kind: 'IoT system',
-    category: 'IoT · Smart agriculture',
+    category: 'IoT, Smart agriculture',
     year: '',
     url: null,
     domain: '1st place, UTeM',
@@ -267,7 +267,7 @@ export const PROJECTS = [
     tint: '#4C9A2A',
     tagline: 'A smart greenhouse that tells you exactly what your plants need.',
     summary: 'An ESP32-S3 greenhouse with live sensor telemetry, relay-controlled pump and fan, AI growing advice and a bilingual dashboard. First place at UTeM.',
-    challenge: 'Small growers guess at watering and ventilation, and most IoT dashboards are built for engineers — not for the person actually growing the plants.',
+    challenge: 'Small growers guess at watering and ventilation, and most IoT dashboards are built for engineers, not for the person actually growing the plants.',
     built: 'An ESP32-S3 controller streaming temperature and humidity to a FastAPI backend, with relays driving a pump and fan automatically. A bilingual English / Bahasa Malaysia PWA shows live readings and gives Groq-powered growing advice.',
     features: [
       ['Live telemetry', 'Temperature and humidity streamed around the clock.'],
@@ -284,7 +284,7 @@ export const PROJECTS = [
 
 export const getProject = slug => PROJECTS.find(p => p.slug === slug)
 
-/* ─── The HarNova universe — products people can open right now ────── */
+/* ─── The HarNova universe, products people can open right now ────── */
 export const UNIVERSE = [
   { name: 'HarNova Build', url: 'https://build.harnova.my', host: 'build.harnova.my', what: 'Host your AI-made website', slug: 'harnova-build', color: '#8B5CF6' },
   { name: 'HarnovaCare', url: 'https://care.harnova.my', host: 'care.harnova.my', what: 'Offline-first clinic system', slug: 'harnovacare', color: '#2A8C93' },
@@ -302,30 +302,30 @@ export const BIZ_SERVICES = [
   { name: 'HarNova Build site', price: 'RM300', unit: '/month', time: '3–5 days', text: 'A hosted site on your own harnova.my subdomain with SSL. No upfront build cost, cancel anytime.', pick: 'HarNova Build site' },
   { name: 'Booking, ordering or inventory system', price: 'RM6,000–15,000', time: '3–6 weeks', text: 'Online bookings, order flows, stock across branches, staff portals and admin dashboards.', pick: 'Booking / ordering / inventory system', featured: true },
   { name: 'E-commerce store', price: 'RM8,000–20,000', time: '4–6 weeks', text: 'Catalogue, cart, DuitNow / FPX payments, order emails and an admin panel to run it all.', pick: 'E-commerce store' },
-  { name: 'AI chatbot & WhatsApp automation', price: 'RM1,500', unit: ' + RM150/mo', time: '~1 week', text: 'An assistant that answers customers 24/7 on WhatsApp, Instagram or your site — and hands hot leads to you.', pick: 'AI chatbot / WhatsApp automation' },
-  { name: 'Custom web app, SaaS or AI', price: 'from RM15,000', time: 'Scoped together', text: 'Multi-role platforms, dashboards, AI features and integrations — quoted after a free scoping call.', pick: 'Custom web app / SaaS / AI' },
+  { name: 'AI chatbot & WhatsApp automation', price: 'RM1,500', unit: ' + RM150/mo', time: '~1 week', text: 'An assistant that answers customers 24/7 on WhatsApp, Instagram or your site, and hands hot leads to you.', pick: 'AI chatbot / WhatsApp automation' },
+  { name: 'Custom web app, SaaS or AI', price: 'from RM15,000', time: 'Scoped together', text: 'Multi-role platforms, dashboards, AI features and integrations, quoted after a free scoping call.', pick: 'Custom web app, SaaS or AI' },
 ]
 
 export const FYP = [
-  { name: 'System design consult', price: 'RM100', unit: '1 hour', text: 'Pick the right stack and plan your database before you write a line of code.', pick: 'FYP — system design consult' },
-  { name: 'Debug & fix rescue', price: 'RM300–800', unit: 'per batch', text: 'We sit with your code, find the cause and walk you through the fix.', pick: 'FYP — debug & fix rescue' },
-  { name: 'Cloud deployment', price: 'RM300–600', text: 'Get your project live on Cloudflare, Supabase, Huawei Cloud or AWS — with a real URL for your demo.', pick: 'FYP — cloud deployment' },
-  { name: 'Semester mentoring', price: 'RM1,200–2,000', text: 'Weekly sessions from proposal to demo day, so you always know your next step.', pick: 'FYP — semester mentoring', featured: true },
-  { name: 'Demo & viva prep', price: 'RM200', text: 'A mock presentation with tough questions, so you walk in knowing your system inside out.', pick: 'FYP — demo & viva prep' },
+  { name: 'System design consult', price: 'RM100', unit: '1 hour', text: 'Pick the right stack and plan your database before you write a line of code.', pick: 'FYP: system design consult' },
+  { name: 'Debug & fix rescue', price: 'RM300–800', unit: 'per batch', text: 'We sit with your code, find the cause and walk you through the fix.', pick: 'FYP: debug & fix rescue' },
+  { name: 'Cloud deployment', price: 'RM300–600', text: 'Get your project live on Cloudflare, Supabase, Huawei Cloud or AWS, with a real URL for your demo.', pick: 'FYP: cloud deployment' },
+  { name: 'Semester mentoring', price: 'RM1,200–2,000', text: 'Weekly sessions from proposal to demo day, so you always know your next step.', pick: 'FYP: semester mentoring', featured: true },
+  { name: 'Demo & viva prep', price: 'RM200', text: 'A mock presentation with tough questions, so you walk in knowing your system inside out.', pick: 'FYP: demo & viva prep' },
 ]
 
 export const FAQS = [
-  ['How much does a website cost?', 'A business website starts from RM2,500 as a one-off payment. If you\'d rather not pay upfront, a hosted HarNova Build site is RM300/month. Systems, online stores and custom apps are quoted after a free scoping chat — the ranges are listed under Services.'],
+  ['How much does a website cost?', 'A business website starts from RM2,500 as a one-off payment. If you\'d rather not pay upfront, a hosted HarNova Build site is RM300/month. Systems, online stores and custom apps are quoted after a free scoping chat, the ranges are listed under Pricing.'],
   ['How long does it take?', 'Most business websites take 1–2 weeks. Booking or inventory systems take 3–6 weeks, and online stores 4–6 weeks. You get an exact timeline in your written quote.'],
   ['Do I own the website and code?', 'Yes. Once the final payment is made, we hand over the complete source code and all accounts. No lock-in.'],
-  ['Can you do my whole FYP for me?', 'No — that breaks university academic integrity rules and could cost you your degree. We coach you instead: design consults, debugging sessions, deployment help and weekly mentoring, so you build it yourself and can defend it confidently at your viva.'],
-  ['Do you work with businesses outside Melaka?', 'Yes. We\'re based in Melaka but work with clients across Malaysia — everything runs over WhatsApp, video calls and live preview links.'],
-  ['What happens after launch?', 'We can keep it running for you with a maintenance & hosting plan from RM150–500/month, covering updates, backups, fixes and small changes. Or you take it from there — your choice.'],
+  ['Can you do my whole FYP for me?', 'No, that breaks university academic integrity rules and could cost you your degree. We coach you instead: design consults, debugging sessions, deployment help and weekly mentoring, so you build it yourself and can defend it confidently at your viva.'],
+  ['Do you work with businesses outside Melaka?', 'Yes. We\'re based in Melaka but work with clients across Malaysia, everything runs over WhatsApp, video calls and live preview links.'],
+  ['What happens after launch?', 'We can keep it running for you with a maintenance & hosting plan from RM150–500/month, covering updates, backups, fixes and small changes. Or you take it from there, your choice.'],
 ]
 
 export const SERVICE_OPTIONS = {
-  business: ['Business website', 'HarNova Build site', 'Booking / ordering / inventory system', 'E-commerce store', 'AI chatbot / WhatsApp automation', 'Custom web app / SaaS / AI', 'Maintenance & hosting', 'Not sure yet'],
-  student: ['FYP — system design consult', 'FYP — debug & fix rescue', 'FYP — cloud deployment', 'FYP — semester mentoring', 'FYP — demo & viva prep', 'FYP — not sure yet'],
+  business: ['Business website', 'HarNova Build site', 'Booking / ordering / inventory system', 'E-commerce store', 'AI chatbot / WhatsApp automation', 'Custom web app, SaaS or AI', 'Maintenance & hosting', 'Not sure yet'],
+  student: ['FYP: system design consult', 'FYP: debug & fix rescue', 'FYP: cloud deployment', 'FYP: semester mentoring', 'FYP: demo & viva prep', 'FYP: not sure yet'],
 }
 export const BUDGETS = {
   business: ['Under RM3,000', 'RM3,000 – RM8,000', 'RM8,000 – RM15,000', 'RM15,000+', 'Not sure yet'],
