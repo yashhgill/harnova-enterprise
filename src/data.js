@@ -13,6 +13,7 @@ export const CONTACT = {
 export const PROJECTS = [
   {
     slug: 'harnovacare',
+    group: 'product',
     name: 'HarnovaCare',
     kind: 'HarNova product',
     category: 'Healthcare, Clinic software',
@@ -40,6 +41,7 @@ export const PROJECTS = [
   },
   {
     slug: 'masterliqours',
+    group: 'work',
     name: 'Masterliqours',
     kind: 'Client project',
     category: 'E-commerce platform',
@@ -67,6 +69,7 @@ export const PROJECTS = [
   },
   {
     slug: 'montage-events',
+    group: 'work',
     name: 'Montage Events',
     kind: 'Client project',
     category: 'Brand site & booking system',
@@ -94,6 +97,7 @@ export const PROJECTS = [
   },
   {
     slug: 'i-rimba',
+    group: 'product',
     name: 'I-Rimba',
     kind: 'HarNova product',
     category: 'Fintech, Money app',
@@ -122,6 +126,7 @@ export const PROJECTS = [
   },
   {
     slug: 'pathforward',
+    group: 'product',
     name: 'PathForward',
     kind: 'Competition entry',
     category: 'EdTech, AI career coach',
@@ -149,6 +154,7 @@ export const PROJECTS = [
   },
   {
     slug: 'homely',
+    group: 'work',
     name: 'Homely',
     kind: 'Client project',
     category: 'Home services, Booking platform',
@@ -176,6 +182,7 @@ export const PROJECTS = [
   },
   {
     slug: 'nestly',
+    group: 'product',
     name: 'Nestly',
     kind: 'HarNova product',
     category: 'Fintech, Personal finance',
@@ -203,6 +210,7 @@ export const PROJECTS = [
   },
   {
     slug: 'harnova-build',
+    group: 'product',
     name: 'HarNova Build',
     kind: 'HarNova product',
     category: 'Hosting platform',
@@ -230,6 +238,7 @@ export const PROJECTS = [
   },
   {
     slug: 'medilink',
+    group: 'work',
     name: 'MediLink',
     kind: 'Research platform',
     category: 'Healthcare, EHR',
@@ -257,6 +266,7 @@ export const PROJECTS = [
   },
   {
     slug: 'ai-planter',
+    group: 'work',
     name: 'AI Planter',
     kind: 'IoT system',
     category: 'IoT, Smart agriculture',
@@ -286,15 +296,15 @@ export const getProject = slug => PROJECTS.find(p => p.slug === slug)
 
 /* ─── The HarNova universe, products people can open right now ────── */
 export const UNIVERSE = [
-  { name: 'HarNova Build', url: 'https://build.harnova.my', host: 'build.harnova.my', what: 'Host your AI-made website', slug: 'harnova-build', color: '#8B5CF6' },
-  { name: 'HarnovaCare', url: 'https://care.harnova.my', host: 'care.harnova.my', what: 'Offline-first clinic system', slug: 'harnovacare', color: '#2A8C93' },
-  { name: 'Nestly', url: 'https://nestly.harnova.my', host: 'nestly.harnova.my', what: 'Personal finance & AI planner', slug: 'nestly', color: '#6C63FF' },
-  { name: 'I-Rimba', url: 'https://irimba.harnova.my', host: 'irimba.harnova.my', what: 'Know what\'s safe to spend', slug: 'i-rimba', color: '#2F8F5B' },
-  { name: 'PathForward', url: 'https://airesume.yashchaal99.workers.dev', host: 'PathForward', what: 'AI career coach for students', slug: 'pathforward', color: '#D9A62E' },
-  { name: 'Homely', url: 'https://homely-maintenance.arshasaa12.workers.dev', host: 'Homely', what: 'Home maintenance booking', slug: 'homely', color: '#2E6B4C' },
-  { name: 'Masterliqours', url: 'https://masterliqours.my', host: 'masterliqours.my', what: 'Premium liquor delivery', slug: 'masterliqours', color: '#E3307A' },
-  { name: 'Montage Events', url: 'https://montageevents.my', host: 'montageevents.my', what: 'Event booking & production', slug: 'montage-events', color: '#7C5CFF' },
+  { name: 'HarnovaCare', url: 'https://care.harnova.my', host: 'care.harnova.my', what: 'Clinic software that works offline', slug: 'harnovacare', color: '#2A8C93' },
+  { name: 'HarNova Build', url: 'https://build.harnova.my', host: 'build.harnova.my', what: 'Hosting for AI-made websites', slug: 'harnova-build', color: '#8B5CF6' },
+  { name: 'Nestly', url: 'https://nestly.harnova.my', host: 'nestly.harnova.my', what: 'Personal finance and AI planner', slug: 'nestly', color: '#6C63FF' },
+  { name: 'I-Rimba', url: 'https://irimba.harnova.my', host: 'irimba.harnova.my', what: 'Know what\'s safe to spend today', slug: 'i-rimba', color: '#2F8F5B' },
+  { name: 'PathForward', url: 'https://airesume.yashchaal99.workers.dev', host: 'PathForward', what: 'AI career coach for graduates', slug: 'pathforward', color: '#D9A62E' },
 ]
+
+export const WORK = PROJECTS.filter(p => p.group === 'work')
+export const PRODUCTS = PROJECTS.filter(p => p.group === 'product')
 
 /* ─── Services & pricing ──────────────────────────────────────────── */
 export const BIZ_SERVICES = [
@@ -319,7 +329,7 @@ export const FAQS = [
   ['How long does it take?', 'Most business websites take 1–2 weeks. Booking or inventory systems take 3–6 weeks, and online stores 4–6 weeks. You get an exact timeline in your written quote.'],
   ['Do I own the website and code?', 'Yes. Once the final payment is made, we hand over the complete source code and all accounts. No lock-in.'],
   ['Can you do my whole FYP for me?', 'No, that breaks university academic integrity rules and could cost you your degree. We coach you instead: design consults, debugging sessions, deployment help and weekly mentoring, so you build it yourself and can defend it confidently at your viva.'],
-  ['Do you work with businesses outside Melaka?', 'Yes. We\'re based in Melaka but work with clients across Malaysia, everything runs over WhatsApp, video calls and live preview links.'],
+  ['Do you work with businesses anywhere in Malaysia?', 'Yes. We work with clients across Malaysia. Everything runs over WhatsApp, video calls and live preview links, so location doesn\'t matter.'],
   ['What happens after launch?', 'We can keep it running for you with a maintenance & hosting plan from RM150–500/month, covering updates, backups, fixes and small changes. Or you take it from there, your choice.'],
 ]
 

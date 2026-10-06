@@ -2,55 +2,92 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Plus } from 'lucide-react'
-import { Link } from '../router'
-import { Mock } from '../components/ui'
+import { Link, useRouter } from '../router'
+import { NovaMark, Label, Split, Mock, Arrow, Out, reduced } from '../components/ui'
 import { Contact } from '../components/Chrome'
-import { PROJECTS, UNIVERSE, BIZ_SERVICES, FYP, FAQS } from '../data'
+import { WORK, PRODUCTS, UNIVERSE, BIZ_SERVICES, FYP, FAQS } from '../data'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const statusClass = s => (s === 'Live' ? '' : s === 'Beta' || s === 'Demo' ? ' demo' : ' other')
+const dotClass = s => (s === 'Live' ? 'dot' : s === 'Beta' || s === 'Demo' ? 'dot violet' : 'dot amber')
 
-/* ─── Hero: the work itself is the image ─── */
-const STRIP = [
-  { slug: 'montage-events', src: '/shots/montage-hero.webp', label: 'Montage Events', note: 'booking system' },
-  { slug: 'harnovacare', src: '/shots/care-hero.webp', label: 'HarnovaCare', note: 'clinic software' },
-  { slug: 'masterliqours', src: '/shots/masterliqours-vault.webp', label: 'Masterliqours', note: 'online store' },
-  { slug: 'i-rimba', src: '/shots/irimba-home.webp', label: 'I-Rimba', note: 'money app', phone: true },
+/* ═══ Hero ═══ */
+const STAGE = [
+  { src: '/shots/montage-hero.webp', url: 'montageevents.my', s: { left: '0%', top: '6%', width: '60%', height: '50%' }, z: -40, ry: 14, rx: 4 },
+  { src: '/shots/care-hero.webp', url: 'care.harnova.my', s: { right: '0%', top: '14%', width: '52%', height: '46%' }, z: 30, ry: -10, rx: 2 },
+  { src: '/shots/masterliqours-vault.webp', url: 'masterliqours.my', s: { left: '8%', bottom: '2%', width: '48%', height: '44%' }, z: 90, ry: 10, rx: -4 },
+  { src: '/shots/irimba-home.webp', url: 'irimba.harnova.my', s: { right: '7%', bottom: '0%', width: '25%', height: '58%' }, z: 160, ry: -14, rx: -2, phone: true },
 ]
+
+function Stage() {
+  const rot = useRef(null)
+  const cards = useRef([])
+  useEffect(() => {
+    if (reduced()) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cards.current, { opacity: 0, y: 110, rotateX: -22 }, { opacity: 1, y: 0, rotateX: 0, duration: 1.5, ease: 'expo.out', stagger: 0.1, delay: 0.25 })
+      cards.current.forEach((c, i) => gsap.to(c.firstChild, { y: i % 2 ? 12 : -12, duration: 4 + i * 0.6, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+    })
+    const move = e => {
+      if (window.matchMedia('(pointer: coarse)').matches) return
+      const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5
+      rot.current.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 7}deg)`
+    }
+    window.addEventListener('mousemove', move, { passive: true })
+    return () => { ctx.revert(); window.removeEventListener('mousemove', move) }
+  }, [])
+  return (
+    <div className="stage" aria-hidden="true">
+      <div className="stage-rot" ref={rot}>
+        {STAGE.map((c, i) => (
+          <div key={c.url} className="card3d" ref={el => (cards.current[i] = el)} style={{ ...c.s, transform: `translateZ(${c.z}px) rotateY(${c.ry}deg) rotateX(${c.rx}deg)` }}>
+            <div style={{ width: '100%', height: '100%' }}>
+              {c.phone
+                ? <div className="float-card phone"><img src={c.src} alt="" /></div>
+                : <div className="float-card"><div className="bar"><i /><i /><i /><em>{c.url}</em></div><img src={c.src} alt="" /></div>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function Hero() {
   return (
-    <section className="hero" id="top">
-      <div className="wrap">
-        <h1 className="t-display">Websites and software for Malaysian businesses.</h1>
-        <div className="hero-row">
-          <p className="lead">HarNova is a small studio in Melaka. We've built clinic systems, online stores, booking platforms and money apps, and {UNIVERSE.length} of them are running right now. You can open every one of them on this page.</p>
-          <div className="hero-actions">
-            <Link to="#work" className="btn btn-primary">See our work</Link>
-            <Link to="#contact" className="btn btn-line">Get a quote</Link>
+    <header className="hero" id="top">
+      <div className="hero-paper" aria-hidden="true" />
+      <div className="hero-light" aria-hidden="true" />
+      <div className="wrap hero-in">
+        <div>
+          <div className="status-pill"><span className="dot" />Taking on new projects</div>
+          <Split as="h1" className="h-xl" now lines={['We build the', 'software that', <span className="serif nova-ink">Malaysia runs on.</span>]} />
+          <p className="lede">Websites, booking systems, online stores and AI products, designed and built by HarNova. Our own products and our clients' platforms are running right now, and you can open every one of them here.</p>
+          <div className="hero-ctas">
+            <Link to="#work" className="btn btn-ink">See the work <Arrow /></Link>
+            <Link to="#contact" className="btn btn-ghost">Get a quote</Link>
           </div>
         </div>
+        <Stage />
       </div>
-      <div className="strip">
-        {STRIP.map(s => (
-          <figure key={s.slug}>
-            <Link to={`/work/${s.slug}`} aria-label={`${s.label} case study`}>
-              <div className={`shot${s.phone ? ' phone' : ''}`}><img src={s.src} alt={`${s.label}, ${s.note}`} /></div>
-            </Link>
-            <figcaption><Link to={`/work/${s.slug}`}>{s.label}</Link>, {s.note}</figcaption>
-          </figure>
-        ))}
-      </div>
+    </header>
+  )
+}
+
+function Proof() {
+  const facts = [['10', 'Platforms designed, built and shipped'], ['5', 'HarNova products live on the web'], ['689', 'Products sold on Masterliqours'], ['1st', 'Place at UTeM for AI Planter']]
+  return (
+    <section className="proof" aria-label="HarNova in numbers">
+      <div className="wrap proof-in">{facts.map(([v, l]) => <div key={l}><b>{v}</b><span>{l}</span></div>)}</div>
     </section>
   )
 }
 
-/* ─── Work: pinned horizontal gallery ─── */
+/* ═══ Client work: pinned horizontal gallery ═══ */
 function Work() {
   const pin = useRef(null)
   const track = useRef(null)
-  const bar = useRef(null)
+  const rail = useRef(null)
   useEffect(() => {
     const mm = gsap.matchMedia()
     mm.add('(min-width: 861px) and (prefers-reduced-motion: no-preference)', () => {
@@ -58,8 +95,8 @@ function Work() {
       gsap.to(track.current, {
         x: () => -dist(), ease: 'none',
         scrollTrigger: {
-          trigger: pin.current, start: 'top top', end: () => `+=${dist()}`, pin: true, scrub: 0.6, invalidateOnRefresh: true,
-          onUpdate: self => { if (bar.current) bar.current.style.transform = `scaleX(${self.progress})` },
+          trigger: pin.current, start: 'top top', end: () => `+=${dist()}`, pin: true, scrub: 0.7, invalidateOnRefresh: true, anticipatePin: 1,
+          onUpdate: self => { if (rail.current) rail.current.style.transform = `scaleX(${self.progress})` },
         },
       })
     })
@@ -68,136 +105,160 @@ function Work() {
     return () => { mm.revert(); window.removeEventListener('load', refresh) }
   }, [])
   return (
-    <section className="work" id="work">
+    <section className="dark on-dark" id="work">
       <div className="wrap work-head">
-        <div className="section-intro" style={{ marginBottom: 0 }}>
-          <h2 className="t-1">{PROJECTS.length} projects, all shipped.</h2>
-          <p className="lead">Retail, healthcare, events, fintech, education and IoT. Scroll through them, then open any project to see what it does and how it was built.</p>
+        <div className="section-head" style={{ marginBottom: 0 }}>
+          <div>
+            <Label>Client work</Label>
+            <Split className="h-lg" lines={['Built for clients,', <span className="serif nova-ink">running right now.</span>]} />
+          </div>
+          <p className="lede">Retail, events, home services, healthcare and IoT. Scroll through, then open any project for the full story.</p>
         </div>
       </div>
       <div className="pin" ref={pin}>
         <div className="track" ref={track}>
-          {PROJECTS.map((p, i) => (
+          {WORK.map((p, i) => (
             <Link key={p.slug} to={`/work/${p.slug}`} className="panel">
-              <div className={`panel-shot${p.portrait ? ' portrait' : ''}`}>
-                {p.cover ? <img src={p.cover} alt={`${p.name} screenshot`} loading="lazy" /> : <Mock kind={p.mock} />}
-              </div>
-              <div className="panel-text">
-                <div className="panel-meta"><span>{i + 1} of {PROJECTS.length}</span><span className={`status${statusClass(p.status)}`}>{p.status}</span></div>
-                <h3 className="t-1">{p.name}</h3>
-                <p style={{ color: 'var(--on-dark)' }}>{p.category}</p>
+              <div className="panel-media">{p.cover ? <img src={p.cover} alt={`${p.name} screenshot`} loading="lazy" /> : <Mock kind={p.mock} tint={p.tint} />}</div>
+              <div className="panel-body">
+                <div className="panel-top"><span>{String(i + 1).padStart(2, '0')} / {String(WORK.length).padStart(2, '0')}</span><span className="st"><span className={dotClass(p.status)} />{p.status}</span></div>
+                <span className="cat" style={{ color: p.tint, filter: 'brightness(1.45) saturate(1.1)' }}>{p.category}</span>
+                <h3>{p.name}</h3>
                 <p>{p.summary}</p>
-                <span className="panel-cta">Read the case study</span>
+                <span className="stack">{p.stack.join('  /  ')}</span>
+                <div className="panel-foot">
+                  <span className="panel-cta">Read the case study <Arrow size={15} /></span>
+                  {p.url && <span className="u" style={{ fontSize: '.88rem', color: 'rgba(255,255,255,.72)' }}>{p.domain}</span>}
+                </div>
               </div>
+              <div className="panel-glow" style={{ background: p.tint }} />
             </Link>
           ))}
-          <div className="work-end">
-            <h3 className="t-1">Yours could be next.</h3>
-            <p>Tell us what you're building and you'll have a fixed written quote within 24 hours.</p>
-            <Link to="#contact" className="btn btn-light">Start a project</Link>
+          <div className="panel-end">
+            <h3 className="h-md">Your project <span className="serif nova-ink">goes here.</span></h3>
+            <p>Tell us what you're building. You'll have a fixed written quote within 24 hours.</p>
+            <Link to="#contact" className="btn btn-light" style={{ alignSelf: 'flex-start' }}>Start a project <Arrow /></Link>
           </div>
         </div>
-        <div className="gallery-bar" aria-hidden="true"><i ref={bar} /></div>
+        <div className="rail" aria-hidden="true"><i ref={rail} /></div>
       </div>
     </section>
   )
 }
 
-/* ─── Products: an index you can actually use ─── */
+/* ═══ Our products: orbit + index ═══ */
 function Products() {
-  const [peek, setPeek] = useState(null)
-  const shotFor = slug => PROJECTS.find(p => p.slug === slug)?.cover
-  const move = e => setPeek(p => (p ? { ...p, x: e.clientX + 24, y: e.clientY - 110 } : p))
+  const { navigate } = useRouter()
+  const [sel, setSel] = useState(0)
+  const u = UNIVERSE[sel]
+  const proj = PRODUCTS.find(p => p.slug === u.slug)
+  const place = i => {
+    const a = (i * (360 / UNIVERSE.length) - 90) * Math.PI / 180
+    return { left: `${50 + 41 * Math.cos(a)}%`, top: `${50 + 41 * Math.sin(a)}%` }
+  }
   return (
-    <section className="section" id="products">
-      <div className="wrap">
-        <div className="section-intro">
-          <h2 className="t-1">Open them yourself.</h2>
-          <p className="lead">Every product below is live on the web. Hover a row to preview it, select the name for the case study, or open the address in a new tab.</p>
+    <section className="section products" id="products">
+      <div className="wrap prod-in">
+        <div>
+          <Label>Our products</Label>
+          <Split className="h-lg" lines={['Products we build', <>and <span className="serif nova-ink">run ourselves.</span></>]} />
+          <p className="lede" style={{ marginTop: 22 }}>Alongside client work, HarNova runs its own software. All five are live on the web, so you can try them before you talk to us.</p>
+          <div className="prod-detail" aria-live="polite">
+            <div className="thumb">{proj?.cover ? <img src={proj.cover} alt="" /> : <div style={{ position: 'relative', height: '100%', minHeight: 140 }}><Mock kind={proj?.mock} tint={u.color} /></div>}</div>
+            <div className="txt">
+              <b>{u.name}</b>
+              <p>{u.what}.</p>
+              <div className="links">
+                <a href={u.url} target="_blank" rel="noreferrer" className="u" style={{ color: 'var(--violet)' }}>Open {u.host} <Out /></a>
+                <button onClick={() => navigate(`/work/${u.slug}`)} className="u">Read the case study</button>
+              </div>
+            </div>
+          </div>
+          <div className="prod-list">
+            {UNIVERSE.map((x, i) => (
+              <a key={x.url} href={x.url} target="_blank" rel="noreferrer" className={`prod-item${i === sel ? ' on' : ''}`} onMouseEnter={() => setSel(i)} onFocus={() => setSel(i)}>
+                <span className="orb" style={{ background: `radial-gradient(circle at 32% 30%, #fff, ${x.color} 52%)` }} />
+                <span style={{ minWidth: 0 }}><b>{x.name}</b><small>{x.host}</small></span>
+              </a>
+            ))}
+          </div>
         </div>
-        <table className="ptable" onMouseMove={move} onMouseLeave={() => setPeek(null)}>
-          <thead><tr><th>Product</th><th>What it does</th><th>Address</th><th>Status</th></tr></thead>
-          <tbody>
-            {UNIVERSE.map(u => {
-              const p = PROJECTS.find(x => x.slug === u.slug)
-              return (
-                <tr key={u.url} className="row" onMouseEnter={e => setPeek({ src: shotFor(u.slug), x: e.clientX + 24, y: e.clientY - 110 })}>
-                  <td><Link to={`/work/${u.slug}`} className="name">{u.name}</Link></td>
-                  <td className="what">{u.what}</td>
-                  <td className="addr"><a href={u.url} target="_blank" rel="noreferrer">{u.url.replace('https://', '')}</a></td>
-                  <td className="st"><span className={`status${statusClass(p?.status)}`}>{p?.status}</span></td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <div className="orbit" aria-hidden="true">
+          <div className="ring" style={{ width: '82%', height: '82%' }} />
+          <div className="ring" style={{ width: '52%', height: '52%', borderStyle: 'solid', borderColor: 'var(--line)' }} />
+          <div className="core"><NovaMark size={36} /><span>HARNOVA</span></div>
+          <div className="spin">
+            {UNIVERSE.map((x, i) => (
+              <div key={x.url} className="planet" style={place(i)}>
+                <div className="planet-pos"><div className="unspin">
+                  <button tabIndex={-1} className={`planet-btn${i === sel ? ' on' : ''}`} onMouseEnter={() => setSel(i)} onClick={() => setSel(i)}>
+                    <span className="orb" style={{ background: `radial-gradient(circle at 32% 30%, #fff, ${x.color} 52%)` }} />{x.name}
+                  </button>
+                </div></div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      {peek?.src && <div className="peek on" style={{ left: peek.x, top: peek.y }} aria-hidden="true"><img src={peek.src} alt="" /></div>}
     </section>
   )
 }
 
-/* ─── Pricing ─── */
+/* ═══ Pricing ═══ */
 function Pricing({ onPick }) {
+  const promises = [
+    ['A fixed quote', 'The price in your written quote is the price you pay. Scope changes are quoted before we do them.'],
+    ['Two rounds of revisions', 'You follow progress on a live preview link, and two rounds of changes are included.'],
+    ['The code is yours', 'After the final payment we hand over the full source code and every account. No lock-in.'],
+  ]
   return (
-    <section className="section" id="pricing" style={{ paddingTop: 0 }}>
+    <section className="section" id="pricing">
       <div className="wrap">
-        <div className="section-intro">
-          <h2 className="t-1">What it costs.</h2>
-          <p className="lead">Starting prices for the work we do most. Before anything starts you get a fixed written quote, so the number doesn't move.</p>
+        <div className="section-head">
+          <div><Label>Pricing</Label><Split className="h-lg" lines={['Clear prices,', <span className="serif nova-ink">fixed quotes.</span>]} /></div>
+          <p className="lede">Starting prices for the work we do most. Agencies typically quote RM8,000 and up for the same jobs.</p>
         </div>
-        <div className="price-list">
+        <div className="svc-grid">
           {BIZ_SERVICES.map(s => (
-            <div className="price-row" key={s.name}>
-              <h3 className="t-3">{s.name}</h3>
-              <p className="d">{s.text}</p>
-              <span className="time">{s.time}</span>
-              <span className="p">{s.price}{s.unit && <span>{s.unit}</span>}</span>
-              <button onClick={() => onPick(s.pick)}>Ask about this</button>
+            <div key={s.name} className={`svc${s.featured ? ' feature' : ''}`}>
+              <h3>{s.name}</h3>
+              <div className="price">{s.price}{s.unit && <small>{s.unit}</small>}</div>
+              <p>{s.text}</p>
+              <div className="svc-foot"><span>{s.time}</span><button className="u" onClick={() => onPick(s.pick)}>Ask about this</button></div>
             </div>
           ))}
-          <div className="price-row">
-            <h3 className="t-3">Maintenance and hosting</h3>
-            <p className="d">Updates, backups, fixes and small changes for a site or system you already have.</p>
-            <span className="time">Monthly</span>
-            <span className="p">RM150–500<span>/month</span></span>
-            <button onClick={() => onPick('Maintenance & hosting')}>Ask about this</button>
-          </div>
         </div>
-        <div className="promises">
-          <div><h3 className="t-3">A fixed quote</h3><p>The price in your written quote is the price you pay. Changes in scope are quoted separately before we do them.</p></div>
-          <div><h3 className="t-3">Two rounds of revisions</h3><p>You review on a live preview link as we build, and two rounds of changes are included.</p></div>
-          <div><h3 className="t-3">The code is yours</h3><p>After the final payment we hand over the full source code and every account. No lock-in.</p></div>
+        <div className="upkeep">
+          <span style={{ color: 'var(--muted)' }}>Already have a site or system? <b style={{ color: 'var(--ink)' }}>Maintenance and hosting from RM150 to RM500 a month.</b></span>
+          <button className="btn btn-ghost" style={{ height: 44 }} onClick={() => onPick('Maintenance & hosting')}>Ask about upkeep</button>
         </div>
+        <div className="promise">{promises.map(([t, d]) => <div key={t}><NovaMark size={22} core={false} /><h4>{t}</h4><p>{d}</p></div>)}</div>
       </div>
     </section>
   )
 }
 
-/* ─── FYP coaching ─── */
+/* ═══ FYP coaching ═══ */
 function Fyp({ onPick }) {
   return (
-    <section className="section fyp" id="fyp">
-      <div className="wrap">
-        <div className="section-intro">
-          <div>
-            <h2 className="t-1">Stuck on your final year project?</h2>
-            <div className="integrity">
-              <h3 className="t-3">You build it. We make sure you can.</h3>
-              <p>We coach, debug and explain. We don't write your project or your report, because that breaks your university's academic integrity rules and leaves you unable to defend it at viva.</p>
-            </div>
+    <section className="section fyp on-dark" id="fyp">
+      <div className="wrap fyp-in">
+        <div>
+          <Label>FYP coaching</Label>
+          <Split className="h-lg" lines={['Stuck on your', <span className="serif" style={{ color: '#9CFFAB' }}>final year project?</span>]} />
+          <p className="lede" style={{ marginTop: 22 }}>Coaching from a final-year UTeM student who has shipped production systems, including AI Planter, which took first place in its UTeM course.</p>
+          <div className="fyp-note">
+            <b>You build it. We make sure you can.</b>
+            <p>We coach, debug and explain. We don't write your project or your report, because that breaks your university's academic integrity rules and leaves you unable to defend it at viva.</p>
           </div>
-          <p className="lead">Coaching from a final-year UTeM student who has shipped production systems, including AI Planter, which took first place in its UTeM course.</p>
+          <button className="btn btn-light" style={{ marginTop: 28 }} onClick={() => onPick('FYP: not sure yet')}>Tell us where you're stuck <Arrow /></button>
         </div>
-        <div className="price-list">
+        <div>
           {FYP.map(f => (
-            <div className="price-row" key={f.name}>
-              <h3 className="t-3">{f.name}</h3>
-              <p className="d">{f.text}</p>
-              <span className="time">{f.unit || ''}</span>
-              <span className="p">{f.price}</span>
-              <button onClick={() => onPick(f.pick)}>Ask about this</button>
-            </div>
+            <button key={f.name} className="fyp-row" onClick={() => onPick(f.pick)}>
+              <div><h4>{f.name}</h4><p>{f.text}</p></div>
+              <div className="p">{f.price}{f.unit && <small>{f.unit}</small>}</div>
+            </button>
           ))}
         </div>
       </div>
@@ -205,40 +266,52 @@ function Fyp({ onPick }) {
   )
 }
 
-/* ─── HarNova Build ─── */
+/* ═══ HarNova Build ═══ */
 function Build() {
+  const [stage, setStage] = useState(0)
+  const ref = useRef(null)
+  useEffect(() => {
+    let iv
+    const t = ScrollTrigger.create({
+      trigger: ref.current, start: 'top 75%', once: true,
+      onEnter: () => { if (reduced()) { setStage(4); return } let s = 0; iv = setInterval(() => { s += 1; setStage(s); if (s >= 4) clearInterval(iv) }, 800) },
+    })
+    return () => { t.kill(); clearInterval(iv) }
+  }, [])
   return (
     <section className="section" id="build">
       <div className="wrap">
-        <div className="section-intro">
-          <h2 className="t-1">Made a website with AI? We'll host it.</h2>
-          <p className="lead">HarNova Build puts the site ChatGPT or Claude wrote for you on the internet, with a real address and SSL. No terminal, no GitHub.</p>
+        <div className="section-head">
+          <div><Label>HarNova Build</Label><Split className="h-lg" lines={['Made a site with AI?', <span className="serif nova-ink">Paste it. It's live.</span>]} /></div>
+          <p className="lede">A real address, SSL and fast hosting for the website ChatGPT or Claude wrote for you. No terminal, no GitHub.</p>
         </div>
-        <div className="build-grid">
-          <div className="term" role="img" aria-label="Example of publishing a site on HarNova Build">
-            <div className="c">Paste the code your AI wrote:</div>
-            <div>{'<section class="hero">'}</div>
-            <div>{'  <h1>Nasi Lemak Corner</h1>'}</div>
-            <div>{'  <p>Open daily, Melaka</p>'}</div>
-            <div>{'</section>'}</div>
-            <br />
-            <div>Validating code… <span className="ok">done</span></div>
-            <div>Deploying to the edge… <span className="ok">done</span></div>
-            <div>Issuing SSL certificate… <span className="ok">done</span></div>
-            <br />
-            <div>Live at nasilemakcorner.harnova.my</div>
+        <div className="build-in">
+          <div className="term" ref={ref}>
+            <div className="term-bar"><i /><i /><i /><span>build.harnova.my</span></div>
+            <div className="term-body">
+              <div style={{ color: '#7A7A8C' }}>Paste what your AI built:</div>
+              <div><span style={{ color: '#C084FC' }}>&lt;section</span> <span style={{ color: '#22D3EE' }}>class</span>=<span style={{ color: '#F5C542' }}>"hero"</span><span style={{ color: '#C084FC' }}>&gt;</span></div>
+              <div>&nbsp;&nbsp;<span style={{ color: '#C084FC' }}>&lt;h1&gt;</span>Nasi Lemak Corner<span style={{ color: '#C084FC' }}>&lt;/h1&gt;</span></div>
+              <div>&nbsp;&nbsp;<span style={{ color: '#C084FC' }}>&lt;p&gt;</span>Open daily from 7am<span style={{ color: '#C084FC' }}>&lt;/p&gt;</span></div>
+              <div><span style={{ color: '#C084FC' }}>&lt;/section&gt;</span></div>
+              <div style={{ marginTop: 14, color: '#9A9AA6' }}>
+                {stage >= 1 && <div>Validating code… <span style={{ color: '#6BD69A' }}>done</span></div>}
+                {stage >= 2 && <div>Deploying to the edge… <span style={{ color: '#6BD69A' }}>done</span></div>}
+                {stage >= 3 && <div>Issuing SSL certificate… <span style={{ color: '#6BD69A' }}>done</span></div>}
+                {stage >= 4 && <div style={{ marginTop: 8, color: '#fff' }}>Live at <span className="nova-ink" style={{ fontWeight: 600 }}>nasilemakcorner.harnova.my</span></div>}
+              </div>
+            </div>
           </div>
-          <div className="buildbox">
-            <span className="muted">Per site, per month</span>
+          <div className="price-box">
+            <span style={{ color: 'var(--muted)' }}>Per site, per month</span>
             <span className="big">RM300</span>
             <ul>
               <li>Your own address on harnova.my</li>
               <li>Fast hosting with SSL included</li>
-              <li>Sign in with Google, manage all your sites</li>
+              <li>Sign in with Google and manage all your sites</li>
               <li>Pay by DuitNow QR, active the same day</li>
-              <li>Renew monthly, or let it lapse</li>
             </ul>
-            <a href="https://build.harnova.my" target="_blank" rel="noreferrer" className="btn btn-primary">Open HarNova Build</a>
+            <a href="https://build.harnova.my" target="_blank" rel="noreferrer" className="btn btn-ink">Launch your site <Out /></a>
           </div>
         </div>
       </div>
@@ -246,7 +319,7 @@ function Build() {
   )
 }
 
-/* ─── Process (a real sequence, so it's numbered) ─── */
+/* ═══ Process (a real sequence, so it's numbered) ═══ */
 function Process() {
   const S = [
     ['Tell us what you need', 'Use the form or message us. A few lines is enough to start.'],
@@ -257,9 +330,9 @@ function Process() {
   return (
     <section className="section" id="process" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <h2 className="t-1" style={{ marginBottom: 'clamp(40px,6vw,72px)' }}>How a project runs.</h2>
-        <ol className="steps">{S.map(([t, d]) => <li key={t}><h3 className="t-3">{t}</h3><p>{d}</p></li>)}</ol>
-        <p className="terms"><strong>Payment.</strong> Projects under RM10,000 are paid 50% upfront and 50% before handover. Larger projects are paid in three parts: 40%, 30% and 30%. We take DuitNow and bank transfer.</p>
+        <div className="section-head"><div><Label>How it works</Label><Split className="h-md" lines={['From first message', <span className="serif nova-ink">to launch day.</span>]} /></div></div>
+        <ol className="steps">{S.map(([t, d]) => <li key={t}><h4>{t}</h4><p>{d}</p></li>)}</ol>
+        <p className="terms"><b>Payment.</b> Projects under RM10,000 are paid 50% upfront and 50% before handover. Larger projects are paid in three parts: 40%, 30% and 30%. We take DuitNow and bank transfer.</p>
       </div>
     </section>
   )
@@ -270,11 +343,12 @@ function Faq() {
   return (
     <section className="section" id="faq" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <h2 className="t-1" style={{ marginBottom: 40 }}>Common questions.</h2>
-        <div className="faq">
+        <Label>FAQ</Label>
+        <Split className="h-md" lines={['Questions we', <span className="serif nova-ink">get every week.</span>]} />
+        <div className="faq" style={{ marginTop: 40 }}>
           {FAQS.map(([q, a], i) => (
             <div className="faq-item" key={q}>
-              <button className="faq-q" aria-expanded={open === i} aria-controls={`fa-${i}`} onClick={() => setOpen(open === i ? -1 : i)}>{q}<Plus size={20} /></button>
+              <button className="faq-q" aria-expanded={open === i} aria-controls={`fa-${i}`} onClick={() => setOpen(open === i ? -1 : i)}>{q}<span className="pm"><Plus size={16} /></span></button>
               <div className="faq-a" id={`fa-${i}`} hidden={open !== i}><p>{a}</p></div>
             </div>
           ))}
@@ -285,10 +359,11 @@ function Faq() {
 }
 
 export default function Home({ pick, onPick }) {
-  useEffect(() => { document.title = 'HarNova · Websites and software for Malaysian businesses' }, [])
+  useEffect(() => { document.title = 'HarNova · We build the software Malaysia runs on' }, [])
   return (
     <main>
       <Hero />
+      <Proof />
       <Work />
       <Products />
       <Pricing onPick={onPick} />

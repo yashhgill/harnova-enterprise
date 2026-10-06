@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from '../router'
-import { Browser } from '../components/ui'
+import { Label, Split, Frame, Arrow, Out, NovaMark } from '../components/ui'
 import { PROJECTS, getProject } from '../data'
 
 export default function Project({ slug, onPick }) {
@@ -9,78 +9,89 @@ export default function Project({ slug, onPick }) {
 
   if (!p) {
     return (
-      <main className="p-head"><div className="wrap">
-        <h1 className="t-1">We couldn't find that project.</h1>
-        <p className="lead" style={{ marginTop: 16 }}>It may have been renamed. All of our work is listed on the home page.</p>
-        <Link to="/#work" className="btn btn-primary" style={{ marginTop: 28 }}>See all work</Link>
+      <main className="p-hero"><div className="wrap">
+        <h1 className="h-lg">We couldn't find that project.</h1>
+        <p className="lede" style={{ marginTop: 18 }}>It may have been renamed. Everything we've built is on the home page.</p>
+        <Link to="/#work" className="btn btn-ink" style={{ marginTop: 28 }}>See all work <Arrow /></Link>
       </div></main>
     )
   }
 
-  const next = PROJECTS[(PROJECTS.indexOf(p) + 1) % PROJECTS.length]
+  const list = PROJECTS.filter(x => x.group === p.group)
+  const next = list[(list.indexOf(p) + 1) % list.length]
   const more = p.shots.slice(1)
-  const ask = () => onPick(p.kind === 'Client project' ? 'Not sure yet' : 'Custom web app, SaaS or AI')
+  const ask = () => onPick(p.group === 'work' ? 'Not sure yet' : 'Custom web app, SaaS or AI')
+  const dot = p.status === 'Live' ? 'dot' : p.status === 'Beta' || p.status === 'Demo' ? 'dot violet' : 'dot amber'
 
   return (
     <main>
-      <section className="p-head">
-        <div className="wrap">
-          <Link to="/#work" className="back">Back to all work</Link>
-          <h1 className="t-display">{p.name}</h1>
-          <p className="lead">{p.tagline}</p>
+      <section className="p-hero">
+        <div className="hero-light" aria-hidden="true" style={{ top: '-55%', opacity: .7, background: `conic-gradient(from 200deg, ${p.tint}40, rgba(109,74,255,.18), ${p.tint}30, ${p.tint}40)` }} />
+        <div className="wrap" style={{ position: 'relative' }}>
+          <Link to={p.group === 'work' ? '/#work' : '/#products'} className="back"><span style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}><Arrow size={15} /></span>{p.group === 'work' ? 'All client work' : 'All products'}</Link>
+          <div className="p-kind"><span className="st"><span className={dot} />{p.status}</span><span>{p.kind}</span><span>{p.category}</span></div>
+          <Split as="h1" className="p-title" now lines={[p.name]} />
+          <p className="p-tag">{p.tagline}</p>
           <div className="p-actions">
-            {p.url && <a href={p.url} target="_blank" rel="noreferrer" className="btn btn-primary">Open {p.name}</a>}
-            <button className="btn btn-line" onClick={ask}>Ask us for something similar</button>
+            {p.url && <a href={p.url} target="_blank" rel="noreferrer" className="btn btn-ink">Open {p.name} <Out /></a>}
+            <button className="btn btn-ghost" onClick={ask}>Ask us for something similar</button>
           </div>
           <dl className="facts">
             <div><dt>Type</dt><dd>{p.kind}</dd></div>
             <div><dt>Sector</dt><dd>{p.category}</dd></div>
-            <div><dt>Status</dt><dd>{p.status}{p.url ? '' : `, ${p.domain}`}</dd></div>
+            <div><dt>{p.url ? 'Address' : 'Recognition'}</dt><dd>{p.domain}</dd></div>
             <div><dt>Built with</dt><dd>{p.stack.slice(0, 3).join(', ')}</dd></div>
           </dl>
         </div>
       </section>
 
-      <div className="wrap"><Browser project={p} src={p.cover} eager /></div>
+      <div className="wrap"><Frame project={p} src={p.cover} eager /></div>
 
       <section className="section">
         <div className="wrap">
-          <div className="story"><h2 className="t-2">The problem</h2><p>{p.challenge}</p></div>
-          <div className="story"><h2 className="t-2">What we built</h2><p>{p.built}</p></div>
+          <div className="story"><h2>The <span className="serif">problem</span></h2><p>{p.challenge}</p></div>
+          <div className="story"><h2>What we <span className="serif">built</span></h2><p>{p.built}</p></div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <div className="wrap"><div className="p-stats">{p.stats.map(([v, l]) => <div key={l}><b>{v}</b><span>{l}</span></div>)}</div></div>
+
+      <section className="section">
         <div className="wrap">
-          <h2 className="t-2" style={{ marginBottom: 32 }}>What it does</h2>
-          <div className="feat">{p.features.map(([t, d]) => <div key={t}><h3 className="t-3">{t}</h3><p>{d}</p></div>)}</div>
-          <p className="stack">Built with {p.stack.join(', ')}.</p>
+          <div className="section-head"><div><Label>Inside {p.name}</Label><Split className="h-md" lines={['What it does,', <span className="serif nova-ink">feature by feature.</span>]} /></div></div>
+          <div className="feat-grid">{p.features.map(([t, d]) => <div className="feat" key={t}><NovaMark size={20} core={false} /><h4>{t}</h4><p>{d}</p></div>)}</div>
+          <p className="built-with">Built with {p.stack.join(', ')}.</p>
         </div>
       </section>
 
       {more.length > 0 && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
-            <h2 className="t-2" style={{ marginBottom: 32 }}>More from the live product</h2>
-            <div className="more">{more.map(src => <Browser key={src} project={p} src={src} />)}</div>
+            <Label>More from the live product</Label>
+            <div className="more" style={{ marginTop: 10 }}>{more.map(src => <Frame key={src} project={p} src={src} />)}</div>
           </div>
         </section>
       )}
 
       <section className="section" style={{ paddingTop: 0 }}>
-        <div className="wrap section-intro" style={{ marginBottom: 0 }}>
-          <h2 className="t-1">Need something like {p.name}?</h2>
-          <div><p className="lead">Tell us about your business and we'll send a fixed written quote within 24 hours.</p>
-            <button className="btn btn-primary" style={{ marginTop: 24 }} onClick={ask}>Get a quote</button></div>
+        <div className="wrap">
+          <div className="cta-card on-dark">
+            <div className="contact-light" aria-hidden="true" style={{ width: 520, height: 520, left: 'auto', right: '-10%', bottom: '-60%' }} />
+            <div style={{ position: 'relative' }}>
+              <h3 className="h-md">Need something <span className="serif nova-ink">like this?</span></h3>
+              <p className="lede">Tell us about your business and you'll have a fixed written quote within 24 hours.</p>
+            </div>
+            <button className="btn btn-light" style={{ position: 'relative' }} onClick={ask}>Get a quote <Arrow /></button>
+          </div>
         </div>
       </section>
 
       <Link to={`/work/${next.slug}`} className="next">
         <div className="wrap">
-          <span className="muted">Next project</span>
-          <div className="t-display">{next.name}</div>
-          <span className="muted">{next.category}</span>
+          <span className="k">Next {p.group === 'work' ? 'project' : 'product'}</span>
+          <div className="t">{next.name}</div>
         </div>
+        {next.cover && <div className="next-img"><img src={next.cover} alt="" /></div>}
       </Link>
     </main>
   )
