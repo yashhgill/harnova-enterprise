@@ -1,0 +1,113 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="nova.css">
+<style>
+.slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; margin: 40px; }
+.pad { position: absolute; inset: 0; padding: 84px 84px 80px; display: flex; flex-direction: column; }
+.top { display: flex; justify-content: space-between; align-items: center; font-size: 26px; position: relative; z-index: 3; }
+.top .pg { font-size: 24px; color: var(--muted); font-weight: 500; }
+.dark .top .pg { color: rgba(255,255,255,.5); }
+h1, h2 { font-weight: 600; letter-spacing: -0.045em; line-height: .96; position: relative; z-index: 3; }
+h1 .serif, h2 .serif { font-size: 1.07em; letter-spacing: -0.015em; }
+.sub { font-size: 34px; line-height: 1.42; color: var(--muted); letter-spacing: -0.01em; position: relative; z-index: 3; }
+.dark .sub { color: rgba(255,255,255,.66); }
+.swipe { position: absolute; right: 84px; bottom: 80px; font-size: 26px; font-weight: 600; display: flex; align-items: center; gap: 12px; z-index: 5; }
+.star { position: absolute; }
+</style></head>
+<body>
+
+<!-- 1 · Cover -->
+<section class="slide paper" id="s1">
+  <div class="grid-bg" style="mask-image: radial-gradient(ellipse 80% 60% at 60% 70%, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 60% 70%, #000 30%, transparent 75%)"></div>
+  <div class="light" style="width:1100px;height:1100px;right:-380px;bottom:-300px"></div>
+  <div class="pad">
+    <div class="top"><div class="brand" style="font-size:30px"><img src="../../public/icons/harnova-build.svg" style="display:none"><svg width="44" height="44" viewBox="0 0 40 40"><defs><linearGradient id="g1" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#g1)"/><circle cx="20" cy="20" r="2.8" fill="#fff"/></svg>HARNOVA</div><span class="pg">harnova.my</span></div>
+    <h1 style="font-size:132px;margin-top:70px">We build<br>the software<br>that <span class="serif nova">Malaysia<br>runs on.</span></h1>
+  </div>
+  <div style="position:absolute;left:96px;bottom:118px;width:560px;transform:rotate(-4deg);z-index:2" class="frame"><div class="bar"><i></i><i></i><i></i><em>care.harnova.my</em></div><img src="../../public/shots/care-hero.webp"></div>
+  <div style="position:absolute;right:-60px;bottom:250px;width:600px;transform:rotate(5deg);z-index:1" class="frame"><div class="bar"><i></i><i></i><i></i><em>montageevents.my</em></div><img src="../../public/shots/montage-hero.webp"></div>
+  <div style="position:absolute;right:120px;bottom:-40px;width:250px;height:470px;border-radius:44px;border:9px solid #0D0D12;overflow:hidden;transform:rotate(7deg);z-index:3;box-shadow:0 60px 120px -30px rgba(13,13,18,.55)"><img src="../../public/shots/irimba-home.webp" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+  <div class="swipe" style="right:auto;left:84px;bottom:56px;color:var(--muted);font-weight:500">Swipe to meet us</div>
+</section>
+
+<!-- 2 · Who we are -->
+<section class="slide dark" id="s2">
+  <div class="light" style="width:1000px;height:1000px;left:-300px;top:-380px;opacity:.75"></div>
+  <div class="pad">
+    <div class="top"><div class="brand" style="font-size:28px">HARNOVA</div><span class="pg">2 / 5</span></div>
+    <svg class="star" style="right:90px;top:250px" width="250" height="250" viewBox="0 0 40 40"><defs><linearGradient id="g2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#g2)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+    <div style="margin-top:auto">
+      <h2 style="font-size:124px">Hi, we're<br><span class="serif nova">HarNova.</span></h2>
+      <p class="sub" style="margin-top:44px;max-width:860px">A Malaysian software studio. We design and build websites, booking systems, online stores and AI products, and we run five products of our own.</p>
+      <div style="display:flex;gap:16px;margin-top:56px;flex-wrap:wrap">
+        <span style="padding:16px 28px;border-radius:99px;background:#fff;color:#0D0D12;font-size:28px;font-weight:600">Websites</span>
+        <span style="padding:16px 28px;border-radius:99px;border:2px solid rgba(255,255,255,.25);font-size:28px;font-weight:600">Systems</span>
+        <span style="padding:16px 28px;border-radius:99px;border:2px solid rgba(255,255,255,.25);font-size:28px;font-weight:600">AI products</span>
+        <span style="padding:16px 28px;border-radius:99px;border:2px solid rgba(255,255,255,.25);font-size:28px;font-weight:600">FYP coaching</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Icon wall -->
+<section class="slide paper" id="s3">
+  <div class="pad">
+    <div class="top"><div class="brand" style="font-size:28px">HARNOVA</div><span class="pg">3 / 5</span></div>
+    <h2 style="font-size:104px;margin-top:64px">10 platforms.<br><span class="serif nova">All shipped.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px 40px;margin-top:64px">
+      <div class="it"><img class="icon" src="../../public/icons/harnovacare.png"><div><b>HarnovaCare</b><span>Clinic software</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/masterliqours.png"><div><b>Masterliqours</b><span>Online store</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/montage-events.png"><div><b>Montage Events</b><span>Booking system</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/nestly.png"><div><b>Nestly</b><span>Finance planner</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/i-rimba.png"><div><b>I-Rimba</b><span>Money app</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/pathforward.svg"><div><b>PathForward</b><span>AI career coach</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/harnova-build.svg"><div><b>HarNova Build</b><span>Website hosting</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/homely.svg"><div><b>Homely</b><span>Home services</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/medilink.png"><div><b>MediLink</b><span>Health records</span></div></div>
+      <div class="it"><img class="icon" src="../../public/icons/ai-planter.svg"><div><b>AI Planter</b><span>Smart greenhouse</span></div></div>
+    </div>
+  </div>
+  <style>.it{display:flex;align-items:center;gap:24px}.it .icon{width:104px;height:104px}.it b{display:block;font-size:34px;font-weight:600;letter-spacing:-.02em}.it span{display:block;font-size:25px;color:var(--muted);margin-top:4px}</style>
+</section>
+
+<!-- 4 · Proof -->
+<section class="slide dark" id="s4">
+  <div class="light" style="width:900px;height:900px;right:-300px;bottom:-320px;opacity:.7"></div>
+  <div class="pad">
+    <div class="top"><div class="brand" style="font-size:28px">HARNOVA</div><span class="pg">4 / 5</span></div>
+    <h2 style="font-size:104px;margin-top:64px">Built well enough<br><span class="serif nova">to win.</span></h2>
+    <div style="display:grid;gap:22px;margin-top:64px;position:relative;z-index:3">
+      <div class="pc"><img class="icon" src="../../public/icons/medilink.png"><div><b>2nd place</b><span>HIK@M 2026 · MediLink, health records for Malaysian clinics</span></div></div>
+      <div class="pc"><img class="icon" src="../../public/icons/ai-planter.svg"><div><b>1st place</b><span>Program SULAM, FTMK UTeM · AI Planter, smart greenhouse</span></div></div>
+      <div class="pc"><img class="icon" src="../../public/icons/masterliqours.png"><div><b>689 products</b><span>Live and selling on Masterliqours, built by us</span></div></div>
+    </div>
+  </div>
+  <style>.pc{display:flex;align-items:center;gap:30px;padding:30px 34px;border-radius:28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}.pc .icon{width:110px;height:110px;box-shadow:none}.pc b{display:block;font-size:52px;font-weight:600;letter-spacing:-.04em;line-height:1}.pc span{display:block;font-size:25px;color:rgba(255,255,255,.62);margin-top:10px;line-height:1.35}</style>
+</section>
+
+<!-- 5 · Offer + CTA -->
+<section class="slide paper" id="s5">
+  <div class="light" style="width:1000px;height:1000px;left:-350px;bottom:-480px;opacity:.8"></div>
+  <div class="pad">
+    <div class="top"><div class="brand" style="font-size:28px">HARNOVA</div><span class="pg">5 / 5</span></div>
+    <h2 style="font-size:104px;margin-top:64px">Your turn.<br><span class="serif nova">What are we building?</span></h2>
+    <div style="margin-top:56px;border-top:2px solid var(--ink);position:relative;z-index:3">
+      <div class="pr"><span>Business website</span><b>from RM2,500</b></div>
+      <div class="pr"><span>Hosted site on HarNova Build</span><b>RM300/mo</b></div>
+      <div class="pr"><span>Booking or inventory system</span><b>RM6k–15k</b></div>
+      <div class="pr"><span>AI chatbot for WhatsApp</span><b>RM1,500</b></div>
+      <div class="pr"><span>FYP coaching</span><b>from RM100</b></div>
+    </div>
+    <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3">
+      <span style="padding:24px 40px;border-radius:99px;background:var(--ink);color:#fff;font-size:34px;font-weight:600">DM us “QUOTE”</span>
+      <span style="font-size:34px;font-weight:600">harnova.my</span>
+    </div>
+  </div>
+  <style>.pr{display:flex;justify-content:space-between;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line);font-size:34px}.pr span{color:#2A2A33}.pr b{font-weight:600;letter-spacing:-.02em}</style>
+</section>
+
+<!-- Profile picture -->
+<section class="slide dark" id="pfp" style="width:1080px;height:1080px">
+  <div class="light" style="width:900px;height:900px;left:90px;top:90px;opacity:.55;filter:blur(120px)"></div>
+  <svg style="position:absolute;left:290px;top:290px" width="500" height="500" viewBox="0 0 40 40"><defs><linearGradient id="g3" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#g3)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+</section>
+</body></html>

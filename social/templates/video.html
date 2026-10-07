@@ -1,0 +1,111 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="nova.css">
+<style>
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0D0D12; }
+.v { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+@keyframes show { 0% { opacity: 0 } 100% { opacity: 1 } }
+@keyframes hide { 0% { opacity: 1 } 100% { opacity: 0 } }
+@keyframes up { from { transform: translateY(110%) } to { transform: translateY(0) } }
+@keyframes rise { from { opacity: 0; transform: translateY(80px) } to { opacity: 1; transform: none } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6) } 70% { opacity: 1; transform: scale(1.06) } 100% { opacity: 1; transform: scale(1) } }
+@keyframes spinIn { from { opacity: 0; transform: scale(.2) rotate(-120deg) } to { opacity: 1; transform: scale(1) rotate(0) } }
+@keyframes drift { from { transform: translate(-60px, 40px) scale(1) } to { transform: translate(60px, -40px) scale(1.1) } }
+@keyframes zoomOut { from { transform: scale(1); opacity: 1 } to { transform: scale(2.4); opacity: 0 } }
+@keyframes cardIn { from { opacity: 0; transform: translateY(420px) rotate(var(--r0)) scale(.9) } to { opacity: 1; transform: translateY(0) rotate(var(--r)) scale(1) } }
+@keyframes cardUp { from { transform: translateY(0) rotate(var(--r)) } to { transform: translateY(var(--ty)) rotate(var(--r)) scale(.92) } }
+.ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.ln > span { display: inline-block; transform: translateY(110%); animation: up .9s cubic-bezier(.22,1,.36,1) both; }
+.light { animation: drift 18s linear both; }
+.it { display: flex; flex-direction: column; align-items: center; gap: 14px; opacity: 0; animation: pop .55s cubic-bezier(.22,1,.36,1) both; }
+.it img { width: 150px; height: 150px; }
+.it span { font-size: 26px; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+.card { position: absolute; left: 90px; width: 900px; }
+.card .frame { transform: scale(1.0); }
+.chip { display: inline-flex; align-items: center; gap: 16px; padding: 12px 26px 12px 12px; border-radius: 99px; background: #fff; box-shadow: 0 20px 50px -20px rgba(13,13,18,.5); font-size: 30px; font-weight: 600; margin-bottom: 22px; }
+.chip img { width: 56px; height: 56px; border-radius: 14px; }
+.chip small { font-weight: 500; color: var(--muted); font-size: 26px; }
+</style></head>
+<body><div class="v">
+
+<!-- A: logo sting 0–2.6s -->
+<section class="scene dark" data-in="0" data-out="2.6">
+  <div class="light" style="width:1100px;height:1100px;left:-10px;top:400px;opacity:.6"></div>
+  <div style="position:absolute;left:0;right:0;top:760px;display:flex;flex-direction:column;align-items:center;gap:56px;animation: zoomOut .5s 2.2s cubic-bezier(.7,0,.84,0) both">
+    <svg width="260" height="260" viewBox="0 0 40 40" style="animation: spinIn 1s .1s cubic-bezier(.22,1,.36,1) both"><defs><linearGradient id="a" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+    <div class="brand" style="font-size:64px;color:#fff;animation: rise .7s .7s cubic-bezier(.22,1,.36,1) both">HARNOVA</div>
+  </div>
+</section>
+
+<!-- B: headline 2.6–6.4s -->
+<section class="scene paper" data-in="2.6" data-out="6.4">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;right:-420px;bottom:-200px"></div>
+  <h1 style="position:absolute;left:84px;top:430px;font-size:168px;font-weight:600;letter-spacing:-.05em;line-height:.95">
+    <span class="ln"><span style="animation-delay:2.75s">We build</span></span>
+    <span class="ln"><span style="animation-delay:2.9s">the software</span></span>
+    <span class="ln"><span style="animation-delay:3.05s">that</span></span>
+    <span class="ln"><span style="animation-delay:3.3s" class="serif nova">Malaysia</span></span>
+    <span class="ln"><span style="animation-delay:3.45s" class="serif nova">runs on.</span></span>
+  </h1>
+  <p style="position:absolute;left:88px;top:1420px;font-size:40px;color:var(--muted);max-width:820px;line-height:1.35;animation: rise .8s 4.2s cubic-bezier(.22,1,.36,1) both">Websites, systems and AI products, built in Malaysia.</p>
+</section>
+
+<!-- C: the work 6.4–11.4s -->
+<section class="scene paper" data-in="6.2" data-out="11.5">
+  <div class="light" style="width:1100px;height:1100px;left:-300px;top:200px;opacity:.7"></div>
+  <div class="card" data-in="6.3" data-out="7.6" style="top:560px;--r:-2deg;--r0:-8deg;--ty:-40px;animation: cardIn .8s 6.4s cubic-bezier(.22,1,.36,1) both">
+    <div class="chip"><img src="../../public/icons/harnovacare.png">HarnovaCare <small>clinic software</small></div>
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><em>care.harnova.my</em></div><img src="../../public/shots/care-hero.webp"></div>
+  </div>
+  <div class="card" data-in="7.5" data-out="8.8" style="top:560px;--r:2deg;--r0:8deg;--ty:-40px;animation: cardIn .8s 7.6s cubic-bezier(.22,1,.36,1) both">
+    <div class="chip"><img src="../../public/icons/montage-events.png">Montage Events <small>booking system</small></div>
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><em>montageevents.my</em></div><img src="../../public/shots/montage-hero.webp"></div>
+  </div>
+  <div class="card" data-in="8.7" data-out="10.0" style="top:560px;--r:-2deg;--r0:-8deg;--ty:-40px;animation: cardIn .8s 8.8s cubic-bezier(.22,1,.36,1) both">
+    <div class="chip"><img src="../../public/icons/harnova-build.svg">HarNova Build <small>AI site hosting</small></div>
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><em>build.harnova.my</em></div><img src="../../public/shots/build-hero.webp"></div>
+  </div>
+  <div class="card" data-in="9.9" data-out="11.5" style="top:560px;--r:1.5deg;--r0:8deg;--ty:-40px;animation: cardIn .8s 10s cubic-bezier(.22,1,.36,1) both">
+    <div class="chip"><img src="../../public/icons/masterliqours.png">Masterliqours <small>online store</small></div>
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><em>masterliqours.my</em></div><img src="../../public/shots/masterliqours-vault.webp"></div>
+  </div>
+</section>
+
+<!-- D: icon wall 11.4–15s -->
+<section class="scene dark" data-in="11.2" data-out="15.2">
+  <div class="light" style="width:1100px;height:1100px;right:-300px;bottom:100px;opacity:.6"></div>
+  <h2 style="position:absolute;left:84px;top:240px;font-size:130px;font-weight:600;letter-spacing:-.045em;line-height:.98;color:#fff">
+    <span class="ln"><span style="animation-delay:11.4s">10 platforms.</span></span>
+    <span class="ln"><span style="animation-delay:11.55s" class="serif nova">All shipped.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;right:84px;top:640px;display:grid;grid-template-columns:repeat(3,1fr);gap:60px 20px">
+    <div class="it" style="animation-delay:11.9s"><img class="icon" src="../../public/icons/harnovacare.png"><span>HarnovaCare</span></div>
+    <div class="it" style="animation-delay:12.0s"><img class="icon" src="../../public/icons/masterliqours.png"><span>Masterliqours</span></div>
+    <div class="it" style="animation-delay:12.1s"><img class="icon" src="../../public/icons/montage-events.png"><span>Montage</span></div>
+    <div class="it" style="animation-delay:12.2s"><img class="icon" src="../../public/icons/nestly.png"><span>Nestly</span></div>
+    <div class="it" style="animation-delay:12.3s"><img class="icon" src="../../public/icons/i-rimba.png"><span>I-Rimba</span></div>
+    <div class="it" style="animation-delay:12.4s"><img class="icon" src="../../public/icons/pathforward.svg"><span>PathForward</span></div>
+    <div class="it" style="animation-delay:12.5s"><img class="icon" src="../../public/icons/harnova-build.svg"><span>HarNova Build</span></div>
+    <div class="it" style="animation-delay:12.6s"><img class="icon" src="../../public/icons/homely.svg"><span>Homely</span></div>
+    <div class="it" style="animation-delay:12.7s"><img class="icon" src="../../public/icons/medilink.png"><span>MediLink</span></div>
+  </div>
+  <p style="position:absolute;left:84px;top:1430px;font-size:38px;color:rgba(255,255,255,.66);max-width:860px;line-height:1.35;animation: rise .7s 13.1s cubic-bezier(.22,1,.36,1) both">Including 2nd place at HIK@M 2026 and 1st in Program SULAM, FTMK UTeM.</p>
+</section>
+
+<!-- E: CTA 15–18s -->
+<section class="scene paper" data-in="14.9" data-out="99">
+  <div class="grid-bg" style="opacity:.7"></div>
+  <div class="light" style="width:1300px;height:1300px;left:-120px;top:420px"></div>
+  <h2 style="position:absolute;left:84px;top:420px;font-size:150px;font-weight:600;letter-spacing:-.05em;line-height:.96">
+    <span class="ln"><span style="animation-delay:15.1s">Your turn.</span></span>
+    <span class="ln"><span style="animation-delay:15.25s" class="serif nova">What are we</span></span>
+    <span class="ln"><span style="animation-delay:15.4s" class="serif nova">building?</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;top:1080px;display:flex;flex-direction:column;gap:30px;animation: rise .7s 15.8s cubic-bezier(.22,1,.36,1) both">
+    <span style="align-self:flex-start;padding:30px 52px;border-radius:99px;background:#0D0D12;color:#fff;font-size:48px;font-weight:600">DM us “QUOTE”</span>
+    <span style="font-size:44px;font-weight:600">Websites from RM2,500 · harnova.my</span>
+  </div>
+</section>
+
+</div></body></html>
