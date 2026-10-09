@@ -7,8 +7,10 @@
 // Env: IG_USER_ID, IG_ACCESS_TOKEN, SITE_URL (default https://harnova.my), POST_DATE (optional override)
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
-const GRAPH = 'https://graph.facebook.com/v21.0'
 const { IG_USER_ID, IG_ACCESS_TOKEN } = process.env
+// Tokens from 'Instagram API with Instagram Login' start with IG and use graph.instagram.com;
+// tokens from the Facebook Login flow use graph.facebook.com.
+const GRAPH = (IG_ACCESS_TOKEN || '').startsWith('IG') ? 'https://graph.instagram.com/v21.0' : 'https://graph.facebook.com/v21.0'
 const SITE = (process.env.SITE_URL || 'https://harnova.my').replace(/\/$/, '')
 const today = process.env.POST_DATE || new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10)
 const file = `social/queue/${today}.json`

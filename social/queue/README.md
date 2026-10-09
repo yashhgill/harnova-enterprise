@@ -12,4 +12,4 @@ Post one manually: GitHub → Actions → "Post to Instagram" → Run workflow �
 
 ## Secrets (GitHub → Settings → Secrets and variables → Actions)
 - `IG_USER_ID` — the Instagram Business account ID
-- `IG_ACCESS_TOKEN` — a long-lived token with `instagram_basic`, `instagram_content_publish`, `pages_show_list`, `pages_read_engagement`
+- `IG_ACCESS_TOKEN` — a long-lived token. Easiest: Meta app with **Instagram API with Instagram Login** (no Facebook Page needed), scopes `instagram_business_basic` + `instagram_business_content_publish`. These tokens last 60 days; generate a new one before then and update the secret.
