@@ -1,0 +1,42 @@
+name: Post to Instagram
+
+on:
+  schedule:
+    - cron: '30 12 * * *'   # 8:30pm Malaysia time, every day
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Queue date to post (YYYY-MM-DD). Leave empty for today.'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Publish today's post
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          POST_DATE: ${{ github.event.inputs.date }}
+        run: node scripts/ig-post.mjs
+      - name: Record result in the queue
+        if: always()
+        run: |
+          if ! git diff --quiet social/queue; then
+            git config user.name "harnova-bot"
+            git config user.email "hello@harnova.my"
+            git add social/queue
+            git commit -m "Instagram: record post result [skip ci]"
+            git push
+          fi
