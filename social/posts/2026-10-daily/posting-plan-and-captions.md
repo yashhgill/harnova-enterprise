@@ -51,3 +51,11 @@ screenshot this before your viva.
 #5 catches the most people. if you can't show where a feature lives in your code, practise until you can.
 tag your FYP partner
 #fypmalaysia #utem #viva #studentmalaysia #harnova
+
+## 20 Oct: Meme, founder phrases translated (day11-meme-founder-phrases.png)
+5 founder phrases, translated into what you actually mean 💀
+be honest.
+number 5 is the one nobody warns you about when you start building, because the last 10% of an app always takes as long as the first 90% did.
+ask any dev.
+comment the number you're guilty of 👇
+#startup #founder #buildinpublic #startuplife #harnova
