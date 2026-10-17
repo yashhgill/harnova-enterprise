@@ -59,3 +59,11 @@ number 5 is the one nobody warns you about when you start building, because the 
 ask any dev.
 comment the number you're guilty of 👇
 #startup #founder #buildinpublic #startuplife #harnova
+
+## 23 Oct: Tip, 5-line app brief (day14-tip-app-brief.png)
+write these 5 lines before you pay anyone to build your app.
+most app quotes go wrong before a single line of code gets written. the idea lives in your head, the dev guesses the rest, and you pay for every guess twice.
+so fill this in first.
+got more than three things on line 3? cross some out. they'll still be there for version 2, I promise.
+save this for your next build ✦
+#startup #founder #appdevelopment #buildinpublic #harnova
