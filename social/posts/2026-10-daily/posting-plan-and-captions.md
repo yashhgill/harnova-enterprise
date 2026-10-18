@@ -67,3 +67,12 @@ so fill this in first.
 got more than three things on line 3? cross some out. they'll still be there for version 2, I promise.
 save this for your next build ✦
 #startup #founder #appdevelopment #buildinpublic #harnova
+
+## 24 Oct: Meme, 11pm WhatsApp bookings (day15-meme-whatsapp-bookings.png)
+11pm and you're still taking bookings by WhatsApp 💀
+"is Saturday 3pm free?" sounds like one quick reply. it's never one.
+you open the calendar, scroll to check who paid a deposit, answer, and 9 minutes later they want Sunday instead. repeat until midnight.
+a booking page takes that whole loop off your phone. customers see the free slots, pay the deposit and get a confirmation email while you sleep.
+we built this for Montage Events in Shah Alam and for Homely, a home-services platform. booking systems start at RM6,000.
+share this with a business owner who deserves a night off 👇
+#smallbusiness #smallbusinessowner #entrepreneur #bookingsystem #harnova
