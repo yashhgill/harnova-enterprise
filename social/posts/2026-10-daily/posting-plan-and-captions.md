@@ -76,3 +76,11 @@ a booking page takes that whole loop off your phone. customers see the free slot
 we built this for Montage Events in Shah Alam and for Homely, a home-services platform. booking systems start at RM6,000.
 share this with a business owner who deserves a night off 👇
 #smallbusiness #smallbusinessowner #entrepreneur #bookingsystem #harnova
+
+## 25 Oct: Meme, payday on the 25th, broke by the 3rd (day16-meme-payday-broke.png)
+payday on 25 Oct. you're broke by 3 Nov 💀
+the money doesn't go in one big hit. it leaks. a dinner here, a Shopee cart there, one round of teh tarik for the whole table. then 1 Nov shows up with rent, the phone bill and PTPTN.
+part of the problem is your bank app. it shows everything in the account, including money that already belongs to next week's bills. so it lies.
+that's why we built I-Rimba. it sets your bills aside first and shows 1 number: what's safe to spend today. you log spending by typing it, like "spent 12 on lunch with TNG". the demo is live at irimba.harnova.my.
+share this with the friend who's already broke 👇
+#gaji #malaysia #personalfinancemalaysia #duit #harnova

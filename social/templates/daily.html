@@ -66,6 +66,17 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .nt .hd { display: flex; justify-content: space-between; font-size: 22px; font-weight: 700; color: rgba(255,255,255,.62); letter-spacing: .02em; }
 .nt .tx { font-size: 31px; line-height: 1.25; letter-spacing: -.01em; margin-top: 3px; }
 .nt.ghost { margin: -8px 34px 0; padding: 14px; background: rgba(255,255,255,.07); border-radius: 0 0 26px 26px; display: block; text-align: center; font-size: 22px; font-weight: 600; color: rgba(255,255,255,.55); }
+/* payday countdown: balance by date */
+.pd { background: #fff; border-radius: 30px; padding: 14px 36px; margin-top: 48px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); }
+.pd .r { display: grid; grid-template-columns: 118px 1fr 150px; gap: 0 22px; align-items: center; padding: 28px 0; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.pd .r:last-child { border-bottom: 0; }
+.pd .dt { font-family: 'Unbounded'; font-weight: 700; font-size: 26px; letter-spacing: .02em; padding: 12px 0; border-radius: 16px; background: #0D0D12; color: #fff; text-align: center; }
+.pd .ev { font-size: 34px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.pd .bal { height: 22px; border-radius: 11px; background: rgba(13,13,18,.08); overflow: hidden; }
+.pd .bal i { display: block; height: 100%; border-radius: 11px; background: var(--nova); }
+.pd .bal i.low { background: #FF3D8B; }
+.rb { display: flex; align-items: center; gap: 22px; margin-top: 36px; font-size: 31px; line-height: 1.3; }
+.rb img { width: 72px; height: 72px; flex-shrink: 0; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -236,6 +247,26 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
       <div class="nt ghost">+ 46 more notifications</div>
     </div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a10" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a10)"/></svg>HARNOVA</div><span class="muted">a booking page never sleeps</span></div>
+  </div>
+</section>
+
+<!-- M8: payday on the 25th, broke by the 3rd -->
+<section class="slide paper" id="d11">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-380px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">malaysians, be honest</div>
+    <h2 style="font-size:92px;margin-top:20px">payday on the 25th.<br><span class="serif nova">you’re broke by the 3rd.</span></h2>
+    <div class="pd">
+      <div class="r"><div class="dt">25th</div><div class="ev">gaji masuk 🎉</div><div class="bal"><i style="width:100%"></i></div></div>
+      <div class="r"><div class="dt">26th</div><div class="ev">“I deserve this” dinner</div><div class="bal"><i style="width:84%"></i></div></div>
+      <div class="r"><div class="dt">27th</div><div class="ev">checked out the “just looking” cart</div><div class="bal"><i style="width:63%"></i></div></div>
+      <div class="r"><div class="dt">28th</div><div class="ev">teh tarik round, my treat</div><div class="bal"><i style="width:55%"></i></div></div>
+      <div class="r"><div class="dt">1st</div><div class="ev">rent, phone bill, PTPTN</div><div class="bal"><i class="low" style="width:16%"></i></div></div>
+      <div class="r"><div class="dt">3rd</div><div class="ev">bank app, opened with one eye</div><div class="bal"><i class="low" style="width:5%"></i></div></div>
+    </div>
+    <div class="rb"><img class="icon" src="../../public/icons/i-rimba.png"><span><b>I-Rimba</b> sets your bills aside first, then shows one number: <b>what’s safe to spend today.</b></span></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a11" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a11)"/></svg>HARNOVA</div><span class="muted">share this with the friend who’s broke</span></div>
   </div>
 </section>
 
