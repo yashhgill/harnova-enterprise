@@ -84,3 +84,18 @@ part of the problem is your bank app. it shows everything in the account, includ
 that's why we built I-Rimba. it sets your bills aside first and shows 1 number: what's safe to spend today. you log spending by typing it, like "spent 12 on lunch with TNG". the demo is live at irimba.harnova.my.
 share this with the friend who's already broke 👇
 #gaji #malaysia #personalfinancemalaysia #duit #harnova
+
+## 27 Oct: Product showcase, AI Planter how it works (day17-showcase-ai-planter.png)
+you don't need a green thumb. you need 2 numbers, checked 24/7 🌱
+
+if you've ever grown anything, you know the routine. you guess. a bit more water today, the fan on when it feels hot, and you hope the plants agree.
+
+we didn't want to guess. so our ESP32-S3 reads temperature and humidity around the clock and streams them to a FastAPI backend. when conditions change, relays switch the pump and fan on their own. then AI turns the readings into growing advice you'd actually follow, in English or Bahasa Malaysia, on an app that installs on any phone.
+
+that last part mattered most to us. most IoT dashboards are made for engineers. ours is for the person holding the watering can.
+
+it's called AI Planter. it won 1st place at Program SULAM, FTMK UTeM.
+
+building an IoT project this semester? save this for your wiring plan ✦
+
+#iot #esp32 #computerscience #csstudent #harnova

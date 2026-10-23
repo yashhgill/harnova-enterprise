@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-10-27-showcase-ai-planter/1.jpg"
+  ],
+  "caption": "you don't need a green thumb. you need 2 numbers, checked 24/7 🌱\n\nif you've ever grown anything, you know the routine. you guess. a bit more water today, the fan on when it feels hot, and you hope the plants agree.\n\nwe didn't want to guess. so our ESP32-S3 reads temperature and humidity around the clock and streams them to a FastAPI backend. when conditions change, relays switch the pump and fan on their own. then AI turns the readings into growing advice you'd actually follow, in English or Bahasa Malaysia, on an app that installs on any phone.\n\nthat last part mattered most to us. most IoT dashboards are made for engineers. ours is for the person holding the watering can.\n\nit's called AI Planter. it won 1st place at Program SULAM, FTMK UTeM.\n\nbuilding an IoT project this semester? save this for your wiring plan ✦\n\n#iot #esp32 #computerscience #csstudent #harnova",
+  "slug": "showcase-ai-planter"
+}
