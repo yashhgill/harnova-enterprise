@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-10-28-tip-github-readme/1.jpg"
+  ],
+  "caption": "5 lines your GitHub README needs before you send that job application.\n\nwhen you apply, the repo link is the closest thing you have to a portfolio. and a lot of FYP repos open on the default README: the project name and nothing else.\n\nso whoever clicks has to guess what it does, find out how to run it, and work out which part was yours. most people won't. they close the tab.\n\nthis takes about 15 minutes per repo. do your top 2 tonight and pin them to your profile.\n\nline 5 matters most for group projects. if 4 people built it, write down exactly what you built, because the interviewer will ask about it.\n\nsave this for your next application ✦\n\n#github #computerscience #csstudent #softwareengineering #harnova",
+  "slug": "tip-github-readme"
+}

@@ -99,3 +99,18 @@ it's called AI Planter. it won 1st place at Program SULAM, FTMK UTeM.
 building an IoT project this semester? save this for your wiring plan ✦
 
 #iot #esp32 #computerscience #csstudent #harnova
+
+## 28 Oct: Tip, 5 lines your GitHub README needs (day18-tip-github-readme.png)
+5 lines your GitHub README needs before you send that job application.
+
+when you apply, the repo link is the closest thing you have to a portfolio. and a lot of FYP repos open on the default README: the project name and nothing else.
+
+so whoever clicks has to guess what it does, find out how to run it, and work out which part was yours. most people won't. they close the tab.
+
+this takes about 15 minutes per repo. do your top 2 tonight and pin them to your profile.
+
+line 5 matters most for group projects. if 4 people built it, write down exactly what you built, because the interviewer will ask about it.
+
+save this for your next application ✦
+
+#github #computerscience #csstudent #softwareengineering #harnova

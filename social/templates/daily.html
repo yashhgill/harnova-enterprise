@@ -90,6 +90,16 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .aw .n { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
 .aw .d { font-size: 26px; color: var(--muted); margin-top: 2px; }
 .aw .badge { margin-left: auto; font-family: 'Unbounded'; font-weight: 800; font-size: 22px; letter-spacing: .06em; padding: 16px 22px; border-radius: 999px; background: #0D0D12; color: #fff; }
+/* readme: file window with sections */
+.rm { background: #fff; border-radius: 30px; margin-top: 40px; margin-bottom: 22px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.rm .bar { display: flex; align-items: center; gap: 12px; padding: 18px 32px; background: #0D0D12; color: #fff; font-family: 'JetBrains Mono'; font-size: 26px; }
+.rm .bar i { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.25); display: block; }
+.rm .bar span { margin-left: 14px; }
+.rm .f { display: grid; grid-template-columns: 56px 1fr; gap: 0 22px; padding: 21px 40px; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.rm .f:last-child { border-bottom: 0; }
+.rm .n { grid-row: span 2; font-family: 'JetBrains Mono'; font-size: 32px; font-weight: 700; color: #6D4AFF; margin-top: 2px; }
+.rm .l { font-size: 37px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.rm .h { font-size: 27px; color: var(--muted); margin-top: 6px; line-height: 1.3; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -298,6 +308,26 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="aw"><img class="icon" src="../../public/icons/ai-planter.svg"><div><div class="n">AI Planter</div><div class="d">Program SULAM, FTMK UTeM</div></div><div class="badge">1ST PLACE</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a12" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a12)"/></svg>HARNOVA</div><span class="muted">save this for your next IoT build</span></div>
+  </div>
+</section>
+
+<!-- T4: GitHub README, 5 lines -->
+<section class="slide paper" id="d13">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;bottom:-400px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">CS students, screenshot this</div>
+    <h2 style="font-size:76px;margin-top:20px">5 lines your README needs<br><span class="serif nova">before you send that<br>job application.</span></h2>
+    <div class="rm">
+      <div class="bar"><i></i><i></i><i></i><span>README.md</span></div>
+      <div class="f"><div class="n">#1</div><div class="l">What it does, in one sentence</div><div class="h">“a queue app for barbershops”, not “my FYP”.</div></div>
+      <div class="f"><div class="n">#2</div><div class="l">A screenshot or GIF, up top</div><div class="h">show it running before anyone has to scroll.</div></div>
+      <div class="f"><div class="n">#3</div><div class="l">The live demo link</div><div class="h">if it’s deployed, it goes before everything else.</div></div>
+      <div class="f"><div class="n">#4</div><div class="l">How to run it</div><div class="h">the exact commands. copy, paste, works.</div></div>
+      <div class="f"><div class="n">#5</div><div class="l">What you built</div><div class="h">group project? name your part. they will ask.</div></div>
+    </div>
+    <p class="muted" style="font-size:30px;margin-top:-6px;line-height:1.4">Most people only click your repo once. Make that one click count.</p>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a13" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a13)"/></svg>HARNOVA</div><span class="muted">save this ✦</span></div>
   </div>
 </section>
 
