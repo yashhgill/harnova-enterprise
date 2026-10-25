@@ -114,3 +114,18 @@ line 5 matters most for group projects. if 4 people built it, write down exactly
 save this for your next application ✦
 
 #github #computerscience #csstudent #softwareengineering #harnova
+
+## 29 Oct: Meme, 0 users and the group chat is scaling for 1 million (day19-meme-zero-users.png)
+0 users and your group chat is already scaling for 1 million 💀
+
+we've all been in this chat. day 41, still no launch. one person wants microservices, one wants Kubernetes on AWS, and one is in Figma drawing an admin panel for 50 staff you haven't hired.
+
+it feels like progress. mostly it's a way to put off the scary part: showing it to a stranger who might say no.
+
+your first 10 users won't care what it runs on. they care if it fixes their problem. one simple app on one server can carry you a long way, and you can rebuild the parts that break once real people are breaking them.
+
+so skip the architecture diagram this week. send the link to 10 people who have the problem by Friday, then watch what they actually do.
+
+share this with the co-founder who's already picked a tech stack 👇
+
+#startup #founder #buildinpublic #csstudent #harnova
