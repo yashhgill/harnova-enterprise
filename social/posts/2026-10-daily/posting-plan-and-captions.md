@@ -129,3 +129,22 @@ so skip the architecture diagram this week. send the link to 10 people who have 
 share this with the co-founder who's already picked a tech stack 👇
 
 #startup #founder #buildinpublic #csstudent #harnova
+
+## 31 Oct: Meme, 4 tech horror stories, Halloween (day20-meme-tech-horror.png)
+4 tech horror stories you've lived through. 1 is still happening 🎃
+
+the first 3 are classics. the demo that ran perfectly at 2am in your room dies on the lecturer's laptop at 9. the FYP lived on 1 desktop. dead. and the .com expired because the renewal email went to a Gmail nobody opens.
+
+number 4 is quieter. a freelancer built your site in 2024, then stopped replying, and the hosting, the domain and the admin login all still sit in his account, so you can't change 1 price on your own website without messaging someone who left you on read months ago.
+
+each has a boring fix:
+1. run the demo on a 2nd laptop the night before.
+2. push to GitHub daily. yes, daily.
+3. turn on auto-renew, with an email you check.
+4. before the final payment, get the source code and every login in your own name.
+
+that last one is how we work at HarNova. after the final payment, you get the complete source code and all the accounts. no lock-in. scary, right?
+
+share this with someone who's survived one 👇
+
+#halloween #smallbusiness #startup #csstudent #harnova

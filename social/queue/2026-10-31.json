@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-10-31-meme-tech-horror/1.jpg"
+  ],
+  "caption": "4 tech horror stories you've lived through. 1 is still happening 🎃\n\nthe first 3 are classics. the demo that ran perfectly at 2am in your room dies on the lecturer's laptop at 9. the FYP lived on 1 desktop. dead. and the .com expired because the renewal email went to a Gmail nobody opens.\n\nnumber 4 is quieter. a freelancer built your site in 2024, then stopped replying, and the hosting, the domain and the admin login all still sit in his account, so you can't change 1 price on your own website without messaging someone who left you on read months ago.\n\neach has a boring fix:\n1. run the demo on a 2nd laptop the night before.\n2. push to GitHub daily. yes, daily.\n3. turn on auto-renew, with an email you check.\n4. before the final payment, get the source code and every login in your own name.\n\nthat last one is how we work at HarNova. after the final payment, you get the complete source code and all the accounts. no lock-in. scary, right?\n\nshare this with someone who's survived one 👇\n\n#halloween #smallbusiness #startup #csstudent #harnova",
+  "slug": "meme-tech-horror"
+}
