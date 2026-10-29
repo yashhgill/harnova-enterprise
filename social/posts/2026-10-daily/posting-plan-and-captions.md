@@ -163,3 +163,23 @@ it's in beta at nestly.harnova.my. email sign-up, PIN lock. nothing fancy.
 share this with the friend who has 3 pay-later apps 👇
 
 #buynowpaylater #personalfinance #moneytips #budgeting #harnova
+
+## 2 Nov: Tip, 5 Google Maps fixes before your next customer searches (day22-tip-google-maps.png)
+5 Google Maps fixes before your next customer searches for you.
+
+think about how you pick a place to eat in a new area. you don't type a name. you search "coffee near me", look at 3 pins, and choose one before you've opened a single website.
+
+your customers do the same thing to your shop. so the listing is doing the selling, and a lot of them were set up once and never touched again. old hours, 1 blurry photo, a phone number that rings out.
+
+open your Business Profile tonight and check these 5:
+1. the exact category. "café", not just "restaurant".
+2. your hours, plus holiday hours.
+3. real photos: the shop front, inside, your best product.
+4. the call button and the website link. tap both yourself.
+5. replies to your reviews, the bad ones first.
+
+it's free and it takes about 10 minutes. the shop next door might not bother.
+
+save this and do it before the weekend ✦
+
+#smallbusiness #googlemaps #localbusiness #smallbusinesstips #harnova
