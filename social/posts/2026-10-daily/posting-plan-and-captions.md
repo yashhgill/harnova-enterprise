@@ -183,3 +183,18 @@ it's free and it takes about 10 minutes. the shop next door might not bother.
 save this and do it before the weekend ✦
 
 #smallbusiness #googlemaps #localbusiness #smallbusinesstips #harnova
+
+## 4 Nov: Meme, 5 names on your group report, only 1 wrote the code (day23-meme-group-report.png)
+5 names on your group report. only 1 of you wrote the code 💀
+
+week 1, everyone's keen. by week 5 the group chat is just you sending GitHub links and 4 blue ticks. the report goes in with 5 names on it and the same mark for all 5.
+
+the funny part ends at the presentation. the lecturer asks 1 of the other 4 how the login works, and the whole room turns to look at you.
+
+a split that holds up better next time: give each person 1 feature to own end to end. the screen, the logic and the bit of database behind it. everyone commits from their own GitHub account, so the history shows who built what, and everyone can explain their own part when the questions start.
+
+if your FYP is next, we coach students through it. you write the code, we help you plan it, debug it and practise for the viva. details at harnova.my.
+
+share this with the person who carried your group 👇
+
+#csstudent #groupproject #finalyearproject #studentlife #harnova

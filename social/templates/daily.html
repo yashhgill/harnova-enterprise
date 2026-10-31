@@ -153,6 +153,21 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .gm .ph { display: flex; gap: 10px; }
 .gm .ph i { width: 74px; height: 50px; border-radius: 12px; display: block; }
 .gm .h { font-size: 26px; color: var(--muted); margin-top: 6px; line-height: 1.3; }
+/* group report cover sheet: 5 names, 1 coder */
+.cv { background: #fff; border-radius: 30px; margin-top: 44px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; position: relative; }
+.cv .top { padding: 26px 40px 22px; background: #0D0D12; color: #fff; display: flex; justify-content: space-between; align-items: baseline; }
+.cv .top b { font-family: 'Unbounded'; font-weight: 700; font-size: 26px; letter-spacing: .1em; }
+.cv .top span { font-family: 'JetBrains Mono'; font-size: 22px; color: rgba(255,255,255,.55); }
+.cv .hd { display: grid; grid-template-columns: 56px 300px 1fr; gap: 0 20px; padding: 18px 40px 6px; font-size: 20px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.cv .r { display: grid; grid-template-columns: 56px 300px 1fr; gap: 0 20px; align-items: center; padding: 21px 40px; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.cv .r:last-child { border-bottom: 0; }
+.cv .n { font-family: 'JetBrains Mono'; font-size: 30px; font-weight: 700; color: #6D4AFF; }
+.cv .nm { font-size: 33px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.cv .dd { font-size: 27px; color: var(--muted); line-height: 1.3; }
+.cv .r.you { background: linear-gradient(90deg, rgba(109,74,255,.08), rgba(34,184,230,.06)); }
+.cv .r.you .dd { color: #0D0D12; font-weight: 500; }
+.gr { display: flex; align-items: center; justify-content: flex-end; gap: 30px; margin-top: 34px; margin-bottom: 40px; padding-right: 20px; font-size: 32px; font-weight: 600; color: var(--muted); }
+.stamp { transform: rotate(-6deg); border: 5px solid #FF3D8B; color: #FF3D8B; border-radius: 18px; padding: 16px 30px; font-family: 'Unbounded'; font-weight: 800; font-size: 34px; letter-spacing: .06em; line-height: 1.15; text-align: center; background: rgba(255,255,255,.88); }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -465,6 +480,27 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
       <div class="f"><div class="n">5</div><div class="v">Reviews</div><div class="h">reply to every one. the bad ones first.</div></div>
     </div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a17" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a17)"/></svg>HARNOVA</div><span class="muted">save this ✦</span></div>
+  </div>
+</section>
+
+<!-- M11: group report, 5 names, 1 coder -->
+<section class="slide paper" id="d18">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;bottom:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">group project, submission week</div>
+    <h2 style="font-size:86px;margin-top:20px">5 names on your<br>group report.<br><span class="serif nova">only 1 of you wrote the code.</span></h2>
+    <div class="cv">
+      <div class="top"><b>GROUP REPORT</b><span>group 7 · final submission</span></div>
+      <div class="hd"><span>#</span><span>member</span><span>contribution</span></div>
+      <div class="r you"><div class="n">01</div><div class="nm">you</div><div class="dd">frontend, backend, database. fixed it at 3am</div></div>
+      <div class="r"><div class="n">02</div><div class="nm">the slides one</div><div class="dd">picked a font. changed it 4 times</div></div>
+      <div class="r"><div class="n">03</div><div class="nm">“I’ll do the report”</div><div class="dd">did the cover page. the night before</div></div>
+      <div class="r"><div class="n">04</div><div class="nm">the ghost</div><div class="dd">last seen in week 3</div></div>
+      <div class="r"><div class="n">05</div><div class="nm">the vibes</div><div class="dd">week 12: “wait, what’s our topic?”</div></div>
+    </div>
+    <div class="gr">final grade:<div class="stamp">SAME MARK<br>FOR ALL 5</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a18" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a18)"/></svg>HARNOVA</div><span class="muted">tag your group 👀</span></div>
   </div>
 </section>
 
