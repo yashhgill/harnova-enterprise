@@ -168,6 +168,22 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .cv .r.you .dd { color: #0D0D12; font-weight: 500; }
 .gr { display: flex; align-items: center; justify-content: flex-end; gap: 30px; margin-top: 34px; margin-bottom: 40px; padding-right: 20px; font-size: 32px; font-weight: 600; color: var(--muted); }
 .stamp { transform: rotate(-6deg); border: 5px solid #FF3D8B; color: #FF3D8B; border-radius: 18px; padding: 16px 30px; font-family: 'Unbounded'; font-weight: 800; font-size: 34px; letter-spacing: .06em; line-height: 1.15; text-align: center; background: rgba(255,255,255,.88); }
+/* file explorer: stock spreadsheet versions */
+.fx { flex-shrink: 0; background: #16161E; border-radius: 30px; margin-top: 40px; box-shadow: 0 0 0 2px rgba(255,255,255,.07), 0 40px 90px -40px rgba(0,0,0,.8); overflow: hidden; }
+.fx .top { display: flex; align-items: center; gap: 12px; padding: 18px 32px; background: #1F1F2A; }
+.fx .top i { width: 16px; height: 16px; border-radius: 50%; background: #3A3A48; }
+.fx .top em { font-style: normal; font-family: 'JetBrains Mono'; font-size: 22px; color: rgba(255,255,255,.5); margin-left: 14px; }
+.fx .r { display: grid; grid-template-columns: 44px 1fr; gap: 0 22px; padding: 9px 32px; border-bottom: 2px solid rgba(255,255,255,.05); align-items: center; }
+.fx .r:last-child { border-bottom: 0; }
+.fx .ic { grid-row: span 2; width: 44px; height: 54px; border-radius: 8px; background: #1F8F55; position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 7px; font-family: 'Unbounded'; font-weight: 800; font-size: 11px; color: #fff; letter-spacing: .04em; }
+.fx .ic::after { content: ''; position: absolute; right: 0; top: 0; width: 16px; height: 16px; background: linear-gradient(225deg, #16161E 50%, rgba(255,255,255,.35) 50%); border-radius: 0 9px 0 4px; }
+.fx .fn { font-family: 'JetBrains Mono'; font-size: 27px; color: #fff; letter-spacing: -.01em; }
+.fx .dd { font-size: 23px; color: rgba(255,255,255,.55); line-height: 1.25; }
+.fx .r.hot { background: linear-gradient(90deg, rgba(255,61,139,.16), rgba(109,74,255,.1)); }
+.fx .r.hot .dd { color: #FF7AB0; font-weight: 600; }
+.qs { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 22px; margin-bottom: 14px; font-size: 32px; font-weight: 600; color: rgba(255,255,255,.7); }
+.dark .stamp { background: rgba(13,13,18,.9); }
+.qs .stamp { font-size: 29px; padding: 12px 26px; border-width: 4px; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -501,6 +517,18 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="gr">final grade:<div class="stamp">SAME MARK<br>FOR ALL 5</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a18" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a18)"/></svg>HARNOVA</div><span class="muted">tag your group 👀</span></div>
+  </div>
+</section>
+
+<!-- M12: stock spreadsheet, 7 versions -->
+<section class="slide dark" id="d19">
+  <div class="light" style="width:950px;height:950px;left:-420px;top:-420px;opacity:.5"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">small business inventory, a documentary</div>
+    <h2 style="font-size:78px;margin-top:18px">7 stock spreadsheets<br><span class="serif nova">and you still can’t say<br>what’s in stock.</span></h2>
+    <div class="fx"><div class="top"><i></i><i></i><i></i><em>~/Desktop/stock</em></div><div class="r "><div class="ic">XLS</div><div class="fn">stock.xlsx</div><div class="dd">the original. nobody trusts it</div></div><div class="r "><div class="ic">XLS</div><div class="fn">stock_v2.xlsx</div><div class="dd">someone fixed 1 formula</div></div><div class="r "><div class="ic">XLS</div><div class="fn">stock_FINAL.xlsx</div><div class="dd">it was not final</div></div><div class="r "><div class="ic">XLS</div><div class="fn">stock_FINAL_v2.xlsx</div><div class="dd">emailed to yourself “just in case”</div></div><div class="r "><div class="ic">XLS</div><div class="fn">stock_FINAL (1).xlsx</div><div class="dd">downloaded from WhatsApp twice</div></div><div class="r "><div class="ic">XLS</div><div class="fn">stock_branch2_COPY.xlsx</div><div class="dd">the other branch has its own</div></div><div class="r hot"><div class="ic">XLS</div><div class="fn">stock_FINAL_REAL_use_this.xlsx</div><div class="dd">open on 3 laptops right now</div></div></div>
+    <div class="qs">a customer just ordered the last 1.<div class="stamp">WHICH FILE<br>IS RIGHT?</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a19" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a19)"/></svg>HARNOVA</div><span class="muted">how many do you have? 👇</span></div>
   </div>
 </section>
 

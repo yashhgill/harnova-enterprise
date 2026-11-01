@@ -198,3 +198,18 @@ if your FYP is next, we coach students through it. you write the code, we help y
 share this with the person who carried your group 👇
 
 #csstudent #groupproject #finalyearproject #studentlife #harnova
+
+## 5 Nov: Meme, 7 stock spreadsheets and you still can't say what's in stock (day24-meme-stock-spreadsheets.png)
+7 stock spreadsheets and you still can't say what's in stock 📊
+
+it starts with 1 file. then someone fixes a formula and saves a copy. someone else downloads it from WhatsApp. the second branch starts its own. now there are 7, and each one has a different number for the same item.
+
+then a customer orders the last 1, and you're checking 3 files and a WhatsApp chat before you can reply.
+
+the free fix comes first: keep 1 file, online, in a place everyone opens. 1 person owns it, nobody saves copies, and version history shows who changed what. that alone gets most small shops back to 1 number.
+
+when it's more than a spreadsheet can handle, like stock across branches, staff updating it all day, orders coming in from your site, that's when a proper inventory system starts to make sense. we build those, details at harnova.my.
+
+comment how many versions are on your laptop right now 👇
+
+#smallbusiness #inventorymanagement #smallbusinessowner #entrepreneur #harnova
