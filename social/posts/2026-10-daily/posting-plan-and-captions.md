@@ -213,3 +213,20 @@ when it's more than a spreadsheet can handle, like stock across branches, staff 
 comment how many versions are on your laptop right now 👇
 
 #smallbusiness #inventorymanagement #smallbusinessowner #entrepreneur #harnova
+
+## 6 Nov: Showcase, 9 WhatsApp messages and your customer still hasn't booked you (day25-showcase-homely.png)
+9 WhatsApp messages and your customer still hasn't booked you 🔧
+
+you know this chat. they ask the price, you say it depends. they ask about tomorrow, the morning's full. by message 7 they want to know how the deposit works, and message 9 is "ok let me ask my wife first".
+
+nobody did anything wrong. the customer just had to pull every answer out of you, 1 message at a time, and somewhere around message 5 the urge to book wore off.
+
+that's the gap Homely closes. it's a home-maintenance site we built with clear from-prices for aircond, electrical and appliance services. customers pick a service, pick a slot, confirm payment by QR and get a printable receipt. behind it, 1 admin back office runs the technicians, appointments and reports.
+
+the questions every customer asks get answered on the page, before they ever open WhatsApp.
+
+booking systems like this are RM6,000–15,000, details at harnova.my.
+
+comment how many messages your last booking took 👇
+
+#smallbusiness #bookingsystem #homeservices #smallbusinessowner #harnova
