@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "reel",
+  "media": [
+    "social/2026-11-07-reel-db-columns/1.mp4"
+  ],
+  "caption": "14 migrations in and you're still renaming 1 database column 🗂️\n\nit starts small. week 2 you call it name. week 4 the login screen wants username, so you add that. week 6 someone in the group adds user_name because they didn't see the first two. now 4 screens read 3 different columns and nobody knows which phone number is the real one.\n\nthe code isn't really the problem. the tables never got planned, so every new screen quietly reshapes them.\n\nthe fix takes 1 page and an afternoon, before any code:\n1. list the nouns. every thing your app stores gets its own table.\n2. draw who owns what. 1 user, many bookings means bookings gets a user_id.\n3. walk through every screen and check it can get its data in 1 query.\n\nrenaming a box on paper costs nothing. renaming it in week 9 costs a migration and a weekend.\n\nif you want a second pair of eyes on it, our FYP system design consult is RM100 for 1 hour. we coach you through the plan, you build it yourself. details at harnova.my.\n\ncomment your FYP title and the first table you'd draw 👇\n\n#csstudent #database #finalyearproject #codinglife #harnova",
+  "slug": "reel-db-columns"
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="nova.css">
+<style>
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0D0D12; }
+.v { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+@keyframes up { from { transform: translateY(110%) } to { transform: translateY(0) } }
+@keyframes rise { from { opacity: 0; transform: translateY(80px) } to { opacity: 1; transform: none } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6) } 70% { opacity: 1; transform: scale(1.06) } 100% { opacity: 1; transform: scale(1) } }
+@keyframes msg { from { opacity: 0; transform: translateY(40px) scale(.96) } to { opacity: 1; transform: none } }
+@keyframes drift { from { transform: translate(-60px, 40px) scale(1) } to { transform: translate(60px, -40px) scale(1.1) } }
+@keyframes dots { 0%,100% { opacity: .25 } 50% { opacity: 1 } }
+.ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.ln > span { display: inline-block; transform: translateY(110%); animation: up .8s cubic-bezier(.22,1,.36,1) both; }
+.light { animation: drift 18s linear both; }
+.lbl { position: absolute; left: 84px; font-family: 'JetBrains Mono'; font-size: 30px; letter-spacing: .14em; }
+
+/* editor + erd */
+.code { position: absolute; left: 84px; right: 84px; border-radius: 36px; background: #16161E; border: 3px solid #2A2A35; padding: 34px 40px; font-family: 'JetBrains Mono'; font-size: 34px; line-height: 1.55; color: #C9C9D6; box-shadow: 0 80px 140px -40px rgba(0,0,0,.8); }
+.code .top { display: flex; gap: 12px; margin-bottom: 22px; }
+.code .top i { width: 18px; height: 18px; border-radius: 50%; background: #3A3A46; }
+.code .top b { margin-left: 18px; font-weight: 400; font-size: 26px; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+.code .r { display: block; white-space: nowrap; opacity: 0; animation: msg .4s cubic-bezier(.22,1,.36,1) both; }
+.code .r.on { opacity: 1; animation: none; }
+.code .k { color: #A78BFA; } .code .s { color: #7DD3FC; } .code .d { color: rgba(255,255,255,.35); }
+.code .bad { background: rgba(255,61,139,.18); color: #FF7FB0; border-radius: 8px; padding: 0 8px; margin-left: -8px; }
+.tbl { position: absolute; width: 380px; border-radius: 30px; background: #fff; box-shadow: 0 6px 14px rgba(13,13,18,.08), 0 50px 100px -30px rgba(13,13,18,.35); overflow: hidden; opacity: 0; animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.tbl h4 { padding: 22px 28px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 32px; color: #fff; background: #0D0D12; }
+.tbl p { padding: 14px 28px; font-family: 'JetBrains Mono'; font-size: 28px; color: #2A2A35; border-top: 2px solid #EEEDE8; }
+.tbl p u { text-decoration: none; color: #6D4AFF; }
+.wire { position: absolute; background: #6D4AFF; opacity: 0; animation: rise .4s both; border-radius: 3px; }
+.card-n { position: absolute; font-family: 'JetBrains Mono'; font-size: 26px; font-weight: 700; color: #6D4AFF; background: var(--paper); padding: 4px 12px; border-radius: 10px; opacity: 0; animation: rise .4s both; }
+.tag { position: absolute; display: inline-flex; align-items: center; padding: 18px 30px; border-radius: 99px; background: #FF3D8B; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -.01em; box-shadow: 0 20px 50px -20px rgba(255,61,139,.7); opacity: 0; animation: pop .45s cubic-bezier(.22,1,.36,1) both; z-index: 6; }
+.tag.good { background: #6D4AFF; box-shadow: 0 20px 50px -20px rgba(109,74,255,.8); }
+.step { display: flex; gap: 28px; align-items: center; font-size: 50px; font-weight: 600; letter-spacing: -.02em; opacity: 0; animation: rise .55s cubic-bezier(.22,1,.36,1) both; }
+.step span { flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%; background: #0D0D12; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 40px; }
+.step small { display: block; font-size: 34px; font-weight: 500; color: var(--muted); margin-top: 6px; letter-spacing: -.01em; }
+</style></head>
+<body><div class="v">
+
+<!-- A: hook 0-3.4s (fully visible on frame 0) -->
+<section class="scene dark" data-in="0" data-out="3.4">
+  <div class="light" style="width:1100px;height:1100px;left:-200px;top:900px;opacity:.55"></div>
+  <h1 style="position:absolute;left:84px;top:250px;font-size:124px;font-weight:600;letter-spacing:-.05em;line-height:.98;color:#fff">
+    <span class="ln"><span style="animation:none;transform:none">14 migrations in.</span></span>
+    <span class="ln"><span style="animation:none;transform:none">Still renaming</span></span>
+  </h1>
+  <h2 style="position:absolute;left:84px;top:520px;font-size:124px;font-weight:600;letter-spacing:-.05em;line-height:1;color:#fff">
+    <span class="ln" style="padding-bottom:.2em"><span style="animation:none;transform:none" class="serif nova">1 database column.</span></span>
+  </h2>
+  <div class="code" style="top:820px">
+    <div class="top"><i></i><i></i><i></i><b>migrations/</b></div>
+    <span class="r on"><span class="d">001_</span>create_users.sql</span>
+    <span class="r on"><span class="d">002_</span>rename_name_to_username.sql</span>
+    <span class="r on"><span class="d">006_</span>add_user_name.sql</span>
+    <span class="r on"><span class="d">009_</span>fix_users_again.sql</span>
+    <span class="r on"><span class="d">011_</span>add_phone_new.sql</span>
+    <span class="r on"><span class="d">013_</span>drop_name2_maybe.sql</span>
+    <span class="r" style="animation-delay:1.2s"><span class="bad"><span class="d">014_</span>rename_username_back.sql</span></span>
+  </div>
+  <div class="tag" style="right:60px;top:1420px;animation-delay:1.6s">back where you started</div>
+  <p style="position:absolute;left:0;right:0;top:1610px;text-align:center;font-size:44px;color:rgba(255,255,255,.7);animation: rise .5s 2.1s cubic-bezier(.22,1,.36,1) both">Week 9. Demo in 3 weeks.</p>
+</section>
+
+<!-- B: the mess 3.2-7.6s -->
+<section class="scene dark" data-in="3.2" data-out="7.6">
+  <div class="light" style="width:1100px;height:1100px;left:-300px;top:300px;opacity:.6"></div>
+  <div class="lbl" style="top:180px;color:rgba(255,255,255,.55)">YOUR USERS TABLE, WEEK 9</div>
+  <div class="code" style="top:270px">
+    <div class="top"><i></i><i></i><i></i><b>schema.sql</b></div>
+    <span class="r" style="animation-delay:3.4s"><span class="k">create table</span> users (</span>
+    <span class="r" style="animation-delay:3.55s">&nbsp;&nbsp;id <span class="s">int</span>,</span>
+    <span class="r" style="animation-delay:3.7s">&nbsp;&nbsp;<span class="bad">name</span> <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:3.85s">&nbsp;&nbsp;<span class="bad">username</span> <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.0s">&nbsp;&nbsp;<span class="bad">user_name</span> <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.15s">&nbsp;&nbsp;<span class="bad">name2</span> <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.3s">&nbsp;&nbsp;phone <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.45s">&nbsp;&nbsp;phone_new <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.6s">&nbsp;&nbsp;booking_1 <span class="s">text</span>,</span>
+    <span class="r" style="animation-delay:4.75s">&nbsp;&nbsp;booking_2 <span class="s">text</span></span>
+    <span class="r" style="animation-delay:4.9s">);</span>
+  </div>
+  <div class="tag" style="right:60px;top:560px;animation-delay:5.1s">4 columns, 1 name</div>
+  <div class="tag" style="right:60px;top:930px;animation-delay:5.6s">which phone is real?</div>
+  <div class="tag" style="right:60px;top:1100px;animation-delay:6.0s">booking 3 goes where?</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1400px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1;color:#fff;text-align:center">
+    <span class="ln"><span style="animation-delay:6.4s">Not a coding problem.</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:6.6s" class="serif nova">A planning one.</span></span>
+  </h2>
+</section>
+
+<!-- C: one page plan 7.4-11.8s -->
+<section class="scene paper" data-in="7.4" data-out="11.8">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;right:-420px;bottom:-200px"></div>
+  <div class="lbl" style="top:180px;color:var(--muted)">THE SAME APP, PLANNED ON 1 PAGE</div>
+  <div class="tbl" style="left:84px;top:300px;animation-delay:7.7s"><h4>users</h4><p>id</p><p>name</p><p>phone</p></div>
+  <div class="tbl" style="right:84px;top:520px;animation-delay:8.2s"><h4>bookings</h4><p>id</p><p><u>user_id</u></p><p><u>service_id</u></p><p>slot</p></div>
+  <div class="tbl" style="left:84px;top:860px;animation-delay:8.7s"><h4>services</h4><p>id</p><p>title</p><p>price</p></div>
+  <div class="wire" style="left:464px;top:600px;width:152px;height:6px;animation-delay:9.1s"></div>
+  <div class="wire" style="left:610px;top:600px;width:6px;height:120px;animation-delay:9.1s"></div>
+  <div class="wire" style="left:464px;top:1060px;width:152px;height:6px;animation-delay:9.4s"></div>
+  <div class="wire" style="left:610px;top:900px;width:6px;height:166px;animation-delay:9.4s"></div>
+  <div class="card-n" style="left:480px;top:556px;animation-delay:9.2s">1</div>
+  <div class="card-n" style="left:524px;top:690px;animation-delay:9.2s">many</div>
+  <div class="card-n" style="left:480px;top:1016px;animation-delay:9.5s">1</div>
+  <div class="card-n" style="left:524px;top:912px;animation-delay:9.5s">many</div>
+  <div class="tag good" style="right:84px;top:1130px;animation-delay:9.9s">1 name per thing</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1380px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1;text-align:center">
+    <span class="ln"><span style="animation-delay:10.4s">Rename it here,</span></span>
+    <span class="ln" style="padding-bottom:.22em"><span style="animation-delay:10.6s" class="serif nova">not in 14 migrations.</span></span>
+  </h2>
+</section>
+
+<!-- D: 3 steps 11.6-15s -->
+<section class="scene paper" data-in="11.6" data-out="15">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;left:-420px;bottom:-200px"></div>
+  <h2 style="position:absolute;left:84px;top:260px;font-size:112px;font-weight:600;letter-spacing:-.05em;line-height:.98">
+    <span class="ln"><span style="animation-delay:11.9s">Before you code,</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:12.05s" class="serif nova">do these 3.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;right:84px;top:760px;display:flex;flex-direction:column;gap:110px">
+    <div class="step" style="animation-delay:12.4s"><span>1</span><div>List the nouns<small>every thing your app stores = a table</small></div></div>
+    <div class="step" style="animation-delay:13.1s"><span>2</span><div>Draw who owns what<small>1 user, many bookings = a foreign key</small></div></div>
+    <div class="step" style="animation-delay:13.8s"><span>3</span><div>Test it with your screens<small>can each page get its data in 1 query?</small></div></div>
+  </div>
+</section>
+
+<!-- E: CTA 15-18s -->
+<section class="scene paper" data-in="14.8" data-out="99">
+  <div class="grid-bg" style="opacity:.7"></div>
+  <div class="light" style="width:1300px;height:1300px;left:-120px;top:420px"></div>
+  <h2 style="position:absolute;left:84px;top:480px;font-size:140px;font-weight:600;letter-spacing:-.05em;line-height:.96">
+    <span class="ln"><span style="animation-delay:15.1s">Plan the tables.</span></span>
+    <span class="ln"><span style="animation-delay:15.25s" class="serif nova">Then write</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:15.4s" class="serif nova">the code.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;top:1130px;display:flex;flex-direction:column;gap:32px;animation: rise .7s 15.8s cubic-bezier(.22,1,.36,1) both">
+    <span style="align-self:flex-start;padding:30px 52px;border-radius:99px;background:#0D0D12;color:#fff;font-size:46px;font-weight:600">Comment your FYP title</span>
+    <span style="font-size:40px;font-weight:600">FYP system design consult<br>RM100 / 1 hour · harnova.my</span>
+    <span style="font-size:32px;color:var(--muted)">We coach. You build it yourself.</span>
+  </div>
+  <div class="brand" style="position:absolute;left:84px;bottom:150px;font-size:40px">
+    <svg width="56" height="56" viewBox="0 0 40 40"><defs><linearGradient id="a" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+    HARNOVA
+  </div>
+</section>
+
+</div></body></html>
