@@ -230,3 +230,27 @@ booking systems like this are RM6,000–15,000, details at harnova.my.
 comment how many messages your last booking took 👇
 
 #smallbusiness #bookingsystem #homeservices #smallbusinessowner #harnova
+
+## 8 Nov: Tip, 5 logins your business should own, not your developer (day26-tip-own-your-logins.png)
+5 logins your business should own, not your developer 🔑
+
+it's fine until it isn't. your developer moves on, gets busy with a bigger client, or just stops replying for a few weeks. then the domain renewal email goes to their inbox instead of yours. one morning the site is gone.
+
+nobody did anything shady. the accounts got made under whoever was building that week, and nobody ever moved them.
+
+so check these 5:
+1. the domain. your name, your email.
+2. the hosting account that keeps the site online.
+3. the code. be the GitHub owner, or keep a full copy.
+4. the payment gateway, paying into your bank account.
+5. your Google Business Profile. you're the owner, your developer gets manager access.
+
+a good developer will happily set it up like this. if yours won't, ask why.
+
+quick test: can you log in to all 5 without messaging anyone?
+
+our business websites are a one-off payment, and the site is yours to keep. details at harnova.my.
+
+share this with a business owner who's never checked 👇
+
+#smallbusiness #smallbusinessowner #entrepreneur #smallbusinesstips #harnova
