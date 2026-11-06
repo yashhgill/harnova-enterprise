@@ -224,6 +224,30 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .kv .ow { grid-row: 1 / span 2; grid-column: 3; font-family: 'Unbounded'; font-weight: 700; font-size: 18px; letter-spacing: .08em; padding: 12px 18px; border-radius: 999px; background: rgba(63,207,106,.14); color: #1E8E4E; white-space: nowrap; }
 .tst { display: flex; align-items: center; gap: 22px; margin-top: 28px; margin-bottom: 24px; font-size: 32px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
 .tst .q { flex-shrink: 0; font-family: 'Unbounded'; font-weight: 800; font-size: 22px; letter-spacing: .1em; padding: 14px 20px; border-radius: 16px; background: #0D0D12; color: #fff; }
+/* debug timeline: 4 hours, 1 letter */
+.dt { flex-shrink: 0; background: #fff; border-radius: 32px; margin-top: 34px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.dt .top { display: flex; align-items: center; gap: 14px; padding: 22px 36px; background: #0D0D12; color: #fff; }
+.dt .top i { width: 18px; height: 18px; border-radius: 50%; background: #FF5F57; }
+.dt .top i:nth-child(2) { background: #FEBC2E; } .dt .top i:nth-child(3) { background: #28C840; }
+.dt .top b { margin-left: 10px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 25px; color: rgba(255,255,255,.8); }
+.dt .top span { margin-left: auto; font-family: 'Unbounded'; font-weight: 700; font-size: 18px; letter-spacing: .1em; color: #FF7AB0; }
+.dt .body { position: relative; padding: 14px 36px 18px; }
+.dt .body::before { content: ''; position: absolute; left: 213px; top: 40px; bottom: 165px; width: 3px; background: repeating-linear-gradient(#0D0D1222 0 10px, transparent 10px 18px); }
+.dt .r { position: relative; display: grid; grid-template-columns: 140px 40px 1fr; gap: 0 18px; align-items: start; padding: 15px 0; }
+.dt .t { font-family: 'JetBrains Mono'; font-size: 25px; color: var(--muted); padding-top: 8px; text-align: right; }
+.dt .d { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 4px solid #0D0D12; margin: 9px auto 0; position: relative; z-index: 1; }
+.dt .l { font-size: 35px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.dt .l code { font-family: 'JetBrains Mono'; font-weight: 400; font-size: 29px; letter-spacing: 0; }
+.dt .h { font-size: 26px; color: var(--muted); line-height: 1.3; margin-top: 4px; }
+.dt .r.hot .d { background: var(--nova); border-color: transparent; width: 30px; height: 30px; margin-top: 5px; }
+.dt .r.hot .t { color: #E3307A; font-weight: 400; }
+.dt .df { margin-top: 12px; font-family: 'JetBrains Mono'; font-size: 26px; border-radius: 14px; overflow: hidden; }
+.dt .df div { padding: 7px 16px; }
+.dt .df .m { background: rgba(255,61,139,.12); color: #C21F63; }
+.dt .df .p { background: rgba(63,207,106,.16); color: #1E7E46; }
+.dt .df u { text-decoration: none; background: rgba(63,207,106,.45); border-radius: 4px; padding: 0 2px; }
+.sc { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 26px; margin-bottom: 34px; font-size: 32px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+.sc .stamp2 { flex-shrink: 0; font-family: 'Unbounded'; font-weight: 800; font-size: 26px; letter-spacing: .06em; padding: 16px 24px; border-radius: 16px; border: 4px solid #E3307A; color: #E3307A; transform: rotate(-3deg); text-align: center; line-height: 1.2; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -625,6 +649,28 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="tst"><div class="q">TEST</div>can you log in to all 5 without messaging anyone?</div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a21" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a21)"/></svg>HARNOVA</div><span class="muted">send this to a business owner</span></div>
+  </div>
+</section>
+
+<!-- M13: 4 hours debugging, 1 letter -->
+<section class="slide paper" id="d22">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">CS students, you know this night</div>
+    <h2 style="font-size:84px;margin-top:20px">4 hours lost debugging.<br>your bug was<br><span class="serif nova">only 1 letter.</span></h2>
+    <div class="dt">
+      <div class="top"><i></i><i></i><i></i><b>debug_night.log</b><span>4H 00M</span></div>
+      <div class="body">
+        <div class="r"><div class="t">11:47pm</div><div class="d"></div><div><div class="l">“quick fix, 10 minutes max”</div><div class="h">famous last words.</div></div></div>
+        <div class="r"><div class="t">12:20am</div><div class="d"></div><div><div class="l">it’s the library. has to be.</div><div class="h">deleted node_modules. reinstalled. twice.</div></div></div>
+        <div class="r"><div class="t">1:15am</div><div class="d"></div><div><div class="l"><code>console.log("here")</code> ×38</div><div class="h">every single one prints. still broken.</div></div></div>
+        <div class="r"><div class="t">2:30am</div><div class="d"></div><div><div class="l">asked AI. it rewrote 3 files.</div><div class="h">now there are 2 bugs.</div></div></div>
+        <div class="r hot"><div class="t">3:47am</div><div class="d"></div><div><div class="l">found it.</div><div class="df"><div class="m">- user.adress</div><div class="p">+ user.a<u>d</u>dress</div></div></div></div>
+      </div>
+    </div>
+    <div class="sc">the error was on screen<br>the whole time.<div class="stamp2">4 HOURS.<br>1 LETTER.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a22" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a22)"/></svg>HARNOVA</div><span class="muted">what was yours? 👇</span></div>
   </div>
 </section>
 

@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-11-09-meme-debug-one-letter/1.jpg"
+  ],
+  "caption": "4 hours lost debugging. your bug was only 1 letter 🐛\n\nwe've all had this night. 11:47pm, \"quick fix, 10 minutes\". by 1am there are 38 console.logs, all printing, and you've reinstalled node_modules twice because it has to be the library.\n\nit isn't. at 3:47am you spot it on line 12. adress, with 1 d. the error had been pointing there since midnight.\n\n5 habits that'll save you the next 4 hours:\n1. read the whole error, top to bottom, before you change anything\n2. go to the exact file and line it names first\n3. undo until it works, then add your changes back 1 at a time\n4. say it out loud. a rubber duck works\n5. check spelling on names: variables, DB columns, .env keys\n\nstuck on your FYP and want someone next to you while you fix it? that's our debug & fix rescue at harnova.my. you write the code yourself, and we sit with you, ask the annoying questions and help you track down the cause until it makes sense.\n\ncomment the dumbest bug that ever cost you a night 👇\n\n#csstudent #programming #debugging #computerscience #harnova",
+  "slug": "meme-debug-one-letter"
+}

@@ -254,3 +254,23 @@ our business websites are a one-off payment, and the site is yours to keep. deta
 share this with a business owner who's never checked 👇
 
 #smallbusiness #smallbusinessowner #entrepreneur #smallbusinesstips #harnova
+
+## 9 Nov: Meme, 4 hours lost debugging, your bug was only 1 letter (day27-meme-debug-one-letter.png)
+4 hours lost debugging. your bug was only 1 letter 🐛
+
+we've all had this night. 11:47pm, "quick fix, 10 minutes". by 1am there are 38 console.logs, all printing, and you've reinstalled node_modules twice because it has to be the library.
+
+it isn't. at 3:47am you spot it on line 12. adress, with 1 d. the error had been pointing there since midnight.
+
+5 habits that'll save you the next 4 hours:
+1. read the whole error, top to bottom, before you change anything
+2. go to the exact file and line it names first
+3. undo until it works, then add your changes back 1 at a time
+4. say it out loud. a rubber duck works
+5. check spelling on names: variables, DB columns, .env keys
+
+stuck on your FYP and want someone next to you while you fix it? that's our debug & fix rescue at harnova.my. you write the code yourself, and we sit with you, ask the annoying questions and help you track down the cause until it makes sense.
+
+comment the dumbest bug that ever cost you a night 👇
+
+#csstudent #programming #debugging #computerscience #harnova
