@@ -274,3 +274,23 @@ stuck on your FYP and want someone next to you while you fix it? that's our debu
 comment the dumbest bug that ever cost you a night 👇
 
 #csstudent #programming #debugging #computerscience #harnova
+
+## 10 Nov: Meme, your website still says 2021, your customers already left (day28-meme-website-2021.png)
+your website still says 2021. your customers already left 🗓️
+
+here's how it goes. someone hears about you, googles you before driving over, and lands on a "New Year Sale 2022" banner. the hours say 9pm. you close at 6. the booking button says call Jason, and Jason left in 2022.
+
+they don't message to check. they just pick the next shop in the results.
+
+10-minute check you can do tonight:
+1. open your site on your phone, like a stranger would
+2. fix the hours and the phone number first
+3. delete any promo that has already ended
+4. tap every button and link once
+5. change the year in the footer
+
+if it's been years and you'd rather not be the one remembering, we run maintenance & hosting plans from RM150–500/month at harnova.my: updates, backups, fixes and small changes, done for you.
+
+comment the year your website footer says 👇
+
+#smallbusiness #smallbusinessowner #website #smallbusinesstips #harnova
