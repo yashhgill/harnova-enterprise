@@ -1,0 +1,18 @@
+3 days to demo day and your FYP still only runs on localhost 💻
+
+it works. you've tested it 40 times. then on demo day the panel says "can you send us the link? we'll try it on our phones". and your link is localhost:3000.
+
+localhost means your laptop. the database is on your laptop, the .env file is on your laptop, and the panel's phones can't see any of it.
+
+this one is easy to fix, as long as you don't leave it to the night before:
+1. push your code to GitHub, and keep the .env out of the repo
+2. move the database off your laptop. Supabase, Huawei Cloud or AWS all work
+3. deploy the frontend, then open the link on your phone using mobile data, not campus wifi
+
+do it around week 8. the first deploy always breaks something, and week 8 gives you time to find out what.
+
+if you want someone next to you for that first deploy, our FYP cloud deployment help is RM300–600 at harnova.my. we walk you through it and you do the deploying, so you can explain every step at your viva.
+
+comment where your FYP runs right now 👇
+
+#finalyearproject #csstudent #webdevelopment #codinglife #harnova

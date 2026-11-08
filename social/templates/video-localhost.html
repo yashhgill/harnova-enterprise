@@ -1,0 +1,146 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="nova.css">
+<style>
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0D0D12; }
+.v { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+@keyframes up { from { transform: translateY(110%) } to { transform: translateY(0) } }
+@keyframes rise { from { opacity: 0; transform: translateY(80px) } to { opacity: 1; transform: none } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6) } 70% { opacity: 1; transform: scale(1.06) } 100% { opacity: 1; transform: scale(1) } }
+@keyframes msg { from { opacity: 0; transform: translateY(40px) scale(.96) } to { opacity: 1; transform: none } }
+@keyframes drift { from { transform: translate(-60px, 40px) scale(1) } to { transform: translate(60px, -40px) scale(1.1) } }
+@keyframes dots { 0%,100% { opacity: .25 } 50% { opacity: 1 } }
+.ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.ln > span { display: inline-block; transform: translateY(110%); animation: up .8s cubic-bezier(.22,1,.36,1) both; }
+.light { animation: drift 18s linear both; }
+.lbl { position: absolute; left: 84px; font-family: 'JetBrains Mono'; font-size: 30px; letter-spacing: .14em; }
+
+/* editor + erd */
+.code { position: absolute; left: 84px; right: 84px; border-radius: 36px; background: #16161E; border: 3px solid #2A2A35; padding: 34px 40px; font-family: 'JetBrains Mono'; font-size: 34px; line-height: 1.55; color: #C9C9D6; box-shadow: 0 80px 140px -40px rgba(0,0,0,.8); }
+.code .top { display: flex; gap: 12px; margin-bottom: 22px; }
+.code .top i { width: 18px; height: 18px; border-radius: 50%; background: #3A3A46; }
+.code .top b { margin-left: 18px; font-weight: 400; font-size: 26px; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+.code .r { display: block; white-space: nowrap; opacity: 0; animation: msg .4s cubic-bezier(.22,1,.36,1) both; }
+.code .r.on { opacity: 1; animation: none; }
+.code .k { color: #A78BFA; } .code .s { color: #7DD3FC; } .code .d { color: rgba(255,255,255,.35); }
+.code .bad { background: rgba(255,61,139,.18); color: #FF7FB0; border-radius: 8px; padding: 0 8px; margin-left: -8px; }
+.tbl { position: absolute; width: 380px; border-radius: 30px; background: #fff; box-shadow: 0 6px 14px rgba(13,13,18,.08), 0 50px 100px -30px rgba(13,13,18,.35); overflow: hidden; opacity: 0; animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.tbl h4 { padding: 22px 28px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 32px; color: #fff; background: #0D0D12; }
+.tbl p { padding: 14px 28px; font-family: 'JetBrains Mono'; font-size: 28px; color: #2A2A35; border-top: 2px solid #EEEDE8; }
+.tbl p u { text-decoration: none; color: #6D4AFF; }
+.wire { position: absolute; background: #6D4AFF; opacity: 0; animation: rise .4s both; border-radius: 3px; }
+.card-n { position: absolute; font-family: 'JetBrains Mono'; font-size: 26px; font-weight: 700; color: #6D4AFF; background: var(--paper); padding: 4px 12px; border-radius: 10px; opacity: 0; animation: rise .4s both; }
+.tag { position: absolute; display: inline-flex; align-items: center; padding: 18px 30px; border-radius: 99px; background: #FF3D8B; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -.01em; box-shadow: 0 20px 50px -20px rgba(255,61,139,.7); opacity: 0; animation: pop .45s cubic-bezier(.22,1,.36,1) both; z-index: 6; }
+.tag.good { background: #6D4AFF; box-shadow: 0 20px 50px -20px rgba(109,74,255,.8); }
+.step { display: flex; gap: 28px; align-items: center; font-size: 50px; font-weight: 600; letter-spacing: -.02em; opacity: 0; animation: rise .55s cubic-bezier(.22,1,.36,1) both; }
+.step span { flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%; background: #0D0D12; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 40px; }
+.step small { display: block; font-size: 34px; font-weight: 500; color: var(--muted); margin-top: 6px; letter-spacing: -.01em; }
+
+.bub { position: absolute; max-width: 800px; padding: 30px 40px; border-radius: 40px; font-size: 44px; line-height: 1.3; letter-spacing: -.01em; opacity: 0; animation: msg .45s cubic-bezier(.22,1,.36,1) both; }
+.bub.them { left: 84px; background: #22222C; color: #fff; border-bottom-left-radius: 12px; }
+.bub.me { right: 84px; background: #6D4AFF; color: #fff; border-bottom-right-radius: 12px; font-family: 'JetBrains Mono'; font-size: 46px; }
+.bub small { display: block; font-size: 28px; color: rgba(255,255,255,.5); margin-bottom: 8px; font-family: 'Inter Tight'; }
+.phone { position: absolute; left: 50%; width: 560px; height: 980px; margin-left: -280px; border-radius: 70px; background: #fff; border: 14px solid #22222C; box-shadow: 0 80px 140px -40px rgba(0,0,0,.8); overflow: hidden; opacity: 0; animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.phone .url { margin: 60px 30px 0; padding: 18px 26px; border-radius: 99px; background: #F0EFEA; font-family: 'JetBrains Mono'; font-size: 26px; color: #555; }
+.phone .err { padding: 140px 44px 0; color: #2A2A35; }
+.phone .err i { display: block; width: 90px; height: 90px; border-radius: 22px; background: #E4E3DE; margin-bottom: 44px; }
+.phone .err b { display: block; font-size: 46px; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; margin-bottom: 24px; }
+.phone .err p { font-size: 28px; color: #777; line-height: 1.4; }
+.phone .err code { font-family: 'JetBrains Mono'; font-size: 24px; color: #999; display: block; margin-top: 30px; }
+.node { position: absolute; left: 84px; right: 84px; height: 150px; border-radius: 34px; background: #fff; box-shadow: 0 6px 14px rgba(13,13,18,.08), 0 40px 80px -30px rgba(13,13,18,.3); display: flex; align-items: center; gap: 30px; padding: 0 40px; opacity: 0; animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.node .ic { width: 84px; height: 84px; border-radius: 22px; background: #0D0D12; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-size: 34px; flex-shrink: 0; }
+.node b { font-size: 46px; font-weight: 600; letter-spacing: -.02em; display: block; }
+.node small { font-size: 30px; color: var(--muted); font-family: 'JetBrains Mono'; }
+.node.live { background: #0D0D12; color: #fff; } .node.live .ic { background: #6D4AFF; } .node.live small { color: #B8A8FF; }
+.arrow { position: absolute; left: 50%; width: 6px; height: 70px; margin-left: -3px; background: #6D4AFF; border-radius: 3px; opacity: 0; animation: rise .35s both; }
+</style></head>
+<body><div class="v">
+
+<!-- A: hook 0-3.4s (fully visible on frame 0) -->
+<section class="scene dark" data-in="0" data-out="3.4">
+  <div class="light" style="width:1100px;height:1100px;left:-200px;top:900px;opacity:.55"></div>
+  <h1 style="position:absolute;left:84px;top:230px;font-size:120px;font-weight:600;letter-spacing:-.05em;line-height:.98;color:#fff">
+    <span class="ln"><span style="animation:none;transform:none">3 days to demo day.</span></span>
+    <span class="ln"><span style="animation:none;transform:none">Still only runs on</span></span>
+  </h1>
+  <h2 style="position:absolute;left:84px;top:490px;font-size:120px;font-weight:600;letter-spacing:-.05em;line-height:1;color:#fff">
+    <span class="ln" style="padding-bottom:.2em"><span style="animation:none;transform:none" class="serif nova">localhost.</span></span>
+  </h2>
+  <div class="bub them" style="top:800px;animation:none;opacity:1"><small>Panel</small>Can you send us the link? We'll try it on our phones.</div>
+  <div class="bub me" style="top:1110px;animation-delay:1.0s">localhost:3000</div>
+  <div class="tag" style="left:84px;top:1330px;animation-delay:1.7s">only works on your laptop</div>
+  <p style="position:absolute;left:0;right:0;top:1580px;text-align:center;font-size:44px;color:rgba(255,255,255,.7);animation: rise .5s 2.2s cubic-bezier(.22,1,.36,1) both">Every FYP demo, someone sends this.</p>
+</section>
+
+<!-- B: the phone 3.2-7.6s -->
+<section class="scene dark" data-in="3.2" data-out="7.6">
+  <div class="light" style="width:1100px;height:1100px;left:-300px;top:300px;opacity:.6"></div>
+  <div class="lbl" style="top:170px;color:rgba(255,255,255,.55)">THE PANEL'S PHONE, 2 SECONDS LATER</div>
+  <div class="phone" style="top:260px;animation-delay:3.4s">
+    <div class="url">localhost:3000</div>
+    <div class="err"><i></i><b>This site can't be reached</b><p>localhost refused to connect.</p><code>ERR_CONNECTION_REFUSED</code></div>
+  </div>
+  <div class="tag" style="left:60px;top:420px;animation-delay:4.2s">database? on your laptop</div>
+  <div class="tag" style="right:60px;top:980px;animation-delay:4.7s">.env? on your laptop</div>
+  <div class="tag" style="left:60px;top:1120px;animation-delay:5.2s">the app? on your laptop</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1400px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1;color:#fff;text-align:center">
+    <span class="ln"><span style="animation-delay:6.0s">It works.</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:6.2s" class="serif nova">Just only for you.</span></span>
+  </h2>
+</section>
+
+<!-- C: the path 7.4-11.8s -->
+<section class="scene paper" data-in="7.4" data-out="11.8">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;right:-420px;bottom:-200px"></div>
+  <div class="lbl" style="top:180px;color:var(--muted)">THE SAME FYP, OFF YOUR LAPTOP</div>
+  <div class="node" style="top:280px;animation-delay:7.7s"><span class="ic">01</span><div><b>Your laptop</b><small>localhost:3000</small></div></div>
+  <div class="arrow" style="top:440px;animation-delay:8.1s"></div>
+  <div class="node" style="top:520px;animation-delay:8.3s"><span class="ic">02</span><div><b>GitHub</b><small>code in, .env out</small></div></div>
+  <div class="arrow" style="top:680px;animation-delay:8.7s"></div>
+  <div class="node" style="top:760px;animation-delay:8.9s"><span class="ic">03</span><div><b>Cloud database</b><small>Supabase / Huawei / AWS</small></div></div>
+  <div class="arrow" style="top:920px;animation-delay:9.3s"></div>
+  <div class="node live" style="top:1000px;animation-delay:9.5s"><span class="ic">04</span><div><b>A real link</b><small>your-fyp.pages.dev</small></div></div>
+  <div class="tag good" style="right:84px;top:1200px;animation-delay:9.9s">opens on any phone</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1400px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1;text-align:center">
+    <span class="ln"><span style="animation-delay:10.3s">Deploy in week 8,</span></span>
+    <span class="ln" style="padding-bottom:.22em"><span style="animation-delay:10.5s" class="serif nova">not the night before.</span></span>
+  </h2>
+</section>
+
+<!-- D: 3 steps 11.6-15s -->
+<section class="scene paper" data-in="11.6" data-out="15">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;left:-420px;bottom:-200px"></div>
+  <h2 style="position:absolute;left:84px;top:260px;font-size:112px;font-weight:600;letter-spacing:-.05em;line-height:.98">
+    <span class="ln"><span style="animation-delay:11.9s">Before demo day,</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:12.05s" class="serif nova">do these 3.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;right:84px;top:760px;display:flex;flex-direction:column;gap:110px">
+    <div class="step" style="animation-delay:12.4s"><span>1</span><div>Push it to GitHub<small>keep the .env out of the repo</small></div></div>
+    <div class="step" style="animation-delay:13.1s"><span>2</span><div>Move the database<small>off your laptop, into the cloud</small></div></div>
+    <div class="step" style="animation-delay:13.8s"><span>3</span><div>Test on mobile data<small>open the link on your phone, not campus wifi</small></div></div>
+  </div>
+</section>
+
+<!-- E: CTA 15-18s -->
+<section class="scene paper" data-in="14.8" data-out="99">
+  <div class="grid-bg" style="opacity:.7"></div>
+  <div class="light" style="width:1300px;height:1300px;left:-120px;top:420px"></div>
+  <h2 style="position:absolute;left:84px;top:480px;font-size:140px;font-weight:600;letter-spacing:-.05em;line-height:.96">
+    <span class="ln"><span style="animation-delay:15.1s">Send a link.</span></span>
+    <span class="ln"><span style="animation-delay:15.25s" class="serif nova">Not</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:15.4s" class="serif nova">localhost.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;top:1130px;display:flex;flex-direction:column;gap:32px;animation: rise .7s 15.8s cubic-bezier(.22,1,.36,1) both">
+    <span style="align-self:flex-start;padding:30px 52px;border-radius:99px;background:#0D0D12;color:#fff;font-size:46px;font-weight:600">Comment where your FYP runs</span>
+    <span style="font-size:40px;font-weight:600">FYP cloud deployment help<br>RM300–600 · harnova.my</span>
+    <span style="font-size:32px;color:var(--muted)">We coach. You deploy it yourself.</span>
+  </div>
+  <div class="brand" style="position:absolute;left:84px;bottom:150px;font-size:40px">
+    <svg width="56" height="56" viewBox="0 0 40 40"><defs><linearGradient id="a" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+    HARNOVA
+  </div>
+</section>
+
+</div></body></html>
