@@ -294,3 +294,18 @@ if it's been years and you'd rather not be the one remembering, we run maintenan
 comment the year your website footer says 👇
 
 #smallbusiness #smallbusinessowner #website #smallbusinesstips #harnova
+
+## 12 Nov: Showcase, 1 deposit paid and you still have 4 jobs before bed (day29-showcase-montage-deposit.png)
+1 deposit paid and you still have 4 jobs before bed 💸
+
+a customer books your hall for March. nice. then it starts. you open the bank app to check the deposit landed, block the date in your calendar, type out the confirmation email, and copy their number into the leads sheet so you don't forget to follow up.
+
+none of it's hard. it's just 4 small jobs, every booking, usually at 11pm. and the night you skip one is the night 2 people get the same Saturday.
+
+so for Montage Events, an event house in Shah Alam, we built a booking system that does all 4 by itself. the customer pays the deposit through ToyyibPay, the event lands in Google Calendar, a confirmation email goes out from Gmail and the lead's saved for later. nobody on the team has to touch it.
+
+booking systems like this are RM6,000–15,000. details at harnova.my.
+
+share this with the event planner who's still doing all 4 by hand 👇
+
+#eventplanner #bookingsystem #smallbusiness #shahalam #harnova

@@ -268,6 +268,27 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .ow2 .r.hot { background: rgba(255,61,139,.07); }
 .lc { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 30px; margin-bottom: 26px; font-size: 38px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
 .lc .stamp { font-size: 29px; padding: 12px 26px; border-width: 4px; flex-shrink: 0; }
+/* deposit paid: Montage Events */
+.dq { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 44px; align-items: stretch; }
+.dq > div { display: flex; flex-direction: column; }
+.dq .lb { font-family: 'Unbounded'; font-weight: 700; font-size: 19px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.dq .td { flex: 1; background: #fff; border-radius: 30px; padding: 10px 24px; display: flex; flex-direction: column; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); }
+.dq .td .r { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; padding: 20px 0; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.dq .td .r span { grid-row: span 2; width: 40px; height: 40px; border-radius: 11px; border: 3px solid #0D0D12; margin-top: 4px; }
+.dq .td .t { font-family: 'JetBrains Mono'; font-size: 20px; color: #E3307A; }
+.dq .td b { font-size: 29px; font-weight: 700; letter-spacing: -.015em; line-height: 1.15; margin-top: 2px; }
+.dq .td .ct { margin-top: auto; padding: 18px 0 12px; text-align: center; font-family: 'JetBrains Mono'; font-size: 21px; color: #E3307A; }
+.dq .hm { flex: 1; background: #0D0D12; color: #fff; border-radius: 30px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+.dq .hm::after { content: ""; position: absolute; width: 380px; height: 380px; right: -170px; bottom: -190px; border-radius: 50%; filter: blur(80px); background: #7C5CFF; opacity: .8; }
+.dq .hm .shot { height: 150px; background: url(../../public/shots/montage-hero.webp) center top / 100% auto no-repeat; border-bottom: 2px solid rgba(255,255,255,.08); }
+.dq .hm .hd { position: relative; display: flex; align-items: center; gap: 16px; padding: 18px 24px 12px; }
+.dq .hm .hd img { width: 58px; height: 58px; border-radius: 14px; }
+.dq .hm .hd .n { font-size: 31px; font-weight: 700; letter-spacing: -.02em; }
+.dq .hm .hd .d { font-size: 20px; color: rgba(255,255,255,.55); margin-top: 1px; }
+.dq .hm .st { position: relative; z-index: 1; display: grid; grid-template-columns: 46px 1fr; gap: 0 16px; padding: 17px 24px; border-top: 2px dashed rgba(255,255,255,.1); }
+.dq .hm .st span { grid-row: span 2; width: 46px; height: 46px; border-radius: 50%; background: var(--nova); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; }
+.dq .hm .st b { font-size: 27px; font-weight: 700; letter-spacing: -.015em; line-height: 1.15; }
+.dq .hm .st i { font-style: normal; font-size: 21px; color: rgba(255,255,255,.62); line-height: 1.3; margin-top: 3px; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -712,6 +733,41 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc">a customer checks before visiting.<div class="stamp">LOOKS<br>CLOSED.</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a23" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a23)"/></svg>HARNOVA</div><span class="muted">what year does yours say? 👇</span></div>
+  </div>
+</section>
+
+<!-- S4: Montage Events, 1 deposit and 4 jobs before bed -->
+<section class="slide paper" id="d24">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">client work, live now</div>
+    <h2 style="font-size:80px;margin-top:20px">1 deposit paid<br>and you still have<br><span class="serif nova">4 jobs before bed.</span></h2>
+    <div class="dq">
+      <div>
+        <div class="lb">by hand, every booking</div>
+        <div class="td">
+          <div class="r"><span></span><div class="t">11:02pm</div><b>check the bank app for the deposit</b></div>
+          <div class="r"><span></span><div class="t">11:06pm</div><b>block the date in the calendar</b></div>
+          <div class="r"><span></span><div class="t">11:11pm</div><b>type the confirmation email</b></div>
+          <div class="r"><span></span><div class="t">11:19pm</div><b>copy them into the leads sheet</b></div>
+          <div class="ct">1 booking · 4 jobs</div>
+        </div>
+      </div>
+      <div>
+        <div class="lb">what we built</div>
+        <div class="hm">
+          <div class="shot"></div>
+          <div class="hd"><img src="../../public/icons/montage-events.png"><div><div class="n">Montage Events</div><div class="d">event house · Shah Alam · live</div></div></div>
+          <div class="st"><span>1</span><b>Deposit by ToyyibPay</b><i>locks the date, no back-and-forth</i></div>
+          <div class="st"><span>2</span><b>Google Calendar</b><i>the event appears on its own</i></div>
+          <div class="st"><span>3</span><b>Confirmation email</b><i>sent the moment they book</i></div>
+          <div class="st"><span>4</span><b>Lead captured</b><i>ready for the follow-up</i></div>
+        </div>
+      </div>
+    </div>
+    <div class="vs"><span class="x">same 4 jobs. done on their own, the moment they pay.</span></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a24" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a24)"/></svg>HARNOVA</div><span class="muted">send this to an event planner</span></div>
   </div>
 </section>
 
