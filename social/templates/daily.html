@@ -289,6 +289,27 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .dq .hm .st span { grid-row: span 2; width: 46px; height: 46px; border-radius: 50%; background: var(--nova); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; }
 .dq .hm .st b { font-size: 27px; font-weight: 700; letter-spacing: -.015em; line-height: 1.15; }
 .dq .hm .st i { font-style: normal; font-size: 21px; color: rgba(255,255,255,.62); line-height: 1.3; margin-top: 3px; }
+/* payment screenshots: who paid what */
+.ps { background: #fff; border-radius: 30px; margin-top: 30px; flex-shrink: 0; overflow: hidden; box-shadow: 0 6px 14px rgba(13,13,18,.08), 0 50px 100px -40px rgba(13,13,18,.5); }
+.ps .top { display: flex; align-items: center; gap: 16px; padding: 14px 28px; background: #0D0D12; color: #fff; }
+.ps .top .av { width: 50px; height: 50px; border-radius: 50%; background: var(--nova); display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.ps .top b { font-size: 27px; font-weight: 700; letter-spacing: -.015em; }
+.ps .top span { margin-left: auto; background: #25D366; color: #06290F; font-weight: 800; font-size: 21px; border-radius: 99px; padding: 6px 16px; }
+.ps .r { display: grid; grid-template-columns: 78px 1fr 330px; gap: 0 22px; align-items: center; padding: 11px 28px; border-bottom: 2px dashed rgba(13,13,18,.12); }
+.ps .r:last-child { border-bottom: 0; }
+.ps .rc { width: 78px; height: 96px; border-radius: 10px; background: #F1F0EB; border: 2px solid #E2E0D8; display: flex; flex-direction: column; align-items: center; padding-top: 10px; gap: 6px; position: relative; overflow: hidden; }
+.ps .rc .ok { width: 22px; height: 22px; border-radius: 50%; background: #1F8F55; color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.ps .rc .am { font-family: 'JetBrains Mono'; font-size: 13px; font-weight: 700; color: #0D0D12; }
+.ps .rc i { width: 50px; height: 5px; border-radius: 3px; background: #D3D0C6; }
+.ps .rc i.s { width: 34px; }
+.ps .rc .bar { width: 50px; height: 9px; border-radius: 2px; background: #0D0D12; }
+.ps .rc.cut::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 30px; background: linear-gradient(transparent, #F1F0EB 30%); border-top: 2px dashed #B9B6AC; }
+.ps .rc.bl > * { filter: blur(2.5px); }
+.ps .msg { justify-self: start; background: #E7F8EC; border-radius: 22px; border-top-left-radius: 6px; padding: 14px 22px; font-size: 28px; line-height: 1.2; font-weight: 500; letter-spacing: -.01em; color: #0D0D12; }
+.ps .msg small { display: block; font-family: 'JetBrains Mono'; font-size: 17px; color: #8A8A96; margin-top: 4px; }
+.ps .an { font-family: 'Instrument Serif'; font-style: italic; font-size: 34px; line-height: 1.05; color: #E3307A; letter-spacing: -.005em; }
+.ps .an::before { content: '← '; font-family: 'Inter Tight'; font-style: normal; font-weight: 700; font-size: 25px; }
+.ps .r.hot { background: rgba(255,61,139,.07); }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -768,6 +789,22 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="vs"><span class="x">same 4 jobs. done on their own, the moment they pay.</span></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a24" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a24)"/></svg>HARNOVA</div><span class="muted">send this to an event planner</span></div>
+  </div>
+</section>
+
+<!-- M15: 47 payment screenshots, who paid? -->
+<section class="slide paper" id="d25">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;bottom:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">online sellers in Malaysia, you know this chat</div>
+    <h2 style="font-size:76px;margin-top:18px">47 payment screenshots<br><span class="serif nova">and you still can’t tell<br>who paid.</span></h2>
+    <div class="ps">
+      <div class="top"><div class="av">🛍️</div><b>Orders</b><span>47 unread</span></div>
+      <div class="r "><div class="rc "><div class="ok">✓</div><div class="am">RM45.00</div><i></i><i class="s"></i></div><div class="msg">dah transfer sis 🙏<small>11:42pm</small></div><div class="an">which order though?</div></div><div class="r "><div class="rc "><div class="ok">✓</div><div class="am">RM45.00</div><i></i><i class="s"></i></div><div class="msg">done ya<small>11:51pm</small></div><div class="an">same amount, different person</div></div><div class="r "><div class="rc cut"><div class="ok">✓</div><div class="am">RM45.00</div><i></i><i class="s"></i></div><div class="msg">bank in already<small>12:03am</small></div><div class="an">name cropped out</div></div><div class="r "><div class="rc "><div class="ok">✓</div><div class="am">RM38.50</div><i></i><i class="s"></i></div><div class="msg">paid last week, why not sent?<small>12:34am</small></div><div class="an">buried under 200 messages</div></div><div class="r hot"><div class="rc bl"><div class="ok">✓</div><div class="am">RM??.00</div><i></i><i class="s"></i></div><div class="msg">ss blur sikit, ok tak?<small>12:58am</small></div><div class="an">it was not ok</div></div>
+    </div>
+    <div class="lc">1 bank app. 47 screenshots. 1am.<div class="stamp">WHO PAID<br>WHAT?</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a25" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a25)"/></svg>HARNOVA</div><span class="muted">how many are in yours? 👇</span></div>
   </div>
 </section>
 
