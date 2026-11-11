@@ -1,0 +1,22 @@
+9 MB homepage photo and your customer still sees a blank screen 🐢
+
+you took a nice photo of the shop on your phone and dropped it straight onto the homepage. on your laptop, on office wifi, it's gorgeous.
+
+then a customer taps your link on the bus with 1 bar of mobile data. white screen. spinner. the photo starts showing up 1 strip at a time, and somewhere around strip 3 they've gone back to Google and picked the next shop.
+
+nobody tells you this happened. they just don't turn up.
+
+a photo straight off a phone camera is usually 3 to 9 MB, and your homepage only needs a few hundred KB of it.
+
+the fix is free and it's about 10 minutes of work:
+1. resize it. 2000px wide is plenty for a full-width banner
+2. compress it. a free tool like Squoosh turns it into a WebP or a lighter JPG, aim for under 300KB
+3. test it. wifi off, open your own site on your phone, like a customer would
+
+then do the rest of the photos too, not just the big one.
+
+our business websites start from RM2,500. they're built mobile-first, with images sized properly from day 1. details at harnova.my.
+
+comment how big your homepage photo is 👇
+
+#smallbusiness #smallbusinessowner #website #webdesign #harnova

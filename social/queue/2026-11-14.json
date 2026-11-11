@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "reel",
+  "media": [
+    "social/2026-11-14-reel-photo-size/1.mp4"
+  ],
+  "caption": "9 MB homepage photo and your customer still sees a blank screen 🐢\n\nyou took a nice photo of the shop on your phone and dropped it straight onto the homepage. on your laptop, on office wifi, it's gorgeous.\n\nthen a customer taps your link on the bus with 1 bar of mobile data. white screen. spinner. the photo starts showing up 1 strip at a time, and somewhere around strip 3 they've gone back to Google and picked the next shop.\n\nnobody tells you this happened. they just don't turn up.\n\na photo straight off a phone camera is usually 3 to 9 MB, and your homepage only needs a few hundred KB of it.\n\nthe fix is free and it's about 10 minutes of work:\n1. resize it. 2000px wide is plenty for a full-width banner\n2. compress it. a free tool like Squoosh turns it into a WebP or a lighter JPG, aim for under 300KB\n3. test it. wifi off, open your own site on your phone, like a customer would\n\nthen do the rest of the photos too, not just the big one.\n\nour business websites start from RM2,500. they're built mobile-first, with images sized properly from day 1. details at harnova.my.\n\ncomment how big your homepage photo is 👇\n\n#smallbusiness #smallbusinessowner #website #webdesign #harnova",
+  "slug": "reel-photo-size"
+}

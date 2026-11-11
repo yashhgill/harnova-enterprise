@@ -1,0 +1,156 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="nova.css">
+<style>
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0D0D12; }
+.v { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+@keyframes up { from { transform: translateY(110%) } to { transform: translateY(0) } }
+@keyframes rise { from { opacity: 0; transform: translateY(80px) } to { opacity: 1; transform: none } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6) } 70% { opacity: 1; transform: scale(1.06) } 100% { opacity: 1; transform: scale(1) } }
+@keyframes drift { from { transform: translate(-60px, 40px) scale(1) } to { transform: translate(60px, -40px) scale(1.1) } }
+@keyframes spin { to { transform: rotate(360deg) } }
+@keyframes strip { from { clip-path: inset(0 0 100% 0) } to { clip-path: inset(0 0 0 0) } }
+@keyframes grow { from { width: 0 } }
+@keyframes shrink { from { width: 100% } }
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+.ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.ln > span { display: inline-block; transform: translateY(110%); animation: up .8s cubic-bezier(.22,1,.36,1) both; }
+.light { animation: drift 18s linear both; }
+.lbl { position: absolute; left: 84px; font-family: 'JetBrains Mono'; font-size: 30px; letter-spacing: .14em; }
+.tag { position: absolute; display: inline-flex; align-items: center; padding: 18px 30px; border-radius: 99px; background: #FF3D8B; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -.01em; box-shadow: 0 20px 50px -20px rgba(255,61,139,.7); opacity: 0; animation: pop .45s cubic-bezier(.22,1,.36,1) both; z-index: 6; }
+.tag.good { background: #6D4AFF; box-shadow: 0 20px 50px -20px rgba(109,74,255,.8); }
+.step { display: flex; gap: 28px; align-items: center; font-size: 50px; font-weight: 600; letter-spacing: -.02em; opacity: 0; animation: rise .55s cubic-bezier(.22,1,.36,1) both; }
+.step span { flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%; background: #0D0D12; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 40px; }
+.step small { display: block; font-size: 34px; font-weight: 500; color: var(--muted); margin-top: 6px; letter-spacing: -.01em; }
+
+/* phone */
+.phone { position: absolute; left: 50%; width: 560px; height: 900px; margin-left: -280px; border-radius: 70px; background: #fff; border: 14px solid #22222C; box-shadow: 0 80px 140px -40px rgba(0,0,0,.8); overflow: hidden; }
+.phone .sb { display: flex; justify-content: space-between; align-items: center; padding: 26px 40px 0; font-family: 'JetBrains Mono'; font-size: 24px; color: #2A2A35; }
+.phone .sb .sig { display: flex; gap: 5px; align-items: flex-end; }
+.phone .sb .sig i { width: 8px; background: #D5D4CE; border-radius: 2px; }
+.phone .sb .sig i:first-child { background: #2A2A35; }
+.phone .url { margin: 22px 30px 0; padding: 16px 26px; border-radius: 99px; background: #F0EFEA; font-family: 'JetBrains Mono'; font-size: 24px; color: #555; }
+.phone .bar { margin: 14px 30px 0; height: 6px; border-radius: 3px; background: #EEEDE8; overflow: hidden; }
+.phone .bar b { display: block; height: 100%; background: #6D4AFF; }
+.phone .spin { position: absolute; left: 50%; top: 420px; width: 90px; height: 90px; margin-left: -45px; border-radius: 50%; border: 9px solid #EEEDE8; border-top-color: #6D4AFF; animation: spin .9s linear infinite; }
+.phone .hero { position: absolute; left: 30px; right: 30px; top: 200px; height: 420px; border-radius: 26px; overflow: hidden; background: #F3F2EE; }
+.shop { position: absolute; inset: 0; background:
+  radial-gradient(circle at 78% 22%, #FFD27A 0 46px, transparent 47px),
+  linear-gradient(180deg, transparent 58%, #2E6B4C 58% 62%, transparent 62%),
+  linear-gradient(90deg, transparent 12%, #F5F4F0 12% 30%, transparent 30% 38%, #F5F4F0 38% 56%, transparent 56%) 0 62% / 100% 30% no-repeat,
+  linear-gradient(160deg, #FF8DB8 0%, #A78BFA 45%, #7DD3FC 100%); }
+.shop::after { content: ''; position: absolute; left: 0; right: 0; top: 32%; height: 9%; background: repeating-linear-gradient(90deg, #FF3D8B 0 44px, #fff 44px 88px); }
+.phone .txt { position: absolute; left: 30px; right: 30px; top: 650px; }
+.phone .txt i { display: block; height: 26px; border-radius: 13px; background: #EEEDE8; margin-bottom: 18px; }
+
+/* file cards */
+.file { position: absolute; left: 84px; right: 84px; border-radius: 34px; background: #fff; box-shadow: 0 6px 14px rgba(13,13,18,.08), 0 40px 80px -30px rgba(13,13,18,.3); padding: 38px 44px; opacity: 0; animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.file .row { display: flex; align-items: center; gap: 30px; }
+.file .th { width: 120px; height: 120px; border-radius: 22px; overflow: hidden; position: relative; flex-shrink: 0; }
+.file b { display: block; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 36px; }
+.file small { display: block; font-family: 'JetBrains Mono'; font-size: 28px; color: var(--muted); margin-top: 8px; }
+.file .size { margin-left: auto; font-size: 60px; font-weight: 700; letter-spacing: -.03em; }
+.file .meter { margin-top: 30px; height: 26px; border-radius: 13px; background: #EEEDE8; overflow: hidden; }
+.file .meter span { display: block; height: 100%; border-radius: 13px; }
+.file.big .size { color: #FF3D8B; } .file.big .meter span { background: #FF3D8B; width: 100%; animation: grow 1s .2s cubic-bezier(.22,1,.36,1) both; }
+.file.small { background: #0D0D12; color: #fff; } .file.small small { color: #B8A8FF; } .file.small .size { color: #fff; } .file.small .meter { background: #2A2A35; } .file.small .meter span { background: #6D4AFF; width: 3.2%; }
+.down { position: absolute; left: 50%; width: 6px; height: 90px; margin-left: -3px; background: #6D4AFF; border-radius: 3px; opacity: 0; animation: rise .35s both; }
+.down::after { content: ''; position: absolute; left: -15px; bottom: -14px; border: 18px solid transparent; border-top: 22px solid #6D4AFF; border-bottom: 0; }
+.chip { position: absolute; left: 50%; transform: translateX(-50%); padding: 14px 28px; border-radius: 99px; background: var(--paper); border: 3px solid #6D4AFF; color: #6D4AFF; font-family: 'JetBrains Mono'; font-size: 28px; white-space: nowrap; opacity: 0; animation: fade .35s both; }
+</style></head>
+<body><div class="v">
+
+<!-- A: hook 0-3.4s (fully visible on frame 0) -->
+<section class="scene dark" data-in="0" data-out="3.4">
+  <div class="light" style="width:1100px;height:1100px;left:-200px;top:900px;opacity:.55"></div>
+  <h1 style="position:absolute;left:84px;top:220px;font-size:98px;font-weight:600;letter-spacing:-.05em;line-height:.98;color:#fff">
+    <span class="ln"><span style="animation:none;transform:none">9 MB homepage photo.</span></span>
+    <span class="ln"><span style="animation:none;transform:none">Your customer sees</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation:none;transform:none" class="serif nova">a blank screen.</span></span>
+  </h1>
+  <div class="phone" style="top:560px;height:900px;transform:scale(.92);transform-origin:top center">
+    <div class="sb"><span>08:14</span><span class="sig"><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:28px"></i>&nbsp;4G</span></div>
+    <div class="url">yourshop.com</div>
+    <div class="bar"><b style="width:4%;animation:grow 3s linear both"></b></div>
+    <div class="spin"></div>
+  </div>
+  <div class="tag" style="left:84px;top:1480px;animation-delay:1.2s">1 bar of mobile data</div>
+  <div class="tag good" style="right:84px;top:1600px;animation-delay:1.8s">still loading…</div>
+</section>
+
+<!-- B: strip by strip 3.2-7.6s -->
+<section class="scene dark" data-in="3.2" data-out="7.6">
+  <div class="light" style="width:1100px;height:1100px;left:-300px;top:300px;opacity:.6"></div>
+  <div class="lbl" style="top:150px;color:rgba(255,255,255,.55)">6 SECONDS LATER, ON THE BUS</div>
+  <div class="phone" style="top:230px">
+    <div class="sb"><span>08:14</span><span class="sig"><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:28px"></i>&nbsp;4G</span></div>
+    <div class="url">yourshop.com</div>
+    <div class="bar"><b style="width:38%;animation:grow 4s 3.2s linear both"></b></div>
+    <div class="hero"><div class="shop" style="animation:strip 5s 3.4s steps(10) both"></div></div>
+    <div class="txt"><i style="width:80%"></i><i style="width:60%"></i><i style="width:70%"></i></div>
+  </div>
+  <div class="tag" style="left:60px;top:470px;animation-delay:4.0s">2.1 of 9.0 MB</div>
+  <div class="tag" style="right:60px;top:880px;animation-delay:4.8s">they tapped back</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1290px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1.02;color:#fff;text-align:center">
+    <span class="ln"><span style="animation-delay:5.6s">Nobody tells you.</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:5.8s" class="serif nova">They just don't turn up.</span></span>
+  </h2>
+</section>
+
+<!-- C: same photo, lighter 7.4-11.8s -->
+<section class="scene paper" data-in="7.4" data-out="11.8">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;right:-420px;bottom:-200px"></div>
+  <div class="lbl" style="top:180px;color:var(--muted)">THE SAME PHOTO, FIXED</div>
+  <div class="file big" style="top:280px;animation-delay:7.7s">
+    <div class="row"><div class="th"><div class="shop"></div></div><div><b>IMG_4821.jpg</b><small>4032 × 3024 px</small></div><span class="size">9.0 MB</span></div>
+    <div class="meter"><span style="animation-delay:7.9s"></span></div>
+  </div>
+  <div class="down" style="top:620px;animation-delay:8.5s"></div>
+  <div class="chip" style="top:630px;margin-left:190px;animation-delay:8.7s">resize + compress</div>
+  <div class="file small" style="top:780px;animation-delay:9.1s">
+    <div class="row"><div class="th"><div class="shop"></div></div><div><b>shop-front.webp</b><small>2000 × 1500 px</small></div><span class="size">280 KB</span></div>
+    <div class="meter"><span></span></div>
+  </div>
+  <div class="tag good" style="right:84px;top:1120px;animation-delay:9.7s">looks the same on a phone</div>
+  <h2 style="position:absolute;left:84px;right:84px;top:1380px;font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1;text-align:center">
+    <span class="ln"><span style="animation-delay:10.1s">Free to fix.</span></span>
+    <span class="ln" style="padding-bottom:.22em"><span style="animation-delay:10.3s" class="serif nova">About 10 minutes.</span></span>
+  </h2>
+</section>
+
+<!-- D: 3 steps 11.6-15s -->
+<section class="scene paper" data-in="11.6" data-out="15">
+  <div class="grid-bg" style="opacity:.8"></div>
+  <div class="light" style="width:1200px;height:1200px;left:-420px;bottom:-200px"></div>
+  <h2 style="position:absolute;left:84px;top:260px;font-size:112px;font-weight:600;letter-spacing:-.05em;line-height:.98">
+    <span class="ln"><span style="animation-delay:11.9s">Every photo,</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:12.05s" class="serif nova">3 steps.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;right:84px;top:760px;display:flex;flex-direction:column;gap:110px">
+    <div class="step" style="animation-delay:12.4s"><span>1</span><div>Resize it<small>2000px wide is plenty for a banner</small></div></div>
+    <div class="step" style="animation-delay:13.1s"><span>2</span><div>Compress it<small>WebP or a lighter JPG, under 300KB</small></div></div>
+    <div class="step" style="animation-delay:13.8s"><span>3</span><div>Test it<small>wifi off, your site, your phone</small></div></div>
+  </div>
+</section>
+
+<!-- E: CTA 15-18s -->
+<section class="scene paper" data-in="14.8" data-out="99">
+  <div class="grid-bg" style="opacity:.7"></div>
+  <div class="light" style="width:1300px;height:1300px;left:-120px;top:420px"></div>
+  <h2 style="position:absolute;left:84px;top:480px;font-size:140px;font-weight:600;letter-spacing:-.05em;line-height:.96">
+    <span class="ln"><span style="animation-delay:15.1s">Lighter photo.</span></span>
+    <span class="ln"><span style="animation-delay:15.25s" class="serif nova">Customers</span></span>
+    <span class="ln" style="padding-bottom:.2em"><span style="animation-delay:15.4s" class="serif nova">who stay.</span></span>
+  </h2>
+  <div style="position:absolute;left:84px;top:1130px;display:flex;flex-direction:column;gap:32px;animation: rise .7s 15.8s cubic-bezier(.22,1,.36,1) both">
+    <span style="align-self:flex-start;padding:30px 52px;border-radius:99px;background:#0D0D12;color:#fff;font-size:46px;font-weight:600">Comment your homepage photo size</span>
+    <span style="font-size:40px;font-weight:600">Mobile-first business websites<br>from RM2,500 · harnova.my</span>
+  </div>
+  <div class="brand" style="position:absolute;left:84px;bottom:150px;font-size:40px">
+    <svg width="56" height="56" viewBox="0 0 40 40"><defs><linearGradient id="a" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a)"/><circle cx="20" cy="20" r="2.6" fill="#fff"/></svg>
+    HARNOVA
+  </div>
+</section>
+
+</div></body></html>
