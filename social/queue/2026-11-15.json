@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-11-15-tip-git-dead-laptop/1.jpg"
+  ],
+  "caption": "1 dead laptop shouldn't cost you 3 months of code 💻\n\nit happens to someone every semester. coffee on the keyboard, a stolen bag, an SSD that just stops one morning with no warning at all. the whole project was in 1 folder called \"final_v2\". on 1 laptop. gone.\n\nthe fix takes about 10 minutes to set up, then a few seconds a day:\n1. git init on day 1, not demo week\n2. commit every time something works, with a message you'll understand later (\"login works\", not \"asdf\")\n3. git push to a private GitHub repo every night\n4. make a branch before the risky change, so you can switch back if it breaks\n5. put your .env file in .gitignore. API keys and passwords don't belong on GitHub\n\nif the laptop dies after that? annoying, sure. but you borrow one, clone the repo, and you're back where you were last night.\n\nstuck on the setup or on a bug that won't go away? we coach CS students one-on-one, from a RM100 system design consult to weekly mentoring. you write the code, we help you get unstuck. harnova.my\n\nsave this for your next project 👇\n\n#computerscience #git #github #codingstudent #harnova",
+  "slug": "tip-git-dead-laptop"
+}

@@ -309,3 +309,23 @@ booking systems like this are RM6,000–15,000. details at harnova.my.
 share this with the event planner who's still doing all 4 by hand 👇
 
 #eventplanner #bookingsystem #smallbusiness #shahalam #harnova
+
+## 15 Nov: Tip, 1 dead laptop shouldn't cost you 3 months of code (day30-tip-git-dead-laptop.png)
+1 dead laptop shouldn't cost you 3 months of code 💻
+
+it happens to someone every semester. coffee on the keyboard, a stolen bag, an SSD that just stops one morning with no warning at all. the whole project was in 1 folder called "final_v2". on 1 laptop. gone.
+
+the fix takes about 10 minutes to set up, then a few seconds a day:
+1. git init on day 1, not demo week
+2. commit every time something works, with a message you'll understand later ("login works", not "asdf")
+3. git push to a private GitHub repo every night
+4. make a branch before the risky change, so you can switch back if it breaks
+5. put your .env file in .gitignore. API keys and passwords don't belong on GitHub
+
+if the laptop dies after that? annoying, sure. but you borrow one, clone the repo, and you're back where you were last night.
+
+stuck on the setup or on a bug that won't go away? we coach CS students one-on-one, from a RM100 system design consult to weekly mentoring. you write the code, we help you get unstuck. harnova.my
+
+save this for your next project 👇
+
+#computerscience #git #github #codingstudent #harnova
