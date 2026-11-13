@@ -184,6 +184,22 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .qs { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 22px; margin-bottom: 14px; font-size: 32px; font-weight: 600; color: rgba(255,255,255,.7); }
 .dark .stamp { background: rgba(13,13,18,.9); }
 .qs .stamp { font-size: 29px; padding: 12px 26px; border-width: 4px; }
+/* scope creep: the brief, week by week */
+.sk { flex-shrink: 0; background: #fff; border-radius: 30px; margin-top: 44px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.sk .top { display: flex; align-items: center; gap: 12px; padding: 20px 36px; background: #0D0D12; color: #fff; }
+.sk .top i { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.25); display: block; }
+.sk .top b { margin-left: 12px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 24px; color: rgba(255,255,255,.75); }
+.sk .top span { margin-left: auto; font-family: 'Unbounded'; font-weight: 700; font-size: 18px; letter-spacing: .1em; color: #FF7AB0; }
+.sk .hd { display: grid; grid-template-columns: 96px 1fr 190px; gap: 0 22px; padding: 18px 36px 4px; font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.sk .r { display: grid; grid-template-columns: 96px 1fr 190px; gap: 0 22px; align-items: center; padding: 19px 36px; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.sk .r:last-child { border-bottom: 0; }
+.sk .wk { font-family: 'Unbounded'; font-weight: 700; font-size: 22px; letter-spacing: .04em; padding: 11px 0; border-radius: 14px; background: #0D0D12; color: #fff; text-align: center; }
+.sk .q { font-size: 34px; font-weight: 600; letter-spacing: -.02em; line-height: 1.18; }
+.sk .bar { height: 20px; border-radius: 10px; background: rgba(13,13,18,.08); overflow: hidden; }
+.sk .bar i { display: block; height: 100%; border-radius: 10px; background: var(--nova); }
+.sk .r.hot { background: linear-gradient(90deg, rgba(255,61,139,.1), rgba(109,74,255,.07)); }
+.sk .r.hot .wk { background: #FF3D8B; }
+.sk .r.hot .bar i { background: #FF3D8B; }
 /* booking chat vs booking page: Homely */
 .bk { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 44px; align-items: stretch; }
 .bk .lb { font-family: 'Unbounded'; font-weight: 700; font-size: 19px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
@@ -841,6 +857,23 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc" style="margin-top:24px;margin-bottom:36px">laptop dies? clone it on<br>any laptop and keep going.<div class="stamp ok">CODE<br>SURVIVES.</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a26" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a26)"/></svg>HARNOVA</div><span class="muted">save this for your next project</span></div>
+  </div>
+</section>
+
+<!-- M16: scope creep, 6 weeks of small changes -->
+<section class="slide paper" id="d27">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">founders, be honest. this was you</div>
+    <h2 style="font-size:78px;margin-top:18px">6 weeks of small changes<br>and your 1-page site<br><span class="serif nova">still isn’t live.</span></h2>
+    <div class="sk">
+      <div class="top"><i></i><i></i><i></i><b>the-brief.txt</b><span>6 EDITS</span></div>
+      <div class="hd"><span>when</span><span>the “small change”</span><span>scope</span></div>
+      <div class="r"><div class="wk">WK 1</div><div class="q">“just a simple 1-page site”</div><div class="bar"><i style="width:8%"></i></div></div><div class="r"><div class="wk">WK 2</div><div class="q">“can it take bookings too?”</div><div class="bar"><i style="width:22%"></i></div></div><div class="r"><div class="wk">WK 3</div><div class="q">“and online payments, quick one”</div><div class="bar"><i style="width:38%"></i></div></div><div class="r"><div class="wk">WK 4</div><div class="q">“users need logins, right?”</div><div class="bar"><i style="width:56%"></i></div></div><div class="r"><div class="wk">WK 5</div><div class="q">“my cousin says we need an app”</div><div class="bar"><i style="width:76%"></i></div></div><div class="r hot"><div class="wk">WK 6</div><div class="q">“basically Uber, but for cakes”</div><div class="bar"><i style="width:100%"></i></div></div>
+    </div>
+    <div class="lc" style="margin-top:26px;margin-bottom:40px">6 weeks in. customers who<br>have seen it: 0.<div class="stamp">STILL NOT<br>LIVE.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a27" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a27)"/></svg>HARNOVA</div><span class="muted">what was your “small change”? 👇</span></div>
   </div>
 </section>
 

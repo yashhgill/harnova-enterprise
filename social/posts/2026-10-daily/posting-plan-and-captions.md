@@ -329,3 +329,23 @@ stuck on the setup or on a bug that won't go away? we coach CS students one-on-o
 save this for your next project 👇
 
 #computerscience #git #github #codingstudent #harnova
+
+## 16 Nov: Meme, 6 weeks of small changes and your 1-page site still isn't live (day31-meme-scope-creep.png)
+6 weeks of small changes and your 1-page site still isn't live 🎂
+
+week 1 it was "just a simple site". week 2, could it take bookings. week 3, online payments, quick one. by week 5 your cousin says you need an app, and somewhere in week 6 you hear yourself pitching it as Uber, but for cakes.
+
+we get it. every idea on that list made sense on its own. none of them shipped, though, because the finish line moved every Monday. your customers saw nothing. not one page.
+
+what usually fixes it:
+1. write down what v1 does in 3 lines, before anyone starts building
+2. new ideas go on a "later" list, not into this week
+3. launch v1, then let real customers tell you what's next
+
+bookings and payments might still be worth it. later.
+
+our business websites start from RM2,500, take 1–2 weeks and are yours to keep. bigger systems get scoped on a free call first, so you see the whole plan before anyone writes code. harnova.my
+
+comment the wildest "small change" you've asked for (or been asked for) 👇
+
+#startup #founders #smallbusiness #webdesign #harnova
