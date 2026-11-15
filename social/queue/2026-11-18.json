@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "reel",
+  "media": [
+    "social/2026-11-18-reel-ssl-not-secure/1.mp4"
+  ],
+  "caption": "1 \"Not secure\" label and your customer closes the tab before paying 🔓\n\nsomeone finds your shop, likes the product, taps order. the checkout page loads and right next to your web address the browser says \"Not secure\", in grey, with a little warning icon.\n\nthey were about to type their name, phone number and address. now they're wondering if that's a good idea. most people don't message you to ask. they just close the tab.\n\nthat label usually means 1 thing: your site has no SSL certificate, so it loads on plain http instead of https. Chrome flags every page like that. On every phone, too.\n\nthe fix is often free:\n1. check your hosting panel for \"SSL\" or \"HTTPS\". most hosts give you a free Let's Encrypt certificate, it's 1 toggle\n2. turn on \"force HTTPS\" so old links without the s still redirect\n3. open your site on your phone and look for the padlock instead of the warning\n\nhost wants money for SSL in 2026? that's a sign to look around.\n\na HarNova Build site comes with SSL already switched on, on your own harnova.my subdomain, for RM300 a month. details at harnova.my.\n\ncomment what your browser shows next to your site 👇\n\n#smallbusiness #smallbusinessowner #website #webdesign #harnova",
+  "slug": "reel-ssl-not-secure"
+}
