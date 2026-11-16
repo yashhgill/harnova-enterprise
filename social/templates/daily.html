@@ -372,6 +372,25 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .ir .irm .f { position: relative; z-index: 1; padding: 18px 26px; border-top: 2px dashed rgba(255,255,255,.1); font-size: 24px; font-weight: 700; letter-spacing: -.01em; }
 .ir .irm .f:first-of-type { margin-top: auto; }
 .ir .irm .f i { display: block; font-style: normal; font-weight: 400; font-size: 19px; color: rgba(255,255,255,.62); margin-top: 2px; }
+/* tutorial hell: watch history */
+.th { flex-shrink: 0; background: #fff; border-radius: 30px; margin-top: 42px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.th .top { display: flex; align-items: center; gap: 12px; padding: 20px 36px; background: #0D0D12; color: #fff; }
+.th .top i { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.25); display: block; }
+.th .top b { margin-left: 12px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 24px; color: rgba(255,255,255,.75); }
+.th .top span { margin-left: auto; font-family: 'Unbounded'; font-weight: 700; font-size: 18px; letter-spacing: .1em; color: #FF7AB0; }
+.th .r { display: grid; grid-template-columns: 153px 1fr; gap: 0 26px; align-items: center; padding: 13px 32px; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.th .r:last-child { border-bottom: 0; }
+.th .tn { position: relative; height: 86px; border-radius: 14px; background: linear-gradient(135deg, #1E1A2E, #2B2350); overflow: hidden; }
+.th .tn::before { content: ""; position: absolute; left: 34%; top: 40%; transform: translate(-40%, -50%); border-left: 26px solid rgba(255,255,255,.85); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+.th .tn em { position: absolute; right: 8px; bottom: 8px; font-style: normal; font-family: 'JetBrains Mono'; font-size: 17px; color: #fff; background: rgba(13,13,18,.8); padding: 2px 8px; border-radius: 6px; }
+.th .tn .pg { position: absolute; left: 0; bottom: 0; height: 6px; width: 100%; background: #FF3D8B; }
+.th .q { font-size: 32px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.th .q small { display: block; font-size: 23px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 7px; }
+.th .q small b { color: #1F8F55; font-weight: 700; }
+.th .r.hot { background: linear-gradient(90deg, rgba(255,61,139,.1), rgba(109,74,255,.07)); }
+.th .r.hot .tn { background: var(--nova); }
+.th .r.hot .tn .pg { width: 34%; background: #fff; }
+.th .r.hot .q small { color: #E3307A; font-weight: 700; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -946,6 +965,23 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="vs"><span class="x">1 number to check each day. not 4 apps and a calculator.</span></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a28" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a28)"/></svg>HARNOVA</div><span class="muted">send this to your broke friend</span></div>
+  </div>
+</section>
+
+
+<!-- S6: tutorial hell, watch history -->
+<section class="slide paper" id="d29">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">every coding student’s semester break</div>
+    <h2 style="font-size:78px;margin-top:18px">87 hours of tutorials<br>watched and you still<br><span class="serif nova">can’t build a to-do app.</span></h2>
+    <div class="th">
+      <div class="top"><i></i><i></i><i></i><b>watch-history</b><span>87 HRS</span></div>
+      <div class="r"><div class="tn"><em>6:14:02</em><div class="pg"></div></div><div class="q">Python for beginners, full course<small><b>✓ watched</b> · took zero notes</small></div></div><div class="r"><div class="tn"><em>12:03:41</em><div class="pg"></div></div><div class="q">JavaScript in 12 hours<small><b>✓ watched</b> · at 1.5x, so it counts</small></div></div><div class="r"><div class="tn"><em>4:47:10</em><div class="pg"></div></div><div class="q">React crash course<small><b>✓ watched</b> · understood it all, in the moment</small></div></div><div class="r"><div class="tn"><em>9:30:22</em><div class="pg"></div></div><div class="q">build a full-stack app with me<small><b>✓ coded along</b> · changed nothing</small></div></div><div class="r hot"><div class="tn"><em>18:42</em><div class="pg"></div></div><div class="q">how to escape tutorial hell<small>▶ watching now</small></div></div>
+    </div>
+    <div class="lc" style="margin-top:26px;margin-bottom:40px">projects built with no<br>video open: 0.<div class="stamp">TUTORIAL<br>HELL.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a29" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a29)"/></svg>HARNOVA</div><span class="muted">how many hours are you in? 👇</span></div>
   </div>
 </section>
 </body></html>

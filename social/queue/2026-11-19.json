@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "image",
+  "media": [
+    "social/2026-11-19-meme-tutorial-hell/1.jpg"
+  ],
+  "caption": "87 hours of tutorials watched and you still can't build a to-do app 📺\n\nthe Python course? done. JavaScript in 12 hours, done at 1.5x speed because you were in a hurry and the guy talks slowly. the React crash course made total sense while he was typing. then you open a blank file to build something of your own. nothing.\n\nthat's not you being bad at coding. watching someone else solve a problem only trains you to follow along, while building is what trains you to get stuck, sit with it for a bit and then get yourself unstuck. tutorials skip that part. every time.\n\nwhat actually gets you out:\n1. pick 1 tiny project you'd use yourself, like a gym log or a bill splitter\n2. build it with the video closed. google the exact error, not \"full course\"\n3. finish it ugly, push it to GitHub, then start the next one a bit bigger\n\nyour 3rd ugly project will teach you more than the 87 hours did. promise.\n\nif you're stuck on a real build, we coach CS students one-on-one. a system design consult is RM100 for an hour, and you still write every line yourself. harnova.my\n\ncomment how many hours deep you are 👇\n\n#computerscience #learntocode #codingstudent #programming #harnova",
+  "slug": "meme-tutorial-hell"
+}

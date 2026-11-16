@@ -349,3 +349,23 @@ our business websites start from RM2,500, take 1–2 weeks and are yours to keep
 comment the wildest "small change" you've asked for (or been asked for) 👇
 
 #startup #founders #smallbusiness #webdesign #harnova
+
+## 19 Nov: Meme, 87 hours of tutorials watched and you still can't build a to-do app (day32-meme-tutorial-hell.png)
+87 hours of tutorials watched and you still can't build a to-do app 📺
+
+the Python course? done. JavaScript in 12 hours, done at 1.5x speed because you were in a hurry and the guy talks slowly. the React crash course made total sense while he was typing. then you open a blank file to build something of your own. nothing.
+
+that's not you being bad at coding. watching someone else solve a problem only trains you to follow along, while building is what trains you to get stuck, sit with it for a bit and then get yourself unstuck. tutorials skip that part. every time.
+
+what actually gets you out:
+1. pick 1 tiny project you'd use yourself, like a gym log or a bill splitter
+2. build it with the video closed. google the exact error, not "full course"
+3. finish it ugly, push it to GitHub, then start the next one a bit bigger
+
+your 3rd ugly project will teach you more than the 87 hours did. promise.
+
+if you're stuck on a real build, we coach CS students one-on-one. a system design consult is RM100 for an hour, and you still write every line yourself. harnova.my
+
+comment how many hours deep you are 👇
+
+#computerscience #learntocode #codingstudent #programming #harnova
