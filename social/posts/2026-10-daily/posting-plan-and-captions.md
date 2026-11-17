@@ -369,3 +369,25 @@ if you're stuck on a real build, we coach CS students one-on-one. a system desig
 comment how many hours deep you are 👇
 
 #computerscience #learntocode #codingstudent #programming #harnova
+
+## 20 Nov: Tip, your contact form broke 4 months ago and nobody told you (day33-tip-contact-form-check.png)
+your contact form broke 4 months ago and nobody told you 📭
+
+the site looks fine. someone types their question in, hits send, gets "thanks, we'll be in touch!" and waits. except the email never reaches you, because a plugin updated in July, or it's still sending to the inbox of someone who left last year, or Gmail decided every enquiry since then was spam.
+
+you don't notice. why would you?
+
+you just figure business is a bit slow lately. meanwhile the people who wrote in waited a day, heard nothing, and went with the next company on Google. they won't chase you about it.
+
+the 5-minute check, once a month:
+1. send yourself a test enquiry from your phone, on your live site
+2. look in spam and junk too. nothing anywhere? it's broken, not quiet
+3. check which email it actually goes to, and that someone still reads it
+4. tap the WhatsApp button and the phone number. old ones hide in footers
+5. set a reminder for the 1st so it doesn't rely on you remembering
+
+if you'd rather not be the one checking, our maintenance & hosting plans are RM150–500/month at harnova.my. updates, backups, fixes and small changes, so a dead form gets caught in days instead of months.
+
+save this for the 1st of next month 👇
+
+#smallbusiness #smallbusinessowner #website #smallbusinesstips #harnova
