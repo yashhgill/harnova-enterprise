@@ -391,6 +391,21 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .th .r.hot .tn { background: var(--nova); }
 .th .r.hot .tn .pg { width: 34%; background: #fff; }
 .th .r.hot .q small { color: #E3307A; font-weight: 700; }
+/* domain hoarder: registrar list */
+.dh { flex-shrink: 0; background: #fff; border-radius: 30px; margin-top: 42px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.dh .top { display: flex; align-items: center; gap: 12px; padding: 20px 36px; background: #0D0D12; color: #fff; }
+.dh .top i { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.25); display: block; }
+.dh .top b { margin-left: 12px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 24px; color: rgba(255,255,255,.75); }
+.dh .top span { margin-left: auto; font-family: 'Unbounded'; font-weight: 700; font-size: 17px; letter-spacing: .1em; color: #FF7AB0; }
+.dh .r { display: grid; grid-template-columns: 1fr auto; gap: 0 22px; align-items: center; padding: 20px 36px; border-bottom: 2px dashed rgba(13,13,18,.14); }
+.dh .r:last-child { border-bottom: 0; }
+.dh .d { font-family: 'JetBrains Mono'; font-size: 31px; letter-spacing: -.02em; line-height: 1.15; }
+.dh .d small { display: block; font-family: 'Inter Tight'; font-size: 23px; color: var(--muted); letter-spacing: 0; margin-top: 7px; }
+.dh .pill { font-size: 21px; font-weight: 700; color: #1F8F55; background: rgba(31,143,85,.1); padding: 8px 16px; border-radius: 999px; white-space: nowrap; }
+.dh .r.more { padding: 16px 36px; font-size: 24px; color: var(--muted); font-weight: 600; }
+.dh .r.hot { background: linear-gradient(90deg, rgba(255,61,139,.1), rgba(109,74,255,.07)); }
+.dh .r.hot .d small { color: #E3307A; font-weight: 700; }
+.dh .r.hot .pill { color: #fff; background: var(--nova); }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -1018,6 +1033,27 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc" style="margin-top:18px;margin-bottom:20px">“things are quiet lately”<br>might just be a broken form.<div class="stamp">TEST<br>IT.</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a30" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a30)"/></svg>HARNOVA</div><span class="muted">save this for the 1st</span></div>
+  </div>
+</section>
+
+<!-- M: domain hoarder, registrar list -->
+<section class="slide paper" id="d31">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">founders, be honest</div>
+    <h2 style="font-size:76px;margin-top:18px">12 domains on auto-renew.<br>your startup is still<br><span class="serif nova">a dead link.</span></h2>
+    <div class="dh">
+      <div class="top"><i></i><i></i><i></i><b>my-domains</b><span>12 ACTIVE · AUTO-RENEW ON</span></div>
+      <div class="r"><div class="d">splitbill-but-better.app<small>bought at 2am after 1 good idea</small></div><div class="pill">renewed ✓</div></div>
+      <div class="r"><div class="d">gymbro-ai.io<small>logo done. that’s the whole startup</small></div><div class="pill">renewed ✓</div></div>
+      <div class="r"><div class="d">the-next-big-thing.co<small>“coming soon” since 2024</small></div><div class="pill">renewed ✓</div></div>
+      <div class="r"><div class="d">nasilemak-near-me.my<small>pitched it once at a mamak. once.</small></div><div class="pill">renewed ✓</div></div>
+      <div class="r hot"><div class="d">my-real-startup-final.com<small>bought this morning. this one’s different</small></div><div class="pill">new ✦</div></div>
+      <div class="r more">+ 7 more you forgot you own</div>
+    </div>
+    <div class="lc" style="margin-top:26px;margin-bottom:34px">websites actually<br>live: 0.<div class="stamp">DOMAIN<br>HOARDER.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a31" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a31)"/></svg>HARNOVA</div><span class="muted">how many are you paying for? 👇</span></div>
   </div>
 </section>
 </body></html>

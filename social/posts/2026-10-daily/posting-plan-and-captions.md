@@ -391,3 +391,26 @@ if you'd rather not be the one checking, our maintenance & hosting plans are RM1
 save this for the 1st of next month 👇
 
 #smallbusiness #smallbusinessowner #website #smallbusinesstips #harnova
+
+## 21 Nov: Meme, 12 domains on auto-renew. your startup is still a dead link (day34-meme-domain-hoarder.png)
+12 domains on auto-renew. your startup is still a dead link 🌐
+
+it starts at 2am. you get 1 good idea, check if the name's free, and it is. 5 minutes later you own it. the idea feels more real now, and that's the problem, because buying the name felt like progress.
+
+a year on, the card gets charged for 12 of them. one has a logo. one has said "coming soon" since 2024. you bought a new one this morning, and this one's different, obviously.
+
+a domain is just the address. nobody can visit an address with nothing built on it.
+
+what actually moves it:
+1. pick the 1 idea you'd still build if nobody clapped for it
+2. turn off auto-renew on the rest. they'll be fine
+3. put 1 real page on it this weekend: what it is, who it's for, a way to reach you
+4. send that link to 10 people who'd actually use it, not your group chat
+
+1 ugly page that's live beats 12 perfect names that lead nowhere.
+
+when you're ready for the proper version, our business websites start from RM2,500, take 1–2 weeks, and they're yours to keep. harnova.my
+
+comment how many domains you're paying for right now 👇
+
+#startup #founders #entrepreneur #sideproject #harnova
