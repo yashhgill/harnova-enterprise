@@ -1,0 +1,15 @@
+1 wrong IC digit and the clinic now has 2 of you 🪪
+
+the counter is busy, there's a queue to the door, and someone reads out their IC number while the nurse types it in. 12 digits. 2 of them get swapped. nobody notices, why would they?
+
+the system can't find a match, so it does the polite thing and opens a brand new file. now there are 2 of the same patient. the old one has every past visit and the penicillin allergy. the new one is empty, and that's the one the doctor opens today.
+
+nobody did anything wrong here. if you type 12 digits by hand all day, you'll swap 2 of them eventually. we all would.
+
+so for MediLink, the health records platform we built, we made it so the counter doesn't type the IC at all. the camera reads the card and fills it in, date of birth and all, so the patient lands on the file they already have. it also keeps records on the clinic's own database with a sync to the cloud, takes DuitNow, Touch 'n Go and FPX, and suggests triage urgency. it won 2nd place at HIK@M 2026.
+
+if you run a clinic, HarnovaCare is the one you can actually use today: check-in, triage, pharmacy and billing, working offline, RM99 a month per clinic. details at harnova.my.
+
+share this with someone who runs a clinic 👇
+
+#klinik #healthtech #malaysia #smallbusinessmalaysia #harnova
