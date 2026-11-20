@@ -414,3 +414,26 @@ when you're ready for the proper version, our business websites start from RM2,5
 comment how many domains you're paying for right now 👇
 
 #startup #founders #entrepreneur #sideproject #harnova
+
+## 23 Nov: Meme, 9 buttons in your bio and your customer still can't pay you (day35-meme-link-in-bio.png)
+9 buttons in your bio and your customer still can't pay you 🔗
+
+someone sees your reel, wants the thing, taps your bio. first button is "our story". then a playlist. then the old online store you closed last year, the raya giveaway from April, and a 14 MB menu that's still loading on their mobile data.
+
+they find "WhatsApp us" near the bottom. it opens a chat with your old number. they close the app and go back to scrolling, and you never even knew they were there.
+
+nobody reads 9 buttons. they read 1, maybe 2, then decide.
+
+what to change tonight:
+1. put the one thing you want them to do first. order, book, or ask a price
+2. delete anything closed, ended or broken. dead links make you look closed too
+3. tap every button yourself on your phone, on data, not wifi
+4. keep it to 3 or 4. if it doesn't help someone buy, it can live somewhere else
+
+your bio link should feel like walking into the shop, not reading the notice board outside.
+
+if you'd rather send people to a proper page, our HarNova Build sites are RM300 a month, live in 3–5 days on your own harnova.my subdomain, no upfront build cost. harnova.my
+
+comment how many buttons your bio has right now 👇
+
+#smallbusiness #smallbusinessowner #instagramtips #onlinebusiness #harnova
