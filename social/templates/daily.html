@@ -415,6 +415,33 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .lb .bt { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 2.5px solid #0D0D12; border-radius: 999px; padding: 7px 28px; margin-top: 9px; font-size: 27px; font-weight: 600; letter-spacing: -.01em; }
 .lb .bt small { font-size: 21px; font-weight: 600; color: #E3307A; white-space: nowrap; }
 .lb .bt.dim { opacity: .45; }
+/* HarnovaCare: arrival queue vs triage */
+.tq { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 46px; align-items: stretch; }
+.tq > div { display: flex; flex-direction: column; }
+.tq .lb2 { font-family: 'Unbounded'; font-weight: 700; font-size: 19px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.tq .qa { flex: 1; background: #fff; border-radius: 30px; padding: 20px 26px 16px; display: flex; flex-direction: column; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); }
+.tq .qa .k { font-size: 22px; color: var(--muted); font-weight: 600; padding-bottom: 10px; }
+.tq .qa .r { display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 0 12px; padding: 19px 0; border-top: 2px dashed rgba(13,13,18,.14); font-size: 27px; font-weight: 600; letter-spacing: -.01em; }
+.tq .qa .r .no { font-family: 'JetBrains Mono'; font-size: 25px; color: var(--muted); font-weight: 400; }
+.tq .qa .r small { font-family: 'JetBrains Mono'; font-size: 19px; color: var(--muted); font-weight: 400; }
+.tq .qa .r.gap { color: var(--muted); font-size: 22px; font-weight: 500; grid-template-columns: 1fr; text-align: center; padding: 10px 0; }
+.tq .qa .r.hot { background: rgba(255,61,139,.08); margin: 0 -26px; padding: 20px 26px; }
+.tq .qa .r.hot .no, .tq .qa .r.hot small { color: #E3307A; font-weight: 700; }
+.tq .qa .ct { margin-top: auto; padding: 14px 0 4px; border-top: 3px solid #0D0D12; font-size: 25px; font-weight: 700; line-height: 1.25; }
+.tq .hc { flex: 1; border-radius: 30px; overflow: hidden; color: #fff; display: flex; flex-direction: column; background: linear-gradient(180deg, #0F2328 0%, #12313A 60%, #154049 100%); }
+.tq .hc .hd { display: flex; align-items: center; gap: 16px; padding: 20px 24px 12px; }
+.tq .hc .hd img { width: 58px; height: 58px; border-radius: 14px; }
+.tq .hc .hd .n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+.tq .hc .hd .d { font-size: 20px; color: rgba(255,255,255,.55); margin-top: 1px; }
+.tq .hc .z { display: grid; grid-template-columns: 16px 1fr; gap: 0 16px; padding: 21px 24px; border-top: 2px dashed rgba(255,255,255,.1); align-items: center; }
+.tq .hc .z span { grid-row: span 2; width: 16px; height: 100%; min-height: 54px; border-radius: 8px; }
+.tq .hc .z b { font-size: 27px; font-weight: 700; letter-spacing: -.015em; line-height: 1.15; }
+.tq .hc .z b em { font-style: normal; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 22px; color: rgba(255,255,255,.6); margin-right: 8px; }
+.tq .hc .z i { font-style: normal; font-size: 20px; color: rgba(255,255,255,.62); line-height: 1.3; margin-top: 3px; }
+.tq .hc .z.top { background: rgba(255,140,50,.14); }
+.tq .hc .z.top i { color: #FFB27A; font-weight: 600; }
+.tq .hc .tn2 { display: block;  margin-top: auto; padding: 16px 24px 18px; border-top: 2px solid rgba(255,255,255,.12); font-size: 21px; line-height: 1.35; color: rgba(255,255,255,.75); }
+.tq .hc .tn2 b { color: #fff; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -1087,6 +1114,47 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc" style="margin-top:26px;margin-bottom:22px">buttons that say<br>“order”: 0.<div class="stamp">WHERE DO<br>I PAY??</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a32" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a32)"/></svg>HARNOVA</div><span class="muted">how many does yours have? 👇</span></div>
+  </div>
+</section>
+
+<!-- S: HarnovaCare, arrival queue vs triage -->
+<section class="slide paper" id="d33">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;left:-420px;top:-420px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">a HarNova product, for clinics</div>
+    <h2 style="font-size:76px;margin-top:18px">22 coughs. your clinic<br>still sees <span class="serif nova">the chest pain last.</span></h2>
+    <div class="tq">
+      <div>
+        <div class="lb2">a queue by arrival time</div>
+        <div class="qa">
+          <div class="k">now serving: 004</div>
+          <div class="r"><span class="no">005</span>cough<small>9:02</small></div>
+          <div class="r"><span class="no">006</span>MC only<small>9:05</small></div>
+          <div class="r"><span class="no">007</span>sore throat<small>9:11</small></div>
+          <div class="r"><span class="no">008</span>flu<small>9:14</small></div>
+          <div class="r"><span class="no">009</span>cough<small>9:17</small></div>
+          <div class="r gap">· · · 12 more, mostly coughs · · ·</div>
+          <div class="r"><span class="no">022</span>cough<small>9:38</small></div>
+          <div class="r hot"><span class="no">023</span>chest pain<small>9:40</small></div>
+          <div class="ct">23rd in line, because they<br>arrived 23rd.</div>
+        </div>
+      </div>
+      <div>
+        <div class="lb2">what HarnovaCare does</div>
+        <div class="hc">
+          <div class="hd"><img src="../../public/icons/harnovacare.png"><div><div class="n">HarnovaCare</div><div class="d">care.harnova.my · triage</div></div></div>
+          <div class="z top"><span style="background:#FF8A3D"></span><b><em>023</em>chest pain</b><i>very urgent, moved up</i></div>
+          <div class="z"><span style="background:#F5C443"></span><b><em>011</em>high fever</b><i>urgent</i></div>
+          <div class="z"><span style="background:#3FCF6A"></span><b><em>005</em>cough</b><i>standard</i></div>
+          <div class="z"><span style="background:#3FCF6A"></span><b><em>007</em>sore throat</b><i>standard</i></div>
+          <div class="z"><span style="background:#22B8E6"></span><b><em>006</em>MC only</b><i>non-urgent</i></div>
+          <div class="tn2">a Manchester Triage System zone,<br>suggested at kiosk check-in.<br><b>built to escalate, never downgrade.</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="vs"><span class="x">works offline on 1 clinic PC. RM99 per clinic a month.</span></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a33" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a33)"/></svg>HARNOVA</div><span class="muted">send this to a clinic owner</span></div>
   </div>
 </section>
 </body></html>

@@ -437,3 +437,18 @@ if you'd rather send people to a proper page, our HarNova Build sites are RM300 
 comment how many buttons your bio has right now 👇
 
 #smallbusiness #smallbusinessowner #instagramtips #onlinebusiness #harnova
+
+## 24 Nov: Showcase, 22 coughs and your clinic still sees the chest pain last (day36-showcase-harnovacare-triage.png)
+22 coughs and your clinic still sees the chest pain last 🩺
+
+it's a Monday morning. the waiting room is full of coughs, colds and people who just need an MC for work. then someone walks in at 9:40 holding their chest, takes a number, and sits down. number 23.
+
+the queue only knows one thing about them: they came in 23rd. so they wait. maybe the nurse notices, maybe she's busy at the counter and doesn't.
+
+HarnovaCare does it differently. patients check in at the kiosk with their IC and describe what's wrong. the AI triage suggests a Manchester Triage System zone in seconds, so "chest pain" lands near the top of the list instead of behind 22 coughs. and it's built to escalate, never downgrade. the doctor still makes the call, they just see it sooner.
+
+it runs on the clinic's own PC, so check-in still works when the internet drops. RM99 per clinic a month.
+
+know someone who runs a clinic? share this with them 👇
+
+#healthtech #clinic #clinicmanagement #smallbusiness #harnova
