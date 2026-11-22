@@ -452,3 +452,23 @@ it runs on the clinic's own PC, so check-in still works when the internet drops.
 know someone who runs a clinic? share this with them 👇
 
 #healthtech #clinic #clinicmanagement #smallbusiness #harnova
+
+## 25 Nov: Tip, 6 of 10 requirements and you still didn't apply (day37-tip-internship-requirements.png)
+6 of 10 requirements and you still didn't apply 📄
+
+you found the internship. the role sounds right and the team looks fun. then you scroll down to the list: React, Node, Docker, AWS, CI/CD, Agile. you count what you've got, land on 6 out of 10, close the tab and tell yourself you'll apply when you're ready.
+
+a lot of these lists aren't a minimum. they're a description of the dream hire, and for an intern role, the person reading your application usually knows you won't tick everything.
+
+before you skip the next one:
+1. split the list in two. must-haves (your course, 1 language, the basics) and nice-to-haves (the tools)
+2. next to every must-have, write the subject or project where you actually used it
+3. on your resume, say what you built in that project, not what the whole group built
+4. be honest about the gaps. "haven't used Docker yet, deployed with Cloudflare instead" holds up in an interview, bluffing doesn't
+5. apply. not applying gets you the same silence as a rejection, just guaranteed
+
+if you're not sure what your degree actually counts as, that's what we built PathForward for, with our UTeM team for the Huawei ICT Competition. it turns the subjects you passed into the skills employers search for, and the resumes it writes have 0 invented facts. it's linked on harnova.my.
+
+share this with the friend who's been "almost ready" since August 👇
+
+#internship #computerscience #csstudent #techcareers #harnova
