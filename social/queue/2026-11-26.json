@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "reel",
+  "media": [
+    "social/2026-11-26-reel-api-key/1.mp4"
+  ],
+  "caption": "1 deleted line and your API key is still on GitHub 🔑\n\nyou hardcoded the OpenAI key into config.js \"just to test it\". it worked, the demo was at 9am on Friday, you pushed at 11:40pm. 2 days later someone in your group of 4 asks on WhatsApp, wait, isn't that repo public? so you delete line 3, swap in process.env, commit \"fixed it :)\" and go back to bed.\n\nexcept git doesn't forget. that key is still sitting in commit a13d5e8, 3 commits back, and anyone can open it with 1 git show. bots scan public repos for exactly this, all day, and they don't care that it was only up for an afternoon.\n\ndeleting it from the file isn't the fix. making the key useless is.\n\nif it's happened to you:\n1. revoke the key in the provider's dashboard and make a new one. today, before anything else\n2. put keys in a .env file, and add .env to .gitignore before your first commit, not after\n3. turn on GitHub push protection so a secret gets blocked before it ever leaves your laptop\n\nrewriting history is optional after that. revoking isn't.\n\nif you're stuck planning how your project should handle keys, logins and the rest, we coach CS students one-on-one. a system design consult is RM100 for an hour, and you still write every line yourself. harnova.my\n\nsave this for the next time you're about to push at 2am 👇\n\n#computerscience #codingstudent #programming #github #harnova",
+  "slug": "reel-api-key"
+}
