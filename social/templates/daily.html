@@ -442,6 +442,20 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .tq .hc .z.top i { color: #FFB27A; font-weight: 600; }
 .tq .hc .tn2 { display: block;  margin-top: auto; padding: 16px 24px 18px; border-top: 2px solid rgba(255,255,255,.12); font-size: 21px; line-height: 1.35; color: rgba(255,255,255,.75); }
 .tq .hc .tn2 b { color: #fff; }
+/* pitch deck bingo */
+.bg { flex-shrink: 0; background: #fff; border-radius: 30px; margin-top: 36px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); overflow: hidden; }
+.bg .top { display: flex; align-items: center; gap: 12px; padding: 18px 32px; background: #0D0D12; color: #fff; }
+.bg .top i { width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.25); display: block; }
+.bg .top b { margin-left: 12px; font-family: 'JetBrains Mono'; font-weight: 400; font-size: 24px; color: rgba(255,255,255,.75); }
+.bg .top span { margin-left: auto; font-family: 'Unbounded'; font-weight: 700; font-size: 17px; letter-spacing: .1em; color: #FF7AB0; }
+.bg .g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 22px; }
+.bg .c { position: relative; min-height: 172px; border-radius: 22px; background: #F3F1F8; padding: 42px 22px 18px; display: flex; flex-direction: column; justify-content: center; text-align: center; font-size: 30px; font-weight: 650; letter-spacing: -.02em; line-height: 1.12; overflow: hidden; }
+.bg .c small { display: block; font-size: 20px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 8px; line-height: 1.2; }
+.bg .c::after { content: "✓"; position: absolute; width: 34px; height: 34px; right: 10px; top: 10px; font-size: 20px; border-radius: 50%; background: #FF3D8B; color: #fff; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; opacity: .9; }
+.bg .c.free { background: var(--nova); color: #fff; }
+.bg .c.free small { color: rgba(255,255,255,.85); }
+.bg .c.free::after { content: "✦"; background: #fff; color: #6D4AFF; }
+.bg .c .fr { font-family: 'Unbounded'; font-weight: 800; font-size: 17px; letter-spacing: .14em; margin-bottom: 8px; opacity: .85; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -1205,6 +1219,31 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc" style="margin-top:30px;margin-bottom:26px">the nice-to-haves are<br>a wishlist, not a wall.<div class="stamp">APPLY.</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a34" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a34)"/></svg>HARNOVA</div><span class="muted">send this to your “almost ready” friend</span></div>
+  </div>
+</section>
+<!-- M: pitch deck bingo -->
+<section class="slide paper" id="d35">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;left:-420px;top:-440px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">founders, play along</div>
+    <h2 style="font-size:76px;margin-top:16px">14 slides of “AI-powered”<br>and your app is still<br><span class="serif nova">a Google Form.</span></h2>
+    <div class="bg">
+      <div class="top"><i></i><i></i><i></i><b>pitch-deck-FINAL-v9.pdf</b><span>PITCH DECK BINGO</span></div>
+      <div class="g">
+        <div class="c">“AI-powered”<small>on every single slide</small></div>
+        <div class="c">“Uber for ___”<small>fill in anything</small></div>
+        <div class="c">“we have no competitors”<small>you didn’t search</small></div>
+        <div class="c">“if we get just 1% of the market”</div>
+        <div class="c free"><div class="fr">FREE SPACE</div>the MVP is a Google Form<small>and that’s fine, actually</small></div>
+        <div class="c">hockey-stick graph<small>no numbers on the y-axis</small></div>
+        <div class="c">“launching soon”<small>since last year</small></div>
+        <div class="c">“disrupting” an industry<small>you’ve never worked in</small></div>
+        <div class="c">target market: “everyone”</div>
+      </div>
+    </div>
+    <div class="lc" style="margin-top:22px;margin-bottom:18px">users you’ve actually<br>talked to: 0.<div class="stamp">BINGO.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a35" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a35)"/></svg>HARNOVA</div><span class="muted">how many did you get? 👇</span></div>
   </div>
 </section>
 </body></html>

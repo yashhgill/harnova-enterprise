@@ -472,3 +472,24 @@ if you're not sure what your degree actually counts as, that's what we built Pat
 share this with the friend who's been "almost ready" since August 👇
 
 #internship #computerscience #csstudent #techcareers #harnova
+
+## 27 Nov: Meme, 14 slides of "AI-powered" and your app is still a Google Form (day39-meme-pitch-deck-bingo.png)
+14 slides of "AI-powered" and your app is still a Google Form 🤖
+
+the deck took 3 weekends. there's a slide for the vision, one for the team, and one where 1% of the market somehow turns into RM40 million by year 3. every slide says "AI-powered" somewhere, usually twice. the actual product right now is a Google Form, a spreadsheet and you, replying to each signup by hand.
+
+but the Google Form is fine. lots of real products started as something just as scrappy. the problem is the deck pretending it's something else, and the people you've actually asked about the idea being your cofounder and your mum.
+
+before you send the next version:
+1. swap "AI-powered" for 1 plain sentence about what it does and who it's for
+2. talk to 10 people who have the problem. not your friends. ask how they deal with it today
+3. keep the Google Form. count how many fill it in without you begging
+4. put a real number on the y-axis, even if it's 7
+
+a small number you can prove beats a big one you made up.
+
+once the form is full of strangers and it's time for the real build, we scope custom web apps and AI features with you on a free call first. harnova.my
+
+comment how many squares you got 👇
+
+#startup #founders #pitchdeck #entrepreneur #harnova
