@@ -456,6 +456,16 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
 .bg .c.free small { color: rgba(255,255,255,.85); }
 .bg .c.free::after { content: "✦"; background: #fff; color: #6D4AFF; }
 .bg .c .fr { font-family: 'Unbounded'; font-weight: 800; font-size: 17px; letter-spacing: .14em; margin-bottom: 8px; opacity: .85; }
+/* variable names: what you named it / what it is */
+.vn { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+.vn .hd { display: grid; grid-template-columns: .9fr 1.25fr; gap: 16px; font-size: 22px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 6px; }
+.vn .r { display: grid; grid-template-columns: .9fr 1.25fr; gap: 16px; }
+.vn .nm { background: #0D0D12; color: #fff; border-radius: 22px; padding: 24px 28px; font-family: 'JetBrains Mono'; font-size: 36px; display: flex; align-items: center; }
+.vn .nm em { font-style: normal; color: #7DD3FC; }
+.vn .nm.cm { color: #8A8A99; font-style: italic; font-size: 32px; }
+.vn .is { background: #fff; border-radius: 22px; padding: 22px 28px; font-size: 33px; font-weight: 600; letter-spacing: -.015em; line-height: 1.2; box-shadow: 0 10px 30px -20px rgba(13,13,18,.4); display: flex; align-items: center; }
+.vn .is small { font-weight: 500; color: var(--muted); }
+.vn .r.hot .is { background: var(--nova); color: #fff; }
 </style></head><body>
 
 <!-- M1: nobody / sme -->
@@ -1244,6 +1254,26 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     </div>
     <div class="lc" style="margin-top:22px;margin-bottom:18px">users you’ve actually<br>talked to: 0.<div class="stamp">BINGO.</div></div>
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a35" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a35)"/></svg>HARNOVA</div><span class="muted">how many did you get? 👇</span></div>
+  </div>
+</section>
+<!-- M: variable names -->
+<section class="slide paper" id="d36">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-440px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">CS students, open your last project</div>
+    <h2 style="font-size:76px;margin-top:16px">3 variables called data<br>and you still can’t tell<br><span class="serif nova">which one works.</span></h2>
+    <div class="vn">
+      <div class="hd"><span>what you named it</span><span>what it actually is</span></div>
+      <div class="r"><div class="nm"><em>data</em></div><div class="is">the user list from the API</div></div>
+      <div class="r"><div class="nm"><em>data2</em></div><div class="is">the same list, sorted.&nbsp;<small>probably</small></div></div>
+      <div class="r hot"><div class="nm"><em>data_final</em></div><div class="is">the only one that works</div></div>
+      <div class="r"><div class="nm"><em>temp</em></div><div class="is">delete it and the whole app dies</div></div>
+      <div class="r"><div class="nm"><em>x</em></div><div class="is">the price. with tax? who knows</div></div>
+      <div class="r"><div class="nm cm">// fix later</div><div class="is">written 8 months ago</div></div>
+    </div>
+    <div class="lc" style="margin-top:34px;margin-bottom:30px">future you is the teammate<br>who has to read this.<div class="stamp">RENAME.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a36" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a36)"/></svg>HARNOVA</div><span class="muted">drop your worst variable name 👇</span></div>
   </div>
 </section>
 </body></html>

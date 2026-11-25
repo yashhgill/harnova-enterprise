@@ -493,3 +493,24 @@ once the form is full of strangers and it's time for the real build, we scope cu
 comment how many squares you got 👇
 
 #startup #founders #pitchdeck #entrepreneur #harnova
+
+## 28 Nov: Meme, 3 variables called data and you still can't tell which one works (day40-meme-variable-names.png)
+3 variables called data and you still can't tell which one works 🫠
+
+it made sense at 1am in week 3. data came from the API, data2 was the same thing but sorted, and data_final was the one you actually used. 4 months later you open app.js the night before your demo, the examiner points at line 212 and asks what temp does. you don't know. you just know that when you deleted it on Tuesday, the login page stopped loading.
+
+nobody names things badly on purpose. you name them fast, because you're in the middle of something, and you tell yourself you'll clean it up later. later never comes.
+
+the fix takes 10 minutes per file:
+1. name it after what it holds, not when you made it. activeUsers, not data2
+2. put the unit in the name. priceRM, timeoutMs, weightKg
+3. if a variable needs a note above it to make sense, rename the variable
+4. every "fix later" gets a date or gets deleted
+
+your future self reads your code more than anyone else does. be nice to them.
+
+if your project is already a maze of data2s and the demo is close, our debug & fix sessions are RM300 to RM800 per batch. we sit with your code, find the cause and walk you through the fix, so you can explain every line yourself. harnova.my
+
+drop the worst variable name you've ever written 👇
+
+#computerscience #csstudent #coding #programming #harnova
