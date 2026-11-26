@@ -514,3 +514,25 @@ if your project is already a maze of data2s and the demo is close, our debug & f
 drop the worst variable name you've ever written 👇
 
 #computerscience #csstudent #coding #programming #harnova
+
+## 29 Nov: Tip, 1 cracked screen and you still can't reach 3 years of customers (day41-tip-phone-backup.png)
+1 cracked screen and you still can't reach 3 years of customers 📱
+
+the phone slips off the counter on a Saturday. the screen goes black, the repair shop says 3 working days, maybe 5. that's fine until you realise every regular's number, every order you haven't delivered yet and the photo of your price list are all inside it. so is the app your bank sends the login code to.
+
+nobody plans for this. the phone just quietly turns into the shop's filing cabinet, 1 saved contact and 1 voice note at a time.
+
+20 minutes tonight:
+1. turn on contact sync to your Google or iCloud account, then open it on a laptop and check the numbers are actually there
+2. open your chat app's backup settings. set it to daily and look at the date of the last backup
+3. move this month's orders into 1 sheet: date, name, item, paid or not. 2 minutes per order, and anyone on your team can read it
+4. download your bank's and Instagram's backup codes, print them, keep them in a drawer
+5. put product photos and the price list in 1 shared cloud folder
+
+do 1 and 2 even if you skip the rest.
+
+when the sheet gets too big for 1 person to keep up with, that's usually when an ordering or booking system starts to make sense. ours start at RM6,000 and every order lives in 1 place your whole team can see. harnova.my
+
+save this and do step 1 tonight 👇
+
+#smallbusiness #smallbusinessowner #entrepreneur #businesstips #harnova
