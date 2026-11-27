@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "type": "reel",
+  "media": [
+    "social/2026-11-30-reel-password-hash/1.mp4"
+  ],
+  "caption": "1 query and your examiner can still read every password 🔓\n\nviva day. login works, the dashboard looks clean, the demo's gone fine. then the examiner leans in and asks you to open the users table. you run SELECT * FROM users and there it is on the projector at 10:40am, a column called password: ali123, qwerty, iloveyou2. your whole class signed up to test it, so those are their real ones. the room goes quiet.\n\nnobody does this on purpose. in week 3 you just needed login to work, so you saved what they typed and compared it. it worked. you never came back.\n\nthe next question is \"what happens if someone steals this database?\" right now the honest answer is everything.\n\nthe fix is smaller than you'd think:\n1. never store the password. store a hash from bcrypt or argon2, they're slow on purpose and salt each one for you\n2. on login, hash what they typed and compare. you don't need the original, ever\n3. skip MD5 and SHA-1. and don't \"encrypt\" it, because anything you can decrypt, an attacker can too\n4. \"forgot password\" sends a reset link, never the old password\n5. on Supabase Auth or Firebase Auth? they already hash it. say that out loud in your viva\n\nthen rerun the query. can you read 1 password? you're not done.\n\nif you'd like the hard questions before the real panel asks them, our demo & viva prep is RM200. it's a mock presentation where we grill you on your own system, so you walk in able to explain every line yourself. harnova.my\n\nsave this and check your users table tonight 👇\n\n#computerscience #csstudent #finalyearproject #cybersecurity #harnova",
+  "slug": "reel-password-hash"
+}
