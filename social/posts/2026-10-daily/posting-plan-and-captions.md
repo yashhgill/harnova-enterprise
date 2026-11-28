@@ -536,3 +536,20 @@ when the sheet gets too big for 1 person to keep up with, that's usually when an
 save this and do step 1 tonight 👇
 
 #smallbusiness #smallbusinessowner #entrepreneur #businesstips #harnova
+
+## 1 Dec: Showcase, 200 free sweets gone and your expo booth still has 0 bookings (day42-showcase-montage-expo.png)
+200 free sweets gone and your expo booth still has 0 bookings 🍬
+
+3 days at the expo. you paid for the space, printed 500 brochures, filled a bowl with sweets and stood there smiling until your feet hurt. by noon the bowl's empty. people walked past, took 1, said "nice" and kept walking.
+
+the problem isn't the sweets. it's that nothing about them brings anyone back once they've left the hall.
+
+for Montage Events, an event house in Shah Alam, we built a mini-game for their expo booth. people stop, play it and walk away with a discount code. that code is a reason to open the site again later, pick a date and pay a ToyyibPay deposit to lock it in. no "can I check and get back to you" on WhatsApp.
+
+the same site syncs confirmed bookings into their Google Calendar, sends the confirmation email on its own and runs an AI photobooth for guests. Montage has hosted 280+ events.
+
+if your bookings still go through DMs, a booking system like this is RM6,000 to RM15,000 and takes 3 to 6 weeks. harnova.my
+
+share this with someone who has an expo coming up 👇
+
+#smallbusiness #eventplanning #marketing #entrepreneur #harnova

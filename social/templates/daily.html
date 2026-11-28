@@ -1303,4 +1303,69 @@ h2 .serif { font-size: 1.07em; letter-spacing: -.015em; }
     <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a37" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a37)"/></svg>HARNOVA</div><span class="muted">save this for tonight 👇</span></div>
   </div>
 </section>
+<!-- S: Montage Events expo mini-game -->
+<style>
+.ex { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 48px; }
+.ex > div { display: flex; flex-direction: column; }
+.ex .lb2 { font-family: 'Unbounded'; font-weight: 700; font-size: 18px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px 6px; }
+.ex .old { background: #fff; border-radius: 30px; padding: 26px 26px 24px; box-shadow: 0 20px 50px -30px rgba(13,13,18,.45); flex: 1; display: flex; flex-direction: column; }
+.ex .it { display: flex; gap: 18px; align-items: flex-start; padding: 22px 0; border-bottom: 2px dashed rgba(13,13,18,.12); }
+.ex .it:last-of-type { border-bottom: 0; }
+.ex .it .e { flex-shrink: 0; width: 62px; height: 62px; border-radius: 18px; background: #F5F4F0; display: flex; align-items: center; justify-content: center; font-size: 34px; }
+.ex .it b { display: block; font-size: 30px; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
+.ex .it small { display: block; font-size: 23px; color: var(--muted); margin-top: 5px; line-height: 1.25; }
+.ex .it small em { font-style: normal; color: #E3307A; font-weight: 650; }
+.ex .res { margin-top: auto; background: #0D0D12; color: #fff; border-radius: 20px; padding: 18px 20px; font-size: 25px; line-height: 1.25; font-weight: 600; }
+.ex .res span { font-family: 'JetBrains Mono'; font-weight: 400; color: #FF7AB0; }
+.ex .new { background: #0D0D12; color: #fff; border-radius: 30px; padding: 22px 22px 22px; flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.ex .new .glow { position: absolute; width: 520px; height: 520px; right: -260px; top: -260px; border-radius: 50%; filter: blur(80px); background: conic-gradient(from 210deg, rgba(255,61,139,.5), rgba(124,92,255,.55), rgba(34,184,230,.4), rgba(255,61,139,.5)); }
+.ex .hd { position: relative; display: flex; gap: 14px; align-items: center; }
+.ex .hd img { width: 58px; height: 58px; border-radius: 16px; }
+.ex .hd .n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+.ex .hd .d { font-size: 20px; color: rgba(255,255,255,.6); margin-top: 2px; }
+.ex .fl { position: relative; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.ex .st { display: grid; grid-template-columns: 50px 1fr; gap: 0 14px; align-items: center; background: rgba(255,255,255,.09); border-radius: 20px; padding: 17px 16px; }
+.ex .st i { font-style: normal; grid-row: span 2; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg,#FF3D8B,#7C5CFF 55%,#22B8E6); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; }
+.ex .st b { font-size: 27px; font-weight: 650; letter-spacing: -.015em; line-height: 1.15; }
+.ex .st small { font-size: 21px; color: rgba(255,255,255,.62); line-height: 1.25; margin-top: 3px; }
+.ex .cd { position: relative; margin-top: 16px; border: 3px dashed rgba(255,255,255,.35); border-radius: 18px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: rgba(255,255,255,.7); font-family: 'Inter Tight'; word-break: normal; background: transparent; line-height: 1.2; }
+.ex .cd b { font-family: 'Unbounded'; font-weight: 800; font-size: 22px; letter-spacing: .06em; color: #fff; }
+.ex2tags { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
+.ex2tags span { background: #fff; border-radius: 999px; padding: 12px 22px; font-size: 24px; font-weight: 600; letter-spacing: -.01em; box-shadow: 0 10px 30px -20px rgba(13,13,18,.4); }
+</style>
+<section class="slide paper" id="d38">
+  <div class="grid-bg" style="opacity:.5"></div>
+  <div class="light" style="width:950px;height:950px;right:-420px;top:-440px;opacity:.6"></div>
+  <div class="pad">
+    <div class="muted" style="font-size:30px;font-weight:600">work we built, for an event house</div>
+    <h2 style="font-size:80px;margin-top:16px">200 free sweets gone<br>and your expo booth<br><span class="serif nova">still has 0 bookings.</span></h2>
+    <div class="ex">
+      <div>
+        <div class="lb2">the usual booth</div>
+        <div class="old">
+          <div class="it"><div class="e">🍬</div><div><b>a bowl of sweets</b><small>gone by noon, <em>to who knows</em></small></div></div>
+          <div class="it"><div class="e">📄</div><div><b>500 brochures</b><small>half end up in the bin by the exit</small></div></div>
+          <div class="it"><div class="e">📋</div><div><b>a sign-up sheet</b><small>3 names, 1 is your cousin</small></div></div>
+          <div class="res">people who'll book you<br>next week: <span>???</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="lb2">Montage Events’ booth</div>
+        <div class="new">
+          <div class="glow"></div>
+          <div class="hd"><img src="../../public/icons/montage-events.png"><div><div class="n">Montage Events</div><div class="d">montageevents.my · live</div></div></div>
+          <div class="fl">
+            <div class="st"><i>1</i><b>play the mini-game</b><small>right there at the booth</small></div>
+            <div class="st"><i>2</i><b>win a discount code</b><small>a reason to come back</small></div>
+            <div class="st"><i>3</i><b>book on the site</b><small>ToyyibPay deposit locks the date</small></div>
+          </div>
+          <div class="cd">discount code<b>UNLOCKED ✦</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="ex2tags"><span>280+ events hosted</span><span>calendar sync</span><span>AI photobooth</span></div>
+    <div class="lc" style="margin-top:34px;margin-bottom:30px">a sweet gets eaten.<br>a code gets used.<div class="stamp">PLAY.</div></div>
+    <div class="foot"><div class="brand"><svg class="star" viewBox="0 0 40 40"><defs><linearGradient id="a38" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FF3D8B"/><stop offset=".48" stop-color="#6D4AFF"/><stop offset="1" stop-color="#22B8E6"/></linearGradient></defs><path d="M20 1 C21.8 12.5 27.5 18.2 39 20 C27.5 21.8 21.8 27.5 20 39 C18.2 27.5 12.5 21.8 1 20 C12.5 18.2 18.2 12.5 20 1 Z" fill="url(#a38)"/></svg>HARNOVA</div><span class="muted">share this if your expo’s coming up</span></div>
+  </div>
+</section>
 </body></html>
